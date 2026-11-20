@@ -49,13 +49,13 @@ def main():
     ideas = [w for w in watch if w["registered"] <= T["registered_by"]]
     assert len(ideas) == T["ideas"], f"expected {T['ideas']} watched ideas, found {len(ideas)}"
     frames, missing = load_frames(shuffle=dry)
-    lab.FEES = {m: NEW_FEES[m] for m in frames}          # this process only: the screen's functions read fees from lab.FEES
+    assert all(screen.FEES_ALL[m] == NEW_FEES[m] for m in frames)      # fees come from screen.FEES_ALL, same values as the rule
     data = screen.load(frames)
     need_t = NormalDist().inv_cdf(1 - 0.05 / T["ideas"])
     everything = lambda b: np.ones(len(b), dtype=bool)
     today = datetime.date.today().isoformat(); results = []
     for w in ideas:
-        st = screen.window_stats(screen.run_spec(w["spec"], data), data, everything, random_baseline=True)
+        st = screen.window_stats(screen.run_spec(w["spec"], data, markets=list(data)), data, everything, random_baseline=True)
         nm = st["markets_profitable"]
         checks = {
             f"trades >= {T['trades']}": bool(st["trades"] >= T["trades"]),

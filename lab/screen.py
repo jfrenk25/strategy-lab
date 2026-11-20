@@ -20,7 +20,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import lab
 
-CATALOGUE_VERSION = 2              # 2 = version 1 plus triggers appended from lab/triggers; nothing in version 1 changed
+CATALOGUE_VERSION = 3              # 2 = triggers appended from lab/triggers; 3 = triggers registered from here on run on fifteen markets
 SEED = 20261120                    # fixes the order in which the catalogue is screened
 SCREEN_LAST_BLOCK = 2023           # the screen sees trades entered before April 21, 2024
 CONFIRM_BLOCKS = (2024, 2025)      # April 21, 2024 to April 20, 2026: one run per survivor
@@ -34,6 +34,11 @@ TRIG_DIR = os.path.join(HERE, "triggers")
 REGISTRY = os.path.join(OUT, "registry.json")       # triggers in the order they were added; append-only
 MAX_VARIANTS = 3
 PLUGINS = {}                                        # trigger name -> loaded module
+NEW_FEES = {"NAS100": 0.00025, "SPX500": 0.00025, "USOIL": 0.0003, "EURUSD": 0.00015, "GBPUSD": 0.00015,
+            "USDJPY": 0.00015, "AUDUSD": 0.00015, "USDCAD": 0.00015, "EURJPY": 0.00015}      # per side; bars in lab/data_new
+FEES_ALL = {**lab.FEES, **NEW_FEES}
+UNIVERSES = {"six": list(lab.FEES), "fifteen": list(lab.FEES) + list(NEW_FEES)}
+NEW_UNIVERSE = "fifteen"                            # every trigger registered from catalogue version 3 on
 LOG_COLS = ["date", "id", "name", "trades", "pf", "t", "double_cost_pf", "markets_profitable", "screen"]
 
 
@@ -76,7 +81,10 @@ def catalogue():
                 for regime in REGIMES:
                     for session in (["any"] if entry.get("timed") else list(SESSIONS)):
                         for x in range(len(lab.EXITS)):
-                            extra.append(dict(trigger="plugin:" + entry["name"], params=p, direction=direction, regime=regime, session=session, exit=x))
+                            sp = dict(trigger="plugin:" + entry["name"], params=p, direction=direction, regime=regime, session=session, exit=x)
+                            if entry.get("universe"):
+                                sp["universe"] = entry["universe"]
+                            extra.append(sp)
         _label(extra)
         extra.sort(key=lambda s: s["id"])
         random.Random(f"{SEED}:{entry['name']}").shuffle(extra)
@@ -137,8 +145,10 @@ def validate_trigger(name):
         problems.append(f"variants must be 1 to {MAX_VARIANTS} dicts of numbers")
     if problems:
         return problems
-    for m in ("BTCUSD", "XAUUSD"):
-        df, _, _ = lab.load_market(m)
+    for m in ("BTCUSD", "XAUUSD", "EURUSD"):
+        if m in NEW_FEES and not os.path.exists(os.path.join(HERE, "data_new", f"{m}_1h.csv.gz")):
+            continue
+        df, _, _ = load_market_any(m)
         for p in v:
             try:
                 full = _plugin_event(mod, df, p)
@@ -167,7 +177,8 @@ def register_new_triggers(today):
         if problems:
             invalid[name] = problems; continue
         t = _load_trigger(name).TRIGGER
-        reg.append(dict(name=name, hash=_file_hash(name), added=today, source=t["source"], summary=t["summary"], variants=t["variants"], timed=bool(t.get("timed", False))))
+        reg.append(dict(name=name, hash=_file_hash(name), added=today, source=t["source"], summary=t["summary"], variants=t["variants"], timed=bool(t.get("timed", False)),
+                        universe=NEW_UNIVERSE))
         added.append(name)
     if added:
         os.makedirs(OUT, exist_ok=True); json.dump(reg, open(REGISTRY, "w"), indent=1)
@@ -268,24 +279,41 @@ def signals(spec, f):
 
 # ---------------------------------------------------------------- testing
 
+def load_market_any(m):
+    """Bars, block numbers and ATR for any market. The six lab markets come from lab/data, the nine added ones from lab/data_new."""
+    if m in lab.FEES:
+        return lab.load_market(m)
+    df = pd.read_csv(os.path.join(HERE, "data_new", f"{m}_1h.csv.gz"), parse_dates=["time"]).set_index("time")
+    idx = df.index                                       # same construction as lab.load_market
+    block = np.where((idx.month > 4) | ((idx.month == 4) & (idx.day >= 21)), idx.year, idx.year - 1).astype(np.int64)
+    pc = df["close"].shift(1)
+    tr = pd.concat([df["high"] - df["low"], (df["high"] - pc).abs(), (df["low"] - pc).abs()], axis=1).max(axis=1)
+    return df, block, (tr.rolling(14, min_periods=14).mean() / df["close"]).fillna(0.01).to_numpy()
+
+
 def load(frames=None):
+    """Every market that has a file (or every market in frames, when prepared frames are passed in)."""
     data = {}
-    for m in lab.FEES:
-        if frames is None and not os.path.exists(os.path.join(HERE, "data", f"{m}_1h.csv.gz")):
+    for m in (FEES_ALL if frames is None else frames):
+        if frames is None and not os.path.exists(os.path.join(HERE, "data_new" if m in NEW_FEES else "data", f"{m}_1h.csv.gz")):
             continue
-        df, block, atrp = lab.load_market(m) if frames is None else frames[m]
+        df, block, atrp = load_market_any(m) if frames is None else frames[m]
         o, h, l, c = (np.ascontiguousarray(df[x].to_numpy(np.float64)) for x in ("open", "high", "low", "close"))
         data[m] = dict(df=df, block=block, atrp=atrp, ohlc=(o, h, l, c), feats=Feats(df))
     return data
 
 
-def run_spec(spec, data):
+def run_spec(spec, data, markets=None):
+    """Simulate one idea. By default on the markets of its own universe (six for older ideas, fifteen from version 3 on)."""
     am, rr = lab.EXITS[spec["exit"]]; runs = {}
-    for m, D in data.items():
+    if markets is None:
+        markets = [m for m in UNIVERSES[spec.get("universe", "six")] if m in data]
+    for m in markets:
+        D = data[m]
         d = lab._cooldown(np.ascontiguousarray(signals(spec, D["feats"])), lab.COOLDOWN)
         slf = np.clip(am * D["atrp"], 0.001, 0.20)
-        runs[m] = dict(slf=slf, rr=rr, x1=lab._simulate(*D["ohlc"], d, slf, rr, lab.FEES[m], lab.SLIP),
-                       x2=lab._simulate(*D["ohlc"], d, slf, rr, lab.FEES[m] * 2, lab.SLIP * 2))
+        runs[m] = dict(slf=slf, rr=rr, x1=lab._simulate(*D["ohlc"], d, slf, rr, FEES_ALL[m], lab.SLIP),
+                       x2=lab._simulate(*D["ohlc"], d, slf, rr, FEES_ALL[m] * 2, lab.SLIP * 2))
     return runs
 
 
@@ -297,7 +325,7 @@ def window_stats(runs, data, in_window, random_baseline=False):
         k = in_window(blk[ei]); R.append(r[k]); R2.append(r2[in_window(blk[ei2])]); by_market[m] = float(r[k].sum())
         if random_baseline and k.any():
             w = np.where(in_window(blk))[0]
-            rnd += lab._random(*data[m]["ohlc"][:3], int(w[0]), int(w[-1]), sd[k].astype(np.int64), run["slf"], run["rr"], lab.FEES[m], lab.SLIP, 1000, 11)
+            rnd += lab._random(*data[m]["ohlc"][:3], int(w[0]), int(w[-1]), sd[k].astype(np.int64), run["slf"], run["rr"], FEES_ALL[m], lab.SLIP, 1000, 11)
             actual += float(r[k].sum())
     R = np.concatenate(R); R2 = np.concatenate(R2)
     out = dict(trades=int(len(R)), pf=lab._pf(R) if len(R) else float("nan"), totalR=float(R.sum()) if len(R) else 0.0, t=lab._tstat(R),
@@ -389,7 +417,7 @@ def main():
         # survivor: exactly one run on the confirm years
         state["survivors"] += 1; k = state["survivors"]; need_t = NormalDist().inv_cdf(1 - 0.05 / max(k, SURVIVOR_FLOOR))
         cf = window_stats(runs, data, in_confirm, random_baseline=True); checks = confirm_checks(cf, need_t, k)
-        res = dict(id=spec["id"], name=spec["name"], spec={x: spec[x] for x in ("trigger", "params", "direction", "regime", "session", "exit")},
+        res = dict(id=spec["id"], name=spec["name"], spec={x: spec[x] for x in ("trigger", "params", "direction", "regime", "session", "exit", "universe") if x in spec},
                    date=today, survivor=k, need_t=float(need_t), screen=st, confirm=cf, checks=checks, verdict="REJECT")
         day["survivors"].append(spec["name"])
         if all(checks.values()):

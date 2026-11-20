@@ -20,6 +20,7 @@ A trigger is one event on a price chart: +1 when it points up, -1 when it points
 1. Read `screen/registry.json` and the built-in triggers at the top of `screen.py` (breakout, sweep, prev_day_break, big_bar, vol_spike, squeeze_break, streak, gap, zmove, session_open, clock). Do not add a trigger that is one of these with different numbers.
 2. Search for events with explicit rules. Sources, in order of preference: published research (SSRN, arXiv q-fin, journals), the book in `BOOK_INDEX.md`, open-source strategy code on GitHub, public strategy write-ups. Do not scrape TradingView or any site whose terms forbid automated collection.
 3. Keep only events that can be computed from 1-hour open, high, low, close and volume of one market. Skip anything that needs other data and note it in `STATE.md`.
+   Each new trigger is screened on fifteen markets: crypto, gold, oil, stock indices and forex. So it must not assume 24-hour trading, a fixed price scale or a fixed volume scale. Compare a bar with that market's own recent past.
 4. For each one, copy `triggers/_TEMPLATE.py` to `triggers/NAME.py`. Write the rule in your own code. Cite the source and say in the docstring what you kept and what you changed. Do not copy source code or long passages.
 5. Run `python lab/tools/check_trigger.py NAME`. Fix a genuine bug once. If it still fails, delete the file and note it as skipped.
 6. The daily limit is in the session's instructions. If none is given, add at most 5 triggers.

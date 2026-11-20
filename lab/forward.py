@@ -45,7 +45,7 @@ def register(today):
 
 
 def forward_stats(spec, start, data):
-    runs = screen.run_spec(spec, data); t0 = pd.Timestamp(start, tz="UTC")
+    runs = screen.run_spec(spec, data, markets=list(data)); t0 = pd.Timestamp(start, tz="UTC")      # every market the lab holds
     R, R2, by_market, rows = [], [], {}, []
     for m, run in runs.items():
         times = data[m]["df"].index; ei, r, sd = run["x1"]; ei2, r2, _ = run["x2"]

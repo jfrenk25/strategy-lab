@@ -155,3 +155,15 @@ A one-time check of the watched ideas on markets the lab has never used. It asks
 - An idea that passes is a CANDIDATE. It stays on the forward watch, which is still the last gate before the account-fit check.
 - An idea that fails stays on the forward watch too, marked as failed here. Nothing is removed.
 - The new markets are kept apart in `lab/data_new`. They do not join the screen until a new catalogue version says so.
+
+## Catalogue version 3: fifteen markets (added November 20, 2026, before any trigger ran under it)
+The new-market test showed that every watched idea lost money on markets it was not found on. From here a new idea has to work broadly to survive.
+
+- Applies to every trigger registered from now on. The 4,320 ideas already screened are not re-run, and their results stand.
+- Markets: the six lab markets plus NAS100, SPX500, USOIL, EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD and EURJPY (`lab/data_new`).
+- Fees per side for the nine: forex 0.015%, indices 0.025%, oil 0.03%. Everything else about fills and exits is unchanged.
+- The data split is unchanged: screen years before April 21, 2024; confirm years to April 20, 2026; quarantine after that.
+- Screen and confirm thresholds are unchanged. "Half of the markets" now means 8 of 15.
+- The survivor count carries on from 109, so the bar keeps rising.
+- The nine added markets were used once, for the new-market test of 13 older ideas. No new trigger has touched them.
+- Forward watch: every watched idea, old or new, is tracked on all fifteen markets from its start date.

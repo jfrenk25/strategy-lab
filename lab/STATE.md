@@ -47,6 +47,8 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - New-market test 2026-11-20: the 13 watched ideas got one run each on nine unseen markets (`data_new/`). 0 of 13 passed. Every one lost money there; the nearest miss made a profit factor of 0.89 over 1,176 trades. The edge seen on the six lab markets did not carry over.
 - Rule learned: a rule that only works on the markets it was found on is not an edge. Trend-following survivors here leaned on gold, crypto and DAX trends.
 - The forward watch still starts 2026-11-21 and needs another data refresh to move.
+- Catalogue version 3 from 2026-11-20: every trigger registered from now on is screened and confirmed on fifteen markets (the six plus `data_new/`). "Half the markets" means 8 of 15. Older ideas are not re-run.
+- The forward watch now tracks every watched idea on all fifteen markets.
 - On shuffled prices 0 of 400 ideas passed the screen, so a survivor is rarely pure luck in the screen years. It can still fail to carry forward, as the first one did.
 - Limit: 1-hour bars and single-market triggers only. Cross-market triggers and other timeframes would be a new catalogue version.
 
