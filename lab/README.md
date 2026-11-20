@@ -4,6 +4,7 @@ A small, strict test bench. It does not find strategies. It rejects them, and lo
 
 - `LAB_RULES.md`: the fixed checks every idea must pass.
 - `lab.py`: the test runner (walk-forward, realistic fills, random-entry baseline, rising bar, quarantine).
+- `position_mode.py`: the second engine, for ideas that hold weights across markets day by day.
 - `ideas/`: one file per idea. Copy `_TEMPLATE.py` to add one. `ideas/inbox/` holds raw idea cards.
 - `JOURNAL.md`: append-only log of every attempt.
 - `state.json`: attempt counter and which ideas have been tested.

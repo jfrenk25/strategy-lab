@@ -29,6 +29,23 @@ These are fixed. An idea is rejected unless it passes every check. Do not edit t
 - p is the share of shuffled paths that do at least as well as the real one. The idea needs p of 0.01 or less.
 - A parameter plateau is checked by hand before promotion: the neighbouring settings must also be profitable.
 
+## Position mode (added November 19, 2026)
+For ideas that hold weights across markets day by day: trend, relative value, stat arb. The idea file sets `mode="position"`.
+
+- Daily bars built from the hourly data. The day rolls at 22:00 UTC. A weight decided at a day's close earns the next day's return.
+- Total exposure is capped at 1. Every change in a weight pays that market's fee plus slippage.
+- Walk-forward is the same: the parameter set for each test year is chosen on the three years before it.
+- Checks (all must pass):
+  1. Annualised Sharpe of 0.8 or more.
+  2. At least 500 days in the market.
+  3. Profitable in at least 60% of test years.
+  4. At least half of the markets contribute a profit.
+  5. Still profitable with costs doubled.
+  6. Beats 95% of 1,000 copies of itself with the positions shifted in time.
+  7. t-stat at or above the rising bar.
+  8. Permutation test, p of 0.01 or less. Days are shuffled jointly across markets, so same-day links between markets survive.
+- Quarantine: at least 100 days in the held-back block and a positive total.
+
 ## The rising bar
 - Every idea tested is one attempt. The counter started at 96, the number of ideas tested before the lab existed.
 - Required t-stat = the normal quantile at 1 - 0.05 / attempts. At attempt 100 that is about 3.3.

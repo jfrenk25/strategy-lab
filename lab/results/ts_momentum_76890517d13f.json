@@ -1,0 +1,166 @@
+{
+ "name": "ts_momentum",
+ "mode": "position",
+ "markets": [
+  "BTCUSD",
+  "ETHUSD",
+  "XAUUSD",
+  "GBPJPY",
+  "USA30",
+  "DEU30"
+ ],
+ "days": 4712,
+ "sharpe": 0.0488157170878013,
+ "total": 0.09947005090292263,
+ "maxdd": -0.431903625047695,
+ "t": 0.17587759737773193,
+ "need_t": 3.287698084660872,
+ "attempts": 99,
+ "dbl_total": 0.016674237551458373,
+ "beats_shifted": 10.6,
+ "blocks_profitable": [
+  10,
+  16
+ ],
+ "markets_profitable": [
+  3,
+  6
+ ],
+ "by_block": {
+  "2010": 0.1479,
+  "2011": 0.1123,
+  "2012": 0.0659,
+  "2013": -0.1514,
+  "2014": 0.0225,
+  "2015": 0.0105,
+  "2016": 0.0056,
+  "2017": -0.0375,
+  "2018": -0.1681,
+  "2019": 0.14,
+  "2020": 0.0725,
+  "2021": -0.1561,
+  "2022": -0.0454,
+  "2023": 0.0885,
+  "2024": -0.0847,
+  "2025": 0.0772
+ },
+ "by_market": {
+  "BTCUSD": 0.0337,
+  "ETHUSD": -0.0402,
+  "XAUUSD": 0.1522,
+  "GBPJPY": -0.0145,
+  "USA30": -0.0624,
+  "DEU30": 0.0308
+ },
+ "picks": [
+  [
+   2010,
+   {
+    "lookback": 63
+   }
+  ],
+  [
+   2011,
+   {
+    "lookback": 252
+   }
+  ],
+  [
+   2012,
+   {
+    "lookback": 252
+   }
+  ],
+  [
+   2013,
+   {
+    "lookback": 21
+   }
+  ],
+  [
+   2014,
+   {
+    "lookback": 252
+   }
+  ],
+  [
+   2015,
+   {
+    "lookback": 252
+   }
+  ],
+  [
+   2016,
+   {
+    "lookback": 252
+   }
+  ],
+  [
+   2017,
+   {
+    "lookback": 252
+   }
+  ],
+  [
+   2018,
+   {
+    "lookback": 252
+   }
+  ],
+  [
+   2019,
+   {
+    "lookback": 63
+   }
+  ],
+  [
+   2020,
+   {
+    "lookback": 63
+   }
+  ],
+  [
+   2021,
+   {
+    "lookback": 63
+   }
+  ],
+  [
+   2022,
+   {
+    "lookback": 252
+   }
+  ],
+  [
+   2023,
+   {
+    "lookback": 21
+   }
+  ],
+  [
+   2024,
+   {
+    "lookback": 21
+   }
+  ],
+  [
+   2025,
+   {
+    "lookback": 252
+   }
+  ]
+ ],
+ "checks": {
+  "Sharpe >= 0.8": false,
+  "days in the market >= 500": true,
+  "profitable in 60% of test years": true,
+  "half the markets contribute a profit": true,
+  "still profitable at double costs": true,
+  "beats 95% of time-shifted copies of itself": false,
+  "t-stat >= 3.29 (bar for attempt 99)": false
+ },
+ "verdict": "REJECT",
+ "file": "ts_momentum.py",
+ "hash": "76890517d13f",
+ "date": "2026-11-19"
+}

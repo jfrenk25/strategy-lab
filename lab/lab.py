@@ -229,13 +229,18 @@ def main():
         if want and f[:-3] not in want: continue
         if not want and state["tested"].get(f) == digest: continue
         spec = importlib.util.spec_from_file_location(f[:-3], path); mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
-        sys.path.insert(0, os.path.join(HERE, "tools"))
+        sys.path.insert(0, os.path.join(HERE, "tools")); sys.path.insert(0, HERE)
         from check_idea import check
         problems = check(f[:-3])
         if problems:                       # a broken idea is not a test: it is not counted and not marked as tested
             print(f"INVALID    {f[:-3]}: " + "; ".join(problems)); continue
         state["attempts"] += 1
-        res = run_idea(mod, state["attempts"])
+        is_pos = mod.IDEA.get("mode") == "position"
+        if is_pos:
+            import position_mode
+            res = position_mode.run_idea(mod, state["attempts"])
+        else:
+            res = run_idea(mod, state["attempts"])
         res["file"], res["hash"], res["date"] = f, digest, datetime.date.today().isoformat()
         if "quarantine" in res: state["quarantine_used"].append(f)
         state["tested"][f] = digest
@@ -244,13 +249,16 @@ def main():
         with open(os.path.join(HERE, "JOURNAL.md"), "a") as j:
             j.write(f"\n### {res['date']} · attempt {res['attempts']} · `{mod.IDEA['name']}` · {res['verdict']}\n"
                     f"- Source: {mod.IDEA['source']}\n- Reason claimed: {mod.IDEA['reason']}\n- Who loses: {mod.IDEA['loser']}\n"
-                    f"- Out-of-sample: {res['trades']} trades, profit factor {res['pf']:.2f}, {res['totalR']:+.1f}R, t-stat {res['t']:.2f} (needed {res['need_t']:.2f})\n"
-                    f"- Profitable test years {res['blocks_profitable'][0]} of {res['blocks_profitable'][1]}; markets {res['markets_profitable'][0]} of {res['markets_profitable'][1]}; "
-                    f"double-cost profit factor {res['dbl_pf']:.2f}; beats {res['beats_random']:.0f}% of random entries\n"
+                    + (position_mode.journal_lines(res) if is_pos else
+                       f"- Out-of-sample: {res['trades']} trades, profit factor {res['pf']:.2f}, {res['totalR']:+.1f}R, t-stat {res['t']:.2f} (needed {res['need_t']:.2f})\n"
+                       f"- Profitable test years {res['blocks_profitable'][0]} of {res['blocks_profitable'][1]}; markets {res['markets_profitable'][0]} of {res['markets_profitable'][1]}; "
+                       f"double-cost profit factor {res['dbl_pf']:.2f}; beats {res['beats_random']:.0f}% of random entries\n")
                     + (f"- Permutation test: p = {res['perm_p']:.3f}\n" if "perm_p" in res else "")
-                    + (f"- Quarantine run: {res['quarantine']['trades']} trades, profit factor {res['quarantine']['pf']:.2f}\n" if "quarantine" in res else "")
+                    + ((f"- Quarantine run: {res['quarantine']['days']} days, total {res['quarantine']['total']*100:+.1f}%\n" if is_pos else f"- Quarantine run: {res['quarantine']['trades']} trades, profit factor {res['quarantine']['pf']:.2f}\n") if "quarantine" in res else "")
                     + (f"- Failed: {'; '.join(fails)}\n" if fails else "- Passed every pre-quarantine check\n"))
         json.dump(state, open(state_path, "w"), indent=1)
+        if is_pos:
+            print(position_mode.summary_line(res)); continue
         print(f"{res['verdict']:10s} {mod.IDEA['name']:28s} trades {res['trades']:5d}  PF {res['pf']:.2f}  {res['totalR']:+7.1f}R  t {res['t']:.2f}/{res['need_t']:.2f}  double-cost PF {res['dbl_pf']:.2f}  beats random {res['beats_random']:.0f}%  years {res['blocks_profitable']}  markets {res['markets_profitable']}")
 
 

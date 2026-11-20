@@ -1,0 +1,82 @@
+{
+ "name": "xs_contrarian",
+ "mode": "position",
+ "markets": [
+  "BTCUSD",
+  "ETHUSD",
+  "XAUUSD",
+  "GBPJPY",
+  "USA30",
+  "DEU30"
+ ],
+ "days": 1461,
+ "sharpe": 0.1264502520125217,
+ "total": 0.053531975702512766,
+ "maxdd": -0.13389709052179563,
+ "t": 0.2529870989613339,
+ "need_t": 3.2905267314919255,
+ "attempts": 100,
+ "dbl_total": -0.06336797226579936,
+ "beats_shifted": 81.6,
+ "blocks_profitable": [
+  2,
+  4
+ ],
+ "markets_profitable": [
+  3,
+  6
+ ],
+ "by_block": {
+  "2022": 0.0112,
+  "2023": -0.0954,
+  "2024": 0.1421,
+  "2025": -0.0043
+ },
+ "by_market": {
+  "BTCUSD": 0.1194,
+  "ETHUSD": 0.2141,
+  "XAUUSD": -0.1156,
+  "GBPJPY": 0.0418,
+  "USA30": -0.0723,
+  "DEU30": -0.1338
+ },
+ "picks": [
+  [
+   2022,
+   {
+    "lookback": 10
+   }
+  ],
+  [
+   2023,
+   {
+    "lookback": 5
+   }
+  ],
+  [
+   2024,
+   {
+    "lookback": 5
+   }
+  ],
+  [
+   2025,
+   {
+    "lookback": 5
+   }
+  ]
+ ],
+ "checks": {
+  "Sharpe >= 0.8": false,
+  "days in the market >= 500": true,
+  "profitable in 60% of test years": false,
+  "half the markets contribute a profit": true,
+  "still profitable at double costs": false,
+  "beats 95% of time-shifted copies of itself": false,
+  "t-stat >= 3.29 (bar for attempt 100)": false
+ },
+ "verdict": "REJECT",
+ "file": "xs_contrarian.py",
+ "hash": "4153d88dc463",
+ "date": "2026-11-19"
+}

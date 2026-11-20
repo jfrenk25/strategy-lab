@@ -30,3 +30,21 @@ Attempt counter starts at 96.
 - Out-of-sample: 3020 trades, profit factor 0.90, -213.2R, t-stat -2.56 (needed 3.28)
 - Profitable test years 6 of 16; markets 0 of 6; double-cost profit factor 0.79; beats 31% of random entries
 - Failed: profit factor >= 1.15; profitable in 60% of test years; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.28 (bar for attempt 98)
+
+### 2026-11-19 · attempt 99 · `ts_momentum` · REJECT
+- Source: Kakushadze and Serur, 151 Trading Strategies, section 10.4 (after Moskowitz, Ooi and Pedersen, 2012)
+- Reason claimed: Trends persist for months because information spreads slowly and investors adjust positions gradually.
+- Who loses: Hedgers and slow movers who trade against a move that has not finished.
+- Mode: position (daily weights across 6 markets)
+- Out-of-sample: 4712 days in the market, Sharpe 0.05, total +9.9%, max drawdown -43.2%, t-stat 0.18 (needed 3.29)
+- Profitable test years 10 of 16; markets contributing 3 of 6; double-cost total +1.7%; beats 11% of time-shifted copies
+- Failed: Sharpe >= 0.8; beats 95% of time-shifted copies of itself; t-stat >= 3.29 (bar for attempt 99)
+
+### 2026-11-19 · attempt 100 · `xs_contrarian` · REJECT
+- Source: Kakushadze and Serur, 151 Trading Strategies, section 10.3
+- Reason claimed: Short-term moves away from the group partly reverse as temporary buying or selling pressure fades.
+- Who loses: Traders who chase last week's leaders, and those forced to trade into a temporary imbalance.
+- Mode: position (daily weights across 6 markets)
+- Out-of-sample: 1461 days in the market, Sharpe 0.13, total +5.4%, max drawdown -13.4%, t-stat 0.25 (needed 3.29)
+- Profitable test years 2 of 4; markets contributing 3 of 6; double-cost total -6.3%; beats 82% of time-shifted copies
+- Failed: Sharpe >= 0.8; profitable in 60% of test years; still profitable at double costs; beats 95% of time-shifted copies of itself; t-stat >= 3.29 (bar for attempt 100)

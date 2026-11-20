@@ -13,6 +13,17 @@ def check(name):
     for k in ("name", "source", "reason", "loser", "grid"):
         if not idea.get(k): problems.append(f"missing {k}")
     if len(idea.get("grid", [])) > lab.MAX_GRID: problems.append("grid larger than 12")
+    if idea.get("mode") == "position":
+        import position_mode as pm
+        data, _ = pm.load_daily(idea.get("markets", "all"))
+        for p in idea.get("grid", []):
+            full = mod.positions(data, p).reindex(index=data["close"].index, columns=data["close"].columns).fillna(0.0).to_numpy()
+            for frac in (0.6, 0.85):
+                t = int(len(full) * frac)
+                part = mod.positions({k: v.iloc[:t] for k, v in data.items()}, p).reindex(index=data["close"].index[:t], columns=data["close"].columns).fillna(0.0).to_numpy()
+                bad = int((np.abs(part - full[:t]) > 1e-9).any(axis=1).sum())
+                if bad: problems.append(f"{p}: look-ahead, weights on {bad} days change when later data is removed")
+        return problems
     df, _, _ = lab.load_market("BTCUSD")
     for p in idea.get("grid", []):
         full = np.nan_to_num(np.asarray(mod.signals(df, p), dtype=float))
