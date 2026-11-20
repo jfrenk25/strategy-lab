@@ -151,7 +151,7 @@ A one-time check of the watched ideas on markets the lab has never used. It asks
   3. Profit factor above 1.0 with costs doubled.
   4. Profitable in at least half of the new markets.
   5. Beats 95% of 1,000 random-entry runs with the same trade count, sides and exits.
-  6. t-stat of 2.65 or more (the normal quantile at 1 - 0.05 / 13, for 13 ideas tested).
+  6. t-stat of 2.67 or more (the normal quantile at 1 - 0.05 / 13, for 13 ideas tested). First written as 2.65 by a rounding slip; corrected to the formula's value before the run.
 - An idea that passes is a CANDIDATE. It stays on the forward watch, which is still the last gate before the account-fit check.
 - An idea that fails stays on the forward watch too, marked as failed here. Nothing is removed.
 - The new markets are kept apart in `lab/data_new`. They do not join the screen until a new catalogue version says so.

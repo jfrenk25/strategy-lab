@@ -21,7 +21,8 @@
    "t": 2.78,
    "need_t": 2.81
   },
-  "verdict": null
+  "verdict": null,
+  "new_markets": "FAIL"
  },
  {
   "id": "3b9ab60428",
@@ -45,7 +46,8 @@
    "t": 2.38,
    "need_t": 3.15
   },
-  "verdict": null
+  "verdict": null,
+  "new_markets": "FAIL"
  },
  {
   "id": "d1f624eb0c",
@@ -69,7 +71,8 @@
    "t": 2.24,
    "need_t": 2.9
   },
-  "verdict": null
+  "verdict": null,
+  "new_markets": "FAIL"
  },
  {
   "id": "c0d577564d",
@@ -94,7 +97,8 @@
    "t": 2.12,
    "need_t": 2.81
   },
-  "verdict": null
+  "verdict": null,
+  "new_markets": "FAIL"
  },
  {
   "id": "00cf641ebe",
@@ -119,7 +123,8 @@
    "t": 1.97,
    "need_t": 2.81
   },
-  "verdict": null
+  "verdict": null,
+  "new_markets": "FAIL"
  },
  {
   "id": "ba163a63e9",
@@ -144,7 +149,8 @@
    "t": 1.78,
    "need_t": 3.22
   },
-  "verdict": null
+  "verdict": null,
+  "new_markets": "FAIL"
  },
  {
   "id": "ba5d06265e",
@@ -168,7 +174,8 @@
    "t": 1.77,
    "need_t": 3.28
   },
-  "verdict": null
+  "verdict": null,
+  "new_markets": "FAIL"
  },
  {
   "id": "0fc5487cf2",
@@ -193,7 +200,8 @@
    "t": 1.52,
    "need_t": 3.19
   },
-  "verdict": null
+  "verdict": null,
+  "new_markets": "FAIL"
  },
  {
   "id": "4e93361ea0",
@@ -217,7 +225,8 @@
    "t": 1.45,
    "need_t": 2.81
   },
-  "verdict": null
+  "verdict": null,
+  "new_markets": "FAIL"
  },
  {
   "id": "5a57fa9cad",
@@ -242,7 +251,8 @@
    "t": 1.3,
    "need_t": 3.06
   },
-  "verdict": null
+  "verdict": null,
+  "new_markets": "FAIL"
  },
  {
   "id": "50a7905a6e",
@@ -267,7 +277,8 @@
    "t": 1.28,
    "need_t": 3.24
   },
-  "verdict": null
+  "verdict": null,
+  "new_markets": "FAIL"
  },
  {
   "id": "be528f983b",
@@ -291,7 +302,8 @@
    "t": 1.1,
    "need_t": 3.02
   },
-  "verdict": null
+  "verdict": null,
+  "new_markets": "FAIL"
  },
  {
   "id": "44419fd0ec",
@@ -316,6 +328,7 @@
    "t": 1.08,
    "need_t": 3.08
   },
-  "verdict": null
+  "verdict": null,
+  "new_markets": "FAIL"
  }
 ]

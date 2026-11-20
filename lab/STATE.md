@@ -43,6 +43,10 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - Running totals 2026-11-20: 4,320 screened, 109 survivors, 0 confirmed. A new survivor now needs a confirm t-stat of about 3.3.
 - Forward watch built 2026-11-20 (`forward.py`): 13 near misses registered, forward trades count from 2026-11-21. It shows 0 trades until fresh bars reach `data/`. GBPJPY, USA30 and DEU30 data end on 2026-04-21.
 - Missing piece: a price refresh. This workspace cannot reach Binance, Bitstamp or Dukascopy, so new bars have to come from Jeff's PC.
+- Data refreshed 2026-11-20 from Jeff's PC (`fetch_lab_data.py` in his `vectorbt research\data` folder): all six markets now run to 2026-11-20. BTC bars are Bitstamp's, ETH bars are Binance's, the rest are Dukascopy BID. The overlap matched the old bars exactly.
+- New-market test 2026-11-20: the 13 watched ideas got one run each on nine unseen markets (`data_new/`). 0 of 13 passed. Every one lost money there; the nearest miss made a profit factor of 0.89 over 1,176 trades. The edge seen on the six lab markets did not carry over.
+- Rule learned: a rule that only works on the markets it was found on is not an edge. Trend-following survivors here leaned on gold, crypto and DAX trends.
+- The forward watch still starts 2026-11-21 and needs another data refresh to move.
 - On shuffled prices 0 of 400 ideas passed the screen, so a survivor is rarely pure luck in the screen years. It can still fail to carry forward, as the first one did.
 - Limit: 1-hour bars and single-market triggers only. Cross-market triggers and other timeframes would be a new catalogue version.
 

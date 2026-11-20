@@ -1,0 +1,497 @@
+{
+ "date": "2026-11-20",
+ "markets": [
+  "NAS100",
+  "SPX500",
+  "USOIL",
+  "EURUSD",
+  "GBPUSD",
+  "USDJPY",
+  "AUDUSD",
+  "USDCAD",
+  "EURJPY"
+ ],
+ "markets_missing": [],
+ "data_ends": {
+  "NAS100": "2026-11-20 05:00:00+00:00",
+  "SPX500": "2026-11-20 05:00:00+00:00",
+  "USOIL": "2026-11-20 05:00:00+00:00",
+  "EURUSD": "2026-11-20 05:00:00+00:00",
+  "GBPUSD": "2026-11-20 05:00:00+00:00",
+  "USDJPY": "2026-11-20 05:00:00+00:00",
+  "AUDUSD": "2026-11-20 05:00:00+00:00",
+  "USDCAD": "2026-11-20 05:00:00+00:00",
+  "EURJPY": "2026-11-20 05:00:00+00:00"
+ },
+ "need_t": 2.665285106024977,
+ "results": [
+  {
+   "id": "d5f7529a14",
+   "name": "breakout_n168.follow.with_trend.asia.stop3_rr2.5",
+   "verdict": "FAIL",
+   "stats": {
+    "trades": 1176,
+    "pf": 0.8902770842060043,
+    "totalR": -102.50191468761898,
+    "t": -1.8496518730772749,
+    "dbl_pf": 0.7798252535920105,
+    "markets_profitable": [
+     2,
+     9
+    ],
+    "by_market": {
+     "NAS100": -23.1,
+     "SPX500": -19.5,
+     "USOIL": -35.0,
+     "EURUSD": -19.6,
+     "GBPUSD": -15.2,
+     "USDJPY": 26.2,
+     "AUDUSD": -18.0,
+     "USDCAD": 5.3,
+     "EURJPY": -3.6
+    },
+    "beats_random": 53.300000000000004
+   },
+   "checks": {
+    "trades >= 150": true,
+    "profit factor >= 1.15": false,
+    "profit factor > 1 at double costs": false,
+    "profitable in half the new markets": false,
+    "beats 95% of random entries": false,
+    "t-stat >= 2.67": false
+   }
+  },
+  {
+   "id": "3b9ab60428",
+   "name": "breakout_n24.follow.with_trend.asia.stop3_rr2.5",
+   "verdict": "FAIL",
+   "stats": {
+    "trades": 2154,
+    "pf": 0.8773483304731916,
+    "totalR": -209.43091807792007,
+    "t": -2.8103263835118923,
+    "dbl_pf": 0.7642937613670412,
+    "markets_profitable": [
+     1,
+     9
+    ],
+    "by_market": {
+     "NAS100": -31.3,
+     "SPX500": -12.0,
+     "USOIL": -25.9,
+     "EURUSD": -33.6,
+     "GBPUSD": -4.6,
+     "USDJPY": 27.4,
+     "AUDUSD": -43.6,
+     "USDCAD": -21.7,
+     "EURJPY": -64.2
+    },
+    "beats_random": 43.6
+   },
+   "checks": {
+    "trades >= 150": true,
+    "profit factor >= 1.15": false,
+    "profit factor > 1 at double costs": false,
+    "profitable in half the new markets": false,
+    "beats 95% of random entries": false,
+    "t-stat >= 2.67": false
+   }
+  },
+  {
+   "id": "d1f624eb0c",
+   "name": "breakout_n72.follow.with_trend.asia.stop3_rr2.5",
+   "verdict": "FAIL",
+   "stats": {
+    "trades": 1549,
+    "pf": 0.8518280757367023,
+    "totalR": -184.59912691573635,
+    "t": -2.927123891225409,
+    "dbl_pf": 0.7453286627038924,
+    "markets_profitable": [
+     1,
+     9
+    ],
+    "by_market": {
+     "NAS100": -16.6,
+     "SPX500": -26.0,
+     "USOIL": -41.8,
+     "EURUSD": -22.1,
+     "GBPUSD": -14.4,
+     "USDJPY": 8.4,
+     "AUDUSD": -31.6,
+     "USDCAD": -15.5,
+     "EURJPY": -25.1
+    },
+    "beats_random": 24.8
+   },
+   "checks": {
+    "trades >= 150": true,
+    "profit factor >= 1.15": false,
+    "profit factor > 1 at double costs": false,
+    "profitable in half the new markets": false,
+    "beats 95% of random entries": false,
+    "t-stat >= 2.67": false
+   }
+  },
+  {
+   "id": "c0d577564d",
+   "name": "zmove_n24_z2.follow.with_trend.asia.stop3_rr2.5",
+   "verdict": "FAIL",
+   "stats": {
+    "trades": 544,
+    "pf": 0.85264564849105,
+    "totalR": -63.60244558185574,
+    "t": -1.719797111348613,
+    "dbl_pf": 0.7594793635271911,
+    "markets_profitable": [
+     2,
+     9
+    ],
+    "by_market": {
+     "NAS100": -9.9,
+     "SPX500": -14.8,
+     "USOIL": -23.0,
+     "EURUSD": -13.4,
+     "GBPUSD": 3.3,
+     "USDJPY": -4.1,
+     "AUDUSD": -6.3,
+     "USDCAD": -5.3,
+     "EURJPY": 10.0
+    },
+    "beats_random": 41.099999999999994
+   },
+   "checks": {
+    "trades >= 150": true,
+    "profit factor >= 1.15": false,
+    "profit factor > 1 at double costs": false,
+    "profitable in half the new markets": false,
+    "beats 95% of random entries": false,
+    "t-stat >= 2.67": false
+   }
+  },
+  {
+   "id": "00cf641ebe",
+   "name": "zmove_n24_z2.follow.none.any.stop3_rr2.5",
+   "verdict": "FAIL",
+   "stats": {
+    "trades": 2031,
+    "pf": 0.91552616849105,
+    "totalR": -127.28338480134795,
+    "t": -1.8051256250729046,
+    "dbl_pf": 0.8177363384181213,
+    "markets_profitable": [
+     1,
+     9
+    ],
+    "by_market": {
+     "NAS100": -18.7,
+     "SPX500": -2.9,
+     "USOIL": -26.1,
+     "EURUSD": -15.6,
+     "GBPUSD": 23.6,
+     "USDJPY": -29.5,
+     "AUDUSD": -15.1,
+     "USDCAD": -17.7,
+     "EURJPY": -25.4
+    },
+    "beats_random": 89.4
+   },
+   "checks": {
+    "trades >= 150": true,
+    "profit factor >= 1.15": false,
+    "profit factor > 1 at double costs": false,
+    "profitable in half the new markets": false,
+    "beats 95% of random entries": false,
+    "t-stat >= 2.67": false
+   }
+  },
+  {
+   "id": "ba163a63e9",
+   "name": "zmove_n24_z2.follow.high_vol.any.stop3_rr2.5",
+   "verdict": "FAIL",
+   "stats": {
+    "trades": 1736,
+    "pf": 0.8598262504023384,
+    "totalR": -182.96829877159087,
+    "t": -2.851275511633336,
+    "dbl_pf": 0.7721271893633456,
+    "markets_profitable": [
+     1,
+     9
+    ],
+    "by_market": {
+     "NAS100": -19.2,
+     "SPX500": -14.4,
+     "USOIL": -49.0,
+     "EURUSD": -13.7,
+     "GBPUSD": 10.0,
+     "USDJPY": -32.6,
+     "AUDUSD": -11.2,
+     "USDCAD": -31.9,
+     "EURJPY": -20.9
+    },
+    "beats_random": 56.99999999999999
+   },
+   "checks": {
+    "trades >= 150": true,
+    "profit factor >= 1.15": false,
+    "profit factor > 1 at double costs": false,
+    "profitable in half the new markets": false,
+    "beats 95% of random entries": false,
+    "t-stat >= 2.67": false
+   }
+  },
+  {
+   "id": "ba5d06265e",
+   "name": "open_distance_frac1.follow.low_vol.any.stop3_rr2.5",
+   "verdict": "FAIL",
+   "stats": {
+    "trades": 771,
+    "pf": 0.9863447350744053,
+    "totalR": -7.970276443294607,
+    "t": -0.17611303187206742,
+    "dbl_pf": 0.8607416579102114,
+    "markets_profitable": [
+     4,
+     9
+    ],
+    "by_market": {
+     "NAS100": 24.5,
+     "SPX500": 36.4,
+     "USOIL": -3.5,
+     "EURUSD": -12.9,
+     "GBPUSD": -39.0,
+     "USDJPY": 4.5,
+     "AUDUSD": -5.4,
+     "USDCAD": 4.8,
+     "EURJPY": -17.4
+    },
+    "beats_random": 92.10000000000001
+   },
+   "checks": {
+    "trades >= 150": true,
+    "profit factor >= 1.15": false,
+    "profit factor > 1 at double costs": false,
+    "profitable in half the new markets": false,
+    "beats 95% of random entries": false,
+    "t-stat >= 2.67": false
+   }
+  },
+  {
+   "id": "0fc5487cf2",
+   "name": "zmove_n24_z2.follow.with_trend.any.stop3_rr2.5",
+   "verdict": "FAIL",
+   "stats": {
+    "trades": 1557,
+    "pf": 0.9197468212539202,
+    "totalR": -96.42507345575879,
+    "t": -1.520464753526923,
+    "dbl_pf": 0.8220213138585241,
+    "markets_profitable": [
+     2,
+     9
+    ],
+    "by_market": {
+     "NAS100": -9.9,
+     "SPX500": 2.0,
+     "USOIL": -16.8,
+     "EURUSD": -1.7,
+     "GBPUSD": 29.4,
+     "USDJPY": -17.7,
+     "AUDUSD": -26.0,
+     "USDCAD": -24.4,
+     "EURJPY": -31.4
+    },
+    "beats_random": 84.89999999999999
+   },
+   "checks": {
+    "trades >= 150": true,
+    "profit factor >= 1.15": false,
+    "profit factor > 1 at double costs": false,
+    "profitable in half the new markets": false,
+    "beats 95% of random entries": false,
+    "t-stat >= 2.67": false
+   }
+  },
+  {
+   "id": "4e93361ea0",
+   "name": "big_bar_k2.follow.with_trend.asia.stop3_rr1.5",
+   "verdict": "FAIL",
+   "stats": {
+    "trades": 681,
+    "pf": 0.8829126802483367,
+    "totalR": -52.59919003383961,
+    "t": -1.6105762245552049,
+    "dbl_pf": 0.7530734388668716,
+    "markets_profitable": [
+     2,
+     9
+    ],
+    "by_market": {
+     "NAS100": 1.3,
+     "SPX500": -6.2,
+     "USOIL": -7.3,
+     "EURUSD": -0.3,
+     "GBPUSD": -11.6,
+     "USDJPY": 13.7,
+     "AUDUSD": -11.8,
+     "USDCAD": -8.4,
+     "EURJPY": -22.1
+    },
+    "beats_random": 64.5
+   },
+   "checks": {
+    "trades >= 150": true,
+    "profit factor >= 1.15": false,
+    "profit factor > 1 at double costs": false,
+    "profitable in half the new markets": false,
+    "beats 95% of random entries": false,
+    "t-stat >= 2.67": false
+   }
+  },
+  {
+   "id": "5a57fa9cad",
+   "name": "zmove_n72_z2.follow.high_vol.any.stop3_rr2.5",
+   "verdict": "FAIL",
+   "stats": {
+    "trades": 1020,
+    "pf": 0.839372740505355,
+    "totalR": -129.9769313632104,
+    "t": -2.5793271023409963,
+    "dbl_pf": 0.7562554874362307,
+    "markets_profitable": [
+     1,
+     9
+    ],
+    "by_market": {
+     "NAS100": -14.5,
+     "SPX500": -30.9,
+     "USOIL": -20.4,
+     "EURUSD": -12.7,
+     "GBPUSD": 11.0,
+     "USDJPY": -8.8,
+     "AUDUSD": -13.4,
+     "USDCAD": -12.3,
+     "EURJPY": -28.0
+    },
+    "beats_random": 36.1
+   },
+   "checks": {
+    "trades >= 150": true,
+    "profit factor >= 1.15": false,
+    "profit factor > 1 at double costs": false,
+    "profitable in half the new markets": false,
+    "beats 95% of random entries": false,
+    "t-stat >= 2.67": false
+   }
+  },
+  {
+   "id": "50a7905a6e",
+   "name": "zmove_n24_z2.5.follow.with_trend.any.stop2_rr2.5",
+   "verdict": "FAIL",
+   "stats": {
+    "trades": 971,
+    "pf": 0.8433382553521469,
+    "totalR": -124.1722720081757,
+    "t": -2.4784096751730456,
+    "dbl_pf": 0.7242589058208704,
+    "markets_profitable": [
+     2,
+     9
+    ],
+    "by_market": {
+     "NAS100": -1.7,
+     "SPX500": -13.5,
+     "USOIL": -22.0,
+     "EURUSD": -15.6,
+     "GBPUSD": 4.8,
+     "USDJPY": 2.0,
+     "AUDUSD": -15.8,
+     "USDCAD": -49.4,
+     "EURJPY": -12.9
+    },
+    "beats_random": 79.4
+   },
+   "checks": {
+    "trades >= 150": true,
+    "profit factor >= 1.15": false,
+    "profit factor > 1 at double costs": false,
+    "profitable in half the new markets": false,
+    "beats 95% of random entries": false,
+    "t-stat >= 2.67": false
+   }
+  },
+  {
+   "id": "be528f983b",
+   "name": "big_bar_k3.follow.none.asia.stop3_rr2.5",
+   "verdict": "FAIL",
+   "stats": {
+    "trades": 264,
+    "pf": 0.9612984221785114,
+    "totalR": -7.764980947733017,
+    "t": -0.2958550294575212,
+    "dbl_pf": 0.850206892987538,
+    "markets_profitable": [
+     4,
+     9
+    ],
+    "by_market": {
+     "NAS100": -6.8,
+     "SPX500": -6.8,
+     "USOIL": -4.8,
+     "EURUSD": 14.2,
+     "GBPUSD": -0.6,
+     "USDJPY": 6.0,
+     "AUDUSD": -19.1,
+     "USDCAD": 0.5,
+     "EURJPY": 9.6
+    },
+    "beats_random": 76.3
+   },
+   "checks": {
+    "trades >= 150": true,
+    "profit factor >= 1.15": false,
+    "profit factor > 1 at double costs": false,
+    "profitable in half the new markets": false,
+    "beats 95% of random entries": false,
+    "t-stat >= 2.67": false
+   }
+  },
+  {
+   "id": "44419fd0ec",
+   "name": "zmove_n24_z2.5.follow.with_trend.ny.stop2_rr2.5",
+   "verdict": "FAIL",
+   "stats": {
+    "trades": 508,
+    "pf": 0.8981668734828383,
+    "totalR": -41.13985028991513,
+    "t": -1.1257911048175995,
+    "dbl_pf": 0.7817386157161805,
+    "markets_profitable": [
+     4,
+     9
+    ],
+    "by_market": {
+     "NAS100": 10.5,
+     "SPX500": -1.6,
+     "USOIL": -14.3,
+     "EURUSD": 1.9,
+     "GBPUSD": -4.3,
+     "USDJPY": 1.9,
+     "AUDUSD": 0.6,
+     "USDCAD": -20.8,
+     "EURJPY": -15.0
+    },
+    "beats_random": 86.6
+   },
+   "checks": {
+    "trades >= 150": true,
+    "profit factor >= 1.15": false,
+    "profit factor > 1 at double costs": false,
+    "profitable in half the new markets": false,
+    "beats 95% of random entries": false,
+    "t-stat >= 2.67": false
+   }
+  }
+ ]
+}
