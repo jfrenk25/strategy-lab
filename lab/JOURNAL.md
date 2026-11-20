@@ -63,3 +63,8 @@ Attempt counter starts at 96.
 ### 2026-11-20 · screen rule amended
 - The survivor bar now counts survivors as 20 until the real count passes 20 (bar of about 2.81 or higher). See `LAB_RULES.md`.
 - Survivor 1 above was judged against 1.64 and failed at -0.25. It fails under the amended bar too.
+
+### 2026-11-20 · screen batch · 100 ideas
+- Passed the screen: 0. Confirmed on unseen years: 0. Candidates: 0.
+- Totals: 200 of 4000 catalogue ideas screened, 1 survivors, 0 confirmed, 0 candidates.
+- Every screened idea is in `lab/screen/log.csv`.

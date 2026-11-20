@@ -34,6 +34,7 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - Built 2026-11-20. `screen.py` builds 4,000 ideas from parts, screens them on trades before April 21, 2024, and gives each survivor one run on April 2024 to April 2026.
 - Rules: "Screen and confirm" in `LAB_RULES.md`. Progress: `screen/state.json`. Every screened idea: `screen/log.csv`.
 - First batch 2026-11-20: 100 screened, 1 survivor, 0 confirmed. The survivor (24-bar extreme move, follow) had a t-stat of 3.81 on the screen years and -0.25 on the confirm years.
+- Second batch 2026-11-20: 100 screened, 0 survivors. Running totals: 200 of 4,000 screened, 1 survivor, 0 confirmed.
 - On shuffled prices 0 of 400 ideas passed the screen, so a survivor is rarely pure luck in the screen years. It can still fail to carry forward, as the first one did.
 - Limit: 1-hour bars and single-market triggers only. Cross-market triggers and other timeframes would be a new catalogue version.
 
