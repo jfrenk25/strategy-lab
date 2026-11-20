@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python research/research_engine.py:*)",
+      "Bash(python -c:*)",
+      "Bash(dir:*)",
+      "Bash(full_results.txt)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

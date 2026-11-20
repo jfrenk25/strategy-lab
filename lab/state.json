@@ -1,0 +1,8 @@
+{
+ "attempts": 98,
+ "tested": {
+  "donchian_breakout.py": "844011b198a5",
+  "rsi2_reversion.py": "25170c877cf8"
+ },
+ "quarantine_used": []
+}

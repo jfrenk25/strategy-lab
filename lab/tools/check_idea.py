@@ -1,0 +1,31 @@
+"""Pre-test check for one idea: header fields, grid size, and a look-ahead test.
+Usage (from the repo root): python lab/tools/check_idea.py NAME"""
+import sys, os, importlib.util
+import numpy as np
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+import lab
+
+
+def check(name):
+    path = os.path.join(lab.HERE, "ideas", name + ".py")
+    spec = importlib.util.spec_from_file_location(name, path); mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
+    idea, problems = mod.IDEA, []
+    for k in ("name", "source", "reason", "loser", "grid"):
+        if not idea.get(k): problems.append(f"missing {k}")
+    if len(idea.get("grid", [])) > lab.MAX_GRID: problems.append("grid larger than 12")
+    df, _, _ = lab.load_market("BTCUSD")
+    for p in idea.get("grid", []):
+        full = np.nan_to_num(np.asarray(mod.signals(df, p), dtype=float))
+        if len(full) != len(df): problems.append(f"{p}: wrong output length"); continue
+        for frac in (0.5, 0.8):
+            t = int(len(df) * frac)
+            part = np.nan_to_num(np.asarray(mod.signals(df.iloc[:t], p), dtype=float))
+            bad = int((part != full[:t]).sum())
+            if bad: problems.append(f"{p}: look-ahead, {bad} signals change when later data is removed")
+    return problems
+
+
+if __name__ == "__main__":
+    probs = check(sys.argv[1])
+    print("OK: header valid, no look-ahead" if not probs else "PROBLEMS:\n- " + "\n- ".join(probs))
+    sys.exit(1 if probs else 0)
