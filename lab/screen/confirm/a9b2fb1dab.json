@@ -1,0 +1,65 @@
+{
+ "id": "a9b2fb1dab",
+ "name": "vol_spike_k2.follow.high_vol.asia.stop3_rr2.5",
+ "spec": {
+  "trigger": "vol_spike",
+  "params": {
+   "k": 2
+  },
+  "direction": "follow",
+  "regime": "high_vol",
+  "session": "asia",
+  "exit": 3
+ },
+ "date": "2026-11-20",
+ "survivor": 14,
+ "need_t": 2.8070337683438114,
+ "screen": {
+  "trades": 437,
+  "pf": 1.24192656116688,
+  "totalR": 66.23739882784433,
+  "t": 2.0194380048364913,
+  "dbl_pf": 1.1711136918279499,
+  "markets_profitable": [
+   5,
+   6
+  ],
+  "by_market": {
+   "BTCUSD": 39.5,
+   "ETHUSD": 12.8,
+   "XAUUSD": 1.3,
+   "GBPJPY": 11.3,
+   "USA30": 0.0,
+   "DEU30": 1.3
+  }
+ },
+ "confirm": {
+  "trades": 234,
+  "pf": 1.0900800597398688,
+  "totalR": 13.810580231402145,
+  "t": 0.5891540244776879,
+  "dbl_pf": 1.035712959127266,
+  "markets_profitable": [
+   2,
+   6
+  ],
+  "by_market": {
+   "BTCUSD": -0.8,
+   "ETHUSD": 14.9,
+   "XAUUSD": 10.7,
+   "GBPJPY": -10.0,
+   "USA30": 0.0,
+   "DEU30": -1.0
+  },
+  "beats_random": 82.19999999999999
+ },
+ "checks": {
+  "trades >= 60": true,
+  "profit factor >= 1.15": false,
+  "profitable in half the markets": false,
+  "profit factor > 1 at double costs": true,
+  "beats 95% of random entries": false,
+  "t-stat >= 2.81 (bar for survivor 14)": false
+ },
+ "verdict": "REJECT"
+}

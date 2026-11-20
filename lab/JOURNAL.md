@@ -68,3 +68,524 @@ Attempt counter starts at 96.
 - Passed the screen: 0. Confirmed on unseen years: 0. Candidates: 0.
 - Totals: 200 of 4000 catalogue ideas screened, 1 survivors, 0 confirmed, 0 candidates.
 - Every screened idea is in `lab/screen/log.csv`.
+
+### 2026-11-20 · screen survivor 2 · `big_bar_k2.follow.low_vol.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 5e1407c2e7). No stated reason.
+- Screen years: 435 trades, profit factor 1.19, t-stat 1.66
+- Confirm years: 249 trades, profit factor 1.04, +7.5R, t-stat 0.30 (needed 2.81); markets 3 of 6; double-cost profit factor 0.94; beats 68% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.81 (bar for survivor 2)
+
+### 2026-11-20 · screen survivor 3 · `breakout_n168.follow.with_trend.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id d5f7529a14). No stated reason.
+- Screen years: 661 trades, profit factor 1.15, t-stat 1.69
+- Confirm years: 289 trades, profit factor 1.42, +81.7R, t-stat 2.78 (needed 2.81); markets 5 of 6; double-cost profit factor 1.30; beats 100% of random entries
+- Failed: t-stat >= 2.81 (bar for survivor 3)
+
+### 2026-11-20 · screen survivor 4 · `zmove_n24_z2.follow.none.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 00cf641ebe). No stated reason.
+- Screen years: 1289 trades, profit factor 1.15, t-stat 2.25
+- Confirm years: 573 trades, profit factor 1.20, +77.0R, t-stat 1.97 (needed 2.81); markets 4 of 6; double-cost profit factor 1.11; beats 99% of random entries
+- Failed: t-stat >= 2.81 (bar for survivor 4)
+
+### 2026-11-20 · screen survivor 5 · `zmove_n72_z2.follow.with_trend.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id ef57d5c967). No stated reason.
+- Screen years: 731 trades, profit factor 1.14, t-stat 1.66
+- Confirm years: 338 trades, profit factor 1.16, +39.4R, t-stat 1.26 (needed 2.81); markets 4 of 6; double-cost profit factor 1.07; beats 90% of random entries
+- Failed: beats 95% of random entries; t-stat >= 2.81 (bar for survivor 5)
+
+### 2026-11-20 · screen survivor 6 · `squeeze_break_n72.follow.with_trend.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id ad74896660). No stated reason.
+- Screen years: 244 trades, profit factor 1.28, t-stat 1.80
+- Confirm years: 116 trades, profit factor 1.05, +4.4R, t-stat 0.25 (needed 2.81); markets 3 of 6; double-cost profit factor 0.95; beats 51% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.81 (bar for survivor 6)
+
+### 2026-11-20 · screen survivor 7 · `zmove_n72_z2.follow.high_vol.any.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 8cec3ab818). No stated reason.
+- Screen years: 723 trades, profit factor 1.19, t-stat 2.27
+- Confirm years: 336 trades, profit factor 1.07, +13.3R, t-stat 0.58 (needed 2.81); markets 4 of 6; double-cost profit factor 0.98; beats 94% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.81 (bar for survivor 7)
+
+### 2026-11-20 · screen survivor 8 · `big_bar_k2.follow.with_trend.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 4e93361ea0). No stated reason.
+- Screen years: 538 trades, profit factor 1.20, t-stat 2.05
+- Confirm years: 269 trades, profit factor 1.20, +29.8R, t-stat 1.45 (needed 2.81); markets 4 of 6; double-cost profit factor 1.09; beats 97% of random entries
+- Failed: t-stat >= 2.81 (bar for survivor 8)
+
+### 2026-11-20 · screen survivor 9 · `zmove_n24_z2.follow.with_trend.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id c0d577564d). No stated reason.
+- Screen years: 355 trades, profit factor 1.26, t-stat 1.99
+- Confirm years: 168 trades, profit factor 1.43, +47.3R, t-stat 2.12 (needed 2.81); markets 3 of 6; double-cost profit factor 1.33; beats 97% of random entries
+- Failed: t-stat >= 2.81 (bar for survivor 9)
+
+### 2026-11-20 · screen survivor 10 · `clock_hour20_weekday-1.follow.with_trend.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 9d9e56acbd). No stated reason.
+- Screen years: 1120 trades, profit factor 1.15, t-stat 2.21
+- Confirm years: 607 trades, profit factor 1.15, +63.2R, t-stat 1.54 (needed 2.81); markets 5 of 6; double-cost profit factor 1.06; beats 38% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 2.81 (bar for survivor 10)
+
+### 2026-11-20 · screen survivor 11 · `squeeze_break_n72.follow.with_trend.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id a6e6e34133). No stated reason.
+- Screen years: 451 trades, profit factor 1.19, t-stat 1.69
+- Confirm years: 185 trades, profit factor 0.95, -6.7R, t-stat -0.30 (needed 2.81); markets 3 of 6; double-cost profit factor 0.86; beats 30% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.81 (bar for survivor 11)
+
+### 2026-11-20 · screen survivor 12 · `zmove_n24_z2.5.follow.none.ny.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 3e592b6b0b). No stated reason.
+- Screen years: 488 trades, profit factor 1.50, t-stat 4.42
+- Confirm years: 211 trades, profit factor 0.96, -5.4R, t-stat -0.30 (needed 2.81); markets 2 of 6; double-cost profit factor 0.89; beats 70% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.81 (bar for survivor 12)
+
+### 2026-11-20 · screen survivor 13 · `big_bar_k3.follow.with_trend.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id a769b9af48). No stated reason.
+- Screen years: 1195 trades, profit factor 1.16, t-stat 2.31
+- Confirm years: 460 trades, profit factor 1.14, +46.5R, t-stat 1.31 (needed 2.81); markets 3 of 6; double-cost profit factor 1.05; beats 94% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 2.81 (bar for survivor 13)
+
+### 2026-11-20 · screen survivor 14 · `vol_spike_k2.follow.high_vol.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id a9b2fb1dab). No stated reason.
+- Screen years: 437 trades, profit factor 1.24, t-stat 2.02
+- Confirm years: 234 trades, profit factor 1.09, +13.8R, t-stat 0.59 (needed 2.81); markets 2 of 6; double-cost profit factor 1.04; beats 82% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; beats 95% of random entries; t-stat >= 2.81 (bar for survivor 14)
+
+### 2026-11-20 · screen survivor 15 · `zmove_n24_z2.5.follow.high_vol.any.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 139a54bf21). No stated reason.
+- Screen years: 764 trades, profit factor 1.30, t-stat 3.63
+- Confirm years: 355 trades, profit factor 0.93, -16.2R, t-stat -0.70 (needed 2.81); markets 3 of 6; double-cost profit factor 0.86; beats 65% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.81 (bar for survivor 15)
+
+### 2026-11-20 · screen survivor 16 · `zmove_n24_z2.5.follow.with_trend.asia.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 95a6546d06). No stated reason.
+- Screen years: 217 trades, profit factor 1.66, t-stat 3.47
+- Confirm years: 107 trades, profit factor 1.26, +19.3R, t-stat 1.10 (needed 2.81); markets 5 of 6; double-cost profit factor 1.16; beats 94% of random entries
+- Failed: beats 95% of random entries; t-stat >= 2.81 (bar for survivor 16)
+
+### 2026-11-20 · screen survivor 17 · `zmove_n24_z2.5.follow.none.ny.stop2_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 359647fb12). No stated reason.
+- Screen years: 505 trades, profit factor 1.23, t-stat 2.32
+- Confirm years: 221 trades, profit factor 0.99, -1.5R, t-stat -0.08 (needed 2.81); markets 3 of 6; double-cost profit factor 0.89; beats 87% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.81 (bar for survivor 17)
+
+### 2026-11-20 · screen survivor 18 · `zmove_n24_z2.5.follow.with_trend.ny.stop2_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id a032412448). No stated reason.
+- Screen years: 421 trades, profit factor 1.20, t-stat 1.81
+- Confirm years: 179 trades, profit factor 1.01, +0.7R, t-stat 0.04 (needed 2.81); markets 3 of 6; double-cost profit factor 0.90; beats 85% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.81 (bar for survivor 18)
+
+### 2026-11-20 · screen survivor 19 · `zmove_n24_z2.5.follow.none.asia.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 759518987a). No stated reason.
+- Screen years: 254 trades, profit factor 1.49, t-stat 2.95
+- Confirm years: 133 trades, profit factor 1.22, +20.0R, t-stat 1.03 (needed 2.81); markets 4 of 6; double-cost profit factor 1.11; beats 94% of random entries
+- Failed: beats 95% of random entries; t-stat >= 2.81 (bar for survivor 19)
+
+### 2026-11-20 · screen survivor 20 · `zmove_n24_z2.5.follow.high_vol.ny.stop2_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 4d844720cf). No stated reason.
+- Screen years: 471 trades, profit factor 1.18, t-stat 1.76
+- Confirm years: 208 trades, profit factor 0.99, -1.8R, t-stat -0.10 (needed 2.81); markets 4 of 6; double-cost profit factor 0.89; beats 88% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.81 (bar for survivor 20)
+
+### 2026-11-20 · screen survivor 21 · `zmove_n24_z2.5.follow.none.any.stop2_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 2b4edc3b15). No stated reason.
+- Screen years: 884 trades, profit factor 1.15, t-stat 2.11
+- Confirm years: 406 trades, profit factor 0.97, -8.6R, t-stat -0.34 (needed 2.82); markets 3 of 6; double-cost profit factor 0.87; beats 91% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.82 (bar for survivor 21)
+
+### 2026-11-20 · screen survivor 22 · `zmove_n24_z2.5.follow.with_trend.any.stop2_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id e802b56c1a). No stated reason.
+- Screen years: 730 trades, profit factor 1.16, t-stat 1.99
+- Confirm years: 326 trades, profit factor 0.98, -3.7R, t-stat -0.16 (needed 2.84); markets 3 of 6; double-cost profit factor 0.88; beats 89% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.84 (bar for survivor 22)
+
+### 2026-11-20 · screen survivor 23 · `zmove_n24_z2.5.follow.with_trend.ny.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 79af0a1dae). No stated reason.
+- Screen years: 405 trades, profit factor 1.53, t-stat 4.25
+- Confirm years: 172 trades, profit factor 1.03, +2.8R, t-stat 0.17 (needed 2.85); markets 4 of 6; double-cost profit factor 0.95; beats 77% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.85 (bar for survivor 23)
+
+### 2026-11-20 · screen survivor 24 · `zmove_n24_z2.5.follow.high_vol.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id d5c9d133ea). No stated reason.
+- Screen years: 240 trades, profit factor 1.49, t-stat 3.08
+- Confirm years: 123 trades, profit factor 0.94, -4.6R, t-stat -0.34 (needed 2.87); markets 1 of 6; double-cost profit factor 0.88; beats 61% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.87 (bar for survivor 24)
+
+### 2026-11-20 · screen survivor 25 · `zmove_n24_z2.follow.low_vol.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id a96089f9e9). No stated reason.
+- Screen years: 154 trades, profit factor 1.34, t-stat 1.66
+- Confirm years: 61 trades, profit factor 1.06, +2.7R, t-stat 0.20 (needed 2.88); markets 3 of 6; double-cost profit factor 0.95; beats 52% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.88 (bar for survivor 25)
+
+### 2026-11-20 · screen survivor 26 · `big_bar_k3.follow.none.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 4748263e62). No stated reason.
+- Screen years: 255 trades, profit factor 1.41, t-stat 2.74
+- Confirm years: 144 trades, profit factor 1.02, +1.5R, t-stat 0.10 (needed 2.89); markets 3 of 6; double-cost profit factor 0.94; beats 80% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.89 (bar for survivor 26)
+
+### 2026-11-20 · screen survivor 27 · `breakout_n72.follow.with_trend.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id d1f624eb0c). No stated reason.
+- Screen years: 870 trades, profit factor 1.18, t-stat 2.28
+- Confirm years: 395 trades, profit factor 1.28, +75.4R, t-stat 2.24 (needed 2.90); markets 6 of 6; double-cost profit factor 1.17; beats 98% of random entries
+- Failed: t-stat >= 2.90 (bar for survivor 27)
+
+### 2026-11-20 · screen survivor 28 · `vol_spike_k3.follow.high_vol.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 10ba9de10d). No stated reason.
+- Screen years: 200 trades, profit factor 1.35, t-stat 2.10
+- Confirm years: 104 trades, profit factor 1.08, +4.9R, t-stat 0.39 (needed 2.91); markets 3 of 6; double-cost profit factor 1.04; beats 78% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 2.91 (bar for survivor 28)
+
+### 2026-11-20 · screen survivor 29 · `big_bar_k3.follow.with_trend.any.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 373c606198). No stated reason.
+- Screen years: 1365 trades, profit factor 1.14, t-stat 2.31
+- Confirm years: 519 trades, profit factor 1.11, +32.6R, t-stat 1.13 (needed 2.92); markets 3 of 6; double-cost profit factor 1.00; beats 98% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; t-stat >= 2.92 (bar for survivor 29)
+
+### 2026-11-20 · screen survivor 30 · `big_bar_k2.follow.with_trend.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id e91b55fcab). No stated reason.
+- Screen years: 1594 trades, profit factor 1.12, t-stat 2.12
+- Confirm years: 699 trades, profit factor 1.07, +35.2R, t-stat 0.81 (needed 2.94); markets 3 of 6; double-cost profit factor 0.98; beats 85% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.94 (bar for survivor 30)
+
+### 2026-11-20 · screen survivor 31 · `big_bar_k3.follow.none.asia.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 1c272478ea). No stated reason.
+- Screen years: 256 trades, profit factor 1.26, t-stat 1.73
+- Confirm years: 144 trades, profit factor 1.06, +6.2R, t-stat 0.31 (needed 2.95); markets 3 of 6; double-cost profit factor 0.96; beats 85% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.95 (bar for survivor 31)
+
+### 2026-11-20 · screen survivor 32 · `zmove_n24_z2.follow.high_vol.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 229db4cc9e). No stated reason.
+- Screen years: 676 trades, profit factor 1.16, t-stat 1.70
+- Confirm years: 310 trades, profit factor 1.09, +19.1R, t-stat 0.67 (needed 2.96); markets 3 of 6; double-cost profit factor 1.02; beats 88% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 2.96 (bar for survivor 32)
+
+### 2026-11-20 · screen survivor 33 · `zmove_n24_z2.follow.with_trend.ny.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id b960fe78cd). No stated reason.
+- Screen years: 649 trades, profit factor 1.18, t-stat 2.08
+- Confirm years: 306 trades, profit factor 0.87, -26.4R, t-stat -1.22 (needed 2.96); markets 2 of 6; double-cost profit factor 0.80; beats 32% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.96 (bar for survivor 33)
+
+### 2026-11-20 · screen survivor 34 · `big_bar_k2.follow.none.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id d074413504). No stated reason.
+- Screen years: 776 trades, profit factor 1.16, t-stat 1.85
+- Confirm years: 421 trades, profit factor 1.04, +10.9R, t-stat 0.34 (needed 2.97); markets 4 of 6; double-cost profit factor 0.95; beats 75% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.97 (bar for survivor 34)
+
+### 2026-11-20 · screen survivor 35 · `zmove_n24_z2.5.follow.high_vol.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id a7ca51ac6f). No stated reason.
+- Screen years: 682 trades, profit factor 1.34, t-stat 3.45
+- Confirm years: 325 trades, profit factor 1.04, +9.5R, t-stat 0.33 (needed 2.98); markets 4 of 6; double-cost profit factor 0.98; beats 80% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.98 (bar for survivor 35)
+
+### 2026-11-20 · screen survivor 36 · `vol_spike_k3.follow.high_vol.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 6d25eec9f3). No stated reason.
+- Screen years: 192 trades, profit factor 1.63, t-stat 3.07
+- Confirm years: 100 trades, profit factor 0.84, -11.6R, t-stat -0.80 (needed 2.99); markets 1 of 6; double-cost profit factor 0.80; beats 28% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 2.99 (bar for survivor 36)
+
+### 2026-11-20 · screen survivor 37 · `big_bar_k3.follow.with_trend.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 3fad6108aa). No stated reason.
+- Screen years: 758 trades, profit factor 1.18, t-stat 2.08
+- Confirm years: 284 trades, profit factor 0.88, -25.8R, t-stat -0.96 (needed 3.00); markets 1 of 6; double-cost profit factor 0.81; beats 27% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.00 (bar for survivor 37)
+
+### 2026-11-20 · screen survivor 38 · `zmove_n24_z2.5.follow.high_vol.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 13d15d69a5). No stated reason.
+- Screen years: 419 trades, profit factor 1.37, t-stat 2.96
+- Confirm years: 192 trades, profit factor 1.08, +11.1R, t-stat 0.49 (needed 3.01); markets 3 of 6; double-cost profit factor 1.02; beats 83% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 3.01 (bar for survivor 38)
+
+### 2026-11-20 · screen survivor 39 · `big_bar_k3.follow.none.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id be528f983b). No stated reason.
+- Screen years: 251 trades, profit factor 1.41, t-stat 2.47
+- Confirm years: 140 trades, profit factor 1.23, +21.7R, t-stat 1.10 (needed 3.02); markets 5 of 6; double-cost profit factor 1.15; beats 95% of random entries
+- Failed: t-stat >= 3.02 (bar for survivor 39)
+
+### 2026-11-20 · screen survivor 40 · `vol_spike_k3.follow.high_vol.asia.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 03f297087c). No stated reason.
+- Screen years: 206 trades, profit factor 1.44, t-stat 2.39
+- Confirm years: 105 trades, profit factor 0.90, -7.5R, t-stat -0.48 (needed 3.02); markets 2 of 6; double-cost profit factor 0.85; beats 48% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.02 (bar for survivor 40)
+
+### 2026-11-20 · screen survivor 41 · `zmove_n24_z2.5.follow.high_vol.ny.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id a1cc210dca). No stated reason.
+- Screen years: 460 trades, profit factor 1.24, t-stat 2.15
+- Confirm years: 199 trades, profit factor 1.08, +11.0R, t-stat 0.47 (needed 3.03); markets 4 of 6; double-cost profit factor 0.98; beats 90% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.03 (bar for survivor 41)
+
+### 2026-11-20 · screen survivor 42 · `zmove_n24_z2.5.follow.with_trend.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id f4a5852e9a). No stated reason.
+- Screen years: 215 trades, profit factor 1.59, t-stat 3.38
+- Confirm years: 107 trades, profit factor 1.06, +3.6R, t-stat 0.28 (needed 3.04); markets 4 of 6; double-cost profit factor 0.99; beats 75% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.04 (bar for survivor 42)
+
+### 2026-11-20 · screen survivor 43 · `clock_hour0_weekday4.follow.with_trend.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 6065a7dff0). No stated reason.
+- Screen years: 679 trades, profit factor 1.17, t-stat 1.88
+- Confirm years: 316 trades, profit factor 1.30, +66.1R, t-stat 2.14 (needed 3.05); markets 5 of 6; double-cost profit factor 1.18; beats 83% of random entries
+- Failed: beats 95% of random entries; t-stat >= 3.05 (bar for survivor 43)
+
+### 2026-11-20 · screen survivor 44 · `vol_spike_k3.follow.with_trend.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 002180cfb1). No stated reason.
+- Screen years: 201 trades, profit factor 1.36, t-stat 1.97
+- Confirm years: 119 trades, profit factor 1.31, +24.5R, t-stat 1.34 (needed 3.05); markets 3 of 6; double-cost profit factor 1.25; beats 92% of random entries
+- Failed: beats 95% of random entries; t-stat >= 3.05 (bar for survivor 44)
+
+### 2026-11-20 · screen survivor 45 · `zmove_n72_z2.follow.high_vol.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 5a57fa9cad). No stated reason.
+- Screen years: 638 trades, profit factor 1.20, t-stat 2.14
+- Confirm years: 297 trades, profit factor 1.18, +37.4R, t-stat 1.30 (needed 3.06); markets 3 of 6; double-cost profit factor 1.10; beats 96% of random entries
+- Failed: t-stat >= 3.06 (bar for survivor 45)
+
+### 2026-11-20 · screen survivor 46 · `zmove_n24_z2.5.follow.high_vol.asia.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 4e6833b069). No stated reason.
+- Screen years: 242 trades, profit factor 1.44, t-stat 2.61
+- Confirm years: 123 trades, profit factor 1.07, +6.6R, t-stat 0.36 (needed 3.07); markets 3 of 6; double-cost profit factor 0.99; beats 84% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.07 (bar for survivor 46)
+
+### 2026-11-20 · screen survivor 47 · `big_bar_k2.follow.high_vol.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id a7c18e099b). No stated reason.
+- Screen years: 379 trades, profit factor 1.24, t-stat 2.08
+- Confirm years: 208 trades, profit factor 0.95, -5.9R, t-stat -0.34 (needed 3.07); markets 3 of 6; double-cost profit factor 0.89; beats 63% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.07 (bar for survivor 47)
+
+### 2026-11-20 · screen survivor 48 · `zmove_n24_z2.5.follow.with_trend.ny.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 44419fd0ec). No stated reason.
+- Screen years: 409 trades, profit factor 1.38, t-stat 3.03
+- Confirm years: 173 trades, profit factor 1.20, +24.0R, t-stat 1.08 (needed 3.08); markets 4 of 6; double-cost profit factor 1.09; beats 96% of random entries
+- Failed: t-stat >= 3.08 (bar for survivor 48)
+
+### 2026-11-20 · screen survivor 49 · `zmove_n72_z2.follow.none.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 70d3fb53c3). No stated reason.
+- Screen years: 818 trades, profit factor 1.16, t-stat 1.98
+- Confirm years: 374 trades, profit factor 1.10, +27.0R, t-stat 0.84 (needed 3.08); markets 4 of 6; double-cost profit factor 1.02; beats 83% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 3.08 (bar for survivor 49)
+
+### 2026-11-20 · screen survivor 50 · `zmove_n24_z2.5.follow.high_vol.any.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id d8c2a34d4d). No stated reason.
+- Screen years: 787 trades, profit factor 1.19, t-stat 2.20
+- Confirm years: 358 trades, profit factor 1.06, +16.5R, t-stat 0.53 (needed 3.09); markets 4 of 6; double-cost profit factor 0.97; beats 94% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.09 (bar for survivor 50)
+
+### 2026-11-20 · screen survivor 51 · `zmove_n24_z2.5.follow.with_trend.any.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 99f5d073b7). No stated reason.
+- Screen years: 667 trades, profit factor 1.32, t-stat 3.52
+- Confirm years: 302 trades, profit factor 1.01, +1.9R, t-stat 0.09 (needed 3.10); markets 2 of 6; double-cost profit factor 0.94; beats 84% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.10 (bar for survivor 51)
+
+### 2026-11-20 · screen survivor 52 · `zmove_n24_z2.5.follow.with_trend.asia.stop2_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 1e29f84414). No stated reason.
+- Screen years: 220 trades, profit factor 1.33, t-stat 2.11
+- Confirm years: 111 trades, profit factor 1.11, +7.3R, t-stat 0.55 (needed 3.10); markets 5 of 6; double-cost profit factor 1.01; beats 90% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 3.10 (bar for survivor 52)
+
+### 2026-11-20 · screen survivor 53 · `zmove_n24_z2.follow.with_trend.any.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 0474cdab48). No stated reason.
+- Screen years: 1123 trades, profit factor 1.11, t-stat 1.74
+- Confirm years: 501 trades, profit factor 0.99, -4.6R, t-stat -0.17 (needed 3.11); markets 2 of 6; double-cost profit factor 0.90; beats 76% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.11 (bar for survivor 53)
+
+### 2026-11-20 · screen survivor 54 · `zmove_n24_z2.5.follow.none.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 9feaa06be3). No stated reason.
+- Screen years: 242 trades, profit factor 1.42, t-stat 2.49
+- Confirm years: 128 trades, profit factor 1.25, +21.9R, t-stat 1.16 (needed 3.11); markets 5 of 6; double-cost profit factor 1.18; beats 94% of random entries
+- Failed: beats 95% of random entries; t-stat >= 3.11 (bar for survivor 54)
+
+### 2026-11-20 · screen survivor 55 · `big_bar_k3.follow.with_trend.ny.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 684f2f77bc). No stated reason.
+- Screen years: 836 trades, profit factor 1.14, t-stat 1.90
+- Confirm years: 307 trades, profit factor 0.89, -22.1R, t-stat -1.00 (needed 3.12); markets 2 of 6; double-cost profit factor 0.80; beats 44% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.12 (bar for survivor 55)
+
+### 2026-11-20 · screen survivor 56 · `zmove_n24_z2.5.follow.with_trend.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 7c734c694e). No stated reason.
+- Screen years: 595 trades, profit factor 1.30, t-stat 2.94
+- Confirm years: 276 trades, profit factor 1.13, +26.0R, t-stat 0.95 (needed 3.12); markets 4 of 6; double-cost profit factor 1.06; beats 90% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 3.12 (bar for survivor 56)
+
+### 2026-11-20 · screen survivor 57 · `zmove_n24_z2.5.follow.none.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 9ddbbca581). No stated reason.
+- Screen years: 726 trades, profit factor 1.34, t-stat 3.59
+- Confirm years: 344 trades, profit factor 1.10, +24.1R, t-stat 0.80 (needed 3.13); markets 4 of 6; double-cost profit factor 1.03; beats 90% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 3.13 (bar for survivor 57)
+
+### 2026-11-20 · screen survivor 58 · `zmove_n24_z2.5.follow.none.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 0224cd7dec). No stated reason.
+- Screen years: 252 trades, profit factor 1.51, t-stat 3.24
+- Confirm years: 133 trades, profit factor 1.06, +4.7R, t-stat 0.32 (needed 3.13); markets 4 of 6; double-cost profit factor 0.99; beats 82% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.13 (bar for survivor 58)
+
+### 2026-11-20 · screen survivor 59 · `zmove_n24_z2.5.follow.high_vol.ny.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id df5a1a04bf). No stated reason.
+- Screen years: 456 trades, profit factor 1.43, t-stat 3.80
+- Confirm years: 198 trades, profit factor 0.91, -11.4R, t-stat -0.66 (needed 3.14); markets 2 of 6; double-cost profit factor 0.85; beats 53% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.14 (bar for survivor 59)
+
+### 2026-11-20 · screen survivor 60 · `zmove_n72_z2.follow.high_vol.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id ab7e1caa53). No stated reason.
+- Screen years: 266 trades, profit factor 1.31, t-stat 2.19
+- Confirm years: 123 trades, profit factor 1.05, +3.6R, t-stat 0.26 (needed 3.14); markets 2 of 6; double-cost profit factor 0.98; beats 77% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.14 (bar for survivor 60)
+
+### 2026-11-20 · screen survivor 61 · `breakout_n24.follow.with_trend.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 3b9ab60428). No stated reason.
+- Screen years: 1275 trades, profit factor 1.13, t-stat 2.05
+- Confirm years: 559 trades, profit factor 1.25, +94.4R, t-stat 2.38 (needed 3.15); markets 6 of 6; double-cost profit factor 1.14; beats 99% of random entries
+- Failed: t-stat >= 3.15 (bar for survivor 61)
+
+### 2026-11-20 · screen survivor 62 · `zmove_n24_z2.5.follow.high_vol.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id ef3791d00e). No stated reason.
+- Screen years: 231 trades, profit factor 1.37, t-stat 2.20
+- Confirm years: 118 trades, profit factor 1.14, +11.7R, t-stat 0.65 (needed 3.15); markets 5 of 6; double-cost profit factor 1.08; beats 85% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 3.15 (bar for survivor 62)
+
+### 2026-11-20 · screen survivor 63 · `zmove_n24_z2.5.follow.with_trend.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 2a1f6a6e72). No stated reason.
+- Screen years: 204 trades, profit factor 1.47, t-stat 2.54
+- Confirm years: 103 trades, profit factor 1.27, +18.6R, t-stat 1.09 (needed 3.16); markets 5 of 6; double-cost profit factor 1.19; beats 89% of random entries
+- Failed: beats 95% of random entries; t-stat >= 3.16 (bar for survivor 63)
+
+### 2026-11-20 · screen survivor 64 · `clock_hour0_weekday4.follow.with_trend.any.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id c628c7fb75). No stated reason.
+- Screen years: 783 trades, profit factor 1.13, t-stat 1.74
+- Confirm years: 353 trades, profit factor 1.07, +15.5R, t-stat 0.63 (needed 3.16); markets 3 of 6; double-cost profit factor 0.96; beats 56% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.16 (bar for survivor 64)
+
+### 2026-11-20 · screen survivor 65 · `big_bar_k3.follow.with_trend.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 21a1890074). No stated reason.
+- Screen years: 178 trades, profit factor 1.35, t-stat 1.96
+- Confirm years: 103 trades, profit factor 1.12, +7.4R, t-stat 0.58 (needed 3.17); markets 3 of 6; double-cost profit factor 1.05; beats 86% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 3.17 (bar for survivor 65)
+
+### 2026-11-20 · screen survivor 66 · `zmove_n24_z2.5.follow.none.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id eb72b15884). No stated reason.
+- Screen years: 450 trades, profit factor 1.42, t-stat 3.39
+- Confirm years: 206 trades, profit factor 1.17, +24.6R, t-stat 1.04 (needed 3.17); markets 4 of 6; double-cost profit factor 1.10; beats 92% of random entries
+- Failed: beats 95% of random entries; t-stat >= 3.17 (bar for survivor 66)
+
+### 2026-11-20 · screen survivor 67 · `zmove_n24_z2.follow.low_vol.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 38fce7e128). No stated reason.
+- Screen years: 276 trades, profit factor 1.30, t-stat 2.02
+- Confirm years: 119 trades, profit factor 1.03, +2.6R, t-stat 0.14 (needed 3.18); markets 2 of 6; double-cost profit factor 0.92; beats 46% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.18 (bar for survivor 67)
+
+### 2026-11-20 · screen survivor 68 · `zmove_n24_z2.follow.with_trend.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 6eb933dc24). No stated reason.
+- Screen years: 376 trades, profit factor 1.19, t-stat 1.68
+- Confirm years: 181 trades, profit factor 1.12, +12.3R, t-stat 0.73 (needed 3.18); markets 4 of 6; double-cost profit factor 1.03; beats 85% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 3.18 (bar for survivor 68)
+
+### 2026-11-20 · screen survivor 69 · `zmove_n24_z2.follow.none.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 8977a9d333). No stated reason.
+- Screen years: 487 trades, profit factor 1.18, t-stat 1.79
+- Confirm years: 247 trades, profit factor 1.13, +17.9R, t-stat 0.91 (needed 3.18); markets 3 of 6; double-cost profit factor 1.04; beats 94% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 3.18 (bar for survivor 69)
+
+### 2026-11-20 · screen survivor 70 · `zmove_n24_z2.5.follow.against_trend.any.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id bcbd3b943e). No stated reason.
+- Screen years: 154 trades, profit factor 1.35, t-stat 1.84
+- Confirm years: 81 trades, profit factor 0.86, -7.3R, t-stat -0.66 (needed 3.19); markets 3 of 6; double-cost profit factor 0.80; beats 58% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.19 (bar for survivor 70)
+
+### 2026-11-20 · screen survivor 71 · `zmove_n24_z2.follow.with_trend.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 0fc5487cf2). No stated reason.
+- Screen years: 991 trades, profit factor 1.16, t-stat 2.16
+- Confirm years: 439 trades, profit factor 1.17, +53.3R, t-stat 1.52 (needed 3.19); markets 4 of 6; double-cost profit factor 1.08; beats 97% of random entries
+- Failed: t-stat >= 3.19 (bar for survivor 71)
+
+### 2026-11-20 · screen survivor 72 · `vol_spike_k2.follow.with_trend.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 80fa06b2fc). No stated reason.
+- Screen years: 480 trades, profit factor 1.17, t-stat 1.70
+- Confirm years: 262 trades, profit factor 1.16, +24.2R, t-stat 1.20 (needed 3.20); markets 2 of 6; double-cost profit factor 1.09; beats 95% of random entries
+- Failed: profitable in half the markets; t-stat >= 3.20 (bar for survivor 72)
+
+### 2026-11-20 · screen survivor 73 · `squeeze_break_n72.fade.with_trend.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 9b57973b1d). No stated reason.
+- Screen years: 161 trades, profit factor 1.35, t-stat 1.74
+- Confirm years: 77 trades, profit factor 1.03, +1.6R, t-stat 0.11 (needed 3.20); markets 2 of 6; double-cost profit factor 0.94; beats 59% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.20 (bar for survivor 73)
+
+### 2026-11-20 · screen survivor 74 · `zmove_n24_z2.5.follow.with_trend.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id b6aebe09c4). No stated reason.
+- Screen years: 375 trades, profit factor 1.42, t-stat 3.10
+- Confirm years: 167 trades, profit factor 1.21, +24.8R, t-stat 1.14 (needed 3.20); markets 4 of 6; double-cost profit factor 1.14; beats 91% of random entries
+- Failed: beats 95% of random entries; t-stat >= 3.20 (bar for survivor 74)
+
+### 2026-11-20 · screen survivor 75 · `zmove_n24_z2.5.follow.none.ny.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 2e89bd76e2). No stated reason.
+- Screen years: 492 trades, profit factor 1.30, t-stat 2.71
+- Confirm years: 212 trades, profit factor 1.11, +17.4R, t-stat 0.72 (needed 3.21); markets 3 of 6; double-cost profit factor 1.01; beats 92% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 3.21 (bar for survivor 75)
+
+### 2026-11-20 · screen survivor 76 · `squeeze_break_n72.fade.with_trend.ny.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id da48fc1c51). No stated reason.
+- Screen years: 167 trades, profit factor 1.39, t-stat 2.10
+- Confirm years: 78 trades, profit factor 0.89, -5.8R, t-stat -0.53 (needed 3.21); markets 2 of 6; double-cost profit factor 0.80; beats 43% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.21 (bar for survivor 76)
+
+### 2026-11-20 · screen survivor 77 · `zmove_n24_z2.follow.none.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 9c5626c660). No stated reason.
+- Screen years: 806 trades, profit factor 1.20, t-stat 2.36
+- Confirm years: 360 trades, profit factor 1.09, +23.2R, t-stat 0.76 (needed 3.22); markets 4 of 6; double-cost profit factor 1.02; beats 88% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 3.22 (bar for survivor 77)
+
+### 2026-11-20 · screen survivor 78 · `zmove_n24_z2.follow.high_vol.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id ba163a63e9). No stated reason.
+- Screen years: 1108 trades, profit factor 1.13, t-stat 1.89
+- Confirm years: 498 trades, profit factor 1.19, +64.5R, t-stat 1.78 (needed 3.22); markets 4 of 6; double-cost profit factor 1.11; beats 99% of random entries
+- Failed: t-stat >= 3.22 (bar for survivor 78)
+
+### 2026-11-20 · screen survivor 79 · `vol_spike_k2.follow.with_trend.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 77f2f740c0). No stated reason.
+- Screen years: 432 trades, profit factor 1.34, t-stat 2.77
+- Confirm years: 231 trades, profit factor 1.24, +36.9R, t-stat 1.47 (needed 3.22); markets 2 of 6; double-cost profit factor 1.17; beats 93% of random entries
+- Failed: profitable in half the markets; beats 95% of random entries; t-stat >= 3.22 (bar for survivor 79)
+
+### 2026-11-20 · screen survivor 80 · `zmove_n24_z2.follow.with_trend.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 967c1296b7). No stated reason.
+- Screen years: 599 trades, profit factor 1.24, t-stat 2.44
+- Confirm years: 283 trades, profit factor 1.04, +9.1R, t-stat 0.33 (needed 3.23); markets 2 of 6; double-cost profit factor 0.97; beats 72% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.23 (bar for survivor 80)
+
+### 2026-11-20 · screen survivor 81 · `big_bar_k2.follow.high_vol.asia.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 9cd4841fdc). No stated reason.
+- Screen years: 378 trades, profit factor 1.25, t-stat 1.97
+- Confirm years: 217 trades, profit factor 0.93, -10.6R, t-stat -0.46 (needed 3.23); markets 3 of 6; double-cost profit factor 0.85; beats 63% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.23 (bar for survivor 81)
+
+### 2026-11-20 · screen survivor 82 · `clock_hour20_weekday-1.follow.none.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 2067f54bb0). No stated reason.
+- Screen years: 1820 trades, profit factor 1.11, t-stat 2.12
+- Confirm years: 790 trades, profit factor 1.16, +89.7R, t-stat 1.91 (needed 3.23); markets 5 of 6; double-cost profit factor 1.08; beats 53% of random entries
+- Failed: beats 95% of random entries; t-stat >= 3.23 (bar for survivor 82)
+
+### 2026-11-20 · screen survivor 83 · `clock_hour20_weekday-1.follow.high_vol.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 40e12e50ec). No stated reason.
+- Screen years: 1380 trades, profit factor 1.14, t-stat 2.21
+- Confirm years: 608 trades, profit factor 1.13, +57.6R, t-stat 1.41 (needed 3.24); markets 5 of 6; double-cost profit factor 1.06; beats 43% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 3.24 (bar for survivor 83)
+
+### 2026-11-20 · screen survivor 84 · `zmove_n24_z2.5.follow.with_trend.any.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 50a7905a6e). No stated reason.
+- Screen years: 685 trades, profit factor 1.25, t-stat 2.73
+- Confirm years: 304 trades, profit factor 1.17, +37.6R, t-stat 1.28 (needed 3.24); markets 3 of 6; double-cost profit factor 1.07; beats 99% of random entries
+- Failed: t-stat >= 3.24 (bar for survivor 84)
+
+### 2026-11-20 · screen survivor 85 · `squeeze_break_n24.follow.with_trend.asia.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id fea6a4621e). No stated reason.
+- Screen years: 442 trades, profit factor 1.19, t-stat 1.70
+- Confirm years: 210 trades, profit factor 1.13, +20.3R, t-stat 0.82 (needed 3.24); markets 4 of 6; double-cost profit factor 0.96; beats 87% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.24 (bar for survivor 85)
+
+### 2026-11-20 · screen survivor 86 · `zmove_n72_z2.follow.none.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id b55e2d6d49). No stated reason.
+- Screen years: 554 trades, profit factor 1.17, t-stat 1.65
+- Confirm years: 252 trades, profit factor 1.07, +13.0R, t-stat 0.50 (needed 3.25); markets 3 of 6; double-cost profit factor 0.99; beats 73% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.25 (bar for survivor 86)
+
+### 2026-11-20 · screen survivor 87 · `zmove_n24_z2.5.follow.none.any.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id 3a0e356ff2). No stated reason.
+- Screen years: 830 trades, profit factor 1.21, t-stat 2.58
+- Confirm years: 379 trades, profit factor 1.12, +31.7R, t-stat 0.98 (needed 3.25); markets 4 of 6; double-cost profit factor 1.02; beats 98% of random entries
+- Failed: profit factor >= 1.15; t-stat >= 3.25 (bar for survivor 87)
+
+### 2026-11-20 · screen batch · 3800 ideas
+- Passed the screen: 86. Confirmed on unseen years: 0. Candidates: 0.
+- Totals: 4000 of 4000 catalogue ideas screened, 87 survivors, 0 confirmed, 0 candidates.
+- Every screened idea is in `lab/screen/log.csv`.

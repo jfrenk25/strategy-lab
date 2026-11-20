@@ -35,6 +35,10 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - Rules: "Screen and confirm" in `LAB_RULES.md`. Progress: `screen/state.json`. Every screened idea: `screen/log.csv`.
 - First batch 2026-11-20: 100 screened, 1 survivor, 0 confirmed. The survivor (24-bar extreme move, follow) had a t-stat of 3.81 on the screen years and -0.25 on the confirm years.
 - Second batch 2026-11-20: 100 screened, 0 survivors. Running totals: 200 of 4,000 screened, 1 survivor, 0 confirmed.
+- Full catalogue 2026-11-20: all 4,000 screened, 87 survivors, 0 confirmed. Catalogue version 1 is exhausted.
+- 67 of the 87 survivors were "follow an extreme move" or "follow a big bar" rules. Treat them as one or two weak ideas, not 67. 67 of the 87 stayed above break-even on the confirm years, but none reached the bar.
+- Nearest miss: `breakout_n168.follow.with_trend.asia.stop3_rr2.5` (survivor 3). Confirm years: 289 trades, profit factor 1.42, t-stat 2.78 against a bar of 2.81. Its 24 and 72 bar cousins scored 2.38 and 2.24. It is a REJECT. It passed every other confirm check.
+- Do not re-test any survivor on the confirm years: those results have been seen. Only new data (a forward test) can judge them now.
 - On shuffled prices 0 of 400 ideas passed the screen, so a survivor is rarely pure luck in the screen years. It can still fail to carry forward, as the first one did.
 - Limit: 1-hour bars and single-market triggers only. Cross-market triggers and other timeframes would be a new catalogue version.
 
