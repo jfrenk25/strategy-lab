@@ -137,3 +137,21 @@ All must hold, or the idea fails:
 - Before 200 trades the status is WATCHING. Nothing is concluded from a partial count.
 - FORWARD PASS means the idea may go to the account-fit check. It is still not a guarantee.
 - The forward watch needs new price bars in `lab/data`. If the data is not refreshed, nothing moves.
+
+## New-market test (added November 20, 2026, before any new-market data arrived)
+A one-time check of the watched ideas on markets the lab has never used. It asks one question: does the rule work somewhere it was never looked at?
+
+- Markets: NAS100, SPX500, USOIL, EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD and EURJPY. Hourly bars from April 21, 2021 to the day of the download.
+- Who: every idea on the forward watch on November 20, 2026 (13 ideas). Their parts are frozen.
+- Fees per side: forex 0.015%, indices 0.025%, oil 0.03%. Slippage, fills, exits and the cooldown are the same as everywhere else.
+- One run per idea, on the new markets only. No second run, no changed parts, no dropped markets. A market whose download fails is left out and named in the journal.
+- All must hold:
+  1. At least 150 trades.
+  2. Profit factor of 1.15 or more.
+  3. Profit factor above 1.0 with costs doubled.
+  4. Profitable in at least half of the new markets.
+  5. Beats 95% of 1,000 random-entry runs with the same trade count, sides and exits.
+  6. t-stat of 2.65 or more (the normal quantile at 1 - 0.05 / 13, for 13 ideas tested).
+- An idea that passes is a CANDIDATE. It stays on the forward watch, which is still the last gate before the account-fit check.
+- An idea that fails stays on the forward watch too, marked as failed here. Nothing is removed.
+- The new markets are kept apart in `lab/data_new`. They do not join the screen until a new catalogue version says so.
