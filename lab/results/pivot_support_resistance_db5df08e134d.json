@@ -1,0 +1,66 @@
+{
+ "name": "pivot_support_resistance",
+ "markets": [
+  "BTCUSD",
+  "ETHUSD",
+  "XAUUSD",
+  "GBPJPY",
+  "USA30",
+  "DEU30"
+ ],
+ "trades": 6921,
+ "pf": 0.8783075937293482,
+ "totalR": -397.06205410227216,
+ "t": -4.267855833430982,
+ "need_t": 3.2988337879088916,
+ "attempts": 103,
+ "dbl_pf": 0.7490295695091022,
+ "beats_random": 75.0,
+ "blocks_profitable": [
+  3,
+  16
+ ],
+ "markets_profitable": [
+  0,
+  6
+ ],
+ "by_block": {
+  "2010": -34.1,
+  "2011": -34.9,
+  "2012": 12.4,
+  "2013": 4.3,
+  "2014": -2.6,
+  "2015": -0.1,
+  "2016": 17.0,
+  "2017": -17.3,
+  "2018": -24.6,
+  "2019": -2.6,
+  "2020": -9.3,
+  "2021": -29.3,
+  "2022": -5.6,
+  "2023": -142.5,
+  "2024": -24.1,
+  "2025": -103.7
+ },
+ "by_market": {
+  "BTCUSD": -48.3,
+  "ETHUSD": -50.1,
+  "XAUUSD": -142.5,
+  "GBPJPY": -57.5,
+  "USA30": -58.0,
+  "DEU30": -40.8
+ },
+ "checks": {
+  "profit factor >= 1.15": false,
+  "trades >= 150": true,
+  "profitable in 60% of test years": false,
+  "profitable in half the markets": false,
+  "profit factor > 1 at double costs": false,
+  "beats 95% of random entries": false,
+  "t-stat >= 3.30 (bar for attempt 103)": false
+ },
+ "verdict": "REJECT",
+ "file": "pivot_support_resistance.py",
+ "hash": "db5df08e134d",
+ "date": "2026-11-20"
+}

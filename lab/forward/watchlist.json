@@ -25,6 +25,31 @@
   "new_markets": "FAIL"
  },
  {
+  "id": "93f1232a81",
+  "name": "turn_of_month_hour13.follow.against_trend.any.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:turn_of_month",
+   "params": {
+    "hour": 13
+   },
+   "direction": "follow",
+   "regime": "against_trend",
+   "session": "any",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-20",
+  "start": "2026-11-21",
+  "confirm": {
+   "trades": 352,
+   "pf": 1.329,
+   "t": 2.47,
+   "need_t": 3.38
+  },
+  "verdict": null
+ },
+ {
   "id": "3b9ab60428",
   "name": "breakout_n24.follow.with_trend.asia.stop3_rr2.5",
   "spec": {
@@ -48,6 +73,31 @@
   },
   "verdict": null,
   "new_markets": "FAIL"
+ },
+ {
+  "id": "93b946b84c",
+  "name": "a158_cntd_n20.follow.high_vol.asia.stop3_rr1.5",
+  "spec": {
+   "trigger": "plugin:a158_cntd",
+   "params": {
+    "n": 20
+   },
+   "direction": "follow",
+   "regime": "high_vol",
+   "session": "asia",
+   "exit": 2,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-20",
+  "start": "2026-11-21",
+  "confirm": {
+   "trades": 462,
+   "pf": 1.25,
+   "t": 2.36,
+   "need_t": 3.32
+  },
+  "verdict": null
  },
  {
   "id": "d1f624eb0c",
@@ -125,6 +175,56 @@
   },
   "verdict": null,
   "new_markets": "FAIL"
+ },
+ {
+  "id": "5a842a5139",
+  "name": "alpha007_rank0.9.follow.low_vol.asia.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:alpha007",
+   "params": {
+    "rank": 0.9
+   },
+   "direction": "follow",
+   "regime": "low_vol",
+   "session": "asia",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-20",
+  "start": "2026-11-21",
+  "confirm": {
+   "trades": 384,
+   "pf": 1.235,
+   "t": 1.89,
+   "need_t": 3.36
+  },
+  "verdict": null
+ },
+ {
+  "id": "c5336d4832",
+  "name": "a158_vsumd_n20.follow.low_vol.asia.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:a158_vsumd",
+   "params": {
+    "n": 20
+   },
+   "direction": "follow",
+   "regime": "low_vol",
+   "session": "asia",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-20",
+  "start": "2026-11-21",
+  "confirm": {
+   "trades": 245,
+   "pf": 1.302,
+   "t": 1.89,
+   "need_t": 3.34
+  },
+  "verdict": null
  },
  {
   "id": "ba163a63e9",

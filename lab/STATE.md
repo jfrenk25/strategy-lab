@@ -14,6 +14,8 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - Public posts tend to leave out the part the author says makes the idea work. Log what is withheld.
 - Never tune after a result. A changed idea is a new attempt.
 - Trend-following breakouts beat most shuffled price paths but still lose after costs (donchian_breakout, diagnostic p about 0.07).
+- Fading the edge of a range on 1-hour bars loses before the idea gets going: channel bounce beat only 4% of random entries. Daily-level rules (pivot, IBS) coded on hourly bars trade thousands of times and costs eat them.
+- Formula lists (Alpha158, 101 Alphas) turned into single-market events gave no confirmed idea out of 14 triggers. The few that passed the screen were mostly the follow side in quiet Asian hours, like the older survivors.
 
 ## Needs other data (not testable with price bars)
 - Order flow and footprint ideas (delta, bid/ask volume).
@@ -25,7 +27,7 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 
 ## Book progress ("151 Trading Strategies")
 - Full triage is in `BOOK_INDEX.md`. Use it instead of fetching the book.
-- Carded 2026-11-19, waiting in the inbox: 3.14 pivot support and resistance, 3.15 channel bounce, 4.4 IBS reversion.
+- Tested 2026-11-20 from the inbox, all three rejected: 3.14 pivot cross (profit factor 0.88, 6,921 trades), 3.15 channel bounce (0.82, 5,055 trades), 4.4 IBS reversion (0.83, 1,994 trades). The inbox has no unprocessed cards.
 - Dead on arrival: 3.11 to 3.13 (moving-average crossovers).
 - Tested in position mode 2026-11-19, both rejected: 10.4 time-series momentum (Sharpe 0.05), 10.3 cross-market contrarian (Sharpe 0.13).
 - Still open for position mode: 3.8 to 3.10 pairs and cluster reversion, 3.17 nearest neighbours, 3.18 stat arb, 3.20 alpha combination, 8.1 HP-filter trend.
@@ -52,8 +54,24 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - On shuffled prices 0 of 400 ideas passed the screen, so a survivor is rarely pure luck in the screen years. It can still fail to carry forward, as the first one did.
 - Limit: 1-hour bars and single-market triggers only. Cross-market triggers and other timeframes would be a new catalogue version.
 
+- Trigger batch 2026-11-20 (second run of the day): 25 triggers added, 5,920 ideas screened on fifteen markets, 29 passed the screen, 0 confirmed, 0 candidates.
+- Survivors by trigger: a158_vsumd 7, a158_rsqr 4, alpha007 4, realized_skew 3, a158_resi 2, alpha035 2, same_hour_seasonality 2, and 1 each for a158_cntd, a158_shadow, cmf_extreme, td_setup, turn_of_month. The other 13 triggers passed nothing.
+- Four near misses (passed every confirm check except the survivor bar) went on the forward watch: `turn_of_month_hour13.follow.against_trend.any.stop3_rr2.5` (confirm t 2.47 against 3.38), `a158_cntd_n20.follow.high_vol.asia.stop3_rr1.5` (2.36), `alpha007_rank0.9.follow.low_vol.asia.stop3_rr2.5` (1.89), `a158_vsumd_n20.follow.low_vol.asia.stop3_rr2.5` (1.89). All four are REJECTs.
+- Running totals 2026-11-20 (from `screen/state.json`): catalogue version 3, 10,240 screened, 138 survivors, 0 confirmed, 0 candidates. The next survivor needs a confirm t-stat of about 3.38.
+- Forward watch 2026-11-20: 17 ideas watched, 0 forward trades. Price data ends 2026-11-20 05:00 UTC (ETHUSD 2026-11-19 23:00) and the watch starts 2026-11-21, so nothing can move until the next data refresh.
+
+## Trigger sources (where each list stands)
+Caution for all 25 triggers of 2026-11-20: the session could not open any web page (page reads needed an approval nobody was there to give). Every formula was written from the published definition as recalled, and each file says so. A spot check of the files against the sources is still owed. The files are registered and must not be edited: a correction is a new trigger with a new name.
+- Qlib Alpha158: list worked through once, 7 triggers taken. Taken: KUP and KLOW (`a158_shadow`), RSQR with BETA's sign (`a158_rsqr`), RESI (`a158_resi`), CORR (`a158_corr`), CORD (`a158_cord`), CNTD (`a158_cntd`), VSUMD (`a158_vsumd`). Skipped as repeats of built-ins or dead classes: KMID, KLEN, KMID2, KSFT, KSFT2 (big_bar), ROC and BETA alone (zmove), MA (moving-average crossover), STD (squeeze), MAX, MIN, QTLU, QTLD, RANK, RSV, IMAX, IMIN, IMXD (breakout family), CNTP, CNTN (halves of CNTD), SUMP, SUMN, SUMD (RSI), VMA, VSTD, WVMA, VSUMP, VSUMN (vol_spike family or no direction). KUP2 and KLOW2 are the same shadows on a different scale. The list is used up.
+- 101 Formulaic Alphas: list worked through once, 7 triggers taken: Alpha#7, #12, #21, #23, #35, #46 (also covers #49 and #51), #54. Skipped: every alpha that needs vwap, market cap or industry groups; every alpha whose core is a rank across stocks; #9 and #10 (streak), #19 and #24 (zmove), #20 (gap), #33 and #101 (bar body, big_bar family), #6, #14, #22, #26, #40, #44 (price-volume correlation, same idea as a158_corr), #43 and #39 (same parts as #7). Still open if wanted: #8, #30, #52, #53. Otherwise the list is used up.
+- freqtrade-strategies: 2 triggers taken: TDSequentialStrategy (`td_setup`), TechnicalExampleStrategy's Chaikin Money Flow (`cmf_extreme`). Skipped: everything built on EMA, MACD, RSI, stochastic, CCI, MFI, ADX and DI crossings, Supertrend, parabolic SAR, heikin-ashi or Bollinger-plus-RSI mixes (indicator crossovers, a dead class); HourBasedStrategy (clock); strategies with fixed percent thresholds (BinHV45, ClucMay72018, Low_BB). The folder listing could not be read, so files added to the collection recently have not been looked at. Start there next time.
+- Published research and books, 9 triggers taken: Gervais, Kaniel and Mingelgrin 2001 (`high_volume_premium`); Heston, Korajczyk and Sadka 2010 (`same_hour_seasonality`); Amaya and others 2015 (`realized_skew`); Osler 2003 (`round_number_cross`); Gao, Han, Li and Zhou 2018 (`intraday_momentum`); Crabel 1990 and Zarattini and Aziz 2023 (`opening_range_break`); Crabel 1990 (`crabel_idnr`); Williams 1999 (`smash_day`); Lakonishok and Smidt 1988, McConnell and Xu 2008 (`turn_of_month`).
+- Considered and left out: outside bars and engulfing bars (close to big_bar), pin bars (same as a158_shadow), turtle soup and springs (sweep), VWAP cross and OBV cross (crossovers), Kaufman efficiency ratio (same idea as a158_rsqr), pocket pivots (vol_spike family), pivot levels (the class failed in the main track today). The book in `BOOK_INDEX.md` has no single-market events left.
+- `same_hour_seasonality` needed one fix before registration: the first version counted calendar days, so it never fired on markets that close at weekends. It now counts the last k days on which that hour traded.
+- Ideas for next time, not yet used: Lo, Mamaysky and Wang 2000 chart patterns, hikkake (Chesler), fair value gaps, variance-ratio regimes, overnight against intraday returns (needs session times per market).
+
 ## Next
-- Fill `ideas/inbox/` from "151 Trading Strategies" (see `AGENT.md`) and from the X scout prompt in `GROK_SCOUT_PROMPT.md`.
+- The inbox is empty. Fill `ideas/inbox/` from "151 Trading Strategies" (see `AGENT.md`) and from the X scout prompt in `GROK_SCOUT_PROMPT.md`.
 
 ## Last session
-2026-11-19 · 4 tested (2 signal mode, 2 position mode), 4 rejected, 0 candidates
+2026-11-20 · 3 inbox ideas tested in the main track, 3 rejected (attempts now 103) · 25 triggers added, 5,920 ideas screened, 29 passed the screen, 0 confirmed, 0 candidates · forward watch 17 ideas, 0 forward trades

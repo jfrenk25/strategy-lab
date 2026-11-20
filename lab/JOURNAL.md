@@ -769,3 +769,214 @@ Attempt counter starts at 96.
 - `zmove_n24_z2.5.follow.with_trend.any.stop2_rr2.5` · FAIL: 971 trades, profit factor 0.84, -124.2R, t-stat -2.48, markets 2 of 9, double-cost profit factor 0.72, beats 79% of random entries. Failed: profit factor >= 1.15; profit factor > 1 at double costs; profitable in half the new markets; beats 95% of random entries; t-stat >= 2.67
 - `big_bar_k3.follow.none.asia.stop3_rr2.5` · FAIL: 264 trades, profit factor 0.96, -7.8R, t-stat -0.30, markets 4 of 9, double-cost profit factor 0.85, beats 76% of random entries. Failed: profit factor >= 1.15; profit factor > 1 at double costs; profitable in half the new markets; beats 95% of random entries; t-stat >= 2.67
 - `zmove_n24_z2.5.follow.with_trend.ny.stop2_rr2.5` · FAIL: 508 trades, profit factor 0.90, -41.1R, t-stat -1.13, markets 4 of 9, double-cost profit factor 0.78, beats 87% of random entries. Failed: profit factor >= 1.15; profit factor > 1 at double costs; profitable in half the new markets; beats 95% of random entries; t-stat >= 2.67
+
+### 2026-11-20 · attempt 101 · `channel_bounce` · REJECT
+- Source: Kakushadze and Serur, 151 Trading Strategies (2018), section 3.15, https://ssrn.com/abstract=3247865
+- Reason claimed: Price inside a range tends to bounce off its edges.
+- Who loses: Breakout traders who enter at the edge of a range that holds.
+- Out-of-sample: 5055 trades, profit factor 0.82, -587.5R, t-stat -6.53 (needed 3.29)
+- Profitable test years 0 of 16; markets 0 of 6; double-cost profit factor 0.72; beats 4% of random entries
+- Failed: profit factor >= 1.15; profitable in 60% of test years; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.29 (bar for attempt 101)
+
+### 2026-11-20 · attempt 102 · `ibs_reversion` · REJECT
+- Source: Kakushadze and Serur, 151 Trading Strategies (2018), section 4.4, https://ssrn.com/abstract=3247865 (single-market adaptation; the book ranks many ETFs against each other)
+- Reason claimed: A close near the day's low is cheap and a close near the high is rich, and short-term extremes tend to revert.
+- Who loses: Traders who need to sell or buy urgently into the close and pay for immediacy.
+- Out-of-sample: 1994 trades, profit factor 0.83, -232.2R, t-stat -3.81 (needed 3.30)
+- Profitable test years 4 of 16; markets 1 of 6; double-cost profit factor 0.73; beats 45% of random entries
+- Failed: profit factor >= 1.15; profitable in 60% of test years; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.30 (bar for attempt 102)
+
+### 2026-11-20 · attempt 103 · `pivot_support_resistance` · REJECT
+- Source: Kakushadze and Serur, 151 Trading Strategies (2018), section 3.14, https://ssrn.com/abstract=3247865
+- Reason claimed: Not stated in the book. Common explanation: many traders watch the same daily levels, so price reacts around them.
+- Who loses: Traders who fade a move through a widely watched level.
+- Out-of-sample: 6921 trades, profit factor 0.88, -397.1R, t-stat -4.27 (needed 3.30)
+- Profitable test years 3 of 16; markets 0 of 6; double-cost profit factor 0.75; beats 75% of random entries
+- Failed: profit factor >= 1.15; profitable in 60% of test years; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.30 (bar for attempt 103)
+
+### 2026-11-20 · screen survivor 110 · `a158_cntd_n20.follow.high_vol.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 93b946b84c). No stated reason.
+- Screen years: 903 trades, profit factor 1.14, t-stat 2.00
+- Confirm years: 462 trades, profit factor 1.25, +63.6R, t-stat 2.36 (needed 3.32); markets 12 of 15; double-cost profit factor 1.11; beats 100% of random entries
+- Failed: t-stat >= 3.32 (bar for survivor 110)
+
+### 2026-11-20 · screen survivor 111 · `a158_resi_n60.follow.with_trend.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id d468fc8200). No stated reason.
+- Screen years: 1328 trades, profit factor 1.13, t-stat 2.09
+- Confirm years: 669 trades, profit factor 1.01, +6.3R, t-stat 0.15 (needed 3.32); markets 6 of 15; double-cost profit factor 0.92; beats 93% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.32 (bar for survivor 111)
+
+### 2026-11-20 · screen survivor 112 · `a158_resi_n60.follow.with_trend.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id c30d88b7c4). No stated reason.
+- Screen years: 412 trades, profit factor 1.22, t-stat 2.02
+- Confirm years: 290 trades, profit factor 0.85, -28.6R, t-stat -1.37 (needed 3.32); markets 5 of 15; double-cost profit factor 0.78; beats 38% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.32 (bar for survivor 112)
+
+### 2026-11-20 · screen survivor 113 · `a158_rsqr_n20.follow.low_vol.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 8785da4231). No stated reason.
+- Screen years: 721 trades, profit factor 1.18, t-stat 2.17
+- Confirm years: 390 trades, profit factor 1.08, +19.0R, t-stat 0.76 (needed 3.32); markets 9 of 15; double-cost profit factor 0.91; beats 96% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; t-stat >= 3.32 (bar for survivor 113)
+
+### 2026-11-20 · screen survivor 114 · `a158_rsqr_n20.follow.low_vol.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 9a5466a101). No stated reason.
+- Screen years: 695 trades, profit factor 1.22, t-stat 2.44
+- Confirm years: 378 trades, profit factor 0.97, -8.4R, t-stat -0.26 (needed 3.33); markets 9 of 15; double-cost profit factor 0.84; beats 62% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.33 (bar for survivor 114)
+
+### 2026-11-20 · screen survivor 115 · `a158_rsqr_n20.follow.with_trend.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 1ca3ca41d9). No stated reason.
+- Screen years: 926 trades, profit factor 1.13, t-stat 1.66
+- Confirm years: 500 trades, profit factor 1.12, +42.6R, t-stat 1.14 (needed 3.33); markets 11 of 15; double-cost profit factor 1.00; beats 96% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; t-stat >= 3.33 (bar for survivor 115)
+
+### 2026-11-20 · screen survivor 116 · `a158_rsqr_n20.follow.with_trend.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 74072a5926). No stated reason.
+- Screen years: 986 trades, profit factor 1.18, t-stat 2.55
+- Confirm years: 529 trades, profit factor 1.08, +25.2R, t-stat 0.87 (needed 3.33); markets 8 of 15; double-cost profit factor 0.95; beats 98% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; t-stat >= 3.33 (bar for survivor 116)
+
+### 2026-11-20 · screen survivor 117 · `a158_shadow_q0.99.follow.against_trend.london.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 3f91f4c981). No stated reason.
+- Screen years: 918 trades, profit factor 1.15, t-stat 1.95
+- Confirm years: 444 trades, profit factor 0.95, -18.0R, t-stat -0.53 (needed 3.33); markets 7 of 15; double-cost profit factor 0.84; beats 72% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.33 (bar for survivor 117)
+
+### 2026-11-20 · screen survivor 118 · `a158_vsumd_n20.follow.none.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 4fe5834ef0). No stated reason.
+- Screen years: 596 trades, profit factor 1.31, t-stat 2.94
+- Confirm years: 396 trades, profit factor 1.12, +34.4R, t-stat 1.05 (needed 3.34); markets 7 of 15; double-cost profit factor 1.02; beats 93% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; beats 95% of random entries; t-stat >= 3.34 (bar for survivor 118)
+
+### 2026-11-20 · screen survivor 119 · `a158_vsumd_n20.follow.low_vol.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id c5336d4832). No stated reason.
+- Screen years: 370 trades, profit factor 1.26, t-stat 2.00
+- Confirm years: 245 trades, profit factor 1.30, +50.1R, t-stat 1.89 (needed 3.34); markets 9 of 15; double-cost profit factor 1.17; beats 99% of random entries
+- Failed: t-stat >= 3.34 (bar for survivor 119)
+
+### 2026-11-20 · screen survivor 120 · `a158_vsumd_n20.follow.with_trend.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id f513601a7e). No stated reason.
+- Screen years: 404 trades, profit factor 1.27, t-stat 2.17
+- Confirm years: 271 trades, profit factor 1.08, +15.6R, t-stat 0.58 (needed 3.34); markets 7 of 15; double-cost profit factor 0.98; beats 75% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.34 (bar for survivor 120)
+
+### 2026-11-20 · screen survivor 121 · `a158_vsumd_n20.follow.none.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 04d492437b). No stated reason.
+- Screen years: 627 trades, profit factor 1.18, t-stat 2.06
+- Confirm years: 411 trades, profit factor 1.03, +8.1R, t-stat 0.32 (needed 3.34); markets 6 of 15; double-cost profit factor 0.92; beats 88% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.34 (bar for survivor 121)
+
+### 2026-11-20 · screen survivor 122 · `a158_vsumd_n20.follow.with_trend.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 25dece0e64). No stated reason.
+- Screen years: 425 trades, profit factor 1.21, t-stat 1.94
+- Confirm years: 281 trades, profit factor 1.00, +0.6R, t-stat 0.03 (needed 3.35); markets 5 of 15; double-cost profit factor 0.90; beats 71% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.35 (bar for survivor 122)
+
+### 2026-11-20 · screen survivor 123 · `a158_vsumd_n20.follow.high_vol.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 74f24d56ff). No stated reason.
+- Screen years: 258 trades, profit factor 1.33, t-stat 2.27
+- Confirm years: 169 trades, profit factor 0.84, -17.8R, t-stat -1.12 (needed 3.35); markets 3 of 15; double-cost profit factor 0.77; beats 32% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.35 (bar for survivor 123)
+
+### 2026-11-20 · screen survivor 124 · `a158_vsumd_n20.follow.high_vol.asia.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id f7417b10b9). No stated reason.
+- Screen years: 264 trades, profit factor 1.29, t-stat 1.92
+- Confirm years: 172 trades, profit factor 0.78, -30.4R, t-stat -1.50 (needed 3.35); markets 4 of 15; double-cost profit factor 0.71; beats 24% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.35 (bar for survivor 124)
+
+### 2026-11-20 · screen survivor 125 · `alpha007_rank0.9.follow.high_vol.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 05f3427ba6). No stated reason.
+- Screen years: 700 trades, profit factor 1.16, t-stat 1.80
+- Confirm years: 493 trades, profit factor 0.99, -2.2R, t-stat -0.06 (needed 3.35); markets 5 of 15; double-cost profit factor 0.91; beats 81% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.35 (bar for survivor 125)
+
+### 2026-11-20 · screen survivor 126 · `alpha007_rank0.9.follow.with_trend.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 4dc51a60fa). No stated reason.
+- Screen years: 901 trades, profit factor 1.14, t-stat 1.96
+- Confirm years: 590 trades, profit factor 0.95, -18.2R, t-stat -0.60 (needed 3.35); markets 5 of 15; double-cost profit factor 0.85; beats 66% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.35 (bar for survivor 126)
+
+### 2026-11-20 · screen survivor 127 · `alpha007_rank0.9.follow.low_vol.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 5a842a5139). No stated reason.
+- Screen years: 645 trades, profit factor 1.18, t-stat 1.97
+- Confirm years: 384 trades, profit factor 1.24, +61.6R, t-stat 1.89 (needed 3.36); markets 10 of 15; double-cost profit factor 1.10; beats 98% of random entries
+- Failed: t-stat >= 3.36 (bar for survivor 127)
+
+### 2026-11-20 · screen survivor 128 · `alpha007_rank0.9.follow.with_trend.asia.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id c27f04f9f4). No stated reason.
+- Screen years: 929 trades, profit factor 1.16, t-stat 2.11
+- Confirm years: 613 trades, profit factor 0.97, -13.5R, t-stat -0.33 (needed 3.36); markets 5 of 15; double-cost profit factor 0.85; beats 84% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.36 (bar for survivor 128)
+
+### 2026-11-20 · screen survivor 129 · `alpha035_q0.99.fade.with_trend.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 433231768a). No stated reason.
+- Screen years: 421 trades, profit factor 1.36, t-stat 2.94
+- Confirm years: 267 trades, profit factor 1.01, +2.1R, t-stat 0.08 (needed 3.36); markets 6 of 15; double-cost profit factor 0.91; beats 66% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.36 (bar for survivor 129)
+
+### 2026-11-20 · screen survivor 130 · `alpha035_q0.99.fade.with_trend.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 1d86cdfa1b). No stated reason.
+- Screen years: 432 trades, profit factor 1.18, t-stat 1.73
+- Confirm years: 272 trades, profit factor 0.87, -22.8R, t-stat -1.11 (needed 3.36); markets 5 of 15; double-cost profit factor 0.78; beats 37% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.36 (bar for survivor 130)
+
+### 2026-11-20 · screen survivor 131 · `cmf_extreme_n20.follow.with_trend.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id c9309c6915). No stated reason.
+- Screen years: 1795 trades, profit factor 1.11, t-stat 2.03
+- Confirm years: 1084 trades, profit factor 1.10, +75.6R, t-stat 1.38 (needed 3.37); markets 11 of 15; double-cost profit factor 0.98; beats 100% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; t-stat >= 3.37 (bar for survivor 131)
+
+### 2026-11-20 · screen survivor 132 · `realized_skew_n120.follow.with_trend.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 83e027b870). No stated reason.
+- Screen years: 1296 trades, profit factor 1.19, t-stat 2.89
+- Confirm years: 676 trades, profit factor 0.93, -38.8R, t-stat -0.92 (needed 3.37); markets 5 of 15; double-cost profit factor 0.83; beats 48% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.37 (bar for survivor 132)
+
+### 2026-11-20 · screen survivor 133 · `realized_skew_n120.follow.with_trend.ny.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id dd1ea04d3d). No stated reason.
+- Screen years: 841 trades, profit factor 1.18, t-stat 2.43
+- Confirm years: 415 trades, profit factor 0.87, -34.9R, t-stat -1.37 (needed 3.37); markets 4 of 15; double-cost profit factor 0.77; beats 43% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.37 (bar for survivor 133)
+
+### 2026-11-20 · screen survivor 134 · `realized_skew_n120.follow.with_trend.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id b4f52b88aa). No stated reason.
+- Screen years: 776 trades, profit factor 1.24, t-stat 2.75
+- Confirm years: 385 trades, profit factor 0.80, -62.1R, t-stat -2.02 (needed 3.37); markets 4 of 15; double-cost profit factor 0.72; beats 8% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.37 (bar for survivor 134)
+
+### 2026-11-20 · screen survivor 135 · `same_hour_seasonality_k8.fade.high_vol.ny.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 9b3f41fbc0). No stated reason.
+- Screen years: 577 trades, profit factor 1.19, t-stat 2.10
+- Confirm years: 240 trades, profit factor 0.93, -10.9R, t-stat -0.57 (needed 3.37); markets 8 of 15; double-cost profit factor 0.84; beats 80% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.37 (bar for survivor 135)
+
+### 2026-11-20 · screen survivor 136 · `same_hour_seasonality_k8.fade.high_vol.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 4e76d56fa2). No stated reason.
+- Screen years: 527 trades, profit factor 1.26, t-stat 2.39
+- Confirm years: 226 trades, profit factor 0.97, -5.0R, t-stat -0.21 (needed 3.38); markets 6 of 15; double-cost profit factor 0.88; beats 82% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.38 (bar for survivor 136)
+
+### 2026-11-20 · screen survivor 137 · `td_setup_count9.fade.with_trend.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 9334485735). No stated reason.
+- Screen years: 1049 trades, profit factor 1.14, t-stat 2.00
+- Confirm years: 629 trades, profit factor 0.99, -2.8R, t-stat -0.07 (needed 3.38); markets 9 of 15; double-cost profit factor 0.89; beats 72% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.38 (bar for survivor 137)
+
+### 2026-11-20 · screen survivor 138 · `turn_of_month_hour13.follow.against_trend.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 93f1232a81). No stated reason.
+- Screen years: 603 trades, profit factor 1.16, t-stat 1.71
+- Confirm years: 352 trades, profit factor 1.33, +80.3R, t-stat 2.47 (needed 3.38); markets 12 of 15; double-cost profit factor 1.20; beats 99% of random entries
+- Failed: t-stat >= 3.38 (bar for survivor 138)
+
+### 2026-11-20 · screen batch · 5920 ideas
+- New triggers registered: a158_cntd, a158_cord, a158_corr, a158_resi, a158_rsqr, a158_shadow, a158_vsumd, alpha007, alpha012, alpha021, alpha023, alpha035, alpha046, alpha054, cmf_extreme, crabel_idnr, high_volume_premium, intraday_momentum, opening_range_break, realized_skew, round_number_cross, same_hour_seasonality, smash_day, td_setup, turn_of_month.
+- Passed the screen: 29. Confirmed on unseen years: 0. Candidates: 0.
+- Totals: 10240 of 10240 catalogue ideas screened, 138 survivors, 0 confirmed, 0 candidates.
+- Every screened idea is in `lab/screen/log.csv`.
+
+### 2026-11-20 · forward watch · 4 ideas registered
+- `alpha007_rank0.9.follow.low_vol.asia.stop3_rr2.5`
+- `a158_cntd_n20.follow.high_vol.asia.stop3_rr1.5`
+- `turn_of_month_hour13.follow.against_trend.any.stop3_rr2.5`
+- `a158_vsumd_n20.follow.low_vol.asia.stop3_rr2.5`
+- Forward trades count from 2026-11-21 00:00 UTC. Verdict at 200 trades. Rules: "Forward watch" in `LAB_RULES.md`.

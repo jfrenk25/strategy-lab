@@ -1,10 +1,13 @@
 {
- "attempts": 100,
+ "attempts": 103,
  "tested": {
   "donchian_breakout.py": "844011b198a5",
   "rsi2_reversion.py": "25170c877cf8",
   "ts_momentum.py": "76890517d13f",
-  "xs_contrarian.py": "4153d88dc463"
+  "xs_contrarian.py": "4153d88dc463",
+  "channel_bounce.py": "1834e8cac3ca",
+  "ibs_reversion.py": "29e24ac56002",
+  "pivot_support_resistance.py": "db5df08e134d"
  },
  "quarantine_used": []
 }

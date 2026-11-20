@@ -14,5 +14,402 @@
    }
   ],
   "timed": false
+ },
+ {
+  "name": "a158_cntd",
+  "hash": "936eda1c23d1",
+  "added": "2026-11-20",
+  "source": "Microsoft Qlib, Alpha158 factor set (github.com/microsoft/qlib, qlib/contrib/data/loader.py), factor CNTD",
+  "summary": "+1 when up-closes outnumber down-closes over n bars by an unusual margin, -1 when down-closes do.",
+  "variants": [
+   {
+    "n": 20
+   },
+   {
+    "n": 60
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "a158_cord",
+  "hash": "595cb0d89d49",
+  "added": "2026-11-20",
+  "source": "Microsoft Qlib, Alpha158 factor set (github.com/microsoft/qlib, qlib/contrib/data/loader.py), factor CORD",
+  "summary": "+1 when up-bars have come with rising volume and down-bars with falling volume unusually often over n bars, -1 for the opposite.",
+  "variants": [
+   {
+    "n": 20
+   },
+   {
+    "n": 60
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "a158_corr",
+  "hash": "7c05b267a2cc",
+  "added": "2026-11-20",
+  "source": "Microsoft Qlib, Alpha158 factor set (github.com/microsoft/qlib, qlib/contrib/data/loader.py), factor CORR",
+  "summary": "+1 when price and volume have risen and fallen together unusually closely over n bars, -1 when unusually oppositely.",
+  "variants": [
+   {
+    "n": 20
+   },
+   {
+    "n": 60
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "a158_resi",
+  "hash": "1f0a563fcfef",
+  "added": "2026-11-20",
+  "source": "Microsoft Qlib, Alpha158 factor set (github.com/microsoft/qlib, qlib/contrib/data/loader.py), factor RESI",
+  "summary": "+1 when the close first stands unusually far above the line fitted to the last n closes, -1 when unusually far below.",
+  "variants": [
+   {
+    "n": 20
+   },
+   {
+    "n": 60
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "a158_rsqr",
+  "hash": "e89b84df1eac",
+  "added": "2026-11-20",
+  "source": "Microsoft Qlib, Alpha158 factor set (github.com/microsoft/qlib, qlib/contrib/data/loader.py), factors RSQR and BETA",
+  "summary": "+1 when the last n closes become unusually close to a straight rising line, -1 for a straight falling line.",
+  "variants": [
+   {
+    "n": 20
+   },
+   {
+    "n": 60
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "a158_shadow",
+  "hash": "cf0c10110ff9",
+  "added": "2026-11-20",
+  "source": "Microsoft Qlib, Alpha158 factor set (github.com/microsoft/qlib, qlib/contrib/data/loader.py), factors KUP and KLOW",
+  "summary": "+1 when the lower shadow is unusually long against the last 500 bars, -1 when the upper shadow is.",
+  "variants": [
+   {
+    "q": 0.95
+   },
+   {
+    "q": 0.99
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "a158_vsumd",
+  "hash": "5a820773e6c3",
+  "added": "2026-11-20",
+  "source": "Microsoft Qlib, Alpha158 factor set (github.com/microsoft/qlib, qlib/contrib/data/loader.py), factor VSUMD",
+  "summary": "Volume has been building unusually strongly over n bars: +1 if price rose over those bars, -1 if it fell.",
+  "variants": [
+   {
+    "n": 20
+   },
+   {
+    "n": 60
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "alpha007",
+  "hash": "adc063aadcd5",
+  "added": "2026-11-20",
+  "source": "Z. Kakushadze, \"101 Formulaic Alphas\" (2016), arXiv:1601.00991, Alpha#7",
+  "summary": "Volume is above its 20-bar average and the 7-bar price change is among the largest of the last 60 bars: +1 if up, -1 if down.",
+  "variants": [
+   {
+    "rank": 0.9
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "alpha012",
+  "hash": "fd8665c625d0",
+  "added": "2026-11-20",
+  "source": "Z. Kakushadze, \"101 Formulaic Alphas\" (2016), arXiv:1601.00991, Alpha#12",
+  "summary": "+1 after an unusually large fall on rising volume (or rise on falling volume), -1 after an unusually large rise on rising volume (or fall on falling volume).",
+  "variants": [
+   {
+    "q": 0.95
+   },
+   {
+    "q": 0.99
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "alpha021",
+  "hash": "ebef2ba3a039",
+  "added": "2026-11-20",
+  "source": "Z. Kakushadze, \"101 Formulaic Alphas\" (2016), arXiv:1601.00991, Alpha#21",
+  "summary": "+1 when the 2-bar average close first drops below the 8-bar average minus one standard deviation, -1 when it first rises above the average plus one.",
+  "variants": [
+   {
+    "n": 8
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "alpha023",
+  "hash": "dd841e0d73a6",
+  "added": "2026-11-20",
+  "source": "Z. Kakushadze, \"101 Formulaic Alphas\" (2016), arXiv:1601.00991, Alpha#23",
+  "summary": "-1 when the high is above its 20-bar average and has risen unusually fast over 2 bars; +1 for the mirror image on the lows.",
+  "variants": [
+   {
+    "q": 0.95
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "alpha035",
+  "hash": "3c698de2966c",
+  "added": "2026-11-20",
+  "source": "Z. Kakushadze, \"101 Formulaic Alphas\" (2016), arXiv:1601.00991, Alpha#35",
+  "summary": "+1 when volume ranks high while price and the last return rank low against recent bars to an unusual degree; -1 for the mirror image.",
+  "variants": [
+   {
+    "q": 0.95
+   },
+   {
+    "q": 0.99
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "alpha046",
+  "hash": "1e6199a337b1",
+  "added": "2026-11-20",
+  "source": "Z. Kakushadze, \"101 Formulaic Alphas\" (2016), arXiv:1601.00991, Alpha#46 (same quantity in Alpha#49 and Alpha#51)",
+  "summary": "-1 when the last 10 bars rose unusually much faster than the 10 before, +1 when they fell unusually much faster.",
+  "variants": [
+   {
+    "q": 0.95
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "alpha054",
+  "hash": "e7cf58fb9d72",
+  "added": "2026-11-20",
+  "source": "Z. Kakushadze, \"101 Formulaic Alphas\" (2016), arXiv:1601.00991, Alpha#54",
+  "summary": "+1 when a bar closes unusually near its low (by the Alpha#54 score), -1 when unusually near its high.",
+  "variants": [
+   {
+    "q": 0.95
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "cmf_extreme",
+  "hash": "32bdef34b4a9",
+  "added": "2026-11-20",
+  "source": "freqtrade-strategies (github.com/freqtrade/freqtrade-strategies), berlinguyinca/TechnicalExampleStrategy (Chaikin Money Flow)",
+  "summary": "+1 when volume-weighted closes have been unusually near the bar highs over n bars, -1 when unusually near the lows.",
+  "variants": [
+   {
+    "n": 20
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "crabel_idnr",
+  "hash": "7a070f279778",
+  "added": "2026-11-20",
+  "source": "T. Crabel, \"Day Trading with Short Term Price Patterns and Opening Range Breakout\" (1990), ID/NR4 and NR7 patterns",
+  "summary": "The previous bar sat inside the bar before it and had the narrowest range of n bars: +1 if this bar closes above its high, -1 if below its low.",
+  "variants": [
+   {
+    "n": 4
+   },
+   {
+    "n": 7
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "high_volume_premium",
+  "hash": "f38980e893e9",
+  "added": "2026-11-20",
+  "source": "Gervais, Kaniel and Mingelgrin, \"The High-Volume Return Premium\", Journal of Finance 56(3), 2001",
+  "summary": "+1 when this bar's volume is in the top tenth of the same hour's volume over the last 50 days, -1 when it is in the bottom tenth.",
+  "variants": [
+   {
+    "days": 50
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "intraday_momentum",
+  "hash": "c7c94e1ff23e",
+  "added": "2026-11-20",
+  "source": "Gao, Han, Li and Zhou, \"Market Intraday Momentum\", Journal of Financial Economics 129(2), 2018",
+  "summary": "Late in the session, +1 if price rose from the previous close to the end of the session's first hour, -1 if it fell.",
+  "variants": [
+   {
+    "first": 14,
+    "last": 18
+   },
+   {
+    "first": 8,
+    "last": 14
+   }
+  ],
+  "timed": true,
+  "universe": "fifteen"
+ },
+ {
+  "name": "opening_range_break",
+  "hash": "53e4aca6acad",
+  "added": "2026-11-20",
+  "source": "T. Crabel, \"Day Trading with Short Term Price Patterns and Opening Range Breakout\" (1990); Zarattini and Aziz, \"Can Day Trading Really Be Profitable?\" (2023, SSRN)",
+  "summary": "+1 at the first close above the high of the session's first hour, -1 at the first close below its low (same UTC day).",
+  "variants": [
+   {
+    "hour": 0
+   },
+   {
+    "hour": 7
+   },
+   {
+    "hour": 13
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "realized_skew",
+  "hash": "2e8f55e3ec90",
+  "added": "2026-11-20",
+  "source": "Amaya, Christoffersen, Jacobs and Vasquez, \"Does Realized Skewness Predict the Cross-Section of Equity Returns?\", Journal of Financial Economics 118(1), 2015",
+  "summary": "+1 when the skewness of the last n hourly returns is unusually positive, -1 when unusually negative.",
+  "variants": [
+   {
+    "n": 120
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "round_number_cross",
+  "hash": "31bd53d0a477",
+  "added": "2026-11-20",
+  "source": "C. Osler, \"Currency Orders and Exchange Rate Dynamics: An Explanation for the Predictive Success of Technical Analysis\", Journal of Finance 58(5), 2003",
+  "summary": "+1 when the close moves up through a round number (a power-of-ten step sized to the market's own price), -1 when it moves down through one.",
+  "variants": [
+   {
+    "decades": 2
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "same_hour_seasonality",
+  "hash": "3f0199cfc3bf",
+  "added": "2026-11-20",
+  "source": "Heston, Korajczyk and Sadka, \"Intraday Patterns in the Cross-Section of Stock Returns\", Journal of Finance 65(4), 2010",
+  "summary": "+1 when the clock hour that follows this bar rose on each of the last k days, -1 when it fell on each of them.",
+  "variants": [
+   {
+    "k": 5
+   },
+   {
+    "k": 8
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "smash_day",
+  "hash": "d5715c96f590",
+  "added": "2026-11-20",
+  "source": "L. Williams, \"Long-Term Secrets to Short-Term Trading\" (1999), smash day reversals",
+  "summary": "+1 when the previous bar closed below the low of the bar before it and this bar closes above the previous bar's high; -1 for the mirror image.",
+  "variants": [
+   {
+    "bars": 1
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "td_setup",
+  "hash": "3cf8c120d566",
+  "added": "2026-11-20",
+  "source": "freqtrade-strategies (github.com/freqtrade/freqtrade-strategies), berlinguyinca/TDSequentialStrategy; count from T. DeMark, \"The New Science of Technical Analysis\" (1994)",
+  "summary": "+1 when nine closes in a row are each below the close four bars earlier, -1 when nine in a row are each above it.",
+  "variants": [
+   {
+    "count": 9
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "turn_of_month",
+  "hash": "9e06e14f5c27",
+  "added": "2026-11-20",
+  "source": "Lakonishok and Smidt, \"Are Seasonal Anomalies Real? A Ninety-Year Perspective\", Review of Financial Studies 1(4), 1988; McConnell and Xu, \"Equity Returns at the Turn of the Month\", Financial Analysts Journal 64(2), 2008",
+  "summary": "+1 at a fixed UTC hour on the last calendar day of a month and on days 1 to 3 of the next.",
+  "variants": [
+   {
+    "hour": 0
+   },
+   {
+    "hour": 13
+   }
+  ],
+  "timed": true,
+  "universe": "fifteen"
  }
 ]
