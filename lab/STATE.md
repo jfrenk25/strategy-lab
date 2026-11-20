@@ -19,8 +19,15 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - Order flow and footprint ideas (delta, bid/ask volume).
 - Funding and open-interest ideas (tested once outside the lab: rejected, best profit factor 0.99).
 
+## Needs a different engine (the lab tests one market at a time)
+- Portfolio and relative-value strategies: stat arb across a basket, carry, basis, alpha combination.
+- These need per-bar position weights across many markets and data for 10 or more coins.
+
+## Book progress ("151 Trading Strategies")
+- Nothing taken yet.
+
 ## Next
-- Fill `ideas/inbox/` from research papers and from the X scout prompt in `GROK_SCOUT_PROMPT.md`.
+- Fill `ideas/inbox/` from "151 Trading Strategies" (see `AGENT.md`) and from the X scout prompt in `GROK_SCOUT_PROMPT.md`.
 
 ## Last session
 2026-11-19 · 2 tested, 2 rejected, 0 candidates

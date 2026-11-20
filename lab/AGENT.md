@@ -5,6 +5,7 @@ You add ideas and run the lab. You do not change the rules.
 ## Each run
 1. Read `LAB_RULES.md` and the last 30 entries of `JOURNAL.md`. Do not re-test an idea class that already failed unless the new idea uses different information.
 2. Take at most 3 new ideas. Sources, in order of preference: items in `ideas/inbox/` (idea cards collected elsewhere), then published research with stated rules and sample sizes, then public strategy write-ups.
+   When the inbox is empty, the default research source is the book "151 Trading Strategies" (Kakushadze and Serur, 2018, free on SSRN and arXiv). It gives formulas but no backtests, so every strategy in it is untested. Work through it a section at a time. Prefer strategies that trade one market at a time on price bars. Record each section you use or skip in `STATE.md` under "Book progress" so no section is taken twice.
 3. For each idea, copy `ideas/_TEMPLATE.py` to a new file. Fill in `source`, `reason` and `loser` honestly. If you cannot state who loses, skip the idea and note it in the journal.
 4. Keep the parameter grid small: 12 sets at most, 3 or fewer is better.
 5. Run `python lab/lab.py` from the repo root. It tests every untested idea, updates `state.json` and appends to `JOURNAL.md`.
