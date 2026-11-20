@@ -62,3 +62,43 @@ For ideas that hold weights across markets day by day: trend, relative value, st
 
 ## Journal
 - Every run appends to `JOURNAL.md`. Entries are never edited or deleted.
+
+## Screen and confirm (added November 20, 2026, before any idea ran under it)
+A second track, separate from the one above. It tests many machine-built ideas cheaply, then checks the survivors on years the screen never saw. Code: `lab/screen.py`.
+
+### Ideas
+- An idea is built from parts: trigger, direction (follow or fade), regime filter, session filter and one of the four standard exits.
+- The catalogue is fixed at 4,000 ideas (version 1) and is screened in a fixed shuffled order. Each idea is screened once.
+- These ideas have no stated reason and no stated loser. Fresh data replaces the reason.
+- Fills, fees, slippage and the six-bar cooldown are the same as above. One exit per idea, so nothing is tuned.
+
+### Data split
+- Screen years: every trade entered before April 21, 2024.
+- Confirm years: April 21, 2024 to April 20, 2026. The screen never reads results from these years.
+- Quarantine: the block starting April 21, 2026, as above.
+- Caveat: the 100 ideas tested before this track did use the confirm years. They are unseen only by screened ideas.
+
+### Screen (loose on purpose; all must pass)
+1. At least 150 trades.
+2. Profit factor of 1.10 or more.
+3. t-stat of 1.65 or more.
+4. Profitable in at least half of the markets.
+5. Profit factor above 1.0 with costs doubled.
+
+### Confirm (one run per survivor; all must pass)
+1. At least 60 trades in the confirm years.
+2. Profit factor of 1.15 or more.
+3. Profitable in at least half of the markets.
+4. Profit factor above 1.0 with costs doubled.
+5. Beats 95% of 1,000 random-entry runs with the same trade count, sides and exits.
+6. t-stat at or above the survivor bar: the normal quantile at 1 - 0.05 / survivors, where survivors is the number of ideas ever sent to confirm, counted as 20 until it passes 20. So the bar starts at about 2.81 and only goes up.
+   - Amended November 20, 2026, after the first batch of 100: the count of 20 was added because the first few survivors would otherwise face a bar as low as 1.64. One survivor had been judged by then. It failed with a t-stat of -0.25, so no verdict changed.
+
+### After confirm
+- A confirmed idea gets one quarantine run: 20 or more trades and a profit factor above 1.0. Passing makes it a CANDIDATE.
+- A CANDIDATE from this track means the same as above: worth watching on new data, never proven.
+
+### Counting
+- Screened ideas do not raise the attempt counter of the main track, and main-track ideas do not raise the survivor bar.
+- Every screened idea is logged in `lab/screen/log.csv`. Every survivor gets a journal entry and a file in `lab/screen/confirm/`.
+- Changing a threshold, a part or the split means a new catalogue version and a new log. Past results stay.

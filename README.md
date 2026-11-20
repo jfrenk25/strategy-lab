@@ -11,6 +11,12 @@ python lab/lab.py
 
 That tests every idea in `lab/ideas` that has not been tested yet and appends the verdicts to `lab/JOURNAL.md`.
 
+```
+python lab/screen.py
+```
+
+That screens the next 100 machine-built ideas on older years and gives each survivor one run on years the screen never saw. See "Screen and confirm" in `lab/LAB_RULES.md`.
+
 ## How it fits together
 
 | Step | Who | Where |
@@ -20,6 +26,7 @@ That tests every idea in `lab/ideas` that has not been tested yet and appends th
 | Hold raw idea cards | you or a bot | `lab/ideas/inbox/` |
 | Code one card | `idea-builder` agent | `lab/ideas/` |
 | Check for look-ahead, then test once | `lab-verifier` agent | `lab/tools/check_idea.py`, `lab/lab.py` |
+| Screen machine-built ideas, confirm survivors | `lab/screen.py` | `lab/screen/log.csv`, `lab/screen/confirm/` |
 | Remember between sessions | everyone | `lab/STATE.md`, `lab/JOURNAL.md` |
 
 - The rules every idea must pass are in `lab/LAB_RULES.md`. They are fixed.

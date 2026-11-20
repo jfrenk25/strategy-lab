@@ -48,3 +48,18 @@ Attempt counter starts at 96.
 - Out-of-sample: 1461 days in the market, Sharpe 0.13, total +5.4%, max drawdown -13.4%, t-stat 0.25 (needed 3.29)
 - Profitable test years 2 of 4; markets contributing 3 of 6; double-cost total -6.3%; beats 82% of time-shifted copies
 - Failed: Sharpe >= 0.8; profitable in 60% of test years; still profitable at double costs; beats 95% of time-shifted copies of itself; t-stat >= 3.29 (bar for attempt 100)
+
+### 2026-11-20 · screen survivor 1 · `zmove_n24_z2.5.follow.none.any.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue v1, id bf95d1fc89). No stated reason.
+- Screen years: 810 trades, profit factor 1.31, t-stat 3.81
+- Confirm years: 376 trades, profit factor 0.97, -6.0R, t-stat -0.25 (needed 1.64); markets 3 of 6; double-cost profit factor 0.90; beats 78% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 1.64 (bar for survivor 1)
+
+### 2026-11-20 · screen batch · 100 ideas
+- Passed the screen: 1. Confirmed on unseen years: 0. Candidates: 0.
+- Totals: 100 of 4000 catalogue ideas screened, 1 survivors, 0 confirmed, 0 candidates.
+- Every screened idea is in `lab/screen/log.csv`.
+
+### 2026-11-20 · screen rule amended
+- The survivor bar now counts survivors as 20 until the real count passes 20 (bar of about 2.81 or higher). See `LAB_RULES.md`.
+- Survivor 1 above was judged against 1.64 and failed at -0.25. It fails under the amended bar too.

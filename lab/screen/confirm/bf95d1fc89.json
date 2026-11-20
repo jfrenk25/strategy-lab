@@ -1,0 +1,66 @@
+{
+ "id": "bf95d1fc89",
+ "name": "zmove_n24_z2.5.follow.none.any.stop3_rr1.5",
+ "spec": {
+  "trigger": "zmove",
+  "params": {
+   "n": 24,
+   "z": 2.5
+  },
+  "direction": "follow",
+  "regime": "none",
+  "session": "any",
+  "exit": 2
+ },
+ "date": "2026-11-20",
+ "survivor": 1,
+ "need_t": 1.6448536269514715,
+ "screen": {
+  "trades": 810,
+  "pf": 1.3117849100790646,
+  "totalR": 136.19175327462335,
+  "t": 3.8126075460877784,
+  "dbl_pf": 1.205879238493329,
+  "markets_profitable": [
+   4,
+   6
+  ],
+  "by_market": {
+   "BTCUSD": 34.4,
+   "ETHUSD": 5.2,
+   "XAUUSD": 82.5,
+   "GBPJPY": -3.6,
+   "USA30": 21.7,
+   "DEU30": -4.0
+  }
+ },
+ "confirm": {
+  "trades": 376,
+  "pf": 0.9738579829143492,
+  "totalR": -6.044026826259383,
+  "t": -0.25240508205275275,
+  "dbl_pf": 0.9028246385965261,
+  "markets_profitable": [
+   3,
+   6
+  ],
+  "by_market": {
+   "BTCUSD": 8.8,
+   "ETHUSD": -0.5,
+   "XAUUSD": 4.8,
+   "GBPJPY": -11.8,
+   "USA30": 3.9,
+   "DEU30": -11.4
+  },
+  "beats_random": 78.10000000000001
+ },
+ "checks": {
+  "trades >= 60": true,
+  "profit factor >= 1.15": false,
+  "profitable in half the markets": true,
+  "profit factor > 1 at double costs": false,
+  "beats 95% of random entries": false,
+  "t-stat >= 1.64 (bar for survivor 1)": false
+ },
+ "verdict": "REJECT"
+}
