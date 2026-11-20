@@ -1,0 +1,50 @@
+[
+  {
+    "name": "pivot_support_resistance",
+    "source_url": "https://ssrn.com/abstract=3247865",
+    "author": "Kakushadze and Serur, 151 Trading Strategies, section 3.14",
+    "market": "all lab markets",
+    "timeframe": "1-hour bars, levels from the previous UTC day",
+    "entry_rule": "Pivot C = (previous day's high + low + close) / 3. Go long when a bar closes above C after the previous bar closed at or below it. Go short when a bar closes below C after the previous bar closed at or above it.",
+    "exit_rule": "Book: exit a long at R = 2C - previous low, exit a short at S = 2C - previous high. The lab uses its own fixed exits instead.",
+    "parameters": {"levels": "previous UTC day"},
+    "reason": "Not stated in the book. Common explanation: many traders watch the same daily levels, so price reacts around them.",
+    "who_loses": "Traders who fade a move through a widely watched level.",
+    "data_needed": "price bars",
+    "evidence": "none",
+    "withheld": "nothing",
+    "mechanical": true
+  },
+  {
+    "name": "channel_bounce",
+    "source_url": "https://ssrn.com/abstract=3247865",
+    "author": "Kakushadze and Serur, 151 Trading Strategies, section 3.15",
+    "market": "all lab markets",
+    "timeframe": "1-hour bars",
+    "entry_rule": "Ceiling and floor are the highest and lowest close of the previous T bars. Go long when a bar closes at or below the floor. Go short when a bar closes at or above the ceiling.",
+    "exit_rule": "Book: reverse at the opposite band. The lab uses its own fixed exits instead.",
+    "parameters": {"T": [20, 55, 100]},
+    "reason": "Price inside a range tends to bounce off its edges.",
+    "who_loses": "Breakout traders who enter at the edge of a range that holds.",
+    "data_needed": "price bars",
+    "evidence": "none",
+    "withheld": "nothing",
+    "mechanical": true
+  },
+  {
+    "name": "ibs_reversion",
+    "source_url": "https://ssrn.com/abstract=3247865",
+    "author": "Kakushadze and Serur, 151 Trading Strategies, section 4.4",
+    "market": "all lab markets",
+    "timeframe": "1-hour bars, signal from the previous UTC day",
+    "entry_rule": "IBS = (previous day's close - low) / (high - low). On the first bar of a new day, go long if IBS is below the threshold and go short if IBS is above 1 minus the threshold. The book sorts many ETFs by IBS and trades the extremes against each other; this is a single-market adaptation.",
+    "exit_rule": "Not stated beyond daily rebalancing. The lab uses its own fixed exits.",
+    "parameters": {"threshold": [0.1, 0.2, 0.3]},
+    "reason": "A close near the day's low is 'cheap' and a close near the high is 'rich', and short-term extremes tend to revert.",
+    "who_loses": "Traders who need to sell or buy urgently into the close and pay for immediacy.",
+    "data_needed": "price bars",
+    "evidence": "none",
+    "withheld": "nothing",
+    "mechanical": true
+  }
+]

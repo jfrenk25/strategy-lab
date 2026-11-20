@@ -24,7 +24,10 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - These need per-bar position weights across many markets and data for 10 or more coins.
 
 ## Book progress ("151 Trading Strategies")
-- Nothing taken yet.
+- Full triage is in `BOOK_INDEX.md`. Use it instead of fetching the book.
+- Carded 2026-11-19, waiting in the inbox: 3.14 pivot support and resistance, 3.15 channel bounce, 4.4 IBS reversion.
+- Dead on arrival: 3.11 to 3.13 (moving-average crossovers).
+- After those three, the remaining testable sections need position mode. Do not force them into the current engine.
 
 ## Next
 - Fill `ideas/inbox/` from "151 Trading Strategies" (see `AGENT.md`) and from the X scout prompt in `GROK_SCOUT_PROMPT.md`.
