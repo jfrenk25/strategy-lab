@@ -24,6 +24,13 @@ A trigger is one event on a price chart: +1 when it points up, -1 when it points
 5. Run `python lab/tools/check_trigger.py NAME`. Fix a genuine bug once. If it still fails, delete the file and note it as skipped.
 6. The daily limit is in the session's instructions. If none is given, add at most 5 triggers.
 
+Source lists to work through
+These give explicit formulas that need only open, high, low, close and volume. Take a few per session, in order, and record in `STATE.md` which ones are done so none is taken twice.
+- Qlib's Alpha158 factor set (github.com/microsoft/qlib, `qlib/contrib/data`): candle-shape, rate-of-change, rolling high/low position, price-volume correlation and volume-trend factors. Turn a factor into a trigger by firing when it reaches an extreme, measured against its own past only.
+- "101 Formulaic Alphas" (Kakushadze, 2016, arXiv 1601.00991). Many rank stocks against each other: use only the ones that work on a single market's own history.
+- The public strategy collection at github.com/freqtrade/freqtrade-strategies. Most are indicator mixes, so skip any that is a moving-average or RSI crossover in disguise.
+A formula from a list is still an outside source: cite the list and the factor name in the trigger file.
+
 Rules for triggers
 - Never design a trigger from this lab's own confirm or forward results. A trigger must come from outside.
 - Never edit a trigger file after `screen.py` has registered it. A changed idea is a new file with a new name.
