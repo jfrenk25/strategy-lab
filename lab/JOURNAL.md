@@ -980,3 +980,33 @@ Attempt counter starts at 96.
 - `turn_of_month_hour13.follow.against_trend.any.stop3_rr2.5`
 - `a158_vsumd_n20.follow.low_vol.asia.stop3_rr2.5`
 - Forward trades count from 2026-11-21 00:00 UTC. Verdict at 200 trades. Rules: "Forward watch" in `LAB_RULES.md`.
+
+### 2026-11-20 · screen survivor 139 · `cl_three_soldiers_trend6.follow.with_trend.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id a6bd50d16e). No stated reason.
+- Screen years: 938 trades, profit factor 1.15, t-stat 1.92
+- Confirm years: 486 trades, profit factor 0.97, -10.6R, t-stat -0.30 (needed 3.38); markets 5 of 15; double-cost profit factor 0.86; beats 65% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.38 (bar for survivor 139)
+
+### 2026-11-20 · screen survivor 140 · `cl_three_soldiers_trend6.fade.with_trend.london.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id b7dd9635f0). No stated reason.
+- Screen years: 292 trades, profit factor 1.30, t-stat 2.07
+- Confirm years: 170 trades, profit factor 0.98, -2.1R, t-stat -0.10 (needed 3.38); markets 7 of 15; double-cost profit factor 0.85; beats 64% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.38 (bar for survivor 140)
+
+### 2026-11-20 · screen survivor 141 · `cl_three_soldiers_trend6.follow.with_trend.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 982f019728). No stated reason.
+- Screen years: 369 trades, profit factor 1.23, t-stat 1.85
+- Confirm years: 187 trades, profit factor 0.73, -42.1R, t-stat -2.01 (needed 3.39); markets 3 of 15; double-cost profit factor 0.65; beats 9% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.39 (bar for survivor 141)
+
+### 2026-11-20 · screen survivor 142 · `cl_three_soldiers_trend6.follow.with_trend.ny.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id fad1a703e5). No stated reason.
+- Screen years: 375 trades, profit factor 1.20, t-stat 1.74
+- Confirm years: 191 trades, profit factor 0.88, -14.8R, t-stat -0.85 (needed 3.39); markets 6 of 15; double-cost profit factor 0.77; beats 52% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.39 (bar for survivor 142)
+
+### 2026-11-20 · screen batch · 1280 ideas
+- New triggers registered: alpha008, amihud_illiq, cl_morning_star, cl_three_inside, cl_three_outside, cl_three_soldiers, hikkake, serial_corr.
+- Passed the screen: 4. Confirmed on unseen years: 0. Candidates: 0.
+- Totals: 11520 of 11520 catalogue ideas screened, 142 survivors, 0 confirmed, 0 candidates.
+- Every screened idea is in `lab/screen/log.csv`.

@@ -411,5 +411,117 @@
   ],
   "timed": true,
   "universe": "fifteen"
+ },
+ {
+  "name": "alpha008",
+  "hash": "583d3f948191",
+  "added": "2026-11-20",
+  "source": "Z. Kakushadze, \"101 Formulaic Alphas\" (2016), arXiv:1601.00991, Alpha#8",
+  "summary": "-1 when the 5-bar return, weighted by price, has risen unusually much against its value 10 bars ago; +1 when it has fallen unusually much.",
+  "variants": [
+   {
+    "q": 0.95
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "amihud_illiq",
+  "hash": "36741e6edcb0",
+  "added": "2026-11-20",
+  "source": "Y. Amihud, \"Illiquidity and Stock Returns: Cross-Section and Time-Series Effects\", Journal of Financial Markets 5(1), 2002",
+  "summary": "+1 when price has been moving unusually far per unit of volume over n bars, -1 when unusually little.",
+  "variants": [
+   {
+    "n": 24
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "cl_morning_star",
+  "hash": "798bebd63e0d",
+  "added": "2026-11-20",
+  "source": "Caginalp and Laurent, \"The Predictive Power of Price Patterns\", Applied Mathematical Finance 5 (1998), 181-205 (Morning Star / Evening Star)",
+  "summary": "+1 when, after a downtrend, a down bar is followed by a bar that opens and closes below its close and then an up bar closing above the middle of the first bar's body; -1 for the mirror image after an uptrend.",
+  "variants": [
+   {
+    "trend": 6
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "cl_three_inside",
+  "hash": "18f7c8840def",
+  "added": "2026-11-20",
+  "source": "Caginalp and Laurent, \"The Predictive Power of Price Patterns\", Applied Mathematical Finance 5 (1998), 181-205 (Three Inside Up / Three Inside Down)",
+  "summary": "+1 when, after a downtrend, a down bar is followed by a bar whose body sits inside it and then an up bar closing above the first bar's open; -1 for the mirror image after an uptrend.",
+  "variants": [
+   {
+    "trend": 6
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "cl_three_outside",
+  "hash": "dc2cdd25c5ca",
+  "added": "2026-11-20",
+  "source": "Caginalp and Laurent, \"The Predictive Power of Price Patterns\", Applied Mathematical Finance 5 (1998), 181-205 (Three Outside Up / Three Outside Down)",
+  "summary": "+1 when, after a downtrend, a down bar is swallowed by an up bar and the next bar is an up bar closing higher still; -1 for the mirror image after an uptrend.",
+  "variants": [
+   {
+    "trend": 6
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "cl_three_soldiers",
+  "hash": "0daa2d8f2ee0",
+  "added": "2026-11-20",
+  "source": "Caginalp and Laurent, \"The Predictive Power of Price Patterns\", Applied Mathematical Finance 5 (1998), 181-205 (Three White Soldiers / Three Black Crows)",
+  "summary": "+1 when, after a downtrend, three up bars in a row each open inside the previous body and close higher; -1 for three down bars after an uptrend.",
+  "variants": [
+   {
+    "trend": 6
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "hikkake",
+  "hash": "629674cd320e",
+  "added": "2026-11-20",
+  "source": "D. Chesler, \"Trading False Moves with the Hikkake Pattern\", Active Trader (2004); summary at en.wikipedia.org/wiki/Hikkake_pattern",
+  "summary": "+1 at the first close above an inside bar's high within three bars of a false break below it, -1 for the mirror image.",
+  "variants": [
+   {
+    "bars": 3
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "serial_corr",
+  "hash": "63adbdc7e7b3",
+  "added": "2026-11-20",
+  "source": "B. LeBaron, \"Some Relations Between Volatility and Serial Correlations in Stock Market Returns\", Journal of Business 65(2), 1992",
+  "summary": "When hourly returns have been unusually self-following over n bars, point with the last bar; when unusually self-reversing, point against it.",
+  "variants": [
+   {
+    "n": 48
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
  }
 ]
