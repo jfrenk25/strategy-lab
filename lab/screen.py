@@ -1,16 +1,17 @@
 """Screen-and-confirm track: test many machine-built ideas cheaply, then check the survivors on years the screen never saw.
 
 Run from the repo root:
-    python lab/screen.py              # screen the next 100 untested ideas from the catalogue
-    python lab/screen.py --n 50       # screen the next 50
+    python lab/screen.py              # register any new trigger files, then screen every untested idea
+    python lab/screen.py --n 50       # screen only the next 50
     python lab/screen.py --selftest 300   # run 300 ideas on shuffled prices to measure the luck rate (nothing is logged)
 
 The rules are in LAB_RULES.md under "Screen and confirm". Thresholds here must match that section.
 An idea is built from parts: trigger x direction x regime filter x session filter x exit. It has no stated reason.
+The catalogue grows: each file in lab/triggers adds one trigger, which is expanded into every direction, filter and exit.
 Fresh data replaces the reason: a survivor gets exactly one run on the confirm years, against a bar that rises with
 the number of survivors ever confirmed.
 """
-import sys, os, json, csv, hashlib, random, datetime, argparse
+import sys, os, re, json, csv, hashlib, random, datetime, argparse, importlib.util
 from statistics import NormalDist
 import numpy as np
 import pandas as pd
@@ -19,7 +20,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import lab
 
-CATALOGUE_VERSION = 1
+CATALOGUE_VERSION = 2              # 2 = version 1 plus triggers appended from lab/triggers; nothing in version 1 changed
 SEED = 20261120                    # fixes the order in which the catalogue is screened
 SCREEN_LAST_BLOCK = 2023           # the screen sees trades entered before April 21, 2024
 CONFIRM_BLOCKS = (2024, 2025)      # April 21, 2024 to April 20, 2026: one run per survivor
@@ -29,6 +30,10 @@ SURVIVOR_FLOOR = 20                # the survivor bar is never easier than the b
 SESSIONS = {"any": None, "asia": (0, 6), "london": (7, 12), "ny": (13, 20)}     # UTC hours of the signal bar
 REGIMES = ["none", "with_trend", "against_trend", "high_vol", "low_vol"]
 OUT = os.path.join(HERE, "screen")
+TRIG_DIR = os.path.join(HERE, "triggers")
+REGISTRY = os.path.join(OUT, "registry.json")       # triggers in the order they were added; append-only
+MAX_VARIANTS = 3
+PLUGINS = {}                                        # trigger name -> loaded module
 LOG_COLS = ["date", "id", "name", "trades", "pf", "t", "double_cost_pf", "markets_profitable", "screen"]
 
 
@@ -61,15 +66,112 @@ def catalogue():
                     for session in sessions:
                         for x in range(len(lab.EXITS)):
                             specs.append(dict(trigger=t, params=p, direction=direction, regime=regime, session=session, exit=x))
+    _label(specs)
+    specs.sort(key=lambda s: s["id"])
+    random.Random(SEED).shuffle(specs)
+    for entry in load_registry():                   # appended in the order the triggers were registered
+        extra = []
+        for p in entry["variants"]:
+            for direction in ("follow", "fade"):
+                for regime in REGIMES:
+                    for session in (["any"] if entry.get("timed") else list(SESSIONS)):
+                        for x in range(len(lab.EXITS)):
+                            extra.append(dict(trigger="plugin:" + entry["name"], params=p, direction=direction, regime=regime, session=session, exit=x))
+        _label(extra)
+        extra.sort(key=lambda s: s["id"])
+        random.Random(f"{SEED}:{entry['name']}").shuffle(extra)
+        specs += extra
+    assert len({s["id"] for s in specs}) == len(specs)
+    return specs
+
+
+def _label(specs):
     for s in specs:
         s["id"] = hashlib.sha1(json.dumps(s, sort_keys=True).encode()).hexdigest()[:10]
         am, rr = lab.EXITS[s["exit"]]
         ptxt = "".join(f"_{k}{v:g}" for k, v in sorted(s["params"].items()))
-        s["name"] = f"{s['trigger']}{ptxt}.{s['direction']}.{s['regime']}.{s['session']}.stop{am:g}_rr{rr:g}"
-    assert len({s["id"] for s in specs}) == len(specs)
-    specs.sort(key=lambda s: s["id"])
-    random.Random(SEED).shuffle(specs)
-    return specs
+        s["name"] = f"{s['trigger'].replace('plugin:', '')}{ptxt}.{s['direction']}.{s['regime']}.{s['session']}.stop{am:g}_rr{rr:g}"
+
+
+# ---------------------------------------------------------------- plug-in triggers (lab/triggers/NAME.py)
+
+def _file_hash(name):
+    return hashlib.sha1(open(os.path.join(TRIG_DIR, name + ".py"), "rb").read()).hexdigest()[:12]
+
+
+def _load_trigger(name):
+    spec = importlib.util.spec_from_file_location("trigger_" + name, os.path.join(TRIG_DIR, name + ".py"))
+    mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
+    return mod
+
+
+def load_registry():
+    """Registered triggers, in order. A registered file may never change: its hash is checked on every load."""
+    reg = json.load(open(REGISTRY)) if os.path.exists(REGISTRY) else []
+    for e in reg:
+        assert _file_hash(e["name"]) == e["hash"], f"trigger file {e['name']}.py changed after it was registered: restore it, and add changes as a new trigger"
+        if e["name"] not in PLUGINS:
+            PLUGINS[e["name"]] = _load_trigger(e["name"])
+    return reg
+
+
+def _plugin_event(mod, df, p):
+    out = np.nan_to_num(np.asarray(mod.event(df, p), dtype=np.float64))
+    return np.sign(out).astype(np.int64)
+
+
+def validate_trigger(name):
+    """Header, output shape and a look-ahead test on two markets. Returns a list of problems (empty = valid)."""
+    problems = []
+    if not re.fullmatch(r"[a-z][a-z0-9_]{2,40}", name):
+        return ["file name must be lower-case letters, digits and underscores"]
+    try:
+        mod = _load_trigger(name); t = mod.TRIGGER
+    except Exception as e:
+        return [f"cannot load: {e!r}"]
+    if t.get("name") != name: problems.append("TRIGGER['name'] must match the file name")
+    for k in ("source", "summary"):
+        if not str(t.get(k, "")).strip(): problems.append(f"missing {k}")
+    v = t.get("variants")
+    if not isinstance(v, list) or not 1 <= len(v) <= MAX_VARIANTS or not all(isinstance(p, dict) and all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in p.values()) for p in v):
+        problems.append(f"variants must be 1 to {MAX_VARIANTS} dicts of numbers")
+    if problems:
+        return problems
+    for m in ("BTCUSD", "XAUUSD"):
+        df, _, _ = lab.load_market(m)
+        for p in v:
+            try:
+                full = _plugin_event(mod, df, p)
+                if len(full) != len(df):
+                    problems.append(f"{m} {p}: wrong output length"); continue
+                if not (full != 0).any():
+                    problems.append(f"{m} {p}: never fires")
+                for frac in (0.5, 0.8):
+                    cut = int(len(df) * frac); bad = int((_plugin_event(mod, df.iloc[:cut], p) != full[:cut]).sum())
+                    if bad: problems.append(f"{m} {p}: look-ahead, {bad} signals change when later data is removed")
+            except Exception as e:
+                problems.append(f"{m} {p}: error {e!r}")
+    return problems
+
+
+def register_new_triggers(today):
+    """Validate and register every trigger file that is not in the registry yet. Invalid files are skipped and reported."""
+    reg = load_registry(); known = {e["name"] for e in reg}; added, invalid = [], {}
+    if not os.path.isdir(TRIG_DIR):
+        return added, invalid
+    for f in sorted(os.listdir(TRIG_DIR)):
+        name = f[:-3]
+        if not f.endswith(".py") or f.startswith("_") or name in known:
+            continue
+        problems = validate_trigger(name)
+        if problems:
+            invalid[name] = problems; continue
+        t = _load_trigger(name).TRIGGER
+        reg.append(dict(name=name, hash=_file_hash(name), added=today, source=t["source"], summary=t["summary"], variants=t["variants"], timed=bool(t.get("timed", False))))
+        added.append(name)
+    if added:
+        os.makedirs(OUT, exist_ok=True); json.dump(reg, open(REGISTRY, "w"), indent=1)
+    return added, invalid
 
 
 # ---------------------------------------------------------------- signals (current bar and earlier bars only)
@@ -87,7 +189,10 @@ class Feats:
     def event(self, trigger, p):
         key = (trigger, json.dumps(p, sort_keys=True))
         if key not in self._ev:
-            self._ev[key] = np.asarray(_event(self, trigger, p), dtype=np.int64)
+            if trigger.startswith("plugin:"):
+                self._ev[key] = _plugin_event(PLUGINS[trigger[7:]], self.df, p)
+            else:
+                self._ev[key] = np.asarray(_event(self, trigger, p), dtype=np.int64)
         return self._ev[key]
 
     def regime(self, name):
@@ -246,23 +351,31 @@ def selftest(n):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--n", type=int, default=100); ap.add_argument("--selftest", type=int, default=0)
+    ap = argparse.ArgumentParser(); ap.add_argument("--n", type=int, default=0, help="how many to screen; 0 = every untested idea")
+    ap.add_argument("--selftest", type=int, default=0)
     a = ap.parse_args()
     if a.selftest:
         return selftest(a.selftest)
+    today = datetime.date.today().isoformat()
+    added, invalid = register_new_triggers(today)
+    for name, problems in invalid.items():
+        print(f"INVALID trigger {name} (not registered, not screened): " + "; ".join(problems))
+    if added:
+        print("registered new triggers: " + ", ".join(added))
     os.makedirs(os.path.join(OUT, "confirm"), exist_ok=True)
     state_path = os.path.join(OUT, "state.json"); log_path = os.path.join(OUT, "log.csv")
     state = json.load(open(state_path)) if os.path.exists(state_path) else dict(catalogue_version=CATALOGUE_VERSION, screened=0, survivors=0, confirmed=0, candidates=0)
-    assert state["catalogue_version"] == CATALOGUE_VERSION, "catalogue changed: bump the version and start a new log"
+    state["catalogue_version"] = CATALOGUE_VERSION
     done = set()
     if os.path.exists(log_path):
         done = {row["id"] for row in csv.DictReader(open(log_path, newline=""))}
     else:
         csv.writer(open(log_path, "w", newline="")).writerow(LOG_COLS)
-    specs = catalogue(); todo = [s for s in specs if s["id"] not in done][: a.n]
-    today = datetime.date.today().isoformat()
+    specs = catalogue(); todo = [s for s in specs if s["id"] not in done]
+    if a.n > 0:
+        todo = todo[: a.n]
     if not todo:
-        print(f"catalogue exhausted: all {len(specs)} ideas screened"); return
+        print(f"nothing new to screen: all {len(specs)} catalogue ideas are done. Add trigger files to lab/triggers to grow the catalogue."); return
     data = load(); day = dict(screened=0, survivors=[], confirmed=[], candidates=[])
     for spec in todo:
         runs = run_spec(spec, data)
@@ -290,7 +403,7 @@ def main():
         fails = [c for c, v in checks.items() if not v]
         with open(os.path.join(HERE, "JOURNAL.md"), "a") as j:
             j.write(f"\n### {today} · screen survivor {k} · `{spec['name']}` · {res['verdict']}\n"
-                    f"- Source: machine-built from parts (screen catalogue v{CATALOGUE_VERSION}, id {spec['id']}). No stated reason.\n"
+                    f"- Source: machine-built from parts (screen catalogue, id {spec['id']}). No stated reason.\n"
                     f"- Screen years: {st['trades']} trades, profit factor {st['pf']:.2f}, t-stat {st['t']:.2f}\n"
                     f"- Confirm years: {cf['trades']} trades, profit factor {cf['pf']:.2f}, {cf['totalR']:+.1f}R, t-stat {cf['t']:.2f} (needed {need_t:.2f}); "
                     f"markets {cf['markets_profitable'][0]} of {cf['markets_profitable'][1]}; double-cost profit factor {cf['dbl_pf']:.2f}; beats {cf['beats_random']:.0f}% of random entries\n"
@@ -300,6 +413,7 @@ def main():
         print(f"{res['verdict']:10s} {spec['name']}  screen t {st['t']:.2f}  confirm: {cf['trades']} trades  PF {cf['pf']:.2f}  t {cf['t']:.2f}/{need_t:.2f}")
     with open(os.path.join(HERE, "JOURNAL.md"), "a") as j:
         j.write(f"\n### {today} · screen batch · {day['screened']} ideas\n"
+                + (f"- New triggers registered: {', '.join(added)}.\n" if added else "") +
                 f"- Passed the screen: {len(day['survivors'])}. Confirmed on unseen years: {len(day['confirmed'])}. Candidates: {len(day['candidates'])}.\n"
                 f"- Totals: {state['screened']} of {len(specs)} catalogue ideas screened, {state['survivors']} survivors, {state['confirmed']} confirmed, {state['candidates']} candidates.\n"
                 f"- Every screened idea is in `lab/screen/log.csv`.\n")

@@ -39,6 +39,10 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - 67 of the 87 survivors were "follow an extreme move" or "follow a big bar" rules. Treat them as one or two weak ideas, not 67. 67 of the 87 stayed above break-even on the confirm years, but none reached the bar.
 - Nearest miss: `breakout_n168.follow.with_trend.asia.stop3_rr2.5` (survivor 3). Confirm years: 289 trades, profit factor 1.42, t-stat 2.78 against a bar of 2.81. Its 24 and 72 bar cousins scored 2.38 and 2.24. It is a REJECT. It passed every other confirm check.
 - Do not re-test any survivor on the confirm years: those results have been seen. Only new data (a forward test) can judge them now.
+- Growing catalogue built 2026-11-20: new triggers go in `triggers/`, one file each. First one, `open_distance` (levels at a set distance from the session open): 320 ideas, 22 survivors, 0 confirmed. Every survivor was the follow side; the reversal side the source describes passed nothing.
+- Running totals 2026-11-20: 4,320 screened, 109 survivors, 0 confirmed. A new survivor now needs a confirm t-stat of about 3.3.
+- Forward watch built 2026-11-20 (`forward.py`): 13 near misses registered, forward trades count from 2026-11-21. It shows 0 trades until fresh bars reach `data/`. GBPJPY, USA30 and DEU30 data end on 2026-04-21.
+- Missing piece: a price refresh. This workspace cannot reach Binance, Bitstamp or Dukascopy, so new bars have to come from Jeff's PC.
 - On shuffled prices 0 of 400 ideas passed the screen, so a survivor is rarely pure luck in the screen years. It can still fail to carry forward, as the first one did.
 - Limit: 1-hour bars and single-market triggers only. Cross-market triggers and other timeframes would be a new catalogue version.
 

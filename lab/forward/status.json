@@ -1,0 +1,237 @@
+{
+ "updated": "2026-11-20",
+ "watched": 13,
+ "verdict_trades": 200,
+ "need_t": 2.67,
+ "data_ends": {
+  "BTCUSD": "2026-11-13 23:00:00+00:00",
+  "ETHUSD": "2026-11-13 23:00:00+00:00",
+  "XAUUSD": "2026-11-13 21:00:00+00:00",
+  "GBPJPY": "2026-04-21 20:00:00+00:00",
+  "USA30": "2026-04-21 20:00:00+00:00",
+  "DEU30": "2026-04-21 20:00:00+00:00"
+ },
+ "ideas": [
+  {
+   "id": "d5f7529a14",
+   "name": "breakout_n168.follow.with_trend.asia.stop3_rr2.5",
+   "why": "near miss",
+   "start": "2026-11-21",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  },
+  {
+   "id": "3b9ab60428",
+   "name": "breakout_n24.follow.with_trend.asia.stop3_rr2.5",
+   "why": "near miss",
+   "start": "2026-11-21",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  },
+  {
+   "id": "d1f624eb0c",
+   "name": "breakout_n72.follow.with_trend.asia.stop3_rr2.5",
+   "why": "near miss",
+   "start": "2026-11-21",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  },
+  {
+   "id": "c0d577564d",
+   "name": "zmove_n24_z2.follow.with_trend.asia.stop3_rr2.5",
+   "why": "near miss",
+   "start": "2026-11-21",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  },
+  {
+   "id": "00cf641ebe",
+   "name": "zmove_n24_z2.follow.none.any.stop3_rr2.5",
+   "why": "near miss",
+   "start": "2026-11-21",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  },
+  {
+   "id": "ba163a63e9",
+   "name": "zmove_n24_z2.follow.high_vol.any.stop3_rr2.5",
+   "why": "near miss",
+   "start": "2026-11-21",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  },
+  {
+   "id": "ba5d06265e",
+   "name": "open_distance_frac1.follow.low_vol.any.stop3_rr2.5",
+   "why": "near miss",
+   "start": "2026-11-21",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  },
+  {
+   "id": "0fc5487cf2",
+   "name": "zmove_n24_z2.follow.with_trend.any.stop3_rr2.5",
+   "why": "near miss",
+   "start": "2026-11-21",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  },
+  {
+   "id": "4e93361ea0",
+   "name": "big_bar_k2.follow.with_trend.asia.stop3_rr1.5",
+   "why": "near miss",
+   "start": "2026-11-21",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  },
+  {
+   "id": "5a57fa9cad",
+   "name": "zmove_n72_z2.follow.high_vol.any.stop3_rr2.5",
+   "why": "near miss",
+   "start": "2026-11-21",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  },
+  {
+   "id": "50a7905a6e",
+   "name": "zmove_n24_z2.5.follow.with_trend.any.stop2_rr2.5",
+   "why": "near miss",
+   "start": "2026-11-21",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  },
+  {
+   "id": "be528f983b",
+   "name": "big_bar_k3.follow.none.asia.stop3_rr2.5",
+   "why": "near miss",
+   "start": "2026-11-21",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  },
+  {
+   "id": "44419fd0ec",
+   "name": "zmove_n24_z2.5.follow.with_trend.ny.stop2_rr2.5",
+   "why": "near miss",
+   "start": "2026-11-21",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  }
+ ]
+}

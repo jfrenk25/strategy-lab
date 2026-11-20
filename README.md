@@ -15,7 +15,13 @@ That tests every idea in `lab/ideas` that has not been tested yet and appends th
 python lab/screen.py
 ```
 
-That screens the next 100 machine-built ideas on older years and gives each survivor one run on years the screen never saw. See "Screen and confirm" in `lab/LAB_RULES.md`.
+That registers any new trigger files in `lab/triggers`, screens every untested machine-built idea on older years and gives each survivor one run on years the screen never saw. See "Screen and confirm" and "Growing catalogue" in `lab/LAB_RULES.md`.
+
+```
+python lab/forward.py
+```
+
+That tracks candidates and near misses on price bars newer than their registration date. It needs fresh bars in `lab/data`. See "Forward watch" in `lab/LAB_RULES.md`.
 
 ## How it fits together
 
@@ -27,6 +33,8 @@ That screens the next 100 machine-built ideas on older years and gives each surv
 | Code one card | `idea-builder` agent | `lab/ideas/` |
 | Check for look-ahead, then test once | `lab-verifier` agent | `lab/tools/check_idea.py`, `lab/lab.py` |
 | Screen machine-built ideas, confirm survivors | `lab/screen.py` | `lab/screen/log.csv`, `lab/screen/confirm/` |
+| Add a trigger to the screen's catalogue | you or an agent | `lab/triggers/`, `lab/tools/check_trigger.py` |
+| Watch candidates and near misses on new prices | `lab/forward.py` | `lab/forward/` |
 | Remember between sessions | everyone | `lab/STATE.md`, `lab/JOURNAL.md` |
 
 - The rules every idea must pass are in `lab/LAB_RULES.md`. They are fixed.

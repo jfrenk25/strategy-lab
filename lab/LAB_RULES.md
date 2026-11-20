@@ -102,3 +102,38 @@ A second track, separate from the one above. It tests many machine-built ideas c
 - Screened ideas do not raise the attempt counter of the main track, and main-track ideas do not raise the survivor bar.
 - Every screened idea is logged in `lab/screen/log.csv`. Every survivor gets a journal entry and a file in `lab/screen/confirm/`.
 - Changing a threshold, a part or the split means a new catalogue version and a new log. Past results stay.
+
+## Growing catalogue (added November 20, 2026, before any new trigger ran)
+Catalogue version 1 (4,000 ideas) is fully screened. From here the catalogue grows.
+
+- A new trigger is one file in `lab/triggers`. It returns +1, -1 or 0 at each bar, using the current bar and earlier bars only.
+- Every trigger must cite an outside source: a paper, a book, a public write-up or open-source code. It must not be designed from this lab's own confirm results.
+- A trigger has at most 3 parameter sets. Each set is expanded into every direction, regime filter, session filter and exit: 160 ideas, or 40 for a time-based trigger.
+- `screen.py` checks each new file for look-ahead and registers it. A registered file never changes. A changed idea is a new trigger with a new name.
+- The catalogue is append-only. The 4,000 ideas of version 1 and their results stay as they are.
+- Screen and confirm thresholds, the data split and the survivor bar are unchanged. The survivor count carries on from 87, so a new survivor needs a t-stat of about 3.25 or more on the confirm years.
+- Caveat: every new survivor is judged on the same confirm years. The rising bar is the defence. The forward watch below is the final judge.
+
+## Forward watch (added November 20, 2026, before any forward price bar existed)
+The third gate. An idea is tracked on price bars that did not exist when it was registered. No money is involved. Code: `lab/forward.py`.
+
+### Who is watched
+- Every CANDIDATE.
+- Every near miss: a screen survivor that passed every confirm check except the survivor bar. The 12 near misses of catalogue version 1 were registered on November 20, 2026.
+- An idea is registered once, with its parts frozen. It is never edited or removed.
+
+### What counts
+- Only trades entered at or after 00:00 UTC on the day after registration.
+- Fills, fees, slippage and exits are the same as everywhere else in the lab.
+- A market added to the lab later counts from its first bar after the idea's start date.
+
+### Verdict (given once, at the first run with 200 or more forward trades)
+All must hold, or the idea fails:
+1. Profit factor of 1.15 or more.
+2. Profit factor above 1.0 with costs doubled.
+3. Profitable in at least half of the markets that traded.
+4. t-stat at or above the normal quantile at 1 - 0.05 / watched, where watched is the number of ideas ever registered.
+
+- Before 200 trades the status is WATCHING. Nothing is concluded from a partial count.
+- FORWARD PASS means the idea may go to the account-fit check. It is still not a guarantee.
+- The forward watch needs new price bars in `lab/data`. If the data is not refreshed, nothing moves.
