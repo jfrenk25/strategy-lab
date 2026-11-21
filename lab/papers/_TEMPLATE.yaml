@@ -1,0 +1,35 @@
+# One file per paper. Copy to lab/papers/ID.yaml, where ID is lower-case with underscores (for example arxiv_2401_01234).
+# Write in your own words. State formulas, do not copy passages. Leave a field empty rather than guess.
+id: _TEMPLATE
+title: ""
+authors: ""
+published: "2026-01-31"      # first public version
+url: ""
+found: "2026-01-31"          # the day the lab picked it up
+status: extracted            # extracted | cant_test | coded | tested
+market: ""                   # what the paper trades
+timeframe: ""                # bar size and holding period
+data_needed: []              # everything the rule needs, in plain words
+testable_here: true          # false if the lab's hourly bars for fifteen markets are not enough
+why_not: ""                  # if false: one line on what is missing
+missing_data: []             # if false: short tags such as daily_stock_prices, options, order_book, fundamentals, funding_rates, news
+formulas:
+  - name: ""
+    definition: ""           # the formula, with each symbol explained
+    variables: ""
+rules:
+  entry_long: ""
+  entry_short: ""
+  exit: ""
+  holding_period: ""
+reported_results:            # as the authors state them, never the lab's numbers
+  sample_period: ""
+  markets: ""
+  headline: ""               # for example "Sharpe 1.2 before costs"
+  costs_included: ""
+idea: ""                     # the lab idea file, once coded
+lab_markets: []              # the lab markets used for the test
+lab_result: {}               # filled by: python lab/tools/paper.py verdict IDEA
+verdict: pending             # pending | holds_up | decayed | failed | cant_test
+may_stop_working: ""         # a theory: market conditions in which the edge could fail
+notes: ""

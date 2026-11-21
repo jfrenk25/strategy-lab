@@ -14,6 +14,9 @@ import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FEES = {"BTCUSD": 0.0003, "ETHUSD": 0.0004, "XAUUSD": 0.0002, "GBPJPY": 0.00015, "USA30": 0.00025, "DEU30": 0.00025}   # per side
+EXTRA_FEES = {"NAS100": 0.00025, "SPX500": 0.00025, "USOIL": 0.0003, "EURUSD": 0.00015, "GBPUSD": 0.00015,
+              "USDJPY": 0.00015, "AUDUSD": 0.00015, "USDCAD": 0.00015, "EURJPY": 0.00015}    # the nine markets in lab/data_new
+ALL_FEES = {**FEES, **EXTRA_FEES}
 SLIP = 0.0002
 QUARANTINE = 2026
 MIN_TRAIN_DAYS, MAX_GRID, N_PERM, N_SHIFT = 250, 12, 200, 1000
@@ -24,9 +27,9 @@ FIELDS = ("open", "high", "low", "close", "volume")
 def load_daily(markets="all"):
     """Daily bars per market. The day rolls at 22:00 UTC (5pm New York) so FX and index sessions stay whole."""
     wide = {f: {} for f in FIELDS}
-    for m in FEES:
-        path = os.path.join(HERE, "data", f"{m}_1h.csv.gz")
-        if not os.path.exists(path) or (markets != "all" and m not in markets): continue
+    for m in (FEES if markets == "all" else ALL_FEES):          # the original six by default; "fifteen" or a list may add the rest
+        path = os.path.join(HERE, "data_new" if m in EXTRA_FEES else "data", f"{m}_1h.csv.gz")
+        if not os.path.exists(path) or (markets not in ("all", "fifteen") and m not in markets): continue
         h = pd.read_csv(path, parse_dates=["time"]).set_index("time")
         day = (h.index + pd.Timedelta(hours=2)).floor("D").tz_localize(None)
         d = h.groupby(day).agg(open=("open", "first"), high=("high", "max"), low=("low", "min"), close=("close", "last"), volume=("volume", "sum"), n=("close", "size"))
@@ -47,7 +50,7 @@ def net_returns(data, w, cost_mult=1.0):
     w = w.where(close.ffill().notna(), 0.0)                                      # nothing before a market exists
     gross = w.abs().sum(axis=1)
     w = w.div(gross.where(gross > 1.0, 1.0), axis=0)                             # cap total exposure at 1
-    cost = pd.Series({m: FEES[m] + SLIP for m in close.columns}) * cost_mult
+    cost = pd.Series({m: ALL_FEES[m] + SLIP for m in close.columns}) * cost_mult
     contrib = w.shift(1).fillna(0.0) * ret - w.diff().abs().fillna(w.abs()) * cost
     return contrib.sum(axis=1), contrib, w
 
@@ -138,7 +141,7 @@ def run_idea(mod, attempts):
     # timing baseline: the same positions, shifted in time inside each test block
     rng = np.random.default_rng(11); shifted = np.zeros(N_SHIFT); close = data["close"]
     ret = close.ffill().pct_change().where(close.notna()).fillna(0.0)
-    cost = pd.Series({m: FEES[m] + SLIP for m in close.columns})
+    cost = pd.Series({m: ALL_FEES[m] + SLIP for m in close.columns})
     for Tb, gi in picks:
         m = block == Tb; w = runs[gi][2][m].to_numpy(); rr = ret[m].to_numpy(); n = len(w)
         if n < 60: continue

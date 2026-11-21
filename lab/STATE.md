@@ -51,6 +51,9 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - The forward watch still starts 2026-11-21 and needs another data refresh to move.
 - Catalogue version 3 from 2026-11-20: every trigger registered from now on is screened and confirmed on fifteen markets (the six plus `data_new/`). "Half the markets" means 8 of 15. Older ideas are not re-run.
 - The forward watch now tracks every watched idea on all fifteen markets.
+- Paper track built 2026-11-20: `papers/` holds one YAML file per paper and `papers/seen.csv` logs every abstract looked at. Tools: `tools/paper.py` (validate, verdict, brief) and `tools/check_formula.py`. No paper has been scanned yet.
+- Main track from attempt 104: an idea may name any of the fifteen markets; a passing signal idea must also survive the nearby-settings check before quarantine.
+- `briefs/DATE.md` is the daily summary.
 - On shuffled prices 0 of 400 ideas passed the screen, so a survivor is rarely pure luck in the screen years. It can still fail to carry forward, as the first one did.
 - Limit: 1-hour bars and single-market triggers only. Cross-market triggers and other timeframes would be a new catalogue version.
 

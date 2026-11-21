@@ -16,16 +16,23 @@ from numba import njit
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FEES = {"BTCUSD": 0.0003, "ETHUSD": 0.0004, "XAUUSD": 0.0002, "GBPJPY": 0.00015, "USA30": 0.00025, "DEU30": 0.00025}   # per side
+EXTRA_FEES = {"NAS100": 0.00025, "SPX500": 0.00025, "USOIL": 0.0003, "EURUSD": 0.00015, "GBPUSD": 0.00015,
+              "USDJPY": 0.00015, "AUDUSD": 0.00015, "USDCAD": 0.00015, "EURJPY": 0.00015}    # the nine markets in lab/data_new
+ALL_FEES = {**FEES, **EXTRA_FEES}
 SLIP, COOLDOWN = 0.0002, 6
 EXITS = [(2.0, 1.5), (2.0, 2.5), (3.0, 1.5), (3.0, 2.5)]       # (stop in ATRs, target as a multiple of the stop)
 QUARANTINE = 2026                                             # block held back; an idea may touch it once
 MIN_TRAIN_TRADES, MAX_GRID = 20, 12
-T = dict(pf=1.15, trades=150, block_share=0.60, market_share=0.50, random_pct=95.0, q_trades=20, perm_p=0.01)
+T = dict(pf=1.15, trades=150, block_share=0.60, market_share=0.50, random_pct=95.0, q_trades=20, perm_p=0.01, neighbour_share=2 / 3)
 N_PERM = 200
 
 
+def _path(m):
+    return os.path.join(HERE, "data_new" if m in EXTRA_FEES else "data", f"{m}_1h.csv.gz")
+
+
 def load_market(m):
-    df = pd.read_csv(os.path.join(HERE, "data", f"{m}_1h.csv.gz"), parse_dates=["time"]).set_index("time")
+    df = pd.read_csv(_path(m), parse_dates=["time"]).set_index("time")
     idx = df.index
     block = np.where((idx.month > 4) | ((idx.month == 4) & (idx.day >= 21)), idx.year, idx.year - 1).astype(np.int64)
     pc = df["close"].shift(1)
@@ -113,9 +120,10 @@ def permute(df, rng):
 
 
 def _frames(idea):
-    avail = [m for m in FEES if os.path.exists(os.path.join(HERE, "data", f"{m}_1h.csv.gz"))]
+    """Markets for an idea: the original six by default, all fifteen on request, or the ones it names."""
     mk = idea.get("markets", "all")
-    return {m: load_market(m) for m in (avail if mk == "all" else [m for m in avail if m in mk])}
+    pool = FEES if mk == "all" else ALL_FEES
+    return {m: load_market(m) for m in pool if os.path.exists(_path(m)) and (mk in ("all", "fifteen") or m in mk)}
 
 
 def _collect(mod, idea, frames, costs=(1, 2)):
@@ -128,7 +136,7 @@ def _collect(mod, idea, frames, costs=(1, 2)):
             d = _cooldown(np.ascontiguousarray(np.nan_to_num(np.asarray(mod.signals(df, p), dtype=np.float64)).astype(np.int64)), COOLDOWN)
             for xi, (am, rr) in enumerate(EXITS):
                 slf = np.clip(am * atrp, 0.001, 0.20)
-                cfgs[(gi, xi)] = tuple(_simulate(o, h, l, c, d, slf, rr, FEES[m] * k, SLIP * k) for k in costs)
+                cfgs[(gi, xi)] = tuple(_simulate(o, h, l, c, d, slf, rr, ALL_FEES[m] * k, SLIP * k) for k in costs)
         store[m] = dict(cfgs=cfgs, block=block, ohlc=(o, h, l, c), atrp=atrp)
         blocks = sorted(set(block.tolist()))
         for Tb in blocks:
@@ -166,6 +174,33 @@ def permutation_p(mod, idea, frames, actual, n=N_PERM, seed=7):
     return (beat + 1) / (n + 1)
 
 
+def neighbour_test(mod, idea, frames):
+    """Move each number in the idea's settings 20% down and 20% up, one at a time, and re-run the walk-forward.
+    An edge that only exists at one exact setting is a lucky number, not an edge."""
+    names = sorted({k for p in idea["grid"] for k, v in p.items() if isinstance(v, (int, float)) and not isinstance(v, bool)})
+    runs = []
+    for name in names:
+        for factor in (0.8, 1.2):
+            grid = []
+            for p in idea["grid"]:
+                q = dict(p)
+                if name in q and isinstance(q[name], (int, float)) and not isinstance(q[name], bool):
+                    if isinstance(q[name], int):                      # whole numbers stay whole and always move by at least 1
+                        moved = int(round(q[name] * factor))
+                        q[name] = max(1, moved if moved != q[name] else q[name] + (1 if factor > 1 else -1))
+                    else:
+                        q[name] = q[name] * factor
+                grid.append(q)
+            if grid == idea["grid"]:
+                continue
+            store, picks, _ = _collect(mod, {**idea, "grid": grid}, frames, costs=(1,))
+            R = [store[pk["market"]]["cfgs"][pk["cfg"]][0][1][store[pk["market"]]["block"][store[pk["market"]]["cfgs"][pk["cfg"]][0][0]] == pk["block"]] for pk in picks]
+            R = np.concatenate(R) if R else np.array([])
+            runs.append(dict(setting=name, factor=factor, trades=int(len(R)), pf=_pf(R) if len(R) else float("nan"), totalR=float(R.sum()) if len(R) else 0.0))
+    good = int(sum(r["pf"] > 1.0 for r in runs))
+    return dict(runs=runs, profitable=good, total=len(runs), passed=bool(not runs or good / len(runs) >= T["neighbour_share"]))
+
+
 def run_idea(mod, attempts):
     idea = mod.IDEA
     assert len(idea["grid"]) <= MAX_GRID, "grid too large"
@@ -181,7 +216,7 @@ def run_idea(mod, attempts):
         by_block[pk["block"]] = by_block.get(pk["block"], 0.0) + float(r.sum()); by_market[pk["market"]] = by_market.get(pk["market"], 0.0) + float(r.sum())
         if len(r):
             w = np.where(s["block"] == pk["block"])[0]; am, rr = EXITS[pk["cfg"][1]]
-            rnd += _random(*s["ohlc"][:3], int(w[0]), int(w[-1]), sd[msk].astype(np.int64), np.clip(am * s["atrp"], 0.001, 0.20), rr, FEES[pk["market"]], SLIP, 1000, 11)
+            rnd += _random(*s["ohlc"][:3], int(w[0]), int(w[-1]), sd[msk].astype(np.int64), np.clip(am * s["atrp"], 0.001, 0.20), rr, ALL_FEES[pk["market"]], SLIP, 1000, 11)
             actual += float(r.sum())
     R_all = np.concatenate(R_all) if R_all else np.array([]); R_dbl = np.concatenate(R_dbl) if R_dbl else np.array([])
     need_t = NormalDist().inv_cdf(1 - 0.05 / attempts)
@@ -204,6 +239,9 @@ def run_idea(mod, attempts):
     if all(res["checks"].values()):
         res["perm_p"] = float(permutation_p(mod, idea, frames, res["totalR"]))
         res["checks"][f"permutation test p <= {T['perm_p']}"] = bool(res["perm_p"] <= T["perm_p"])
+    if all(res["checks"].values()):
+        res["neighbours"] = neighbour_test(mod, idea, frames)
+        res["checks"]["nearby settings stay profitable (two thirds or more)"] = res["neighbours"]["passed"]
     if all(res["checks"].values()):
         qr = []
         for pk in q_picks:
@@ -254,6 +292,7 @@ def main():
                        f"- Profitable test years {res['blocks_profitable'][0]} of {res['blocks_profitable'][1]}; markets {res['markets_profitable'][0]} of {res['markets_profitable'][1]}; "
                        f"double-cost profit factor {res['dbl_pf']:.2f}; beats {res['beats_random']:.0f}% of random entries\n")
                     + (f"- Permutation test: p = {res['perm_p']:.3f}\n" if "perm_p" in res else "")
+                    + (f"- Nearby settings: {res['neighbours']['profitable']} of {res['neighbours']['total']} stayed profitable\n" if "neighbours" in res else "")
                     + ((f"- Quarantine run: {res['quarantine']['days']} days, total {res['quarantine']['total']*100:+.1f}%\n" if is_pos else f"- Quarantine run: {res['quarantine']['trades']} trades, profit factor {res['quarantine']['pf']:.2f}\n") if "quarantine" in res else "")
                     + (f"- Failed: {'; '.join(fails)}\n" if fails else "- Passed every pre-quarantine check\n"))
         json.dump(state, open(state_path, "w"), indent=1)
