@@ -1082,3 +1082,12 @@ Attempt counter starts at 96.
 - Passed the screen: 3. Confirmed on unseen years: 0. Candidates: 0.
 - Totals: 14160 of 14160 catalogue ideas screened, 151 survivors, 0 confirmed, 0 candidates.
 - Every screened idea is in `lab/screen/log.csv`.
+
+### 2026-11-21 · attempt 104 · `valeyre_ema_trend` · REJECT
+- Source: S. Valeyre, "Breaking the Trend: How to Avoid Cherry-Picked Signals", arXiv:2504.10914 (naive 1/N version, Eqs. 5, 6, 9, 10)
+- Reason claimed: The paper's model: prices carry a slow hidden trend that fades at one time scale, which it puts down to investors herding; one exponential average of volatility-scaled returns estimates that trend.
+- Who loses: The paper names traders who pull prices back towards a fair value while a trend is still running. It does not show that they lose.
+- Mode: position (daily weights across 15 markets)
+- Out-of-sample: 4393 days in the market, Sharpe 0.41, total +14.4%, max drawdown -6.8%, t-stat 1.43 (needed 3.30)
+- Profitable test years 9 of 15; markets contributing 9 of 15; double-cost total +13.4%; beats 2% of time-shifted copies
+- Failed: Sharpe >= 0.8; beats 95% of time-shifted copies of itself; t-stat >= 3.30 (bar for attempt 104)

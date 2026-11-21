@@ -1,0 +1,177 @@
+{
+ "name": "valeyre_ema_trend",
+ "mode": "position",
+ "markets": [
+  "BTCUSD",
+  "ETHUSD",
+  "XAUUSD",
+  "GBPJPY",
+  "USA30",
+  "DEU30",
+  "NAS100",
+  "SPX500",
+  "USOIL",
+  "EURUSD",
+  "GBPUSD",
+  "USDJPY",
+  "AUDUSD",
+  "USDCAD",
+  "EURJPY"
+ ],
+ "days": 4393,
+ "sharpe": 0.41012213359066085,
+ "total": 0.14383170748463062,
+ "maxdd": -0.06802131438807864,
+ "t": 1.4345873278151213,
+ "need_t": 3.301545184757089,
+ "attempts": 104,
+ "dbl_total": 0.13361201488545515,
+ "beats_shifted": 2.4,
+ "blocks_profitable": [
+  9,
+  15
+ ],
+ "markets_profitable": [
+  9,
+  15
+ ],
+ "by_block": {
+  "2011": 0.0227,
+  "2012": 0.0173,
+  "2013": 0.006,
+  "2014": 0.014,
+  "2015": -0.0013,
+  "2016": -0.0083,
+  "2017": -0.0009,
+  "2018": -0.015,
+  "2019": 0.0514,
+  "2020": 0.0029,
+  "2021": -0.0355,
+  "2022": -0.0017,
+  "2023": 0.0374,
+  "2024": 0.013,
+  "2025": 0.0419
+ },
+ "by_market": {
+  "BTCUSD": 0.0157,
+  "ETHUSD": -0.0138,
+  "XAUUSD": 0.1056,
+  "GBPJPY": 0.0049,
+  "USA30": 0.003,
+  "DEU30": 0.0124,
+  "NAS100": 0.0114,
+  "SPX500": 0.0101,
+  "USOIL": -0.0085,
+  "EURUSD": -0.0045,
+  "GBPUSD": -0.0021,
+  "USDJPY": 0.0097,
+  "AUDUSD": -0.0047,
+  "USDCAD": -0.0068,
+  "EURJPY": 0.0114
+ },
+ "picks": [
+  [
+   2011,
+   {
+    "span": 120
+   }
+  ],
+  [
+   2012,
+   {
+    "span": 120
+   }
+  ],
+  [
+   2013,
+   {
+    "span": 120
+   }
+  ],
+  [
+   2014,
+   {
+    "span": 120
+   }
+  ],
+  [
+   2015,
+   {
+    "span": 120
+   }
+  ],
+  [
+   2016,
+   {
+    "span": 100
+   }
+  ],
+  [
+   2017,
+   {
+    "span": 100
+   }
+  ],
+  [
+   2018,
+   {
+    "span": 120
+   }
+  ],
+  [
+   2019,
+   {
+    "span": 120
+   }
+  ],
+  [
+   2020,
+   {
+    "span": 120
+   }
+  ],
+  [
+   2021,
+   {
+    "span": 120
+   }
+  ],
+  [
+   2022,
+   {
+    "span": 120
+   }
+  ],
+  [
+   2023,
+   {
+    "span": 120
+   }
+  ],
+  [
+   2024,
+   {
+    "span": 120
+   }
+  ],
+  [
+   2025,
+   {
+    "span": 120
+   }
+  ]
+ ],
+ "checks": {
+  "Sharpe >= 0.8": false,
+  "days in the market >= 500": true,
+  "profitable in 60% of test years": true,
+  "half the markets contribute a profit": true,
+  "still profitable at double costs": true,
+  "beats 95% of time-shifted copies of itself": false,
+  "t-stat >= 3.30 (bar for attempt 104)": false
+ },
+ "verdict": "REJECT",
+ "file": "valeyre_ema_trend.py",
+ "hash": "b93f3f773364",
+ "date": "2026-11-21"
+}

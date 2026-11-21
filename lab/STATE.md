@@ -18,6 +18,8 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - Formula lists (Alpha158, 101 Alphas) turned into single-market events gave no confirmed idea out of 14 triggers. The few that passed the screen were mostly the follow side in quiet Asian hours, like the older survivors.
 - A fast three-bar gap (`fair_value_gap`) behaved like the older survivors: only the follow side in Asian hours passed the screen, and it faded on the confirm years. Chart patterns built from turning points (Lo, Mamaysky and Wang) passed nothing on 800 ideas.
 - Recent papers with explicit rules mostly need bars shorter than 1 hour or decades of daily history. Of 7 kept on the first scan, none could be tested here.
+- Trend following in position mode has now failed twice (`ts_momentum`, `valeyre_ema_trend`). The second made money (Sharpe 0.41) but almost any time-shifted copy of its positions did as well, so the timing added nothing. Do not test a third trend rule on these markets.
+- `check_formula.py` builds only about 125 to 175 days of made-up data for a position idea. An idea with a longer warm-up is compared on nothing and still prints OK. Compare such an idea by hand on a longer made-up series, as was done for `valeyre_ema_trend`.
 
 ## Needs other data (not testable with price bars)
 - Order flow and footprint ideas (delta, bid/ask volume).
@@ -81,9 +83,9 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
   - `arxiv_2608_21888` (15-minute reversal in crypto): needs 15-minute bars for many coins. The authors say it does not cover costs.
   - `arxiv_2611_15657` (calendar seasonality across 50 futures): needs decades of daily history.
   - `arxiv_2511_08571` (gold trend with ATR exits): needs gold from 2005, has its own exits and sizing, and three settings were not found in the text read. The appendices were not read; look there before giving up on it.
-- Second scan 2026-11-21 (Jeff present): 17 more abstracts, 2 kept, 15 dropped, 2 written up, 0 tested. Totals: 61 abstracts, 9 kept, 6 written up, 0 tested.
+- Second scan 2026-11-21 (Jeff present): 17 more abstracts, 2 kept, 15 dropped, 2 written up, 0 tested. Totals: 61 abstracts, 9 kept, 6 written up, 1 tested (failed).
   - `arxiv_2611_09286` (last-half-hour reversal across S&P 500 stocks): `cant_test`, needs single stocks and 30-minute bars.
-  - `arxiv_2504_10914` (one-EMA trend on 73 futures): the lab's data could run it, but it was left at `extracted` and not coded. It is time-series trend following in position mode, the class rejected on 2026-11-19, and its signal equations were only seen in summary. Jeff can ask for it to be tested; it would be attempt 104.
+  - `arxiv_2504_10914` (one-EMA trend on 73 futures): tested at Jeff's request as `valeyre_ema_trend`, attempt 104, position mode on fifteen markets. REJECT, paper verdict `failed`: Sharpe 0.41 (needed 0.8), t-stat 1.43 (needed 3.30), 9 of 15 test years and 9 of 15 markets profitable, and it beat only 2% of time-shifted copies of itself. The naive version was coded; the paper's main version needs a cleaned correlation matrix that was not read.
   - `arxiv_2511_08571` (gold) was looked at again: its two missing settings are picked on each training window and never published, and its first training window starts in 2005. It stays `cant_test`.
 - With Jeff present the three arXiv `/new` pages opened, but they served an old listing (28 October 2026): 7 papers, 2 already seen, no new rule. `nber.org/papers` opened but shows no paper list without JavaScript; NBER papers have to be found by search. SSRN was not tried again.
 - Kept but not written up (limit of 4): `arxiv_2602_11708` (crypto trend on 150 perpetuals), `arxiv_2603_13638` (1-minute long/flat rule), `arxiv_2609_07946` (stock, bond, gold fund allocation). None looks testable here. They are in `seen.csv`, so write them up only if a session has spare room.
@@ -123,4 +125,4 @@ Spot check done later on 2026-11-20, when pages could be opened:
 - The inbox is empty. Fill `ideas/inbox/` from "151 Trading Strategies" (see `AGENT.md`) and from the X scout prompt in `GROK_SCOUT_PROMPT.md`.
 
 ## Last session
-2026-11-21 (two runs) · paper track: 61 abstracts, 9 kept, 6 written up, 0 tested (5 can't be tested here, 1 waiting because it repeats a rejected class) · main track not run, attempts still 103 · 13 triggers added (10 + 3), 2,640 ideas screened, 9 passed the screen, 0 confirmed, 0 candidates · forward watch 20 ideas, 0 forward trades, price data ends 2026-11-20
+2026-11-21 (three runs) · paper track: 61 abstracts, 9 kept, 6 written up, 1 tested (`valeyre_ema_trend`: failed), 5 can't be tested here · main track: attempt 104 rejected · 13 triggers added (10 + 3), 2,640 ideas screened, 9 passed the screen, 0 confirmed, 0 candidates · forward watch 20 ideas, 0 forward trades, price data ends 2026-11-20
