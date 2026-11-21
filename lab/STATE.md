@@ -16,6 +16,8 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - Trend-following breakouts beat most shuffled price paths but still lose after costs (donchian_breakout, diagnostic p about 0.07).
 - Fading the edge of a range on 1-hour bars loses before the idea gets going: channel bounce beat only 4% of random entries. Daily-level rules (pivot, IBS) coded on hourly bars trade thousands of times and costs eat them.
 - Formula lists (Alpha158, 101 Alphas) turned into single-market events gave no confirmed idea out of 14 triggers. The few that passed the screen were mostly the follow side in quiet Asian hours, like the older survivors.
+- A fast three-bar gap (`fair_value_gap`) behaved like the older survivors: only the follow side in Asian hours passed the screen, and it faded on the confirm years. Chart patterns built from turning points (Lo, Mamaysky and Wang) passed nothing on 800 ideas.
+- Recent papers with explicit rules mostly need bars shorter than 1 hour or decades of daily history. Of 7 kept on the first scan, none could be tested here.
 
 ## Needs other data (not testable with price bars)
 - Order flow and footprint ideas (delta, bid/ask volume).
@@ -65,6 +67,24 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - Second trigger batch 2026-11-20 (run on Jeff's request, on top of the daily 25): 8 triggers added, 1,280 ideas screened, 4 passed the screen (all `cl_three_soldiers`), 0 confirmed, 0 candidates. No new near miss, so the forward watch stays at 17 ideas with 0 forward trades.
 - Running totals after it (from `screen/state.json`): 11,520 screened, 142 survivors, 0 confirmed, 0 candidates. The next survivor needs a confirm t-stat of about 3.39.
 
+- Trigger batch 2026-11-21: 10 triggers added, 1,840 ideas screened on fifteen markets, 6 passed the screen (all `fair_value_gap`, k = 1, follow side, Asian hours), 0 confirmed, 0 candidates. The other nine triggers passed nothing.
+- Three near misses went on the forward watch (passed every confirm check except the survivor bar): `fair_value_gap_k1.follow.low_vol.asia.stop2_rr2.5` (confirm t 2.00 against 3.39), `fair_value_gap_k1.follow.low_vol.asia.stop3_rr1.5` (1.32), `fair_value_gap_k1.follow.against_trend.asia.stop3_rr2.5` (1.02). All are REJECTs. Their forward trades count from 2026-11-22.
+- Running totals 2026-11-21 (from `screen/state.json`): 13,360 screened, 148 survivors, 0 confirmed, 0 candidates. The next survivor needs a confirm t-stat of about 3.40.
+- Forward watch 2026-11-21: 20 ideas watched, 0 forward trades. Price data still ends 2026-11-20 05:00 UTC (ETHUSD 2026-11-19 23:00), before the watch start dates (2026-11-21 and 2026-11-22), so nothing can move until the next data refresh from Jeff's PC.
+
+## Paper track (where it stands)
+- First scan 2026-11-21: 44 abstracts looked at, 7 kept, 37 dropped. 4 written up, 0 tested. Main track untouched: attempts stay at 103, `lab.py` was not run (no untested idea, inbox empty).
+- Written up, all `cant_test`:
+  - `arxiv_2610_35887` (ICT sweep model on Nasdaq futures): needs 15-minute bars and an FOMC and payrolls calendar.
+  - `arxiv_2608_21888` (15-minute reversal in crypto): needs 15-minute bars for many coins. The authors say it does not cover costs.
+  - `arxiv_2611_15657` (calendar seasonality across 50 futures): needs decades of daily history.
+  - `arxiv_2511_08571` (gold trend with ATR exits): needs gold from 2005, has its own exits and sizing, and three settings were not found in the text read. The appendices were not read; look there before giving up on it.
+- Kept but not written up (limit of 4): `arxiv_2602_11708` (crypto trend on 150 perpetuals), `arxiv_2603_13638` (1-minute long/flat rule), `arxiv_2609_07946` (stock, bond, gold fund allocation). None looks testable here. They are in `seen.csv`, so write them up only if a session has spare room.
+- Sources that could not be read on 2026-11-21: the three arXiv `/new` listing pages for q-fin.TR, q-fin.PM and q-fin.ST and `nber.org/papers` (page reads of links the session was given, not found by a search, wait for an approval nobody is there to give); every SSRN abstract page (the site refused). Sixteen SSRN titles turned up in searches but their abstracts were not seen, so they are not in `seen.csv`.
+- What did work: `arxiv.org/list/q-fin/new` and `arxiv.org/list/q-fin/recent` open once a web search has returned them (search for "q-fin.TR" limited to arxiv.org). The `/new` page of 19 November had only 4 papers in the three categories, none with a rule. Single abstracts open only when a search returned that exact link; links found on a listing page do not. NBER paper pages open the same way.
+- Most new listings are theory, machine-learning forecasts or LLM agents. Papers with coded rules came from topic searches limited to arxiv.org, not from the daily listing.
+- SSRN titles worth a look if a way to read them appears: "Noise-band Intraday Momentum in Nasdaq-100 Futures" (7609644), "Intraday Momentum in Spot FX and Currency Futures" (7008318), "Momentum and Reversal on the Short-Term Horizon: Evidence from Commodity Markets" (6425598), "What Survives Honest Testing? A Pre-Registered Test of Eleven Trading Signals" (7553278).
+
 ## Trigger sources (where each list stands)
 Caution for all 25 triggers of 2026-11-20: the session could not open any web page (page reads needed an approval nobody was there to give). Every formula was written from the published definition as recalled, and each file says so. The files are registered and must not be edited: a correction is a new trigger with a new name.
 Spot check done later on 2026-11-20, when pages could be opened:
@@ -80,10 +100,19 @@ Spot check done later on 2026-11-20, when pages could be opened:
 - Second batch 2026-11-20, 8 triggers: Caginalp and Laurent 1998 (`cl_three_inside`, `cl_three_outside`, `cl_morning_star`, `cl_three_soldiers`; definitions read from the paper), Chesler 2004 (`hikkake`; rules read from Wikipedia), Amihud 2002 (`amihud_illiq`; from recall), LeBaron 1992 (`serial_corr`; from recall, and the trading rule is ours), 101 Alphas #8 (`alpha008`; read from the paper). Alpha#53 was left out: it is the close-location idea of #54 again. That leaves #30 and #52 in the 101 list.
 - Considered and left out: outside bars and engulfing bars (close to big_bar), pin bars (same as a158_shadow), turtle soup and springs (sweep), VWAP cross and OBV cross (crossovers), Kaufman efficiency ratio (same idea as a158_rsqr), pocket pivots (vol_spike family), pivot levels (the class failed in the main track today). The book in `BOOK_INDEX.md` has no single-market events left.
 - `same_hour_seasonality` needed one fix before registration: the first version counted calendar days, so it never fired on markets that close at weekends. It now counts the last k days on which that hour traded.
-- Ideas for next time, not yet used: Lo, Mamaysky and Wang 2000 chart patterns, fair value gaps, variance-ratio regimes, overnight against intraday returns (needs session times per market).
+- Batch 2026-11-21, 10 triggers. Sources were opened and read this time unless noted:
+  - Lo, Mamaysky and Wang 2000 (definitions read from the paper): `lmw_head_shoulders`, `lmw_broadening`, `lmw_triangle`, `lmw_rectangle`, `lmw_double`. Turning points are plain local highs and lows of the close (3 bars each side), not the paper's kernel fit, and the percent tolerances were rescaled to each market's own typical bar move. That uses up the paper's ten patterns (each file holds a top and its bottom).
+  - Easley, Lopez de Prado and O'Hara 2012 (formula read from the 2012 working paper): `bvc_imbalance`, with the sign kept.
+  - 101 Alphas #52 (read from the paper): `alpha052`. #30 was read and left out: its core is three same-sign closes in a row, which is the built-in streak. The 101 list is now used up.
+  - NinjaTrader's public guide on fair value gaps (read), also named in arXiv 2610.35887 from today's paper scan: `fair_value_gap`.
+  - Stivers and Sun 2013 (abstract only, on RePEc): `opex_week`.
+  - Alexander 1961, Fama and Blume 1966 (from recall, not opened): `alexander_filter`, with the filter size in ATRs instead of percent.
+- Considered on 2026-11-21 and left out: signed jump variation (Patton and Sheppard 2015; on one market it is an RSI built from squared moves, and at extremes it is one big bar); piercing line and dark cloud cover (need an open beyond the previous bar's range, which 24-hour markets almost never give); the sign-weighted reversal of arXiv 2608.21888 (close to `a158_cntd`, and its decay setting is fitted per coin in the paper, so any fixed value would be ours); the session sweep of arXiv 2610.35887 (the built-in sweep); Crabel's hook days and variance-ratio regimes (recall only, and close to `gap` and `serial_corr`).
+- freqtrade-strategies: still not looked at again. The folder listing was not opened on 2026-11-21 either. Start there next time.
+- Ideas for next time, not yet used: Osler and Chang 1995 (head-and-shoulders with a zigzag and a neckline entry), overnight against intraday returns (needs session times per market), new files in freqtrade-strategies.
 
 ## Next
 - The inbox is empty. Fill `ideas/inbox/` from "151 Trading Strategies" (see `AGENT.md`) and from the X scout prompt in `GROK_SCOUT_PROMPT.md`.
 
 ## Last session
-2026-11-20 (two runs) · 3 inbox ideas tested in the main track, 3 rejected (attempts now 103) · 33 triggers added (25 + 8), 7,200 ideas screened, 33 passed the screen, 0 confirmed, 0 candidates · forward watch 17 ideas, 0 forward trades
+2026-11-21 · paper track: 44 abstracts, 7 kept, 4 written up, 0 tested (all four can't be tested here) · main track not run (no untested idea), attempts still 103 · 10 triggers added, 1,840 ideas screened, 6 passed the screen, 0 confirmed, 0 candidates · forward watch 20 ideas, 0 forward trades, price data ends 2026-11-20

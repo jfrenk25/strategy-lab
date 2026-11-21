@@ -1,1 +1,45 @@
 date,id,source,title,url,decision,reason
+2026-11-21,arxiv_2605_04004,arxiv,Structural Limits of OHLCV-Based Intraday Momentum Signals in MNQ Futures,https://arxiv.org/abs/2605.04004,drop,"falsification study of 14 signal families; abstract gives test gates, not rules; 5-minute data"
+2026-11-21,arxiv_2605_11423,arxiv,A Validated Volatility-Volume-Gap Classifier for Regime Identification in MNQ Intraday Data,https://arxiv.org/abs/2605.11423,drop,"day classifier, thresholds not given; author says not a tradable signal"
+2026-11-21,arxiv_2606_08232,arxiv,Hour-Aware Adaptive Risk Management for Autonomous Memecoin Trading on Solana DEXs,https://arxiv.org/abs/2606.08232,drop,15-day deployment report; trading parameters withheld
+2026-11-21,arxiv_2602_11708,arxiv,Systematic Trend-Following with Adaptive Portfolio Construction in Cryptocurrency Markets,https://arxiv.org/abs/2602.11708,keep,explicit momentum entry and ATR trailing stop; not written up today (limit 4); needs 150 perpetual pairs and market caps
+2026-11-21,arxiv_2511_08571,arxiv,Forecast-to-Fill: Benchmark-Neutral Alpha and Billion-Dollar Capacity in Gold Futures (2015-2025),https://arxiv.org/abs/2511.08571,keep,explicit long entry and ATR exits on daily gold
+2026-11-21,arxiv_2603_09219,arxiv,AlgoXpert Alpha Research Framework: A Rigorous IS-WFA-OOS Protocol,https://arxiv.org/abs/2603.09219,drop,"validation protocol, no trading rule"
+2026-11-21,arxiv_2509_16707,arxiv,Increase Alpha: Performance and Risk of an AI-Driven Trading Framework,https://arxiv.org/abs/2509.16707,drop,proprietary deep-learning signal on 800 stocks; model not disclosed
+2026-11-21,arxiv_2511_00665,arxiv,Technical Analysis Meets Machine Learning: Bitcoin Evidence,https://arxiv.org/abs/2511.00665,drop,ML forecasts against EMA and MACD crossovers; crossovers are a dead class here
+2026-11-21,arxiv_2601_19504,arxiv,Generating Alpha: A Hybrid AI-Driven Trading System,https://arxiv.org/abs/2601.19504,drop,indicator mix plus news sentiment and ML on single stocks; abstract gives no fixed rule
+2026-11-21,arxiv_2510_23150,arxiv,Revisiting the Structure of Trend Premia: When Diversification Hides Redundancy,https://arxiv.org/abs/2510.23150,drop,"portfolio weighting of trend horizons, no entry or exit rule"
+2026-11-21,arxiv_2607_19497,arxiv,The Science and Practice of Trend-Following Systems,https://arxiv.org/abs/2607.19497,drop,theory of trend systems; abstract gives no rule or result
+2026-11-21,arxiv_2507_15876,arxiv,Re-evaluating Short- and Long-Term Trend Factors in CTA Replication,https://arxiv.org/abs/2507.15876,drop,"factor decomposition of CTA returns, no trading rule"
+2026-11-21,arxiv_2603_13638,arxiv,Performance-Driven Causal Signal Engineering for Financial Markets under Non-Stationarity,https://arxiv.org/abs/2603.13638,keep,explicit long/flat rule with hysteresis; not written up today (limit 4); needs 1-minute bars
+2026-11-21,arxiv_2602_10785,arxiv,A novel approach to trading strategy parameter optimization using double out-of-sample data and walk-forward techniques,https://arxiv.org/abs/2602.10785,drop,"about choosing walk-forward windows; the rule is an EMA crossover, a dead class here"
+2026-11-21,nber_w35158,nber,Mosaics of Predictability,https://www.nber.org/papers/w35158,drop,"stock return forecasting by clusters, no explicit rule"
+2026-11-21,nber_w35840,nber,Asymmetric Reversals,https://www.nber.org/papers/w35840,drop,"stock return factor, no explicit rule in abstract"
+2026-11-21,nber_w35093,nber,The Inefficient Pricing of News,https://www.nber.org/papers/w35093,drop,"news-text anomaly in stocks, no explicit rule"
+2026-11-21,nber_w35885,nber,Explaining Realized Returns: Roll's R2 40 Years Later,https://www.nber.org/papers/w35885,drop,"explains returns from news text, no trading rule"
+2026-11-21,cfr_26_02,ssrn,In Search of Seasonality in Intraday and Overnight Option Returns,https://ideas.repec.org/p/zbw/cfrwps/336775.html,drop,"option return patterns, no explicit rule; read on RePEc because SSRN refused"
+2026-11-21,zenodo_19671502,web,Time-Series Momentum in Cryptocurrency Markets: A Pre and Post Spot Bitcoin ETF Analysis,https://zenodo.org/records/19671502,drop,"time-series momentum, a class already rejected here; no lookback given"
+2026-11-21,arxiv_2611_23723,arxiv,When Price Charts Rhyme: Historical Visual Retrieval for Stock Return Prediction,https://arxiv.org/abs/2611.23723,drop,"image-model forecast of stock returns, no explicit rule"
+2026-11-21,arxiv_2611_24028,arxiv,Algorithmic Market Making Can Lead to Rough Volatility Through the Order Book,https://arxiv.org/abs/2611.24028,drop,order-book theory
+2026-11-21,arxiv_2611_24845,arxiv,Vibe-Trading: Towards Agent-Native Trading,https://arxiv.org/abs/2611.24845,drop,"software architecture, no rule"
+2026-11-21,arxiv_2611_24912,arxiv,Stock bubbles in limited participation models with power utilities,https://arxiv.org/abs/2611.24912,drop,pure theory
+2026-11-21,arxiv_2611_25762,arxiv,Trading Before a Committed Rebalance,https://arxiv.org/abs/2611.25762,drop,execution game theory
+2026-11-21,arxiv_2610_35887,arxiv,Evaluating the Predictive Validity of ICT's AMD Model on CME E-Mini NASDAQ-100 Futures,https://arxiv.org/abs/2610.35887,keep,"explicit session sweep entry, stop and target"
+2026-11-21,arxiv_2607_20093,arxiv,Retail Trader's Ruin: An Anatomy of Popular Signal Failure,https://arxiv.org/abs/2607.20093,drop,"audit of well-known indicator families (golden cross, RSI, OBV); nothing new to code"
+2026-11-21,arxiv_2608_21888,arxiv,Short-horizon mean reversion in cryptocurrency markets: a matched cross-market measurement,https://arxiv.org/abs/2608.21888,keep,bet against the previous 15-minute bars with a stated model
+2026-11-21,arxiv_2611_15657,arxiv,Global Seasonality Factor Investing,https://arxiv.org/abs/2611.15657,keep,calendar-feature forecasts turned into daily positions with stated settings
+2026-11-21,arxiv_2609_07946,arxiv,Simple Dynamic Stock/Bond/Gold Portfolios,https://arxiv.org/abs/2609.07946,keep,"explicit monthly allocation rule; not written up today (limit 4); needs a bond fund, cash rate and 2006 start"
+2026-11-21,arxiv_2606_00060,arxiv,Machine Learning-Based Bitcoin Trading Under Transaction Costs,https://arxiv.org/abs/2606.00060,drop,trades the sign of an ML forecast; no fixed rule to code
+2026-11-21,arxiv_2611_19530,arxiv,"LLM Trading Agents Earn Beta, Not Alpha: A Look-Ahead-Free Benchmark",https://arxiv.org/abs/2611.19530,drop,"benchmark of LLM agents, no rule"
+2026-11-21,arxiv_2610_36491,arxiv,Simple Portfolios that Deliver Consistent Decent Returns,https://arxiv.org/abs/2610.36491,drop,"ETF allocation methods, no entry or exit signal"
+2026-11-21,arxiv_2608_00761,arxiv,AI and Exchange Rate Predictability,https://arxiv.org/abs/2608.00761,drop,"currency ranking from LLM-scored economic releases; signal is the model's output, not a price rule"
+2026-11-21,arxiv_2603_20319,arxiv,Implementation Risk in Portfolio Backtesting,https://arxiv.org/abs/2603.20319,drop,backtest-engine comparison
+2026-11-21,arxiv_2610_31141,arxiv,Intraday Forecasting Ability and Liquidity Provision of Institutional Traders,https://arxiv.org/abs/2610.31141,drop,"order-book study of five stocks, no thresholds"
+2026-11-21,arxiv_2608_24786,arxiv,Harvesting the Volatility Risk Premium: A Learning-to-Rank Approach,https://arxiv.org/abs/2608.24786,drop,ML ranker over option positions; no fixed rule
+2026-11-21,arxiv_2611_11373,arxiv,Optimal execution in a fractional setting with reinforcement learning,https://arxiv.org/abs/2611.11373,drop,execution theory
+2026-11-21,arxiv_2611_13616,arxiv,Optimal Trading Speed on Blockchain,https://arxiv.org/abs/2611.13616,drop,market structure
+2026-11-21,arxiv_2611_18150,arxiv,Who Should Be on the Panel? Task-Conditioned Persona Selection for LLM Trading Agents,https://arxiv.org/abs/2611.18150,drop,"LLM agent design, no fixed rule"
+2026-11-21,arxiv_2608_26158,arxiv,A Frequency-Controlled Comparison of Tick- and Minute-Based Information Bars for Cryptocurrency Markets,https://arxiv.org/abs/2608.26158,drop,data representation study
+2026-11-21,arxiv_2608_09576,arxiv,Anomaly detection in European cryptocurrency exchange-traded products,https://arxiv.org/abs/2608.09576,drop,"anomaly detection, no trading rule"
+2026-11-21,arxiv_2511_13239,arxiv,Talyxion: From Speculation to Optimization in Risk Managed Crypto Portfolio Allocation,https://arxiv.org/abs/2511.13239,drop,portfolio pipeline; abstract gives no thresholds; 30-day live run
+2026-11-21,arxiv_2509_04541,arxiv,Finance-Grounded Optimization For Algorithmic Trading,https://arxiv.org/abs/2509.04541,drop,loss functions for deep-learning forecasts

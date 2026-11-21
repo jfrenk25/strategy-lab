@@ -1010,3 +1010,51 @@ Attempt counter starts at 96.
 - Passed the screen: 4. Confirmed on unseen years: 0. Candidates: 0.
 - Totals: 11520 of 11520 catalogue ideas screened, 142 survivors, 0 confirmed, 0 candidates.
 - Every screened idea is in `lab/screen/log.csv`.
+
+### 2026-11-21 · screen survivor 143 · `fair_value_gap_k1.follow.against_trend.asia.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id def232ab10). No stated reason.
+- Screen years: 344 trades, profit factor 1.22, t-stat 1.72
+- Confirm years: 228 trades, profit factor 1.11, +19.1R, t-stat 0.75 (needed 3.39); markets 10 of 15; double-cost profit factor 0.96; beats 98% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; t-stat >= 3.39 (bar for survivor 143)
+
+### 2026-11-21 · screen survivor 144 · `fair_value_gap_k1.follow.low_vol.asia.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 6cf82d42e7). No stated reason.
+- Screen years: 488 trades, profit factor 1.21, t-stat 1.97
+- Confirm years: 293 trades, profit factor 1.28, +59.1R, t-stat 2.00 (needed 3.39); markets 10 of 15; double-cost profit factor 1.10; beats 100% of random entries
+- Failed: t-stat >= 3.39 (bar for survivor 144)
+
+### 2026-11-21 · screen survivor 145 · `fair_value_gap_k1.follow.none.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id b54828e3aa). No stated reason.
+- Screen years: 969 trades, profit factor 1.19, t-stat 2.43
+- Confirm years: 588 trades, profit factor 0.98, -9.6R, t-stat -0.25 (needed 3.39); markets 7 of 15; double-cost profit factor 0.89; beats 75% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.39 (bar for survivor 145)
+
+### 2026-11-21 · screen survivor 146 · `fair_value_gap_k1.follow.low_vol.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 6c30996866). No stated reason.
+- Screen years: 486 trades, profit factor 1.17, t-stat 1.70
+- Confirm years: 292 trades, profit factor 1.17, +28.4R, t-stat 1.32 (needed 3.40); markets 9 of 15; double-cost profit factor 1.03; beats 99% of random entries
+- Failed: t-stat >= 3.40 (bar for survivor 146)
+
+### 2026-11-21 · screen survivor 147 · `fair_value_gap_k1.follow.against_trend.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id f87eecf809). No stated reason.
+- Screen years: 335 trades, profit factor 1.35, t-stat 2.55
+- Confirm years: 224 trades, profit factor 1.16, +25.5R, t-stat 1.02 (needed 3.40); markets 9 of 15; double-cost profit factor 1.05; beats 97% of random entries
+- Failed: t-stat >= 3.40 (bar for survivor 147)
+
+### 2026-11-21 · screen survivor 148 · `fair_value_gap_k1.follow.low_vol.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 8b470053e4). No stated reason.
+- Screen years: 479 trades, profit factor 1.44, t-stat 3.67
+- Confirm years: 286 trades, profit factor 1.09, +18.2R, t-stat 0.65 (needed 3.40); markets 9 of 15; double-cost profit factor 0.97; beats 88% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.40 (bar for survivor 148)
+
+### 2026-11-21 · screen batch · 1840 ideas
+- New triggers registered: alexander_filter, alpha052, bvc_imbalance, fair_value_gap, lmw_broadening, lmw_double, lmw_head_shoulders, lmw_rectangle, lmw_triangle, opex_week.
+- Passed the screen: 6. Confirmed on unseen years: 0. Candidates: 0.
+- Totals: 13360 of 13360 catalogue ideas screened, 148 survivors, 0 confirmed, 0 candidates.
+- Every screened idea is in `lab/screen/log.csv`.
+
+### 2026-11-21 · forward watch · 3 ideas registered
+- `fair_value_gap_k1.follow.low_vol.asia.stop3_rr1.5`
+- `fair_value_gap_k1.follow.low_vol.asia.stop2_rr2.5`
+- `fair_value_gap_k1.follow.against_trend.asia.stop3_rr2.5`
+- Forward trades count from 2026-11-22 00:00 UTC. Verdict at 200 trades. Rules: "Forward watch" in `LAB_RULES.md`.

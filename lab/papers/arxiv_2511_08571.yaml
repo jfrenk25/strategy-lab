@@ -1,0 +1,51 @@
+id: arxiv_2511_08571
+title: "Forecast-to-Fill: Benchmark-Neutral Alpha and Billion-Dollar Capacity in Gold Futures (2015-2025)"
+authors: "Mainak Singha, Jose Aguilera-Toste, Vinayak Lahiri"
+published: "2025-11-11"
+url: "https://arxiv.org/abs/2511.08571"
+found: "2026-11-21"
+status: cant_test
+market: "Gold (LBMA and COMEX daily settlement prices)"
+timeframe: "Daily bars; trades last up to 30 trading days"
+data_needed:
+  - "daily gold high, low and settlement, from 2005"
+  - "a 10-year window before each 6-month test, to standardise the trend measure"
+  - "the smoothing constant, the volatility decay and the Kelly sizing formula, which the text that could be read does not give"
+testable_here: false
+why_not: "The first test window (2015) needs gold prices from 2005; the lab's gold starts in 2009. The rule also trades a varying position size with its own trailing stop and 30-day time limit, which is not the lab's fixed-exit trade, and three settings were not found in the readable text."
+missing_data: [longer_history, unpublished_settings]
+formulas:
+  - name: "Smoothed log price"
+    definition: "s_t = L x s_(t-1) + (1 - L) x ln(P_t); d_t = s_t - s_(t-1)."
+    variables: "P: daily gold price. L: smoothing constant between 0 and 1 (value not found)."
+  - name: "Trend score"
+    definition: "z_t = (d_t - mean_train) / std_train; p_trend = (clip(z_t, -3, 3) + 3) / 6."
+    variables: "mean_train, std_train: taken over the 10-year training window, then frozen for 6 months."
+  - name: "Momentum flag"
+    definition: "m_t = 1 if P_t / P_(t-50) > 1, else 0."
+    variables: "50 trading days."
+  - name: "Bull probability"
+    definition: "p_bull = 0.6 x p_trend + 0.4 x m_t; p_bear = 1 - p_bull."
+    variables: ""
+  - name: "ATR"
+    definition: "TR = max(H - L, |H - C_prev|, |L - C_prev|); ATR14 = 14-day simple average of TR."
+    variables: "H, L: day's high and low. C_prev: previous close."
+  - name: "Size"
+    definition: "w_vol = min(2.0, target / forecast_vol), target = 15% a year; w = Kelly fraction x w_vol x (p_bull - 0.5) / 0.5."
+    variables: "forecast_vol: exponentially weighted volatility (decay not found). Kelly fraction: 0.40 of a cost-adjusted Kelly bet, with a floor of 25% of normal size."
+rules:
+  entry_long: "p_bull >= 0.52 and d_t > 0."
+  entry_short: "None. Long only."
+  exit: "First of: 2 x ATR14 below entry; 1.5 x ATR14 below the highest price since entry; 30 trading days; or cut the position in half or close it when p_bear > 0.5 (the paper does not say which)."
+  holding_period: "Up to 30 trading days."
+reported_results:
+  sample_period: "Out of sample 2015 to October 2025 (2,793 trading days), 10-year training and 6-month test windows"
+  markets: "Gold"
+  headline: "Sharpe 2.88, largest drawdown 0.52%, market beta about 0.03. The 43% a year at 15% volatility in the abstract is a scaled-up figure, not a tested one; as run, the return is about 2.6% a year at about 0.9% volatility."
+  costs_included: "Yes: 0.7 basis points plus a square-root impact term. In the authors' own stress test the Sharpe falls to about 0.9 at normal costs and below zero at double costs."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "About a third of the text was read word for word (signal, entry, exits, sizing); the stress-test and as-run figures come from a summary of the rest and the appendices were not read, so the missing settings may be there. The body is dated August 2026 although version 1 is from November 2025. Not coded as a simpler stand-in: that would be the lab's rule, not the paper's."

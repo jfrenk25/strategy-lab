@@ -1,8 +1,8 @@
 {
- "updated": "2026-11-20",
- "watched": 17,
+ "updated": "2026-11-21",
+ "watched": 20,
  "verdict_trades": 200,
- "need_t": 2.75,
+ "need_t": 2.81,
  "data_ends": {
   "BTCUSD": "2026-11-20 05:00:00+00:00",
   "ETHUSD": "2026-11-19 23:00:00+00:00",
@@ -298,6 +298,57 @@
    "name": "zmove_n24_z2.5.follow.with_trend.ny.stop2_rr2.5",
    "why": "near miss",
    "start": "2026-11-21",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  },
+  {
+   "id": "6cf82d42e7",
+   "name": "fair_value_gap_k1.follow.low_vol.asia.stop2_rr2.5",
+   "why": "near miss",
+   "start": "2026-11-22",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  },
+  {
+   "id": "6c30996866",
+   "name": "fair_value_gap_k1.follow.low_vol.asia.stop3_rr1.5",
+   "why": "near miss",
+   "start": "2026-11-22",
+   "status": "WATCHING",
+   "trades": 0,
+   "pf": null,
+   "totalR": 0.0,
+   "t": null,
+   "dbl_pf": null,
+   "markets_profitable": [
+    0,
+    0
+   ],
+   "by_market": {}
+  },
+  {
+   "id": "f87eecf809",
+   "name": "fair_value_gap_k1.follow.against_trend.asia.stop3_rr2.5",
+   "why": "near miss",
+   "start": "2026-11-22",
    "status": "WATCHING",
    "trades": 0,
    "pf": null,

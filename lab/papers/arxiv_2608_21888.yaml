@@ -1,0 +1,41 @@
+id: arxiv_2608_21888
+title: "Short-horizon mean reversion in cryptocurrency markets: a matched cross-market measurement"
+authors: "Nadav A. Kitron, Jonathan M. Wengrowicz"
+published: "2026-08-01"      # month taken from the arXiv number; the exact day of version 1 was not shown
+url: "https://arxiv.org/abs/2608.21888"
+found: "2026-11-21"
+status: cant_test
+market: "183 Binance spot pairs against USDT, compared with 187 US stocks and funds"
+timeframe: "15-minute bars; the bet lasts one bar"
+data_needed:
+  - "15-minute open and close for each pair (5-minute bars for a side check)"
+  - "about 60 days of history per pair for each fit (5,760 bars)"
+testable_here: false
+why_not: "The effect is measured on 15-minute bars, one bar ahead. The lab has 1-hour bars, and for only two coins. The paper itself finds the edge shrinks with bar size and sits below trading costs."
+missing_data: [intraday_bars_under_1h, many_crypto_pairs]
+formulas:
+  - name: "Bar return"
+    definition: "r_t = (close_t - open_t) / open_t."
+    variables: "One 15-minute bar."
+  - name: "Squashed sign"
+    definition: "s_t = tanh(lambda x r_t), lambda = 150."
+    variables: "Close to +1 or -1 for any bar that moved, so the model reads direction, not size."
+  - name: "Chance the next bar is up"
+    definition: "p_t = sigmoid(C + A x sum over k = 1..12 of k^(-alpha) x s_(t-k))."
+    variables: "C, A, alpha are fitted on the last 5,760 bars and used on the next 960. A comes out negative: recent up bars lower the chance of another."
+rules:
+  entry_long: "When p_t >= 0.5 + tau, buy at the open of bar t."
+  entry_short: "When p_t <= 0.5 - tau, sell at the open of bar t."
+  exit: "Close of the same bar. This is the lab's reading of the label; the paper measures prediction and does not spell out an order."
+  holding_period: "One 15-minute bar."
+reported_results:
+  sample_period: "January 2025 to February 2026, with a holdout from February to August 2026"
+  markets: "Binance spot pairs; US stocks and funds as the comparison"
+  headline: "Out-of-sample AUC 0.531 for crypto against 0.499 for stocks. 90% of pairs significant. Edge before costs peaks near 1.3 basis points per trade, against about 5 basis points to trade. The authors say it cannot be traded at normal spot fees."
+  costs_included: "No net results. Costs are only compared with the gross edge."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "The authors say they run a trading system that uses a variant of this model. The values of tau were not in the part of the text that could be read. The universe was picked by volume after the sample ended, which the authors list as a caveat. Simply fading the last bar is the built-in `streak` and `big_bar` fade on a shorter bar, so no trigger was made from it."

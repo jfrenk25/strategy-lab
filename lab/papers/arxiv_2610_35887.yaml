@@ -1,0 +1,45 @@
+id: arxiv_2610_35887
+title: "Evaluating the Predictive Validity of ICT's Accumulation-Manipulation-Distribution (AMD) Model on CME E-Mini NASDAQ-100 Futures"
+authors: "Veer Taylor"
+published: "2026-10-01"      # month taken from the arXiv number; the exact day of version 1 was not shown
+url: "https://arxiv.org/abs/2610.35887"
+found: "2026-11-21"
+status: cant_test
+market: "CME E-mini Nasdaq-100 futures (NQ, continuous contract)"
+timeframe: "15-minute bars; one trade per day at most, closed the same day or at stop or target"
+data_needed:
+  - "15-minute open, high, low, close for NQ futures, including the overnight session"
+  - "daily close for a 20-period average (trend regime)"
+  - "calendar of FOMC and US payrolls days"
+testable_here: false
+why_not: "The rule is timed to the quarter hour (sweep before 04:00, reclaim before 05:00, entry between 09:40 and 10:30 New York time) and skips FOMC and payrolls days. The lab has 1-hour bars and no event calendar."
+missing_data: [intraday_bars_under_1h, economic_calendar]
+formulas:
+  - name: "Asia range"
+    definition: "Asia_High = highest high and Asia_Low = lowest low of the bars from 19:00 to 00:00 New York time."
+    variables: "Bars are 15-minute bars of NQ."
+  - name: "Breach"
+    definition: "B_high = 1 if H >= Asia_High + d; B_low = 1 if L <= Asia_Low - d."
+    variables: "H, L: a London-session bar's high and low (02:00 to 05:00 New York). d = 10 index points (5, 15, 20 and 15% of the range were also tried)."
+  - name: "Trend regime"
+    definition: "Uptrend if daily close > 1.005 x EMA20; downtrend if daily close < 0.995 x EMA20; otherwise ranging."
+    variables: "EMA20: 20-period exponential average of daily closes."
+  - name: "Direction test"
+    definition: "Y = +1 if the 16:00 close is above (Asia_High + Asia_Low) / 2, else -1."
+    variables: "Used to score the signal's direction, apart from the trade test."
+rules:
+  entry_long: "London breaks below the Asia low by d before 04:00, then a bar closes back inside the Asia range before 05:00. Skip if the Asia range is above its 75th percentile (106.38 points), if both sides were breached, on FOMC or payrolls days, if reward to risk is under 1.5, or if the target traded before 09:40. Buy at the open of the first qualifying bar from 09:40, no later than 10:30."
+  entry_short: "The mirror image: a break above the Asia high by d, then a close back inside."
+  exit: "Stop 4 points beyond the London low (long) or London high (short). Target: the Asia boundary that was not swept. First one touched; if both in one bar, count a loss."
+  holding_period: "Intraday. No time stop is stated."
+reported_results:
+  sample_period: "January 2022 to July 2026 (1,140 trading days)"
+  markets: "NQ futures"
+  headline: "Signal on 501 days, but only 6 trades pass every filter: 3 wins, 3 losses, +4.1R before costs. Direction: bullish signals right 46.9% (226 days), bearish 39.9% (258 days). With the daily trend 62% to 71% right, against it 25% to 30%."
+  costs_included: "Trade test shown before and after about 6 points per round trip; the direction test has no costs."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "The author's own conclusion is that the signal mostly repeats the daily trend and that six trades prove nothing. Left unclear: what makes an entry bar 'qualifying', whether the 106.38-point cut-off was fixed in advance, and position size. Not turned into a screen trigger: sweeping a prior range and closing back inside is the built-in `sweep` event."

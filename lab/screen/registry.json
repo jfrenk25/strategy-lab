@@ -523,5 +523,155 @@
   ],
   "timed": false,
   "universe": "fifteen"
+ },
+ {
+  "name": "alexander_filter",
+  "hash": "c0af6d024bc8",
+  "added": "2026-11-21",
+  "source": "Alexander, \"Price Movements in Speculative Markets: Trends or Random Walks\", Industrial Management Review 2(2), 1961; Fama and Blume, \"Filter Rules and Stock-Market Trading\", Journal of Business 39(1), 1966",
+  "summary": "+1 when the close has risen k average true ranges above its low since the last down signal; -1 when it has fallen k average true ranges below its high since the last up signal.",
+  "variants": [
+   {
+    "k": 4
+   },
+   {
+    "k": 8
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "alpha052",
+  "hash": "5c7d37d7f6a3",
+  "added": "2026-11-21",
+  "source": "Z. Kakushadze, \"101 Formulaic Alphas\" (2016), arXiv:1601.00991, Alpha#52",
+  "summary": "+1 when the 5-bar low has fallen unusually far on high volume after a strong longer-run return; -1 when it has risen unusually far under the same weights.",
+  "variants": [
+   {
+    "q": 0.95
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "bvc_imbalance",
+  "hash": "22107538a18d",
+  "added": "2026-11-21",
+  "source": "Easley, Lopez de Prado and O'Hara, \"Flow Toxicity and Liquidity in a High-frequency World\", Review of Financial Studies 25(5), 2012, 1457-1493 (bulk volume classification)",
+  "summary": "+1 when estimated buying, as a share of volume over the last 50 bars, first becomes unusually high for this market; -1 when estimated selling does.",
+  "variants": [
+   {
+    "n": 50,
+    "q": 0.95
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "fair_value_gap",
+  "hash": "2a4259ea8e31",
+  "added": "2026-11-21",
+  "source": "NinjaTrader, \"The Ultimate Guide to Trading Fair Value Gaps\", ninjatrader.com/futures/blogs/fair-value-gaps (2026); see also Taylor, arXiv:2610.35887",
+  "summary": "+1 when a bar's low is above the high of the bar two bars back by at least k average ranges; -1 when its high is below that bar's low by as much.",
+  "variants": [
+   {
+    "k": 0.25
+   },
+   {
+    "k": 1.0
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "lmw_broadening",
+  "hash": "a020f6b49660",
+  "added": "2026-11-21",
+  "source": "Lo, Mamaysky and Wang, \"Foundations of Technical Analysis: Computational Algorithms, Statistical Inference, and Empirical Implementation\", Journal of Finance 55(4), 2000, 1705-1765 (Broadening top and bottom)",
+  "summary": "-1 when five turning points starting with a high make higher highs and lower lows; +1 when five starting with a low make lower lows and higher highs.",
+  "variants": [
+   {
+    "w": 3
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "lmw_double",
+  "hash": "76f6396b2772",
+  "added": "2026-11-21",
+  "source": "Lo, Mamaysky and Wang, \"Foundations of Technical Analysis: Computational Algorithms, Statistical Inference, and Empirical Implementation\", Journal of Finance 55(4), 2000, 1705-1765 (Double top and double bottom)",
+  "summary": "-1 when a new high matches an earlier high 23 to 35 bars back with no higher high between them; +1 for two matching lows.",
+  "variants": [
+   {
+    "w": 3
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "lmw_head_shoulders",
+  "hash": "1af91f94ccd2",
+  "added": "2026-11-21",
+  "source": "Lo, Mamaysky and Wang, \"Foundations of Technical Analysis: Computational Algorithms, Statistical Inference, and Empirical Implementation\", Journal of Finance 55(4), 2000, 1705-1765 (Head-and-shoulders and inverse head-and-shoulders)",
+  "summary": "-1 when five turning points form a head-and-shoulders top (middle high above two near-equal shoulders, near-equal lows between); +1 for the mirror image.",
+  "variants": [
+   {
+    "w": 3
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "lmw_rectangle",
+  "hash": "7073f25c1372",
+  "added": "2026-11-21",
+  "source": "Lo, Mamaysky and Wang, \"Foundations of Technical Analysis: Computational Algorithms, Statistical Inference, and Empirical Implementation\", Journal of Finance 55(4), 2000, 1705-1765 (Rectangle top and bottom)",
+  "summary": "-1 when five turning points starting with a high have near-equal highs and near-equal lows; +1 when the five start with a low.",
+  "variants": [
+   {
+    "w": 3
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "lmw_triangle",
+  "hash": "93cf208bfcf2",
+  "added": "2026-11-21",
+  "source": "Lo, Mamaysky and Wang, \"Foundations of Technical Analysis: Computational Algorithms, Statistical Inference, and Empirical Implementation\", Journal of Finance 55(4), 2000, 1705-1765 (Triangle top and bottom)",
+  "summary": "-1 when five turning points starting with a high make lower highs and higher lows; +1 when five starting with a low make higher lows and lower highs.",
+  "variants": [
+   {
+    "w": 3
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "opex_week",
+  "hash": "35c07208595d",
+  "added": "2026-11-21",
+  "source": "Stivers and Sun, \"Returns and option activity over the option-expiration week for S&P 100 stocks\", Journal of Banking & Finance 37(11), 2013, 4226-4240",
+  "summary": "+1 at a fixed UTC hour on the Monday of the week that holds the month's third Friday.",
+  "variants": [
+   {
+    "hour": 8
+   },
+   {
+    "hour": 14
+   }
+  ],
+  "timed": true,
+  "universe": "fifteen"
  }
 ]

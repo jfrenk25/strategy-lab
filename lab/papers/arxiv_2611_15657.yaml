@@ -1,0 +1,45 @@
+id: arxiv_2611_15657
+title: "Global Seasonality Factor Investing"
+authors: "Andrew Butler, Adam Butler, Maciej Zawadzki"
+published: "2026-11-01"      # month taken from the arXiv number; the exact day of version 1 was not shown
+url: "https://arxiv.org/abs/2611.15657"
+found: "2026-11-21"
+status: cant_test
+market: "50 futures: bonds, currencies, energy, stock indices, grains, metals and softs"
+timeframe: "Daily bars; positions adjusted every day, forecasts 1 to 126 days ahead"
+data_needed:
+  - "daily futures prices, rolled, back to 1950"
+  - "at least 10 years of history for a market before its first trade"
+  - "per-contract slippage and commission"
+testable_here: false
+why_not: "Each market needs 10 years of daily history before its first forecast, and the slow calendar features (day of half-year, day of year) need decades to give more than a handful of samples. The lab's markets start in April 2021, except gold."
+missing_data: [longer_history, futures_universe]
+formulas:
+  - name: "Target"
+    definition: "y_t = (1 / sqrt(m)) x sum over i = 0..m-1 of r(t+i+l) / sigma(t+i)."
+    variables: "r: daily return. sigma: 40-day exponential average volatility. m: horizon in days, one of 1, 5, 21, 42, 63, 84, 105, 126. l = 2 days of delay."
+  - name: "Calendar features"
+    definition: "Day number within the week, the month, the quarter, the half-year and the year."
+    variables: "One whole number per feature per day."
+  - name: "Forecast"
+    definition: "Nadaraya-Watson kernel regression of y on one calendar feature, Gaussian kernel, bandwidth 0.50, fitted per market and refitted once a year."
+    variables: "A horizon is paired with a feature only when m is shorter than the feature's cycle. m + 1 days are left out between fit and use."
+  - name: "Position"
+    definition: "m-day average of the forecast divided by 40-day volatility, averaged across horizons; the whole book is scaled to 20% yearly volatility."
+    variables: "The sign of the forecast is the side. There is no separate entry or exit."
+rules:
+  entry_long: "Hold a long position sized by the forecast when the calendar forecast is positive."
+  entry_short: "Hold a short position when it is negative."
+  exit: "None as such: the position is recalculated daily and traded at the next day's close."
+  holding_period: "Continuous."
+reported_results:
+  sample_period: "Out of sample January 1995 to June 2026; data from 1950"
+  markets: "50 futures"
+  headline: "Sharpe before and after costs: day of week about 0.50 and about -4.0; day of month 0.75 and -0.50; day of quarter 0.51 and 0; day of half-year 0.62 and 0.33; day of year 0.64 and 0.39. Mix without day of week: 0.85 before, 0.62 after costs."
+  costs_included: "Yes: slippage in ticks and commission per contract."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "The fast calendar effects (day of week, day of month) lose money after costs in the authors' own test. The mix shows no profit in currencies. Unclear: whether the day numbers are rescaled before the kernel is applied. The lab already screens `clock`, `turn_of_month` and `same_hour_seasonality`, so no new trigger was made."

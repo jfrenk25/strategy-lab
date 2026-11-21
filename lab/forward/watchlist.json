@@ -430,5 +430,80 @@
   },
   "verdict": null,
   "new_markets": "FAIL"
+ },
+ {
+  "id": "6cf82d42e7",
+  "name": "fair_value_gap_k1.follow.low_vol.asia.stop2_rr2.5",
+  "spec": {
+   "trigger": "plugin:fair_value_gap",
+   "params": {
+    "k": 1.0
+   },
+   "direction": "follow",
+   "regime": "low_vol",
+   "session": "asia",
+   "exit": 1,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-21",
+  "start": "2026-11-22",
+  "confirm": {
+   "trades": 293,
+   "pf": 1.285,
+   "t": 2.0,
+   "need_t": 3.39
+  },
+  "verdict": null
+ },
+ {
+  "id": "6c30996866",
+  "name": "fair_value_gap_k1.follow.low_vol.asia.stop3_rr1.5",
+  "spec": {
+   "trigger": "plugin:fair_value_gap",
+   "params": {
+    "k": 1.0
+   },
+   "direction": "follow",
+   "regime": "low_vol",
+   "session": "asia",
+   "exit": 2,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-21",
+  "start": "2026-11-22",
+  "confirm": {
+   "trades": 292,
+   "pf": 1.169,
+   "t": 1.32,
+   "need_t": 3.4
+  },
+  "verdict": null
+ },
+ {
+  "id": "f87eecf809",
+  "name": "fair_value_gap_k1.follow.against_trend.asia.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:fair_value_gap",
+   "params": {
+    "k": 1.0
+   },
+   "direction": "follow",
+   "regime": "against_trend",
+   "session": "asia",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-21",
+  "start": "2026-11-22",
+  "confirm": {
+   "trades": 224,
+   "pf": 1.16,
+   "t": 1.02,
+   "need_t": 3.4
+  },
+  "verdict": null
  }
 ]
