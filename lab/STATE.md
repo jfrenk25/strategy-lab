@@ -71,6 +71,8 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - Three near misses went on the forward watch (passed every confirm check except the survivor bar): `fair_value_gap_k1.follow.low_vol.asia.stop2_rr2.5` (confirm t 2.00 against 3.39), `fair_value_gap_k1.follow.low_vol.asia.stop3_rr1.5` (1.32), `fair_value_gap_k1.follow.against_trend.asia.stop3_rr2.5` (1.02). All are REJECTs. Their forward trades count from 2026-11-22.
 - Running totals 2026-11-21 (from `screen/state.json`): 13,360 screened, 148 survivors, 0 confirmed, 0 candidates. The next survivor needs a confirm t-stat of about 3.40.
 - Forward watch 2026-11-21: 20 ideas watched, 0 forward trades. Price data still ends 2026-11-20 05:00 UTC (ETHUSD 2026-11-19 23:00), before the watch start dates (2026-11-21 and 2026-11-22), so nothing can move until the next data refresh from Jeff's PC.
+- Second trigger batch 2026-11-21 (run on Jeff's request): 3 triggers added, 800 ideas screened, 3 passed the screen (all `dow_swing`, k = 6, follow side), 0 confirmed, 0 candidates. No new near miss, so the forward watch stays at 20 ideas with 0 forward trades and price data ending 2026-11-20.
+- Running totals after it (from `screen/state.json`): 14,160 screened, 151 survivors, 0 confirmed, 0 candidates. The next survivor needs a confirm t-stat of about 3.40.
 
 ## Paper track (where it stands)
 - First scan 2026-11-21: 44 abstracts looked at, 7 kept, 37 dropped. 4 written up, 0 tested. Main track untouched: attempts stay at 103, `lab.py` was not run (no untested idea, inbox empty).
@@ -79,6 +81,11 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
   - `arxiv_2608_21888` (15-minute reversal in crypto): needs 15-minute bars for many coins. The authors say it does not cover costs.
   - `arxiv_2611_15657` (calendar seasonality across 50 futures): needs decades of daily history.
   - `arxiv_2511_08571` (gold trend with ATR exits): needs gold from 2005, has its own exits and sizing, and three settings were not found in the text read. The appendices were not read; look there before giving up on it.
+- Second scan 2026-11-21 (Jeff present): 17 more abstracts, 2 kept, 15 dropped, 2 written up, 0 tested. Totals: 61 abstracts, 9 kept, 6 written up, 0 tested.
+  - `arxiv_2611_09286` (last-half-hour reversal across S&P 500 stocks): `cant_test`, needs single stocks and 30-minute bars.
+  - `arxiv_2504_10914` (one-EMA trend on 73 futures): the lab's data could run it, but it was left at `extracted` and not coded. It is time-series trend following in position mode, the class rejected on 2026-11-19, and its signal equations were only seen in summary. Jeff can ask for it to be tested; it would be attempt 104.
+  - `arxiv_2511_08571` (gold) was looked at again: its two missing settings are picked on each training window and never published, and its first training window starts in 2005. It stays `cant_test`.
+- With Jeff present the three arXiv `/new` pages opened, but they served an old listing (28 October 2026): 7 papers, 2 already seen, no new rule. `nber.org/papers` opened but shows no paper list without JavaScript; NBER papers have to be found by search. SSRN was not tried again.
 - Kept but not written up (limit of 4): `arxiv_2602_11708` (crypto trend on 150 perpetuals), `arxiv_2603_13638` (1-minute long/flat rule), `arxiv_2609_07946` (stock, bond, gold fund allocation). None looks testable here. They are in `seen.csv`, so write them up only if a session has spare room.
 - Sources that could not be read on 2026-11-21: the three arXiv `/new` listing pages for q-fin.TR, q-fin.PM and q-fin.ST and `nber.org/papers` (page reads of links the session was given, not found by a search, wait for an approval nobody is there to give); every SSRN abstract page (the site refused). Sixteen SSRN titles turned up in searches but their abstracts were not seen, so they are not in `seen.csv`.
 - What did work: `arxiv.org/list/q-fin/new` and `arxiv.org/list/q-fin/recent` open once a web search has returned them (search for "q-fin.TR" limited to arxiv.org). The `/new` page of 19 November had only 4 papers in the three categories, none with a rule. Single abstracts open only when a search returned that exact link; links found on a listing page do not. NBER paper pages open the same way.
@@ -108,11 +115,12 @@ Spot check done later on 2026-11-20, when pages could be opened:
   - Stivers and Sun 2013 (abstract only, on RePEc): `opex_week`.
   - Alexander 1961, Fama and Blume 1966 (from recall, not opened): `alexander_filter`, with the filter size in ATRs instead of percent.
 - Considered on 2026-11-21 and left out: signed jump variation (Patton and Sheppard 2015; on one market it is an RSI built from squared moves, and at extremes it is one big bar); piercing line and dark cloud cover (need an open beyond the previous bar's range, which 24-hour markets almost never give); the sign-weighted reversal of arXiv 2608.21888 (close to `a158_cntd`, and its decay setting is fitted per coin in the paper, so any fixed value would be ours); the session sweep of arXiv 2610.35887 (the built-in sweep); Crabel's hook days and variance-ratio regimes (recall only, and close to `gap` and `serial_corr`).
-- freqtrade-strategies: still not looked at again. The folder listing was not opened on 2026-11-21 either. Start there next time.
-- Ideas for next time, not yet used: Osler and Chang 1995 (head-and-shoulders with a zigzag and a neckline entry), overnight against intraday returns (needs session times per market), new files in freqtrade-strategies.
+- Second batch 2026-11-21, 3 triggers: Osler 1998, NY Fed Staff Report 42 (`osler_hs_neckline`; the pattern, neckline and entry were read, the appendix with the extra conditions was not, and Staff Report 4's PDF had no readable text); Dow theory, Hamilton 1922 and Brown, Goetzmann and Kumar 1998 (`dow_swing`; from recall); Nison 1994 (`three_line_break`; from recall).
+- freqtrade-strategies: the link a search returned was the old archived repository (berlinguyinca-trading-strategies), which only shows a README. The current repository's folder listing has still not been opened. Start there next time.
+- Ideas for next time, not yet used: overnight against intraday returns (needs session times per market), new files in freqtrade-strategies.
 
 ## Next
 - The inbox is empty. Fill `ideas/inbox/` from "151 Trading Strategies" (see `AGENT.md`) and from the X scout prompt in `GROK_SCOUT_PROMPT.md`.
 
 ## Last session
-2026-11-21 · paper track: 44 abstracts, 7 kept, 4 written up, 0 tested (all four can't be tested here) · main track not run (no untested idea), attempts still 103 · 10 triggers added, 1,840 ideas screened, 6 passed the screen, 0 confirmed, 0 candidates · forward watch 20 ideas, 0 forward trades, price data ends 2026-11-20
+2026-11-21 (two runs) · paper track: 61 abstracts, 9 kept, 6 written up, 0 tested (5 can't be tested here, 1 waiting because it repeats a rejected class) · main track not run, attempts still 103 · 13 triggers added (10 + 3), 2,640 ideas screened, 9 passed the screen, 0 confirmed, 0 candidates · forward watch 20 ideas, 0 forward trades, price data ends 2026-11-20

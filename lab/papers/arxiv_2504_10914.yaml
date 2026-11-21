@@ -1,0 +1,45 @@
+id: arxiv_2504_10914
+title: "Breaking the Trend: How to Avoid Cherry-Picked Signals"
+authors: "Sebastien Valeyre"
+published: "2025-04-01"      # month taken from the arXiv number; the page read was a November 2026 revision
+url: "https://arxiv.org/abs/2504.10914"
+found: "2026-11-21"
+status: extracted
+market: "73 futures: about 32 commodities and 41 stock indices, bonds and currencies"
+timeframe: "Daily bars; position adjusted every day"
+data_needed:
+  - "daily closes for each market"
+  - "about a year of history before the first position"
+  - "for the main version: weekly returns of all markets for a correlation matrix (750-day average)"
+testable_here: true
+why_not: ""
+missing_data: []
+formulas:
+  - name: "Trend model"
+    definition: "r_t = e_t + B x sum over k of (1 - L)^(t-1-k) x x_k."
+    variables: "r: daily return. e, x: independent shocks. L: how fast the hidden trend fades. B: its strength."
+  - name: "Best time scale"
+    definition: "eta_opt = L x sqrt(1 + 2 B0^2 / L), with B = B0 x sqrt(L (2 - L))."
+    variables: "eta: the smoothing constant of the trend-following average. The fit gives L about 1/180 and B0 about 0.12."
+  - name: "Signal"
+    definition: "An exponential average, smoothing constant eta = 1/120, of each market's daily return divided by its 40-day exponential volatility."
+    variables: "The exact recursion sits in a part of the page that was not read word for word."
+  - name: "Position"
+    definition: "Proportional to the signal (not just its sign), spread over markets either equally or by 'agnostic risk parity' (the signal multiplied by the inverse square root of the correlation matrix), then scaled to a constant expected volatility."
+    variables: "Correlation matrix: 750-day exponential average of weekly returns, cleaned. Smoothing 1/20."
+rules:
+  entry_long: "Hold a long position in a market in proportion to its positive signal."
+  entry_short: "Hold a short position in proportion to a negative signal."
+  exit: "None as such: the position shrinks to zero as the signal does."
+  holding_period: "Continuous, rebalanced daily."
+reported_results:
+  sample_period: "May 1990 to December 2023"
+  markets: "73 futures"
+  headline: "Sharpe before costs about 1.24 for time scales of 80 to 120 days; a three-average mix does no better (1.21). Standard error about 0.18."
+  costs_included: "No. The author says costs are very small at this trading speed."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: pending
+may_stop_working: ""
+notes: "Not coded on 2026-11-21, for two reasons. First, this is time-series trend following in position mode, the class the lab rejected on 2026-11-19 (`ts_momentum`, Sharpe 0.05); AGENT.md says not to re-test a failed class unless the new idea uses different information, and a different average of the same returns does not. Second, the signal's exact recursion and the reported Sharpe figures come from a summary of the cut-off part of the page, not from the text itself. The author's fit is in-sample and he notes the trend strength has been falling over time. If Jeff wants it tested anyway, read the signal equations first and use the equal-weight version on all fifteen markets."

@@ -10,9 +10,9 @@ timeframe: "Daily bars; trades last up to 30 trading days"
 data_needed:
   - "daily gold high, low and settlement, from 2005"
   - "a 10-year window before each 6-month test, to standardise the trend measure"
-  - "the smoothing constant, the volatility decay and the Kelly sizing formula, which the text that could be read does not give"
+  - "the smoothing constant and the volatility decay, which the paper selects on each training window and never states"
 testable_here: false
-why_not: "The first test window (2015) needs gold prices from 2005; the lab's gold starts in 2009. The rule also trades a varying position size with its own trailing stop and 30-day time limit, which is not the lab's fixed-exit trade, and three settings were not found in the readable text."
+why_not: "The first test window (2015) needs gold prices from 2005; the lab's gold starts in 2009. The rule also trades a varying position size with its own trailing stop and 30-day time limit, which is not the lab's fixed-exit trade, and two settings are chosen on each 10-year training window and never stated."
 missing_data: [longer_history, unpublished_settings]
 formulas:
   - name: "Smoothed log price"
@@ -48,4 +48,4 @@ lab_markets: []
 lab_result: {}
 verdict: cant_test
 may_stop_working: ""
-notes: "About a third of the text was read word for word (signal, entry, exits, sizing); the stress-test and as-run figures come from a summary of the rest and the appendices were not read, so the missing settings may be there. The body is dated August 2026 although version 1 is from November 2025. Not coded as a simpler stand-in: that would be the lab's rule, not the paper's."
+notes: "First pass read about a third of the text word for word. A second pass on 2026-11-21 looked for the missing settings in the PDF: the smoothing constant and the volatility decay are never given as numbers (they are picked from a grid on each training window and frozen), the paper confirms the first training window starts around January 2005, and it does not say when the position is halved rather than closed. The Kelly formula was found: f = 0.40 x x^2, where x is the positive root of 2 s^2 x^2 + 3 g n^1.5 x - 2 (m - n k) = 0 and f = 0 if m <= n k (m: mean return, s: volatility, n: trades, k: linear cost, g: impact). The body is dated August 2026 although version 1 is from November 2025. Not coded as a simpler stand-in: that would be the lab's rule, not the paper's."

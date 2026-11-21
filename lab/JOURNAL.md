@@ -1058,3 +1058,27 @@ Attempt counter starts at 96.
 - `fair_value_gap_k1.follow.low_vol.asia.stop2_rr2.5`
 - `fair_value_gap_k1.follow.against_trend.asia.stop3_rr2.5`
 - Forward trades count from 2026-11-22 00:00 UTC. Verdict at 200 trades. Rules: "Forward watch" in `LAB_RULES.md`.
+
+### 2026-11-21 · screen survivor 149 · `dow_swing_k6.follow.low_vol.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 0663b274f2). No stated reason.
+- Screen years: 662 trades, profit factor 1.18, t-stat 1.98
+- Confirm years: 365 trades, profit factor 1.14, +38.7R, t-stat 1.20 (needed 3.40); markets 11 of 15; double-cost profit factor 1.01; beats 91% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 3.40 (bar for survivor 149)
+
+### 2026-11-21 · screen survivor 150 · `dow_swing_k6.follow.with_trend.any.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 92ed3a3b14). No stated reason.
+- Screen years: 1404 trades, profit factor 1.12, t-stat 1.98
+- Confirm years: 752 trades, profit factor 0.99, -4.4R, t-stat -0.10 (needed 3.40); markets 7 of 15; double-cost profit factor 0.89; beats 81% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.40 (bar for survivor 150)
+
+### 2026-11-21 · screen survivor 151 · `dow_swing_k6.follow.low_vol.london.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 002c1b450d). No stated reason.
+- Screen years: 203 trades, profit factor 1.33, t-stat 1.90
+- Confirm years: 104 trades, profit factor 1.17, +12.8R, t-stat 0.73 (needed 3.40); markets 8 of 15; double-cost profit factor 1.00; beats 82% of random entries
+- Failed: beats 95% of random entries; t-stat >= 3.40 (bar for survivor 151)
+
+### 2026-11-21 · screen batch · 800 ideas
+- New triggers registered: dow_swing, osler_hs_neckline, three_line_break.
+- Passed the screen: 3. Confirmed on unseen years: 0. Candidates: 0.
+- Totals: 14160 of 14160 catalogue ideas screened, 151 survivors, 0 confirmed, 0 candidates.
+- Every screened idea is in `lab/screen/log.csv`.

@@ -1,0 +1,45 @@
+id: arxiv_2611_09286
+title: "The End-of-Day Reversal After 2019: A Pre-Registered Test on S&P 500 Stocks Excluding Heavily Traded Names"
+authors: "Alex Vidovich, Zivana Zerjal"
+published: "2026-11-06"      # the working paper's own date; the arXiv stamp was not shown
+url: "https://arxiv.org/abs/2611.09286"
+found: "2026-11-21"
+status: cant_test
+market: "S&P 500 member stocks, about 420 a day after dropping roughly 80 heavily traded names"
+timeframe: "30-minute bars; one bet a day from 15:30 to 16:00 New York time"
+data_needed:
+  - "for every S&P 500 stock: previous close and the last trade before 15:00, 15:30 and 16:00 New York time"
+  - "index membership on each day"
+  - "each stock's dollar volume over the previous month (the weights)"
+testable_here: false
+why_not: "The rule ranks hundreds of single stocks against each other every day and trades the last half hour. The lab has no single stocks and no bars shorter than 1 hour."
+missing_data: [single_stock_prices, intraday_bars_under_1h, index_membership]
+formulas:
+  - name: "Rest-of-day return to 15:00"
+    definition: "ROD3 = P(15:00) / previous close - 1."
+    variables: "P(15:00): last trade before 15:00 New York time."
+  - name: "Last half hour"
+    definition: "LH = P(16:00) / P(15:30) - 1."
+    variables: "P(16:00): last trade before the close, not the auction price."
+  - name: "Rank"
+    definition: "q = each stock's rank on ROD3 that day, scaled to run from -0.5 to +0.5."
+    variables: ""
+  - name: "Daily reversal"
+    definition: "Regress LH on q across stocks, weighted by prior-month dollar volume: LH = a + b x q. Reversal R = -b."
+    variables: "R is positive when the day's losers beat the day's winners in the last half hour."
+rules:
+  entry_long: "At 15:30, buy the stocks with the lowest return since yesterday's close, in proportion to how low they rank."
+  entry_short: "At 15:30, sell short the stocks with the highest return, in proportion to their rank."
+  exit: "Close everything at the last trade before 16:00."
+  holding_period: "30 minutes."
+reported_results:
+  sample_period: "January 2016 to October 2026; 2016 to 2019 had to reproduce the effect before later years were opened"
+  markets: "S&P 500 stocks"
+  headline: "About 3.1 basis points a day in 2016 to 2019 (t 7.5) and 3.05 in 2023 to 2026 (t 3.0) on the main sample; about zero in 2020 to 2022. On the full index with dollar-volume weights only 0.74 in 2023 to 2026 (t 0.55)."
+  costs_included: "No. The authors state that they propose no strategy and make no claim after costs."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "The list of excluded stocks is unpublished; a public stand-in drops the 80 most traded names each day. None of the four explanations the authors pre-registered passed their own bar. About 60% of the text was read word for word. No trigger was made: on one market the rule becomes 'fade the day's move late in the session', which is the fade side of the registered `intraday_momentum` trigger."

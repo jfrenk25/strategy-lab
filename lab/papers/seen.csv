@@ -43,3 +43,20 @@ date,id,source,title,url,decision,reason
 2026-11-21,arxiv_2608_09576,arxiv,Anomaly detection in European cryptocurrency exchange-traded products,https://arxiv.org/abs/2608.09576,drop,"anomaly detection, no trading rule"
 2026-11-21,arxiv_2511_13239,arxiv,Talyxion: From Speculation to Optimization in Risk Managed Crypto Portfolio Allocation,https://arxiv.org/abs/2511.13239,drop,portfolio pipeline; abstract gives no thresholds; 30-day live run
 2026-11-21,arxiv_2509_04541,arxiv,Finance-Grounded Optimization For Algorithmic Trading,https://arxiv.org/abs/2509.04541,drop,loss functions for deep-learning forecasts
+2026-11-21,arxiv_2610_36899,arxiv,Depositing More Should Not Earn Less: Supplier Income Monotonicity and Rate Curve Design in Pooled Lending Markets,https://arxiv.org/abs/2610.36899,drop,"DeFi lending design, no trading rule"
+2026-11-21,arxiv_2610_37324,arxiv,Optimal Order Placement under a State-Dependent Hawkes Process Limit Order Book model,https://arxiv.org/abs/2610.37324,drop,market-making model on order-book data
+2026-11-21,arxiv_2610_36083,arxiv,FinLLM-KG: Knowledge Graph-Enhanced LLMs for Financial Sentiment Analysis in Algorithmic Trading,https://arxiv.org/abs/2610.36083,drop,"news sentiment model, no rule"
+2026-11-21,arxiv_2610_36317,arxiv,Event definition and the branching ratio: Hawkes estimates of price-change clustering in the consolidated quote feed,https://arxiv.org/abs/2610.36317,drop,quote-feed econometrics
+2026-11-21,arxiv_2610_37487,arxiv,Contemporaneous Transmission Networks and Systemic Risk in European Banking,https://arxiv.org/abs/2610.37487,drop,systemic-risk network model
+2026-11-21,arxiv_2611_09286,arxiv,The End-of-Day Reversal After 2019: A Pre-Registered Test on S&P 500 Stocks Excluding Heavily Traded Names,https://arxiv.org/abs/2611.09286,keep,last-half-hour loser-minus-winner portfolio with stated times and weights
+2026-11-21,arxiv_2610_21846,arxiv,Where Backtests and Live Trading Part Ways: Six Defects from One Intraday System,https://arxiv.org/abs/2610.21846,drop,backtest-versus-live defects; trading rules deliberately not described
+2026-11-21,arxiv_2504_10914,arxiv,Breaking the Trend: How to Avoid Cherry-Picked Signals,https://arxiv.org/abs/2504.10914,keep,one-EMA trend position with a stated time scale on 73 futures
+2026-11-21,arxiv_2608_26174,arxiv,Forecasting Economically Significant Bitcoin Moves: A Multi-Scale TCN with Profit-Optimized Thresholds,https://arxiv.org/abs/2608.26174,drop,neural-net forecast with on-chain and sentiment data
+2026-11-21,arxiv_2606_00071,arxiv,Bitcoin Price Prediction: Peer-Reviewed Evidence and Social Media Discourse,https://arxiv.org/abs/2606.00071,drop,literature survey
+2026-11-21,arxiv_2611_12269,arxiv,Agent4Crypto: A Dual-Reflective and Market-Feedback-Aligned LLM-Based Multi-Agent System for Cryptocurrency Trading,https://arxiv.org/abs/2611.12269,drop,"LLM agents, no fixed rule"
+2026-11-21,arxiv_2605_00875,arxiv,Visual Chart Representations for Cryptocurrency Regime Prediction,https://arxiv.org/abs/2605.00875,drop,"image classification of regimes, no rule"
+2026-11-21,arxiv_2602_00776,arxiv,Explainable Patterns in Cryptocurrency Microstructure,https://arxiv.org/abs/2602.00776,drop,1-second order-book ML
+2026-11-21,arxiv_2604_01431,arxiv,Do Prediction Markets Forecast Cryptocurrency Volatility? Evidence from Kalshi Macro Contracts,https://arxiv.org/abs/2604.01431,drop,"volatility forecasting, no rule"
+2026-11-21,arxiv_2507_03350,arxiv,Backtesting Sentiment Signals for Trading,https://arxiv.org/abs/2507.03350,drop,"rule is driven by news sentiment scores on single stocks, not prices"
+2026-11-21,arxiv_2510_04787,arxiv,Trade in Minutes! Rationality-Driven Agentic System for Quantitative Financial Trading,https://arxiv.org/abs/2510.04787,drop,LLM-built bots; abstract gives no rule
+2026-11-21,arxiv_2607_12233,arxiv,Fin-Analyst at FinMMEval 2026 Task 3: A Live Hybrid Trading Agent with LLM Specialists and Rule-Based Signals,https://arxiv.org/abs/2607.12233,drop,LLM agent; the bitcoin vote needs a sentiment index

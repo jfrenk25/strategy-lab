@@ -673,5 +673,53 @@
   ],
   "timed": true,
   "universe": "fifteen"
+ },
+ {
+  "name": "dow_swing",
+  "hash": "c53e61b2c973",
+  "added": "2026-11-21",
+  "source": "W. P. Hamilton, \"The Stock Market Barometer\" (1922); R. Rhea, \"The Dow Theory\" (1932); Brown, Goetzmann and Kumar, \"The Dow Theory: William Peter Hamilton's Track Record Reconsidered\", Journal of Finance 53(4), 1998",
+  "summary": "+1 when the close moves above the last swing high after a swing low that was higher than the one before; -1 when it moves below the last swing low after a lower swing high.",
+  "variants": [
+   {
+    "k": 3
+   },
+   {
+    "k": 6
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "osler_hs_neckline",
+  "hash": "6c5bedab0fad",
+  "added": "2026-11-21",
+  "source": "C. L. Osler, \"Identifying Noise Traders: The Head-and-Shoulders Pattern in U.S. Equities\", Federal Reserve Bank of New York Staff Report 42, 1998",
+  "summary": "-1 on the first close below the line through the two troughs of a three-peak pattern whose middle peak is highest; +1 for the mirror image.",
+  "variants": [
+   {
+    "k": 2
+   },
+   {
+    "k": 4
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "three_line_break",
+  "hash": "1966d3108217",
+  "added": "2026-11-21",
+  "source": "S. Nison, \"Beyond Candlesticks: New Japanese Charting Techniques Revealed\", Wiley, 1994 (three-line break charts)",
+  "summary": "+1 when, during a run of falling lines, the close rises above the highest point of the last three lines; -1 when, during a run of rising lines, it falls below their lowest point.",
+  "variants": [
+   {
+    "lines": 3
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
  }
 ]
