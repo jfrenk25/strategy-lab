@@ -167,3 +167,48 @@ The new-market test showed that every watched idea lost money on markets it was 
 - The survivor count carries on from 109, so the bar keeps rising.
 - The nine added markets were used once, for the new-market test of 13 older ideas. No new trigger has touched them.
 - Forward watch: every watched idea, old or new, is tracked on all fifteen markets from its start date.
+
+## Paper track (added November 20, 2026, before any paper was tested under it)
+A paper is a published study that states trading rules. The paper track finds them, writes each one down, and tests the ones the lab's data can test. Files: `lab/papers/`. Tool: `lab/tools/paper.py`.
+
+### Finding and filtering
+- Sources: new listings on arXiv (quantitative finance), SSRN and NBER.
+- Every abstract looked at is logged in `papers/seen.csv` as kept or dropped, with a reason. A paper is looked at once.
+- Kept: the abstract points to explicit buy and sell rules. Dropped: everything else.
+
+### One file per paper
+- Each kept paper gets `papers/ID.yaml`: formulas, variables, entry and exit rules, market, timeframe, the data it needs, and the results the authors report.
+- The authors' results are copied as they state them and are never mixed with the lab's numbers.
+- The file is written in the lab's own words. Formulas are facts and may be stated. Long passages are not copied.
+
+### What can be tested
+- The lab has 1-hour bars for fifteen markets since April 2021 (gold since 2009) and nothing else.
+- A paper whose rule needs other data is marked `cant_test`, with the missing data named. It is not approximated with data the lab happens to have.
+- A testable paper is tested on its own market if the lab holds it. If the paper claims the rule is general, it runs on all fifteen.
+
+### How a paper is tested
+- It becomes one idea in the main track and counts as one attempt against the rising bar. The seven checks apply unchanged.
+- The idea is coded from the paper's rule as written. Its settings are the paper's settings. Nothing is tuned to the lab's data.
+- Formula check: the idea file carries a second, slow, literal version of each formula. `tools/check_formula.py` compares the two on random price paths before the test. They must agree on every bar. This catches slips in the code. It cannot catch a misreading of the paper.
+
+### Nearby settings (applies to every signal idea in the main track from attempt 104 on)
+- An idea that passes the seven checks and the permutation test is re-run with each number in its settings moved 20% down and 20% up, one at a time.
+- At least two thirds of those re-runs must keep a walk-forward profit factor above 1.0. If not, the idea is rejected before the quarantine run.
+- This check can only reject an idea. It never rescues one.
+
+### Before and after publication
+- The walk-forward test years are split at the paper's publication date. Years that end before it are "before". Years that start on or after it are "after". A year that straddles the date is left out of the split.
+- Both halves are reported when they exist. Most papers were published before the lab's data begins, so often only "after" exists.
+
+### Verdict for a paper
+- `holds_up`: the idea reached CANDIDATE.
+- `decayed`: not a candidate; at least two "before" years with a positive total and at least 60% of them profitable; and at least one "after" year with a total at or below zero.
+- `failed`: tested and rejected, and not `decayed`. It means the rule failed on the lab's markets and costs, not that the paper is wrong about its own.
+- `cant_test`: the lab lacks the data.
+
+### Morning brief
+- Each run writes `lab/briefs/DATE.md`: papers scanned, kept and dropped; each verdict; which missing data blocks the most papers; and the screen and forward-watch totals.
+- For a paper that holds up, the brief says in which market conditions the edge might stop working. That part is a theory and is labelled as one.
+
+### Main-track markets (amended November 20, 2026)
+- An idea may name any of the fifteen markets, or ask for all fifteen. An idea that names none still runs on the original six, so earlier results are unchanged.
