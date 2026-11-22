@@ -294,3 +294,36 @@ Every combination of four parts. Times are New York time.
 - CONFIRMED: the version earns a forward watch on new 1-minute data and a later study with stops and position sizing against prop-firm limits. It is not a reason to trade or to buy a challenge.
 - Everything else is rejected. No version is re-run with other numbers on this data, and no version is added to the family after the data has been seen.
 - All 36 results are logged, including the ones that fail.
+
+## Intraday study 3: the video's own settings (written November 21, 2026, before any 1-minute data reached the lab)
+Study 1 said that if the video's exact settings turned up, testing them would be a new study. Jeff sent a screenshot of the settings panel after studies 1 and 2 were registered. Code: `lab/intraday/orb3.py`. Data: the same first-hour 1-minute files as study 1.
+
+### The settings in the screenshot
+Range 9:30 to 9:45. Entry time 9:59. One trade a day. ATR period 14. Stop 1 ATR. Target 2 ATR. Time exit 10 minutes. Relative volume: lookback 14, minimum 0.5, maximum 1.5. ATR regime: average length 14, minimum 1, maximum 3.
+
+### The rule
+- Range, decision bar, entry (open of the 10:00 bar) and volume filter: the same as study 1, test A.
+- ATR: the average true range of the 14 one-minute bars ending with the 9:59 bar.
+- Stop: 1 ATR against the trade from the entry price. Target: 2 ATR in favour.
+- The bars from 10:00 to 10:09 are checked in order. Neither level reached: exit at the open of the 10:10 bar.
+- A bar that opens beyond the stop exits at that open. A target is filled at the target price, never better.
+- Test A adds the ATR regime filter: the ATR at 9:59 divided by the average of the last 14 ATR values must be between 1 and 3.
+- Test B leaves the ATR regime filter out.
+- Cost, skipped days, markets: the same as study 1. A day is also skipped if there are too few bars before 9:59 to work out the ATR figures.
+
+### What is assumed, because the screenshot does not say
+- That ATR is measured on 1-minute bars as a simple average of true range.
+- That "ATR regime" means the ratio described above. Test B exists because this reading may be wrong.
+- The volume is Dukascopy's index volume, not futures volume. The prices are bid prices.
+
+### Stops inside a 1-minute bar
+- A 1-minute bar can touch both the stop and the target. The bar does not say which came first. Tick data would.
+- The verdict counts every such trade as a loss at the stop.
+- The same trades counted as wins are reported next to it, with how many trades this affects. If the two differ enough to change the verdict, the answer needs tick data and the study says so.
+
+### Pass, on the years before 2024 (each test is judged on its own)
+The same five checks as study 1, including the t-stat of 2.58 for two tests. The years from 2024 are reported for comparison with the video's 93% win rate and 2.45 profit factor.
+
+### What a result means
+- PASS: a forward watch on new data and a tick-data check of the trades. It is not a reason to trade or to buy a challenge.
+- FAIL: rejected. Not re-run with other settings on this data.
