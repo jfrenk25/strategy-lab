@@ -327,3 +327,37 @@ The same five checks as study 1, including the t-stat of 2.58 for two tests. The
 ### What a result means
 - PASS: a forward watch on new data and a tick-data check of the trades. It is not a reason to trade or to buy a challenge.
 - FAIL: rejected. Not re-run with other settings on this data.
+
+## Intraday study 4: hold to the close, as one group (written November 22, 2026, before these versions' results from 2024 on were computed)
+One test, drawn from what study 2 showed. Code: `lab/intraday/orb4.py`. Data: the full-session files study 2 used.
+
+### Where the idea comes from, and what has been seen
+- In study 2's screen years, five of the six "with the break, exit at 15:55" versions had a positive average. None reached the screen bar, so all six were rejected one by one.
+- This study asks a different question: do the six, taken together as one rule, make money in the years from 2024 on?
+- The idea was picked after seeing the screen years. That is allowed here only because the test uses years in which none of the six has been computed.
+- What has been seen from 2024 on: study 1 and study 3 (10-minute exits, with and without stops) and one study 2 version (5-minute range, 10-minute exit, against the break). None holds to the close.
+
+### The rule
+- The six versions: range of 5, 15 or 30 minutes; breakout or fixed check; with the break; exit at the open of the 15:55 bar. Entries, skipped days and cost exactly as in study 2.
+- Markets: Nasdaq 100, S&P 500 and Dow.
+- One number per day: for each version, the average across the markets it traded; then the average across the versions that traded. All statistics are on those daily numbers.
+- Period: January 1, 2024 to November 20, 2026.
+
+### Pass (all must hold)
+1. At least 150 traded days.
+2. Average above zero, with a t-stat of 2.58 or more.
+3. Profit factor of 1.15 or more.
+4. Average above zero on at least two of the three markets taken alone.
+5. Average above zero at double cost.
+6. A positive total in at least two of 2024, 2025 and 2026.
+7. At least four of the six versions have an average above zero on their own.
+8. The short trades taken alone have an average above zero, counting every short trade equally. Without this, a pass could be nothing more than the market rising.
+   - The first draft of this check averaged short trades per day, like the group. A dry run on made-up prices showed that method is biased: on days when the versions disagree, the lone short is usually the one the price has already turned against, and it counted as a whole day. On random prices it made shorts look like losers. The check was changed to equal weight per trade before any real result was computed.
+
+### Also reported, without changing the verdict
+Each version alone, long trades alone (every trade counted equally), and win rate.
+
+### What a result means
+- PASS: a forward watch on new 1-minute data and a later study with stops and position sizing against prop-firm limits. It is not a reason to trade or to buy a challenge.
+- FAIL: the opening range idea is closed on this data. No further versions, groups or filters are tried on these files.
+- This study runs once.
