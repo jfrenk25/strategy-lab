@@ -212,3 +212,41 @@ A paper is a published study that states trading rules. The paper track finds th
 
 ### Main-track markets (amended November 20, 2026)
 - An idea may name any of the fifteen markets, or ask for all fifteen. An idea that names none still runs on the original six, so earlier results are unchanged.
+
+## Intraday study 1: opening range breakout (written November 21, 2026, before any 1-minute data was downloaded)
+A one-off study on 1-minute bars, which the rest of the lab does not have. Code: `lab/intraday/orb.py`. Data: `lab/data_1m/`.
+
+### Where the rule comes from
+- A YouTube video, "I Built a Trading Bot to Pass Prop Firm Challenges" (Jan - Algo Trader, October 29, 2026). It reports 296 trades since 2024 with a 93% win rate and a profit factor of 2.45 on Nasdaq futures, after its filters were adjusted on that same period.
+- The video states the range (9:30 to 9:45 New York time), the direction rule, a 10-minute time exit and a relative-volume filter of 0.5 to 1.5. It does not state the entry time clearly, the stop and target sizes, or its volatility band.
+- So this study tests the core of the rule, with the unstated parts fixed below before any data is seen. It is the lab's version, not a copy of the video's bot.
+
+### The rule
+- Market: Nasdaq 100 index, 1-minute bars, New York time with daylight saving handled.
+- Range: the highest high and lowest low of the bars from 9:30 to 9:44.
+- Decision: at the close of the 9:59 bar. Close above the range high: buy. Close below the range low: sell. Inside the range: no trade.
+- Entry: the open of the 10:00 bar. Exit: the open of the 10:10 bar. No stop and no target, so the test measures the signal itself.
+- Test A uses the video's volume filter: the 9:59 bar's volume divided by the average volume of the 14 bars before it must be between 0.5 and 1.5.
+- Test B uses no filter.
+- A day is skipped if fewer than 12 of the 15 range bars exist, or if the 9:59, 10:00 or 10:10 bar is missing.
+- Cost: 0.005% of price per round trip, about 1 Nasdaq point, covering commission and slippage on a futures contract. The double-cost check uses 0.01%.
+
+### The data split
+- Unseen years: April 21, 2021 to December 31, 2023. The video's backtest starts in 2024, so its settings were never fitted to these years. The verdict comes from here.
+- The video's years: January 1, 2024 to the download date. Reported for comparison only.
+
+### Pass, on the unseen years (each test is judged on its own)
+1. At least 150 trades.
+2. Average net return per trade above zero, with a t-stat of 2.58 or more (the normal quantile at 1 - 0.01 / 2, for two tests).
+3. Profit factor of 1.15 or more.
+4. Average return still above zero at double cost.
+5. A positive total in at least two of the three calendar years 2021, 2022 and 2023.
+
+### Also reported, without changing the verdict
+- The same two tests on the S&P 500 and the Dow, to show whether the effect is broad.
+- Win rate, average win and average loss, so the result can be compared with the video's.
+
+### What a result means
+- PASS: the rule earns a forward watch on new 1-minute data and a second study with stops and targets. It is not a reason to trade or to buy a challenge.
+- FAIL: the rule is rejected. It is not re-run with a different range, entry time, holding time or filter on this data.
+- If the video's exact settings are obtained later, testing them is a new study with its own count.
