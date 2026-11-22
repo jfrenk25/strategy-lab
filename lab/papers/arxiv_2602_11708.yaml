@@ -1,0 +1,46 @@
+id: arxiv_2602_11708
+title: "Systematic Trend-Following with Adaptive Portfolio Construction: Enhancing Risk-Adjusted Alpha in Cryptocurrency Markets"
+authors: "Duc Bui, Thanh Nguyen"
+published: "2026-02-12"
+url: "https://arxiv.org/abs/2602.11708"
+found: "2026-11-21"
+status: cant_test
+market: "More than 150 perpetual swap contracts on Binance Futures"
+timeframe: "6-hour bars; coins and settings re-chosen monthly; exits by trailing stop"
+data_needed:
+  - "6-hour price bars for 150 or more Binance perpetual contracts"
+  - "daily market capitalisation of every coin, for the monthly ranking"
+  - "funding rates every 8 hours"
+  - "5-minute volume and order-book history for the slippage model"
+testable_here: false
+why_not: "The rule picks its coins each month from a ranking of 150 or more perpetual contracts by market capitalisation and by last month's Sharpe ratio, and charges funding. The lab holds two coins (spot BTC and ETH), no market capitalisation and no funding rates. The lookback, the entry thresholds and the search grids are also not published."
+missing_data: [many_crypto_pairs, market_cap, funding_rates, unpublished_settings]
+formulas:
+  - name: "Momentum"
+    definition: "MOM_t = (P_t - P_(t-L)) / P_(t-L)."
+    variables: "P: the 6-hour close. L: lookback in bars, re-chosen each month by a grid search on the month before; its values are not given."
+  - name: "Trailing stop (long side)"
+    definition: "S_t = max(S_(t-1), P_t - a x ATR_t), started at P - a x ATR on entry."
+    variables: "ATR: average true range over k bars (k not given). a: 2.5 by default."
+  - name: "Monthly selection"
+    definition: "Long candidates: the 15 largest coins by market capitalisation. Short candidates: the smallest K_S (not given). A candidate is traded this month only if its best setting earned a Sharpe ratio of at least 1.3 (long side) or 1.7 (short side) last month."
+    variables: "Sharpe ratio: of the rule on that coin over the preceding month, after choosing the threshold, a and L on that same month."
+  - name: "Sizing"
+    definition: "Each selected long gets 0.70 / n_L of the account and each selected short 0.30 / n_S."
+    variables: "n_L, n_S: number of coins selected on each side this month."
+rules:
+  entry_long: "With no position in a selected long coin, buy when MOM is above the entry threshold."
+  entry_short: "In a selected short coin, sell when MOM is below minus the short threshold (its value is not given)."
+  exit: "Longs: close when price falls below the trailing stop. No exit rule is written for shorts."
+  holding_period: "Not stated; about 142 trades a month across the book"
+reported_results:
+  sample_period: "Calibration 2021; out of sample January 2022 to December 2024 (another section says to October 2025)"
+  markets: "150 or more Binance perpetual contracts"
+  headline: "After a 0.04% fee: yearly return 40.5%, volatility 16.8%, Sharpe 2.41, largest drawdown 12.7%. With no costs the Sharpe is 2.87; at 0.12% it is 1.62. With fixed settings instead of monthly re-fitting the Sharpe is 1.34. On 1-hour bars 1.54, on daily bars 1.63. In months when bitcoin fell the strategy lost 4.2% a year. Buying and holding bitcoin: Sharpe 0.17."
+  costs_included: "Yes: 0.04% taker fee, a slippage model and funding."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "Kept on 2026-11-21, written up on 2026-11-22 when a session had room. Read as text up to the significance table; the conclusion came from a machine summary. Things to be wary of: the stop multiple, the 70/30 split and the 6-hour bar all appear to have been chosen by comparing results on the same out-of-sample period; the monthly selection keeps only coins whose rule just had a very good month; (40.5% - 4.5%) / 16.8% is about 2.1, not the reported 2.41; the sample end date differs between sections. The single-coin signal (a return over L bars above a threshold) is the lab's built-in zmove and breakout family, and trend rules have failed here twice, so no trigger was made."

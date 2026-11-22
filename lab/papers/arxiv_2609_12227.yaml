@@ -1,0 +1,45 @@
+id: arxiv_2609_12227
+title: "Seasonal Trading in Commodity Futures: Evidence from Regression and Singular Spectrum Signals"
+authors: "Ralph Kosch, Robin Forsberg"
+published: "2026-09-10"
+url: "https://arxiv.org/abs/2609.12227"
+found: "2026-11-22"
+status: cant_test
+market: "15 commodity futures: cocoa, coffee, WTI crude, copper, cotton, gold, lean hogs, heating oil, live cattle, natural gas, sugar, silver, corn, soybeans, wheat"
+timeframe: "Monthly bars; positions held for one calendar month"
+data_needed:
+  - "monthly returns of 15 commodity futures from January 2001, built from single contracts (nearest expiry at least two months out)"
+  - "120 months of history before each forecast"
+  - "contract volumes for a liquidity screen"
+testable_here: false
+why_not: "Every forecast is fitted on the previous 120 months of one commodity, and the rule ranks 15 commodity futures against each other. The lab holds two of the fifteen (gold and oil) and its oil bars start in April 2021."
+missing_data: [longer_history, futures_universe]
+formulas:
+  - name: "Month dummy regression (DVR)"
+    definition: "r(i,t) = alpha(i,m) + beta(i,m) x D(m,t) + e(i,t), fitted on the last 120 months for commodity i and the calendar month m of the month about to be traded."
+    variables: "r: monthly log return. D(m,t): 1 if month t is calendar month m, else 0. beta: how much month m differs from the average of the other eleven. Standard errors are Newey-West with 3 lags."
+  - name: "DVR filter"
+    definition: "Long candidate: beta > 0 with p-value at or below 0.10. Short candidate: beta < 0 with p-value at or below 0.10. Candidates are ranked by beta."
+    variables: "p-value: from the Newey-West t-test on beta."
+  - name: "Singular spectrum forecast (SSA)"
+    definition: "Trajectory matrix from the last N = 120 monthly returns with window L = 36 (K = 85 columns); keep the first 12 components; the signal is the recursive one-step forecast."
+    variables: "A robust variant (RLSSA) replaces the decomposition with an L1 version. Both are also run on returns divided by an exponentially weighted volatility (lambda 0.97)."
+  - name: "Net return"
+    definition: "long: (1 + R) x (1 - c)^2 - 1; short: (1 - R) x (1 - c)^2 - 1, with c = 0.00086."
+    variables: "R: the month's futures return from the first trading day's open to the last trading day's close. c: one-way cost."
+rules:
+  entry_long: "At the start of each month buy the one commodity with the highest signal (for DVR: the highest significant positive beta; cash if none qualifies)."
+  entry_short: "At the start of each month sell the one commodity with the lowest signal (for DVR: the most negative significant beta; cash if none qualifies)."
+  exit: "Close at the end of the month. No stop."
+  holding_period: "One calendar month"
+reported_results:
+  sample_period: "Out of sample January 2016 to December 2024 (108 months); data from January 2001"
+  markets: "15 commodity futures"
+  headline: "No rule beats an equal-weight long benchmark reliably. Across 500 bootstrap paths the benchmark averages a 16.81% total return, Sharpe 0.191 and a largest drawdown of 41%. Classical SSA has the best average model outcome (about 13%) but a median near -11%. None of the 18 paired Sharpe tests rejects after adjustment for multiple tests. On the real history, net of costs: DVR long total return 0.297 and Sharpe 0.245; DVR short -0.199 and Sharpe 0.018; SSA long -0.324; benchmark 0.143 and Sharpe 0.183 (these last figures came from a summary of the results section, not the text itself)."
+  costs_included: "Yes: 0.086% each way, at entry and at exit."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "The authors' own conclusion is that the seasonal rules do not beat holding the basket. The first half of the paper (abstract, data, DVR rule) was read as text; the SSA details, the selection step and the results tables reached the lab only as a machine summary and should be checked before any use. Unclear in what was read: how ties in the ranking are broken, how the Sharpe ratio is annualised, and why the benchmark's figures differ between the history table and the bootstrap. No trigger was made: a calendar-month effect needs decades of history, and the lab screens `turn_of_month` and `clock` already."

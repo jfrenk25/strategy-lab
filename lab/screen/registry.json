@@ -781,5 +781,73 @@
   ],
   "timed": false,
   "universe": "fifteen"
+ },
+ {
+  "name": "gtja160_down_vol",
+  "hash": "ac2d011af908",
+  "added": "2026-11-22",
+  "source": "Guotai Junan Securities, 191 short-horizon price-volume alpha factors (2017), Alpha#160, as documented at https://shrektan.github.io/techfactor",
+  "summary": "-1 when volatility on non-rising bars (Alpha#160) first reaches a high extreme of its own past, +1 when it first reaches a low extreme.",
+  "variants": [
+   {
+    "n": 20
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "lagged_session_sign",
+  "hash": "a034e96415d0",
+  "added": "2026-11-22",
+  "source": "Wu and Pinsky, \"On the Performance of Lagged Momentum and Reversal Strategies Across Daytime and Overnight Sessions in Bitcoin and Ethereum Cryptocurrencies\", J. Risk Financial Manag. 19(9), 692, 2026, https://www.mdpi.com/1911-8074/19/9/692",
+  "summary": "At the bar that closes at hour h UTC: +1 if the 12 hours starting at h rose a day earlier, -1 if they fell.",
+  "variants": [
+   {
+    "h": 8
+   },
+   {
+    "h": 20
+   },
+   {
+    "h": 5
+   }
+  ],
+  "timed": true,
+  "universe": "fifteen"
+ },
+ {
+  "name": "obv_divergence",
+  "hash": "54319f081fc2",
+  "added": "2026-11-22",
+  "source": "J. Granville, \"Granville's New Key to Stock Market Profits\", 1963 (on-balance volume non-confirmation)",
+  "summary": "-1 when the close makes a new n-bar high but on-balance volume does not, +1 when the close makes a new n-bar low but on-balance volume does not.",
+  "variants": [
+   {
+    "n": 24
+   },
+   {
+    "n": 72
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "tweezer",
+  "hash": "dbfcf568fc55",
+  "added": "2026-11-22",
+  "source": "S. Nison, \"Japanese Candlestick Charting Techniques\", 1991; Marshall, Young and Rose, Journal of Banking and Finance 30(8), 2006",
+  "summary": "-1 when an up bar and then a down bar share the same high at an n-bar high, +1 when a down bar and then an up bar share the same low at an n-bar low.",
+  "variants": [
+   {
+    "n": 12
+   },
+   {
+    "n": 48
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
  }
 ]

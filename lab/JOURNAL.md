@@ -1187,3 +1187,9 @@ Attempt counter starts at 96.
 - Passed the screen: 0. Confirmed on unseen years: 0. Candidates: 0.
 - Totals: 14800 of 14800 catalogue ideas screened, 151 survivors, 0 confirmed, 0 candidates.
 - Every screened idea is in `lab/screen/log.csv`.
+
+### 2026-11-22 · screen batch · 920 ideas
+- New triggers registered: gtja160_down_vol, lagged_session_sign, obv_divergence, tweezer.
+- Passed the screen: 0. Confirmed on unseen years: 0. Candidates: 0.
+- Totals: 15720 of 15720 catalogue ideas screened, 151 survivors, 0 confirmed, 0 candidates.
+- Every screened idea is in `lab/screen/log.csv`.

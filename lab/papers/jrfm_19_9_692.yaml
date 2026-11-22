@@ -1,0 +1,44 @@
+id: jrfm_19_9_692
+title: "On the Performance of Lagged Momentum and Reversal Strategies Across Daytime and Overnight Sessions in Bitcoin and Ethereum Cryptocurrencies"
+authors: "Zhefan Wu, Eugene Pinsky"
+published: "2026-09-06"      # online date, Journal of Risk and Financial Management 19(9), 692
+url: "https://www.mdpi.com/1911-8074/19/9/692"
+found: "2026-11-22"
+status: extracted
+market: "Spot bitcoin and ether against the US dollar (Kraken)"
+timeframe: "1-hour closes; each day is cut into two 12-hour sessions and a position is held for one session"
+data_needed:
+  - "hourly closes for BTCUSD and ETHUSD, UTC"
+  - "nothing else: no volume, no other market"
+testable_here: true
+why_not: ""
+missing_data: []
+formulas:
+  - name: "Sessions"
+    definition: "For a start hour h (UTC, 0 to 11): day session D = hours [h, h+12), night session N = hours [h+12, h+24). For date t the night runs from hour h+12 on t-1 to hour h on t and comes first; the day session follows."
+    variables: "h: the UTC hour at which the day session starts. Session return R = product of (1 + hourly simple return) over the session's 12 hours, minus 1, from hourly closes."
+  - name: "Positions"
+    definition: "z = 0 (Cash), +1 (Long), -1 (Short), sign(R of the same session type one date earlier) (Momentum), or minus that sign (Reversal). A lagged return of zero, or none, gives Cash."
+    variables: "z: the position held through one session, set before it starts. The lag is the same kind of session a day earlier (night looks at the night before, day at the day before), not the session that has just ended."
+  - name: "Strategy pair"
+    definition: "A strategy is (night rule, day rule), each one of the five positions: 25 pairs, 24 of them active, tried at 12 start hours."
+    variables: "Written night first: Long/Reversal means long every night and Reversal every day."
+  - name: "Net return"
+    definition: "Q_i = |z_i - z_(i-1)| over the sequence of sessions; net session return = (1 + z_i x R_i) x (1 - c x Q_i) - 1."
+    variables: "c: cost per unit of position change, 0, 1 or 2 hundredths of a percent. Wealth starts at 100 and compounds session by session."
+rules:
+  entry_long: "Bitcoin (full-sample pick, Reversal/Reversal, h = 8): at 08:00 and 20:00 UTC go long for the next 12 hours if the same 12-hour window a day earlier fell. Ether (Long/Reversal, h = 5): long every night session from 17:00 to 05:00 UTC; at 05:00 go long for the day session if yesterday's day session fell."
+  entry_short: "Bitcoin: short for the next 12 hours if the same window a day earlier rose. Ether: short for the day session (05:00 to 17:00) if yesterday's day session rose. The night leg for ether is never short."
+  exit: "At the end of the 12-hour session; the next session's position replaces it. No stop and no target."
+  holding_period: "12 hours"
+reported_results:
+  sample_period: "1 January 2016 to 31 December 2025; rules also picked on 2016 to 2020 and held fixed for 2021 to 2025"
+  markets: "BTCUSD and ETHUSD on Kraken"
+  headline: "Wealth from 100 over the full sample, no costs: bitcoin Reversal/Reversal 95,015 against 20,216 for buy and hold; ether Long/Reversal about 58 times buy and hold. At 0.02% per change: bitcoin 21,258 against 20,212; ether about 13 times buy and hold. No difference from buy and hold is statistically significant (bootstrap intervals contain zero; Hansen SPA p-values 0.90 to 1.00 for bitcoin, 0.66 to 0.77 for ether). Held-out years 2021 to 2025: the bitcoin rule picked on 2016 to 2020 (Momentum/Long, h = 11) lost 29.1% before costs; the ether rule (Long/Reversal, h = 5) stayed ahead of buy and hold at all three cost levels. Break-even cost about 0.021% for bitcoin and 0.056% for ether. Sharpe ratios and drawdowns are in tables published as images and were not read."
+  costs_included: "As scenarios only: 0, 0.01% and 0.02% per unit of position change. Spread, slippage, borrowing and funding are left out."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: pending
+may_stop_working: ""
+notes: "Not coded, and not for lack of data: the lab holds hourly BTCUSD and ETHUSD from April 2021. The lab cannot run the rule as written. Signal mode closes every trade with an ATR stop or target and has no exit at a set time; position mode holds daily bars that roll at 22:00 UTC, so neither can hold a 12-hour session starting at 05:00 or 08:00. Forcing it into either would be an approximation. A proper test needs its own registered study with a time exit, as the intraday studies had: Jeff's call. To settle first: whether an hourly bar is stamped with its opening or closing time (the paper does not say; the authors' code on GitHub was not opened), and whether the first session pays a cost. Cautions: the rules are the best of 300 on the same data, the authors' own tests do not separate them from buy and hold, and the lab's bitcoin fee (0.03% a side plus slippage) is above the paper's break-even cost. The authors name no loser; they suggest the Asia-to-Europe handover and say it is not shown. A screen trigger, `lagged_session_sign`, was made from the signal on 2026-11-22: that is the event screen, not a test of this paper."
