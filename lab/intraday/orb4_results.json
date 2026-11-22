@@ -1,0 +1,127 @@
+{
+ "date": "2026-11-22",
+ "first_day": "2024-01-02",
+ "last_day": "2026-11-20",
+ "need_t": 2.58,
+ "verdict": "FAIL",
+ "checks": {
+  "traded days >= 150": true,
+  "average above zero with t-stat >= 2.58": false,
+  "profit factor >= 1.15": false,
+  "average above zero on two of three markets": true,
+  "average above zero at double cost": true,
+  "positive in two of 2024, 2025, 2026": false,
+  "four of six versions above zero alone": true,
+  "short trades alone above zero": true
+ },
+ "group": {
+  "days": 720,
+  "mean_pct": 0.010957950278746645,
+  "total_pct": 7.889724200697584,
+  "t": 0.50156384630105,
+  "pf": 1.070265585384403,
+  "win_rate": 46.666666666666664,
+  "by_year_pct": {
+   "2024": -0.562,
+   "2025": 10.856,
+   "2026": -2.405
+  }
+ },
+ "mean_pct_double_cost": 0.005957950278746648,
+ "per_market_mean_pct": {
+  "NAS100": 0.011959401331624642,
+  "SPX500": 0.011136405017052988,
+  "USA30": -0.014683362624929239
+ },
+ "per_version": {
+  "range5.breakout.exitclose.with": {
+   "days": 720,
+   "mean_pct": 0.030311636022672422,
+   "total_pct": 21.824377936324144,
+   "t": 1.1869016805819756,
+   "pf": 1.1709805364133263,
+   "win_rate": 52.361111111111114,
+   "by_year_pct": {
+    "2024": 2.167,
+    "2025": 11.098,
+    "2026": 8.56
+   }
+  },
+  "range5.fixed.exitclose.with": {
+   "days": 614,
+   "mean_pct": 0.016724263360480447,
+   "total_pct": 10.268697703334995,
+   "t": 0.5257342783195068,
+   "pf": 1.0706621779728445,
+   "win_rate": 50.4885993485342,
+   "by_year_pct": {
+    "2024": -4.545,
+    "2025": 21.231,
+    "2026": -6.418
+   }
+  },
+  "range15.breakout.exitclose.with": {
+   "days": 720,
+   "mean_pct": 0.01490105857249095,
+   "total_pct": 10.728762172193484,
+   "t": 0.5724076220182092,
+   "pf": 1.076520895492091,
+   "win_rate": 50.416666666666664,
+   "by_year_pct": {
+    "2024": -2.114,
+    "2025": 11.828,
+    "2026": 1.015
+   }
+  },
+  "range15.fixed.exitclose.with": {
+   "days": 534,
+   "mean_pct": 0.0035908600518930415,
+   "total_pct": 1.917519267710884,
+   "t": 0.12190135845435388,
+   "pf": 1.0154663608958427,
+   "win_rate": 52.24719101123596,
+   "by_year_pct": {
+    "2024": 2.329,
+    "2025": 0.469,
+    "2026": -0.88
+   }
+  },
+  "range30.breakout.exitclose.with": {
+   "days": 709,
+   "mean_pct": 0.020527754449599665,
+   "total_pct": 14.554177904766163,
+   "t": 0.7938734139802165,
+   "pf": 1.1049471431581923,
+   "win_rate": 50.77574047954866,
+   "by_year_pct": {
+    "2024": 6.212,
+    "2025": 9.487,
+    "2026": -1.145
+   }
+  },
+  "range30.fixed.exitclose.with": {
+   "days": 438,
+   "mean_pct": -0.008378875055187128,
+   "total_pct": -3.669947274171962,
+   "t": -0.26476195138234904,
+   "pf": 0.9641604550466384,
+   "win_rate": 52.054794520547944,
+   "by_year_pct": {
+    "2024": -2.966,
+    "2025": 3.836,
+    "2026": -4.541
+   }
+  }
+ },
+ "longs": {
+  "trades": 4715,
+  "mean_pct": 0.015943529823470068,
+  "win_rate": 55.206786850477194
+ },
+ "shorts": {
+  "trades": 4570,
+  "mean_pct": 0.01935015340839057,
+  "win_rate": 48.00875273522976
+ },
+ "trades": 9285
+}

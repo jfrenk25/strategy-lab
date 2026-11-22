@@ -1169,3 +1169,15 @@ Attempt counter starts at 96.
   - Nearest miss at the screen: 30-minute range, fixed check, exit at 15:55, with the break. t-stat 1.645 against 1.65, profit factor 1.26, positive on all three markets, but 2021 was negative. It is rejected under the rules and its confirm years were not computed or looked at.
   - Five of the six "with the break, exit at 15:55" versions had a positive screen average. None reached the screen bar. This is an observation, not a result.
   - About 50 weekdays in the files are US holidays or half days, when the index quoted for part of the session. The rules did not exclude them. Versions that exit at 15:55 skip most of them because that bar is missing.
+
+### 2026-11-22 · intraday study 4 · hold to the close, six versions as one group · FAIL
+- Nasdaq 100, S&P 500 and Dow, 1-minute bars, 2024-01-02 to 2026-11-20. One test, t-stat bar 2.58. Rules fixed in LAB_RULES.md before these versions were computed on these years.
+- Group: 720 days, win rate 47%, average +0.0110% a day, profit factor 1.07, t-stat 0.50. By year: {2024: -0.562, 2025: 10.856, 2026: -2.405}. Average at double cost +0.0060%. Per market: {'NAS100': 0.012, 'SPX500': 0.0111, 'USA30': -0.0147}.
+- Long trades alone: 4715 trades, win rate 55%, average +0.0159% a trade. Short trades alone: 4570 trades, win rate 48%, average +0.0194% a trade.
+- `range5.breakout.exitclose.with` alone: 720 days, win rate 52%, average +0.0303% a day, profit factor 1.17, t-stat 1.19
+- `range5.fixed.exitclose.with` alone: 614 days, win rate 50%, average +0.0167% a day, profit factor 1.07, t-stat 0.53
+- `range15.breakout.exitclose.with` alone: 720 days, win rate 50%, average +0.0149% a day, profit factor 1.08, t-stat 0.57
+- `range15.fixed.exitclose.with` alone: 534 days, win rate 52%, average +0.0036% a day, profit factor 1.02, t-stat 0.12
+- `range30.breakout.exitclose.with` alone: 709 days, win rate 51%, average +0.0205% a day, profit factor 1.10, t-stat 0.79
+- `range30.fixed.exitclose.with` alone: 438 days, win rate 52%, average -0.0084% a day, profit factor 0.96, t-stat -0.26
+- Verdict: FAIL. Failed: average above zero with t-stat >= 2.58; profit factor >= 1.15; positive in two of 2024, 2025, 2026.

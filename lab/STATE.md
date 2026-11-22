@@ -128,6 +128,8 @@ Spot check done later on 2026-11-20, when pages could be opened:
 - Study 1, the lab's version of a YouTube opening range rule: FAIL. Nasdaq before 2024: 306 trades, profit factor 1.28, t-stat 1.59 against a bar of 2.58. From 2024: profit factor 1.00.
 - Study 3, the video's own settings with a 1 ATR stop and 2 ATR target: FAIL on both tests.
 - Study 2, 36 registered variations on full-session bars: 1 passed the screen, 0 confirmed. The survivor lost money in 2024, 2025 and 2026. Nearest miss: 30-minute range, fixed check, hold to 15:55, with the break (t-stat 1.645 against 1.65); rejected, confirm years not looked at.
+- Study 4, the six "with the break, hold to 15:55" versions as one group on 2024 onward: FAIL. 720 days, profit factor 1.07, t-stat 0.50 against a bar of 2.58; only 2025 was positive.
+- The opening range idea is closed on these files: no further versions, groups or filters.
 - Each study runs once. Rules are in `LAB_RULES.md`, results in `lab/intraday/` and the journal.
 
 ## Next
