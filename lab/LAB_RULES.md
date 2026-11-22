@@ -361,3 +361,44 @@ Each version alone, long trades alone (every trade counted equally), and win rat
 - PASS: a forward watch on new 1-minute data and a later study with stops and position sizing against prop-firm limits. It is not a reason to trade or to buy a challenge.
 - FAIL: the opening range idea is closed on this data. No further versions, groups or filters are tried on these files.
 - This study runs once.
+
+## Intraday study 5: the video's 93% run, replayed on ticks (written November 22, 2026, before any tick data was downloaded)
+Studies 1 and 3 could not reproduce the video's 93% win rate. Reading the video frame by frame showed why: the 93% run is not the settings the video shows being typed in. Code: `lab/intraday/orb5.py`. Data: Dukascopy tick quotes for the Nasdaq 100, a few minutes around 10:00 New York time each day.
+
+### What the video shows on screen
+- The settings in the panel (1 ATR stop, 2 ATR target, 10-minute exit, 17 parameters) produced, on the video's own screen: 77 trades, 40.3% win rate, profit factor 0.57, account down 98%. Study 3 found a 37% to 40% win rate for the same settings. The two agree.
+- The 93% run has 21 parameters, 6 contracts on $10,000, and a cost of $0.80 a contract instead of $2.50. Its results panel shows an average win of $798 and an average loss of $5,021.
+- Its trade list shows entries at 9:59:55 and most exits within seconds. Eight trades with stop and target prices visible give, against the lab's own 1-minute data: target 0.30 ATR and stop 2.29 ATR on average, with Wilder's 14-bar ATR at the 9:58 bar. One losing trade closed 8 minutes after entry.
+- The on-screen assistant had just offered to optimise the stop, target and time exit. The video does not say this was done.
+- Check of the entry rule: of 23 trades read off the screen, the lab's rule takes the same side on 22 and no trade on 1.
+
+### The rule tested
+- Range: high and low of the 1-minute bars from 9:30 to 9:44.
+- Signal: the last quote at or before 9:59:55. Bid above the range high: buy. Bid below the range low: sell. Otherwise no trade.
+- Entry: the first quote after 9:59:55.
+- ATR: Wilder's 14-bar average true range on 1-minute bars, read at the 9:58 bar.
+- Target 0.3 ATR, stop 2.3 ATR, both measured from the entry price. Time exit 8 minutes after entry.
+- No volume or ATR regime filter: neither can be reproduced here. The video's run took 296 trades; this rule will take more.
+- A day is skipped if fewer than 12 of the 15 range bars exist, if there is no quote in the 10 seconds before 9:59:55, or if there is no quote in the 30 seconds before the time exit.
+
+### Three ways of filling the same trades
+- A, the video's way: every fill at the mid price with no spread. The target fills the moment the mid price touches it. Cost 0.0004% a round trip ($0.80 a contract each way).
+- B, realistic futures: market orders (entry, stop, time exit) fill a quarter point worse than mid. The target is a resting order and fills only when the mid price is a quarter point beyond it. Cost 0.001% a round trip.
+- C, the index as quoted: buy at the ask, sell at the bid, target and stop judged on the side being sold or bought back. No commission. This is closest to an FTMO-style account.
+
+### Pass (fill B, years before 2024, which the video's settings were never fitted to)
+1. At least 150 trades.
+2. Average above zero, with a t-stat of 2.58 or more.
+3. Profit factor of 1.15 or more.
+4. Average above zero when stop and time-exit fills are another half point worse.
+5. A positive total in at least two of 2021, 2022 and 2023.
+
+### Also reported, without changing the verdict
+- Fills A and C, and all three from 2024 on, next to the video's 93.9% and 2.45.
+- The same rule on 1-minute candles (entry at the 10:00 open, a bar that touches both levels counted as a loss), on the same days. This is the tick-against-candle comparison.
+- Win rate needed to break even at this stop and target, for reference: a target of 0.3 and a stop of 2.3 wins about 88% of the time with no edge at all.
+
+### What a result means
+- PASS: a forward watch on new tick data and an account-fit study. One loss here is about eight wins, so sizing against prop-firm daily limits decides whether it is usable at all. It is not a reason to trade or to buy a challenge.
+- FAIL: rejected. Not re-run with other stops, targets or times on this data.
+- This study runs once.
