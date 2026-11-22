@@ -1181,3 +1181,9 @@ Attempt counter starts at 96.
 - `range30.breakout.exitclose.with` alone: 709 days, win rate 51%, average +0.0205% a day, profit factor 1.10, t-stat 0.79
 - `range30.fixed.exitclose.with` alone: 438 days, win rate 52%, average -0.0084% a day, profit factor 0.96, t-stat -0.26
 - Verdict: FAIL. Failed: average above zero with t-stat >= 2.58; profit factor >= 1.15; positive in two of 2024, 2025, 2026.
+
+### 2026-11-22 · screen batch · 480 ideas
+- New triggers registered: supercycle_surge, trendilo_turn.
+- Passed the screen: 0. Confirmed on unseen years: 0. Candidates: 0.
+- Totals: 14800 of 14800 catalogue ideas screened, 151 survivors, 0 confirmed, 0 candidates.
+- Every screened idea is in `lab/screen/log.csv`.

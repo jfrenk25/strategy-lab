@@ -736,5 +736,50 @@
   ],
   "timed": false,
   "universe": "fifteen"
+ },
+ {
+  "name": "supercycle_surge",
+  "hash": "6de192668e11",
+  "added": "2026-11-22",
+  "source": "DaviddTech, \"SuperCycle Surge Strategy\" (invite-only TradingView script; public description only, settings withheld); parts: Ehlers 2013 Super Smoother, Schaff Trend Cycle, Dreiss Choppiness Index, at their customary defaults",
+  "summary": "+1 on the first bar where the close is above the Super Smoother, the Schaff Trend Cycle is rising and the Choppiness Index is below its line; -1 for the mirror image.",
+  "variants": [
+   {
+    "ss": 10,
+    "fast": 23,
+    "slow": 50,
+    "cycle": 10,
+    "chop_n": 14,
+    "chop_max": 61.8
+   },
+   {
+    "ss": 10,
+    "fast": 23,
+    "slow": 50,
+    "cycle": 10,
+    "chop_n": 14,
+    "chop_max": 38.2
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "trendilo_turn",
+  "hash": "0d0ca438909e",
+  "added": "2026-11-22",
+  "source": "Trendilo, open-source TradingView indicator (public description via web search, page not opened; defaults from recall); the base of DaviddTech's invite-only \"Trendhoo\" strategy, whose own rules are not public",
+  "summary": "+1 when the smoothed percent change of the close rises above its own root-mean-square band; -1 when it falls below the band on the other side.",
+  "variants": [
+   {
+    "smooth": 1,
+    "n": 50,
+    "offset": 0.85,
+    "sigma": 6,
+    "mult": 1.0
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
  }
 ]
