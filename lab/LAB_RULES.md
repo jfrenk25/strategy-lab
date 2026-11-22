@@ -250,3 +250,47 @@ A one-off study on 1-minute bars, which the rest of the lab does not have. Code:
 - PASS: the rule earns a forward watch on new 1-minute data and a second study with stops and targets. It is not a reason to trade or to buy a challenge.
 - FAIL: the rule is rejected. It is not re-run with a different range, entry time, holding time or filter on this data.
 - If the video's exact settings are obtained later, testing them is a new study with its own count.
+
+## Intraday study 2: opening range variations (written November 21, 2026, before any 1-minute data reached the lab)
+Study 1 tests one version of the opening range rule. This study tests a fixed family of 36, so that trying variations cannot turn into tuning. Code: `lab/intraday/orb2.py`. Data: full-session 1-minute bars in `lab/data_1m/`.
+
+### The 36 versions
+Every combination of four parts. Times are New York time.
+- Range: the high and low of the first 5, 15 or 30 minutes from 9:30.
+- Entry, one of:
+  - Breakout: the first 1-minute bar after the range ends, and before 11:00, that closes outside the range. Enter at the next bar's open.
+  - Fixed check: the bar that ends 15 minutes after the range ends (9:49, 9:59 or 10:14). If it closes outside the range, enter at the next bar's open. Inside the range: no trade.
+- Exit: the open of the bar 10 minutes after entry, 60 minutes after entry, or at 15:55.
+- Direction: with the break (buy above, sell below) or against it.
+- One trade per market per day at most. No stops and no targets, so each version measures a signal and nothing else.
+- A day is skipped for a market if more than a fifth of its range bars are missing, or if the entry or exit bar is missing.
+- Cost: 0.005% of price per round trip. The double-cost check uses 0.01%.
+
+### Markets and counting
+- Nasdaq 100, S&P 500 and Dow, tested together.
+- The three move together, so a day counts once: each day's result is the average of the markets that traded that day. All statistics below are on those daily averages.
+
+### Data split
+- Screen years: April 21, 2021 to December 31, 2023.
+- Confirm years: January 1, 2024 to the download date. A version sees these only if it passes the screen.
+- One version (15-minute range, fixed check, 10-minute exit, with the break) is close to the video's rule and to study 1, whose results on both periods will already have been seen. That is noted, not corrected for: the steps below are mechanical.
+
+### Screen (all must hold)
+1. At least 150 traded days.
+2. Average above zero, with a t-stat of 1.65 or more.
+3. Profit factor of 1.10 or more.
+4. Average above zero on at least two of the three markets taken alone.
+5. Average above zero at double cost.
+
+### Confirm (one run per survivor; all must hold)
+1. At least 150 traded days.
+2. Average above zero, with a t-stat at or above the normal quantile at 1 - 0.05 / survivors, where survivors is counted as 5 if fewer than 5 pass the screen. So the bar is 2.33 or higher.
+3. Profit factor of 1.15 or more.
+4. Average above zero on at least two of the three markets taken alone.
+5. Average above zero at double cost.
+6. A positive total in at least two of the calendar years 2024, 2025 and 2026.
+
+### What a result means
+- CONFIRMED: the version earns a forward watch on new 1-minute data and a later study with stops and position sizing against prop-firm limits. It is not a reason to trade or to buy a challenge.
+- Everything else is rejected. No version is re-run with other numbers on this data, and no version is added to the family after the data has been seen.
+- All 36 results are logged, including the ones that fail.
