@@ -1,0 +1,508 @@
+{
+ "date": "2026-11-22",
+ "markets": {
+  "NAS100": {
+   "first": "2021-04-21",
+   "last": "2026-11-20",
+   "A_all_settings": {
+    "before_2024": {
+     "trades": 35,
+     "mean_pct": 0.018877210215817855,
+     "total_pct": 0.6607023575536249,
+     "t": 0.6103386676571647,
+     "pf": 1.2756802207145674,
+     "win_rate": 42.857142857142854,
+     "avg_win_pct": 0.2038218839508989,
+     "avg_loss_pct": -0.11983129508549299,
+     "mean_pct_double_cost": 0.013877210215817858,
+     "by_year_pct": {
+      "2021": 0.701,
+      "2022": 0.194,
+      "2023": -0.235
+     }
+    },
+    "from_2024": {
+     "trades": 72,
+     "mean_pct": -0.014126214732184693,
+     "total_pct": -1.017087460717298,
+     "t": -0.8059851456376126,
+     "pf": 0.8011485353429254,
+     "win_rate": 34.72222222222222,
+     "avg_win_pct": 0.16390890172713254,
+     "avg_loss_pct": -0.10882574476373646,
+     "mean_pct_double_cost": -0.0191262147321847,
+     "by_year_pct": {
+      "2024": -0.757,
+      "2025": -0.09,
+      "2026": -0.171
+     }
+    },
+    "checks": {
+     "trades >= 150": false,
+     "average above zero with t-stat >= 2.58": false,
+     "profit factor >= 1.15": true,
+     "average above zero at double cost": true,
+     "positive in two of 2021, 2022, 2023": true
+    },
+    "verdict": "FAIL",
+    "before_2024_if_both_counted_as_wins": {
+     "trades": 35,
+     "mean_pct": 0.018877210215817855,
+     "total_pct": 0.6607023575536249,
+     "t": 0.6103386676571647,
+     "pf": 1.2756802207145674,
+     "win_rate": 42.857142857142854,
+     "avg_win_pct": 0.2038218839508989,
+     "avg_loss_pct": -0.11983129508549299,
+     "mean_pct_double_cost": 0.013877210215817858,
+     "by_year_pct": {
+      "2021": 0.701,
+      "2022": 0.194,
+      "2023": -0.235
+     }
+    },
+    "verdict_if_both_counted_as_wins": "FAIL",
+    "from_2024_if_both_counted_as_wins": {
+     "trades": 72,
+     "mean_pct": -0.014126214732184693,
+     "total_pct": -1.017087460717298,
+     "t": -0.8059851456376126,
+     "pf": 0.8011485353429254,
+     "win_rate": 34.72222222222222,
+     "avg_win_pct": 0.16390890172713254,
+     "avg_loss_pct": -0.10882574476373646,
+     "mean_pct_double_cost": -0.0191262147321847,
+     "by_year_pct": {
+      "2024": -0.757,
+      "2025": -0.09,
+      "2026": -0.171
+     }
+    },
+    "exits": {
+     "stop": 62,
+     "target": 26,
+     "time": 19
+    },
+    "needs_tick_data": false
+   },
+   "B_no_atr_regime": {
+    "before_2024": {
+     "trades": 306,
+     "mean_pct": 0.004800311394899852,
+     "total_pct": 1.4688952868393546,
+     "t": 0.510521653243211,
+     "pf": 1.0696209791886773,
+     "win_rate": 39.869281045751634,
+     "avg_win_pct": 0.18497830345272295,
+     "avg_loss_pct": -0.11466553116517854,
+     "mean_pct_double_cost": -0.00019968860510014922,
+     "by_year_pct": {
+      "2021": 1.6,
+      "2022": 1.014,
+      "2023": -1.144
+     }
+    },
+    "from_2024": {
+     "trades": 371,
+     "mean_pct": 0.0003955797657016804,
+     "total_pct": 0.14676009307532345,
+     "t": 0.054905542600093185,
+     "pf": 1.0067073693222497,
+     "win_rate": 37.46630727762803,
+     "avg_win_pct": 0.15846895929809218,
+     "avg_loss_pct": -0.09431217779896328,
+     "mean_pct_double_cost": -0.004604420234298327,
+     "by_year_pct": {
+      "2024": -0.48,
+      "2025": 2.392,
+      "2026": -1.766
+     }
+    },
+    "checks": {
+     "trades >= 150": true,
+     "average above zero with t-stat >= 2.58": false,
+     "profit factor >= 1.15": false,
+     "average above zero at double cost": false,
+     "positive in two of 2021, 2022, 2023": true
+    },
+    "verdict": "FAIL",
+    "before_2024_if_both_counted_as_wins": {
+     "trades": 306,
+     "mean_pct": 0.006898022598084175,
+     "total_pct": 2.1107949150137575,
+     "t": 0.7311077907943208,
+     "pf": 1.1011183887373635,
+     "win_rate": 40.52287581699346,
+     "avg_win_pct": 0.18536521053775643,
+     "avg_loss_pct": -0.11469500654762657,
+     "mean_pct_double_cost": 0.0018980225980841734,
+     "by_year_pct": {
+      "2021": 1.6,
+      "2022": 1.656,
+      "2023": -1.144
+     }
+    },
+    "verdict_if_both_counted_as_wins": "FAIL",
+    "from_2024_if_both_counted_as_wins": {
+     "trades": 371,
+     "mean_pct": 0.0010090410668325302,
+     "total_pct": 0.3743542357948687,
+     "t": 0.1399085741009643,
+     "pf": 1.017172558831715,
+     "win_rate": 37.735849056603776,
+     "avg_win_pct": 0.1583851055065322,
+     "avg_loss_pct": -0.09437039192692483,
+     "mean_pct_double_cost": -0.003990958933167478,
+     "by_year_pct": {
+      "2024": -0.252,
+      "2025": 2.392,
+      "2026": -1.766
+     }
+    },
+    "exits": {
+     "stop": 384,
+     "target": 193,
+     "time": 97,
+     "both": 3
+    },
+    "needs_tick_data": false
+   }
+  },
+  "SPX500": {
+   "first": "2021-04-21",
+   "last": "2026-11-20",
+   "A_all_settings": {
+    "before_2024": {
+     "trades": 58,
+     "mean_pct": -0.03410139717599379,
+     "total_pct": -1.9778810362076393,
+     "t": -2.4556527285091825,
+     "pf": 0.48138250133499816,
+     "win_rate": 25.862068965517242,
+     "avg_win_pct": 0.12239172068092348,
+     "avg_loss_pct": -0.08869201968422075,
+     "mean_pct_double_cost": -0.039101397175993785,
+     "by_year_pct": {
+      "2021": 0.201,
+      "2022": -1.845,
+      "2023": -0.334
+     }
+    },
+    "from_2024": {
+     "trades": 97,
+     "mean_pct": -0.002476452331690693,
+     "total_pct": -0.2402158761739972,
+     "t": -0.25601893345965016,
+     "pf": 0.9410903718659749,
+     "win_rate": 34.02061855670103,
+     "avg_win_pct": 0.1162874416891777,
+     "avg_loss_pct": -0.06371408518620096,
+     "mean_pct_double_cost": -0.007476452331690697,
+     "by_year_pct": {
+      "2024": 0.189,
+      "2025": 0.114,
+      "2026": -0.543
+     }
+    },
+    "checks": {
+     "trades >= 150": false,
+     "average above zero with t-stat >= 2.58": false,
+     "profit factor >= 1.15": false,
+     "average above zero at double cost": false,
+     "positive in two of 2021, 2022, 2023": false
+    },
+    "verdict": "FAIL",
+    "before_2024_if_both_counted_as_wins": {
+     "trades": 58,
+     "mean_pct": -0.03410139717599379,
+     "total_pct": -1.9778810362076393,
+     "t": -2.4556527285091825,
+     "pf": 0.48138250133499816,
+     "win_rate": 25.862068965517242,
+     "avg_win_pct": 0.12239172068092348,
+     "avg_loss_pct": -0.08869201968422075,
+     "mean_pct_double_cost": -0.039101397175993785,
+     "by_year_pct": {
+      "2021": 0.201,
+      "2022": -1.845,
+      "2023": -0.334
+     }
+    },
+    "verdict_if_both_counted_as_wins": "FAIL",
+    "from_2024_if_both_counted_as_wins": {
+     "trades": 97,
+     "mean_pct": -0.0008058689828098012,
+     "total_pct": -0.07816929133255071,
+     "t": -0.0829477697068654,
+     "pf": 0.9805485442709545,
+     "win_rate": 35.051546391752574,
+     "avg_win_pct": 0.11589754800893615,
+     "avg_loss_pct": -0.06378866545454571,
+     "mean_pct_double_cost": -0.005805868982809805,
+     "by_year_pct": {
+      "2024": 0.351,
+      "2025": 0.114,
+      "2026": -0.543
+     }
+    },
+    "exits": {
+     "stop": 92,
+     "target": 40,
+     "time": 22,
+     "both": 1
+    },
+    "needs_tick_data": false
+   },
+   "B_no_atr_regime": {
+    "before_2024": {
+     "trades": 306,
+     "mean_pct": -0.004537215903426359,
+     "total_pct": -1.3883880664484658,
+     "t": -0.6860997164183217,
+     "pf": 0.9125259634402525,
+     "win_rate": 36.60130718954248,
+     "avg_win_pct": 0.12931797983723084,
+     "avg_loss_pct": -0.08181444231040372,
+     "mean_pct_double_cost": -0.009537215903426367,
+     "by_year_pct": {
+      "2021": 1.107,
+      "2022": -1.452,
+      "2023": -1.044
+     }
+    },
+    "from_2024": {
+     "trades": 349,
+     "mean_pct": -0.0010093530556625735,
+     "total_pct": -0.35226421642623806,
+     "t": -0.2011415586273709,
+     "pf": 0.9750848615639253,
+     "win_rate": 38.108882521489974,
+     "avg_win_pct": 0.10365637036209403,
+     "avg_loss_pct": -0.06545630312307749,
+     "mean_pct_double_cost": -0.006009353055662577,
+     "by_year_pct": {
+      "2024": 0.859,
+      "2025": -0.823,
+      "2026": -0.389
+     }
+    },
+    "checks": {
+     "trades >= 150": true,
+     "average above zero with t-stat >= 2.58": false,
+     "profit factor >= 1.15": false,
+     "average above zero at double cost": false,
+     "positive in two of 2021, 2022, 2023": false
+    },
+    "verdict": "FAIL",
+    "before_2024_if_both_counted_as_wins": {
+     "trades": 306,
+     "mean_pct": -0.002928405857484341,
+     "total_pct": -0.8960921923902083,
+     "t": -0.4407067973336029,
+     "pf": 0.9429164403733712,
+     "win_rate": 37.254901960784316,
+     "avg_win_pct": 0.1298404472907195,
+     "avg_loss_pct": -0.08175991241423036,
+     "mean_pct_double_cost": -0.00792840585748435,
+     "by_year_pct": {
+      "2021": 1.107,
+      "2022": -1.22,
+      "2023": -0.784
+     }
+    },
+    "verdict_if_both_counted_as_wins": "FAIL",
+    "from_2024_if_both_counted_as_wins": {
+     "trades": 349,
+     "mean_pct": 0.00013192067308010562,
+     "total_pct": 0.04604031490495686,
+     "t": 0.026187469221125595,
+     "pf": 1.0032895823713885,
+     "win_rate": 38.68194842406877,
+     "avg_win_pct": 0.10401358231392076,
+     "avg_loss_pct": -0.06540090325922586,
+     "mean_pct_double_cost": -0.004868079326919898,
+     "by_year_pct": {
+      "2024": 1.021,
+      "2025": -0.823,
+      "2026": -0.153
+     }
+    },
+    "exits": {
+     "stop": 375,
+     "target": 188,
+     "time": 88,
+     "both": 4
+    },
+    "needs_tick_data": false
+   }
+  },
+  "USA30": {
+   "first": "2021-04-21",
+   "last": "2026-11-20",
+   "A_all_settings": {
+    "before_2024": {
+     "trades": 22,
+     "mean_pct": -0.05268848755425683,
+     "total_pct": -1.1591467261936501,
+     "t": -2.066697602741235,
+     "pf": 0.3310116563063539,
+     "win_rate": 13.636363636363635,
+     "avg_win_pct": 0.19117975241092988,
+     "avg_loss_pct": -0.0911939991277074,
+     "mean_pct_double_cost": -0.05768848755425683,
+     "by_year_pct": {
+      "2021": -0.393,
+      "2022": -0.813,
+      "2023": 0.047
+     }
+    },
+    "from_2024": {
+     "trades": 34,
+     "mean_pct": -0.01011390223523233,
+     "total_pct": -0.34387267599789917,
+     "t": -0.5897230555164943,
+     "pf": 0.7955812100572068,
+     "win_rate": 35.294117647058826,
+     "avg_win_pct": 0.11152702733139971,
+     "avg_loss_pct": -0.07646350018066798,
+     "mean_pct_double_cost": -0.015113902235232334,
+     "by_year_pct": {
+      "2024": -0.068,
+      "2025": 0.165,
+      "2026": -0.441
+     }
+    },
+    "checks": {
+     "trades >= 150": false,
+     "average above zero with t-stat >= 2.58": false,
+     "profit factor >= 1.15": false,
+     "average above zero at double cost": false,
+     "positive in two of 2021, 2022, 2023": false
+    },
+    "verdict": "FAIL",
+    "before_2024_if_both_counted_as_wins": {
+     "trades": 22,
+     "mean_pct": -0.05268848755425683,
+     "total_pct": -1.1591467261936501,
+     "t": -2.066697602741235,
+     "pf": 0.3310116563063539,
+     "win_rate": 13.636363636363635,
+     "avg_win_pct": 0.19117975241092988,
+     "avg_loss_pct": -0.0911939991277074,
+     "mean_pct_double_cost": -0.05768848755425683,
+     "by_year_pct": {
+      "2021": -0.393,
+      "2022": -0.813,
+      "2023": 0.047
+     }
+    },
+    "verdict_if_both_counted_as_wins": "FAIL",
+    "from_2024_if_both_counted_as_wins": {
+     "trades": 34,
+     "mean_pct": -0.01011390223523233,
+     "total_pct": -0.34387267599789917,
+     "t": -0.5897230555164943,
+     "pf": 0.7955812100572068,
+     "win_rate": 35.294117647058826,
+     "avg_win_pct": 0.11152702733139971,
+     "avg_loss_pct": -0.07646350018066798,
+     "mean_pct_double_cost": -0.015113902235232334,
+     "by_year_pct": {
+      "2024": -0.068,
+      "2025": 0.165,
+      "2026": -0.441
+     }
+    },
+    "exits": {
+     "stop": 40,
+     "target": 11,
+     "time": 5
+    },
+    "needs_tick_data": false
+   },
+   "B_no_atr_regime": {
+    "before_2024": {
+     "trades": 246,
+     "mean_pct": -0.009802774394239605,
+     "total_pct": -2.411482500982943,
+     "t": -1.4733870642509304,
+     "pf": 0.8076878592350403,
+     "win_rate": 37.39837398373984,
+     "avg_win_pct": 0.11008626568008521,
+     "avg_loss_pct": -0.08142479833474532,
+     "mean_pct_double_cost": -0.01480277439423962,
+     "by_year_pct": {
+      "2021": 0.621,
+      "2022": -2.932,
+      "2023": -0.101
+     }
+    },
+    "from_2024": {
+     "trades": 293,
+     "mean_pct": -0.0016928437569903576,
+     "total_pct": -0.49600322079817477,
+     "t": -0.30695052489003716,
+     "pf": 0.9602655869848065,
+     "win_rate": 39.249146757679185,
+     "avg_win_pct": 0.1042344357738653,
+     "avg_loss_pct": -0.07012900749883529,
+     "mean_pct_double_cost": -0.006692843756990363,
+     "by_year_pct": {
+      "2024": 0.023,
+      "2025": 0.153,
+      "2026": -0.671
+     }
+    },
+    "checks": {
+     "trades >= 150": true,
+     "average above zero with t-stat >= 2.58": false,
+     "profit factor >= 1.15": false,
+     "average above zero at double cost": false,
+     "positive in two of 2021, 2022, 2023": false
+    },
+    "verdict": "FAIL",
+    "before_2024_if_both_counted_as_wins": {
+     "trades": 246,
+     "mean_pct": -0.00857643387298165,
+     "total_pct": -2.109802732753486,
+     "t": -1.2845264578180935,
+     "pf": 0.8302496850900488,
+     "win_rate": 38.21138211382114,
+     "avg_win_pct": 0.10977719455376742,
+     "avg_loss_pct": -0.08176880934741854,
+     "mean_pct_double_cost": -0.013576433872981663,
+     "by_year_pct": {
+      "2021": 0.621,
+      "2022": -2.739,
+      "2023": 0.008
+     }
+    },
+    "verdict_if_both_counted_as_wins": "FAIL",
+    "from_2024_if_both_counted_as_wins": {
+     "trades": 293,
+     "mean_pct": -0.0016928437569903576,
+     "total_pct": -0.49600322079817477,
+     "t": -0.30695052489003716,
+     "pf": 0.9602655869848065,
+     "win_rate": 39.249146757679185,
+     "avg_win_pct": 0.1042344357738653,
+     "avg_loss_pct": -0.07012900749883529,
+     "mean_pct_double_cost": -0.006692843756990363,
+     "by_year_pct": {
+      "2024": 0.023,
+      "2025": 0.153,
+      "2026": -0.671
+     }
+    },
+    "exits": {
+     "stop": 313,
+     "target": 148,
+     "time": 76,
+     "both": 2
+    },
+    "needs_tick_data": false
+   }
+  }
+ },
+ "missing": []
+}

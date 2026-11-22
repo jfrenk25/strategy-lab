@@ -124,6 +124,12 @@ Spot check done later on 2026-11-20, when pages could be opened:
 - freqtrade-strategies: the link a search returned was the old archived repository (berlinguyinca-trading-strategies), which only shows a README. The current repository's folder listing has still not been opened. Start there next time.
 - Ideas for next time, not yet used: overnight against intraday returns (needs session times per market), new files in freqtrade-strategies.
 
+## Intraday studies (1-minute bars)
+- Study 1, the lab's version of a YouTube opening range rule: FAIL. Nasdaq before 2024: 306 trades, profit factor 1.28, t-stat 1.59 against a bar of 2.58. From 2024: profit factor 1.00.
+- Study 3, the video's own settings with a 1 ATR stop and 2 ATR target: FAIL on both tests.
+- Study 2, 36 registered variations: code ready in `lab/intraday/orb2.py`. Waiting for full-session files named `lab/data_1m/{MARKET}_1m_full.csv.gz`.
+- Each study runs once. Rules are in `LAB_RULES.md`, results in `lab/intraday/` and the journal.
+
 ## Next
 - The inbox is empty. Fill `ideas/inbox/` from "151 Trading Strategies" (see `AGENT.md`) and from the X scout prompt in `GROK_SCOUT_PROMPT.md`.
 
