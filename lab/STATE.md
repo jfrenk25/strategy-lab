@@ -20,6 +20,7 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - Recent papers with explicit rules mostly need bars shorter than 1 hour or decades of daily history. Of 7 kept on the first scan, none could be tested here.
 - Trend following in position mode has now failed twice (`ts_momentum`, `valeyre_ema_trend`). The second made money (Sharpe 0.41) but almost any time-shifted copy of its positions did as well, so the timing added nothing. Do not test a third trend rule on these markets.
 - `check_formula.py` builds only about 125 to 175 days of made-up data for a position idea. An idea with a longer warm-up is compared on nothing and still prints OK. Compare such an idea by hand on a longer made-up series, as was done for `valeyre_ema_trend`.
+- SuperTrend, the one indicator rule screened as a trigger, lost on both sides in the screen years, as the notes on indicator crossovers predicted. Keep skipping that class.
 
 ## Needs other data (not testable with price bars)
 - Order flow and footprint ideas (delta, bid/ask volume).
@@ -75,6 +76,8 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - Forward watch 2026-11-21: 20 ideas watched, 0 forward trades. Price data still ends 2026-11-20 05:00 UTC (ETHUSD 2026-11-19 23:00), before the watch start dates (2026-11-21 and 2026-11-22), so nothing can move until the next data refresh from Jeff's PC.
 - Second trigger batch 2026-11-21 (run on Jeff's request): 3 triggers added, 800 ideas screened, 3 passed the screen (all `dow_swing`, k = 6, follow side), 0 confirmed, 0 candidates. No new near miss, so the forward watch stays at 20 ideas with 0 forward trades and price data ending 2026-11-20.
 - Running totals after it (from `screen/state.json`): 14,160 screened, 151 survivors, 0 confirmed, 0 candidates. The next survivor needs a confirm t-stat of about 3.40.
+- Third trigger batch 2026-11-21 (Jeff sent a TradingView link to a SuperTrend script): `supertrend_flip` added with the standard settings (ATR 10, multiplier 3), 160 ideas screened, 0 passed. Median profit factor 0.86 on the screen years (follow 0.89, fade 0.83); the best t-stat was 1.26 against the 1.65 needed. The TradingView page was not opened; the trigger is the indicator's standard public definition, from recall.
+- Running totals after it: 14,320 screened, 151 survivors, 0 confirmed, 0 candidates. Forward watch unchanged: 20 ideas, 0 forward trades, price data ends 2026-11-20.
 
 ## Paper track (where it stands)
 - First scan 2026-11-21: 44 abstracts looked at, 7 kept, 37 dropped. 4 written up, 0 tested. Main track untouched: attempts stay at 103, `lab.py` was not run (no untested idea, inbox empty).
@@ -125,4 +128,4 @@ Spot check done later on 2026-11-20, when pages could be opened:
 - The inbox is empty. Fill `ideas/inbox/` from "151 Trading Strategies" (see `AGENT.md`) and from the X scout prompt in `GROK_SCOUT_PROMPT.md`.
 
 ## Last session
-2026-11-21 (three runs) · paper track: 61 abstracts, 9 kept, 6 written up, 1 tested (`valeyre_ema_trend`: failed), 5 can't be tested here · main track: attempt 104 rejected · 13 triggers added (10 + 3), 2,640 ideas screened, 9 passed the screen, 0 confirmed, 0 candidates · forward watch 20 ideas, 0 forward trades, price data ends 2026-11-20
+2026-11-21 (four runs) · paper track: 61 abstracts, 9 kept, 6 written up, 1 tested (`valeyre_ema_trend`: failed), 5 can't be tested here · main track: attempt 104 rejected · 14 triggers added (10 + 3 + 1), 2,800 ideas screened, 9 passed the screen, 0 confirmed, 0 candidates · forward watch 20 ideas, 0 forward trades, price data ends 2026-11-20

@@ -721,5 +721,20 @@
   ],
   "timed": false,
   "universe": "fifteen"
+ },
+ {
+  "name": "supertrend_flip",
+  "hash": "73b6eb744d80",
+  "added": "2026-11-21",
+  "source": "SuperTrend indicator (credited to Olivier Seban), standard public definition; link supplied by Jeff: tradingview.com/script/4UaDaKOX-SuperTrend (not opened)",
+  "summary": "+1 when the close moves above the trailing upper band (bar midpoint plus 3 average true ranges, only allowed to fall); -1 when it moves below the trailing lower band.",
+  "variants": [
+   {
+    "period": 10,
+    "mult": 3
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
  }
 ]

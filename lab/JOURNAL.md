@@ -1091,3 +1091,9 @@ Attempt counter starts at 96.
 - Out-of-sample: 4393 days in the market, Sharpe 0.41, total +14.4%, max drawdown -6.8%, t-stat 1.43 (needed 3.30)
 - Profitable test years 9 of 15; markets contributing 9 of 15; double-cost total +13.4%; beats 2% of time-shifted copies
 - Failed: Sharpe >= 0.8; beats 95% of time-shifted copies of itself; t-stat >= 3.30 (bar for attempt 104)
+
+### 2026-11-21 · screen batch · 160 ideas
+- New triggers registered: supertrend_flip.
+- Passed the screen: 0. Confirmed on unseen years: 0. Candidates: 0.
+- Totals: 14320 of 14320 catalogue ideas screened, 151 survivors, 0 confirmed, 0 candidates.
+- Every screened idea is in `lab/screen/log.csv`.
