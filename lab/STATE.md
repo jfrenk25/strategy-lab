@@ -127,7 +127,7 @@ Spot check done later on 2026-11-20, when pages could be opened:
 ## Intraday studies (1-minute bars)
 - Study 1, the lab's version of a YouTube opening range rule: FAIL. Nasdaq before 2024: 306 trades, profit factor 1.28, t-stat 1.59 against a bar of 2.58. From 2024: profit factor 1.00.
 - Study 3, the video's own settings with a 1 ATR stop and 2 ATR target: FAIL on both tests.
-- Study 2, 36 registered variations: code ready in `lab/intraday/orb2.py`. Waiting for full-session files named `lab/data_1m/{MARKET}_1m_full.csv.gz`.
+- Study 2, 36 registered variations on full-session bars: 1 passed the screen, 0 confirmed. The survivor lost money in 2024, 2025 and 2026. Nearest miss: 30-minute range, fixed check, hold to 15:55, with the break (t-stat 1.645 against 1.65); rejected, confirm years not looked at.
 - Each study runs once. Rules are in `LAB_RULES.md`, results in `lab/intraday/` and the journal.
 
 ## Next

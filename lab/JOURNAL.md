@@ -1124,3 +1124,48 @@ Attempt counter starts at 96.
   - A 1-minute bar touched both stop and target in 3 of 677 Nasdaq trades. Tick data would not change either study 3 verdict.
   - The files include about six weekdays a year when the US cash market was closed and the index still quoted. The rules did not exclude them, so they were left in.
   - Study 3 from 2024, the video's own period: 371 Nasdaq trades without the regime filter, win rate 37%, profit factor 1.01. The video reports 296 trades, a 93% win rate and a profit factor of 2.45. The lab cannot reproduce that from the settings shown.
+
+### 2026-11-22 · intraday study 2 · 36 opening range variations · 1 passed the screen, 0 confirmed
+- Nasdaq 100, S&P 500 and Dow, 1-minute bars, 2021-04-21 to 2026-11-20. Screen: before 2024. Confirm: 2024 on, t-stat bar 2.33.
+- `range5.breakout.exit10.with` · REJECT: screen 695 days, average -0.0223%, profit factor 0.69, t-stat -3.31
+- `range5.breakout.exit10.against` · REJECT: screen 695 days, average +0.0123%, profit factor 1.23, t-stat 1.83; confirm 746 days, average -0.0079%, profit factor 0.84, t-stat -1.71. Failed: average above zero with t-stat >= 2.33; profit factor >= 1.15; positive on two of three markets; average above zero at double cost; positive in two of 2024, 2025, 2026
+- `range5.breakout.exit60.with` · REJECT: screen 695 days, average -0.0040%, profit factor 0.97, t-stat -0.29
+- `range5.breakout.exit60.against` · REJECT: screen 695 days, average -0.0060%, profit factor 0.95, t-stat -0.44
+- `range5.breakout.exitclose.with` · REJECT: screen 674 days, average +0.0385%, profit factor 1.17, t-stat 1.35
+- `range5.breakout.exitclose.against` · REJECT: screen 674 days, average -0.0485%, profit factor 0.82, t-stat -1.70
+- `range5.fixed.exit10.with` · REJECT: screen 587 days, average -0.0104%, profit factor 0.85, t-stat -1.45
+- `range5.fixed.exit10.against` · REJECT: screen 587 days, average +0.0004%, profit factor 1.01, t-stat 0.06
+- `range5.fixed.exit60.with` · REJECT: screen 587 days, average +0.0231%, profit factor 1.16, t-stat 1.29
+- `range5.fixed.exit60.against` · REJECT: screen 587 days, average -0.0331%, profit factor 0.81, t-stat -1.84
+- `range5.fixed.exitclose.with` · REJECT: screen 570 days, average +0.0535%, profit factor 1.18, t-stat 1.45
+- `range5.fixed.exitclose.against` · REJECT: screen 570 days, average -0.0635%, profit factor 0.82, t-stat -1.72
+- `range15.breakout.exit10.with` · REJECT: screen 694 days, average -0.0079%, profit factor 0.86, t-stat -1.46
+- `range15.breakout.exit10.against` · REJECT: screen 694 days, average -0.0021%, profit factor 0.96, t-stat -0.40
+- `range15.breakout.exit60.with` · REJECT: screen 694 days, average -0.0027%, profit factor 0.98, t-stat -0.20
+- `range15.breakout.exit60.against` · REJECT: screen 694 days, average -0.0073%, profit factor 0.94, t-stat -0.54
+- `range15.breakout.exitclose.with` · REJECT: screen 673 days, average +0.0176%, profit factor 1.07, t-stat 0.59
+- `range15.breakout.exitclose.against` · REJECT: screen 673 days, average -0.0276%, profit factor 0.90, t-stat -0.92
+- `range15.fixed.exit10.with` · REJECT: screen 466 days, average +0.0045%, profit factor 1.07, t-stat 0.50
+- `range15.fixed.exit10.against` · REJECT: screen 466 days, average -0.0145%, profit factor 0.81, t-stat -1.62
+- `range15.fixed.exit60.with` · REJECT: screen 466 days, average +0.0019%, profit factor 1.01, t-stat 0.10
+- `range15.fixed.exit60.against` · REJECT: screen 466 days, average -0.0119%, profit factor 0.92, t-stat -0.62
+- `range15.fixed.exitclose.with` · REJECT: screen 455 days, average +0.0429%, profit factor 1.14, t-stat 1.02
+- `range15.fixed.exitclose.against` · REJECT: screen 455 days, average -0.0529%, profit factor 0.85, t-stat -1.26
+- `range30.breakout.exit10.with` · REJECT: screen 683 days, average -0.0140%, profit factor 0.76, t-stat -2.51
+- `range30.breakout.exit10.against` · REJECT: screen 683 days, average +0.0040%, profit factor 1.08, t-stat 0.72
+- `range30.breakout.exit60.with` · REJECT: screen 683 days, average -0.0149%, profit factor 0.89, t-stat -1.14
+- `range30.breakout.exit60.against` · REJECT: screen 683 days, average +0.0049%, profit factor 1.04, t-stat 0.37
+- `range30.breakout.exitclose.with` · REJECT: screen 663 days, average -0.0019%, profit factor 0.99, t-stat -0.06
+- `range30.breakout.exitclose.against` · REJECT: screen 663 days, average -0.0081%, profit factor 0.97, t-stat -0.26
+- `range30.fixed.exit10.with` · REJECT: screen 414 days, average +0.0053%, profit factor 1.10, t-stat 0.70
+- `range30.fixed.exit10.against` · REJECT: screen 414 days, average -0.0153%, profit factor 0.75, t-stat -2.02
+- `range30.fixed.exit60.with` · REJECT: screen 413 days, average +0.0126%, profit factor 1.10, t-stat 0.70
+- `range30.fixed.exit60.against` · REJECT: screen 413 days, average -0.0226%, profit factor 0.84, t-stat -1.25
+- `range30.fixed.exitclose.with` · REJECT: screen 402 days, average +0.0696%, profit factor 1.26, t-stat 1.65
+- `range30.fixed.exitclose.against` · REJECT: screen 402 days, average -0.0796%, profit factor 0.77, t-stat -1.88
+- Notes on study 2, written after it ran:
+  - Data check before the run: no duplicate or out-of-order bars, no impossible highs or lows, and every bar in the first-hour files matches the full-session files to within rounding.
+  - The one screen survivor (5-minute range, breakout, 10-minute exit, against the break) lost money in the confirm years: negative in 2024, 2025 and 2026 and on all three markets. Its screen and confirm figures were recomputed a second way and matched.
+  - Nearest miss at the screen: 30-minute range, fixed check, exit at 15:55, with the break. t-stat 1.645 against 1.65, profit factor 1.26, positive on all three markets, but 2021 was negative. It is rejected under the rules and its confirm years were not computed or looked at.
+  - Five of the six "with the break, exit at 15:55" versions had a positive screen average. None reached the screen bar. This is an observation, not a result.
+  - About 50 weekdays in the files are US holidays or half days, when the index quoted for part of the session. The rules did not exclude them. Versions that exit at 15:55 skip most of them because that bar is missing.
