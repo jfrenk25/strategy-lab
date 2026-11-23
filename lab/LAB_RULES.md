@@ -548,3 +548,90 @@ Fixed before any result was computed.
 - FAIL: the rule is rejected on 1-hour bars. It is not re-run here with other settings, hours or markets.
 - A fail here says nothing certain about 15-minute or 5-minute charts. Testing those needs 24-hour data on those bars, which the lab does not hold, and would be a new study.
 - This study runs once.
+
+## Study 8: sweep, fair value gap, return to the gap, on 1-minute bars (written November 23, 2026, before this rule was run on any lab data)
+One setup from one outside source, in 96 fixed scenarios, so that trying variations cannot turn into tuning. Code: `lab/intraday/sweep_fvg.py`. Data: `lab/data_1m/*_1m_full.csv.gz` and the 1-hour files.
+
+### Where the rule comes from
+- A post by @L2WTrades on X, x.com/L2WTrades/status/2124841683896406023, November 23, 2026, sent by Jeff the same day.
+- The post's steps: mark a significant high or low on the 4-hour or daily chart; wait for price to trade through it; wait for a fair value gap to form after that; enter when price returns to the gap; stop on the far side of the gap; target the liquidity on the other side, at least 3R away. Trade 9:30 to 12:00 New York time and stop for the day at 12:00.
+- It gives no backtest. The author says he makes over $100,000 a month and shows no record. His profile sells a paid community and carries a prop-firm affiliate code.
+- The post does not say what makes a high "significant", when the sweep has to happen, which chart the gap is on, where in the gap to enter, or what the target is. Each scenario part below is one reading of one of those.
+
+### Why this is run although sweep rules on 1-hour bars are a dead class
+- The built-in `sweep` trigger (480 ideas), the `fair_value_gap` trigger (320 ideas) and study 7 all showed nothing on 1-hour bars.
+- The post trades the New York morning on small charts. The lab has 1-minute bars for three index markets in exactly those hours, and none of the three earlier tests could use them. That is different information.
+- Jeff approved the 96 scenarios on November 23, 2026, before any of this was computed.
+
+### What has been seen
+- The 1-minute files have been used by intraday studies 1 to 6, in both the years before 2024 and the years from 2024. None of that computed this rule.
+- Before these rules were written, the session counted bars: every market has at least 27 of the 30 minutes from 9:00 to 9:29 and at least 140 of the 150 minutes from 9:30 to 11:59 on about 99% of days, summer and winter, and 15 hourly bars from 18:00 to 8:59 on about 99% of days. The 1-hour and 1-minute files agree on the high and low of every full hour they share.
+- The code was checked on made-up prices only: against a plain bar-by-bar version of the same rule (0 mismatches in 6,250 trades), and in a dry run with no cost.
+- The first dry run showed a mistake in a draft rule: an order was cancelled if its 2R or 3R target traded before the fill. With a stop as small as the gap, that target often sits where price already is, so nearly every order was cancelled. The cancel rule now applies only to the opposite-level target. This was fixed on made-up prices, before any lab data was read by the rule.
+- No result of any kind was computed on lab data.
+
+### The 96 scenarios
+Every combination of six parts. Times are New York time. The high side is described; the low side is the mirror in every part.
+- Level, fixed at 17:00 the day before:
+  - `pdhl`: the previous trading day's high and low. A trading day runs from 17:00 to 17:00. If the previous day has fewer than 18 hourly bars, there is no level.
+  - `swing4h`: the latest 4-hour swing high and low. 4-hour candles start at 17:00, 21:00, 1:00, 5:00, 9:00 and 13:00. A swing high is a candle whose high is above the highs of the 2 candles on each side. It counts only if no later candle up to 17:00 traded above it. The most recent one among the last 30 candles is used. If there is none, there is no level on that side.
+- Sweep: the first bar since 18:00 the evening before that trades above the level, by any amount. A touch is not a sweep.
+  - `window`: the sweep must come between 9:30 and 11:59. If price traded above the level before 9:30, there is no setup on that side that day.
+  - `overnight`: the sweep may come at any time from 18:00 the evening before to 11:59.
+- Gap chart: `m1`, 1-minute bars, or `m5`, 5-minute bars counted from 9:00.
+  - A down gap is three bars in a row where the low of the first is above the high of the third. The gap is the space between those two prices.
+  - It must be at least 0.25 times the average range of the bars before it on the same chart: up to 24 bars, counted from 9:00, at least 6. This is the same floor as the lab's `fair_value_gap` trigger, and it keeps out gaps of a tick or two.
+  - The first of the three bars is the bar that holds the sweep, or a later one, and opens at 9:30 or later. The third bar ends by 11:58. A bar with a missing minute cannot be part of a gap.
+  - Only the first such gap of the day on each side is used. If its order does not lead to a trade, that side is finished for the day.
+- Entry: a sell order placed when the third bar closes. `edge`: at the bottom of the gap (the third bar's high). `mid`: at the middle of the gap.
+- Stop: `gapstop`: at the top of the gap (the first bar's low). `sweepstop`: at the highest price since 18:00 the evening before, as it stands when the order is placed.
+- Target: `2r` or `3r`: twice or three times the risk below the entry. `opp`: the level of the same kind on the other side (the previous day's low, or the latest 4-hour swing low). With `opp` there is no trade if that level does not exist, has already been touched since 18:00, or is closer than 3 times the risk.
+- Names read `level.timing.chart.entry.stop.target`, for example `pdhl.window.m5.edge.gapstop.3r`.
+
+### Fills and exits, the same for every scenario
+- The order fills in the first minute, up to 11:59, whose high reaches the order price. It fills at the order price. Not filled by 12:00: cancelled.
+- With the `opp` target only: if the target level trades before the fill, or in the fill minute, the order is cancelled.
+- If the fill minute's high reaches the stop, the trade is stopped for a loss of 1R. A target cannot be hit in the fill minute.
+- After that, minute by minute: a bar that opens beyond the stop or the target is closed at its open. A bar that reaches both counts as a stop. Anything still open is closed at the open of the 15:55 bar, or at the last price before it if that bar is missing.
+- One trade per market per day: the first order to fill. If both sides fill in the same minute, the order placed first counts. If they were also placed in the same minute, the day is skipped.
+- Cost: 0.005% of price per round trip, as in the other studies on these files. The double-cost check uses 0.01%. In R, the cost is that amount divided by the risk, so a small stop makes it large.
+- A day is skipped for a market if it has fewer than 27 of the 30 minutes from 9:00 to 9:29, fewer than 140 of the 150 minutes from 9:30 to 11:59, or fewer than 13 hourly bars from 18:00 to 8:59.
+- Minute bars before 9:00 are not used, because the files only have them in winter. Sweeps before 9:00 are read from the 1-hour bars.
+
+### Markets and counting
+- Nasdaq 100, S&P 500 and Dow, tested together.
+- Results are in R: profit or loss divided by the distance from entry to stop, after costs.
+- The three markets move together, so a day counts once: the day's result is the average of the markets that traded that day. All statistics are on those daily averages unless stated.
+
+### Data split
+- Screen years: June 1, 2021 to December 31, 2023.
+- Confirm years: January 1, 2024 to November 19, 2026, where the 1-hour files end. A scenario sees these only if it passes the screen.
+
+### Screen (all must hold)
+1. At least 150 traded days.
+2. Average above zero, with a t-stat of 1.65 or more.
+3. Profit factor of 1.10 or more.
+4. Average above zero on at least two of the three markets taken alone.
+5. Average above zero at double cost.
+
+### Confirm (one run per survivor; all must hold)
+1. At least 150 traded days.
+2. Average above zero, with a t-stat at or above the normal quantile at 1 - 0.05 / survivors, where survivors is counted as 5 if fewer than 5 pass the screen. So the bar is 2.33 or higher.
+3. Profit factor of 1.15 or more.
+4. Average above zero on at least two of the three markets taken alone.
+5. Average above zero at double cost.
+6. A positive total in at least two of the calendar years 2024, 2025 and 2026.
+7. Long trades alone and short trades alone each have an average above zero, counting every trade equally.
+
+### Also reported, without changing the verdict
+- The family in the screen years: how many of the 96 scenarios have an average above zero, after costs and before costs, and the median average, profit factor and cost in R. A real edge shows up across most of the family, not in one scenario.
+- For each scenario: the average before costs, the average cost in R, win rate, results by market and year, longs and shorts, and how trades ended.
+- The dry run on made-up prices with no cost. With no edge in the prices, every scenario should average about zero.
+
+### What a result means
+- CONFIRMED: a forward watch on new 1-minute data, then the prop-rules calculator before any challenge. It is not a reason to trade or to buy a challenge.
+- Everything else is rejected. No scenario is re-run with other numbers on these files, and no scenario is added to the family after the data has been seen.
+- Fewer than 150 traded days is a reject marked "too few trades". The `window` scenarios need the level untouched all night, so some of them may end this way. That is not evidence for or against them, and loosening the rule to get more trades would be tuning.
+- With `m1` gaps and `gapstop`, the risk is about the size of one minute's range. The files cannot show what happened inside a minute, and the fill rules count the unclear minutes against the trade. A reject there is a reject on 1-minute data, not proof about tick data.
+- The study covers three index markets in the New York morning. It says nothing about forex, gold or crypto on small charts, which the lab cannot test.
+- All 96 results are logged, including the ones that fail. This study runs once.
