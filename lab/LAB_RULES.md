@@ -402,3 +402,82 @@ Studies 1 and 3 could not reproduce the video's 93% win rate. Reading the video 
 - PASS: a forward watch on new tick data and an account-fit study. One loss here is about eight wins, so sizing against prop-firm daily limits decides whether it is usable at all. It is not a reason to trade or to buy a challenge.
 - FAIL: rejected. Not re-run with other stops, targets or times on this data.
 - This study runs once.
+
+## Intraday study 6: Coil Reclaim, a first-hour breakout with a pullback entry (written November 22, 2026, before this rule was run on any lab data)
+One rule from one outside source, at its default settings. Code: `lab/intraday/coil.py`. Data: the full-session 1-minute files in `lab/data_1m/` and the lab's 1-hour files for the same three markets.
+
+### Where the rule comes from
+- A public GitHub repo, `Allencake/coil-reclaim-indicator` (MIT licence), sent by Jeff on November 22, 2026. It holds a TradingView indicator in Pine Script and a prompt for an AI agent. It was created that same day by an anonymous account.
+- The repo gives no backtest, win rate or profit figure, and says so. It credits the rules to "a publicly shared idea" without naming it. Its sample alert is a Bitcoin perpetual on 15-minute bars.
+- The indicator has about 35 settings. This study uses the defaults and changes none of them.
+
+### Why this is run although the opening range idea is closed
+- Study 4 closed the opening range idea on these files: no further versions, groups or filters.
+- This is a different rule from a different source. Its range is any 3 to 20 bar pause, not the first minutes after 9:30. It takes its direction from the daily and 4-hour candles, enters only after a pullback, and uses a stop, a part exit and a target.
+- It is still a first-hour breakout on the same three markets and the same files, so it is the same family. Jeff was told this, and that the family had failed four studies, and asked for the test.
+
+### What has been seen
+- Studies 1 to 4 ran on these files. None computed this rule or any part of it.
+- Before these rules were written, the session looked at file coverage only: the 1-minute files run from 8:00 to 16:14 New York time, and the 1-hour files end on November 20, 2026 at 05:00 UTC.
+
+### The rule (the indicator's defaults)
+Times are New York time. Chart bars are 5-minute bars built from the 1-minute files. Every decision is made at the close of a 5-minute bar.
+- Direction, fixed at the close of the 9:30 bar for the day:
+  - Two candles: the last finished daily candle and the 4-hour candle from 5:00 to 9:00. Both up: buy only. Both down: sell only.
+  - If they disagree: price within a quarter of the daily ATR of an unbroken daily ceiling means sell only; near a daily floor means buy only; otherwise follow the weekly swing direction (daily if the weekly is not yet defined); otherwise follow the daily candle.
+- Levels: a ceiling is an up candle followed by a down candle, drawn at the higher of the two bodies. A floor is the mirror image. A level is broken when a candle of its own timeframe closes beyond it. The two most recent unbroken ceilings and floors are kept on the daily, 4-hour and 1-hour timeframes.
+- Blocked for the day: during the window, if the direction is buy and price is at a daily ceiling (or sell at a daily floor).
+- Clean zone: a run of at least 3 same-colour 5-minute bars covering at least 1.5 ATR, ended by two opposite bars. The 8 most recent are kept. A zone is dropped when a new 4-hour or 1-hour level forms inside it.
+- Wait for a pullback: if the 5:00 to 9:00 candle already ran in the trade direction (body at least 60% of its range, range at least one 4-hour ATR), the range must sit at least 38.2% back into that candle.
+- Trigger, only on bars that open from 9:30 to 10:25:
+  - A range of 3 to 20 earlier bars, measured on candle bodies, with at least 2 bars against the direction and a height of 0.5 to 4 ATR.
+  - A breakout bar in the direction that closes beyond the range, with a body of at least half its own range and a range of no more than half the range height. Its far end must lie in a clean zone.
+  - A stop order at the breakout bar's high (low for a sell). The protective stop is the other end of that bar.
+  - The order fills only after a pullback bar: a wick of at least 0.1 ATR and 20% of that bar's range. It is cancelled if price reaches it with no pullback first, if a bar closes back inside the range, or after 6 bars.
+- Exit: at 1R close half and move the stop to the entry price. The stop also moves to entry if a level is touched before 1R. The rest is held to the nearest unbroken level beyond 1R, capped at 3R. Close everything if the trade is at least 1.5R ahead after 3 straight bars in its direction, or 240 minutes after entry. A bar that reaches the stop is a stop, whatever else it reached.
+- At most 2 trades a day for each market, one at a time.
+
+### Where the lab's version differs from the indicator on a TradingView chart
+These were fixed before any result was computed. Each is forced by the data.
+- New York session only. The lab has no 1-minute bars for the Asia or London hours.
+- 5-minute bars only. On 15-minute bars the files hold too little of the morning before 9:30.
+- Markets: Nasdaq 100, S&P 500 and Dow. The repo's sample is Bitcoin, which the lab does not hold below 1-hour bars.
+- The 5-minute ATR (Wilder, 14 bars) restarts each day at 8:00, so the overnight gap does not inflate it. The range may only use bars from the same day.
+- Clean zones can only form from bars between 8:00 and 16:14, because that is all the files hold. On a 24-hour chart there would be more zones, so the lab's version takes fewer trades than the indicator would.
+- Daily candles run from 17:00 to 17:00 and 4-hour candles start at 17:00, 21:00, 1:00, 5:00, 9:00 and 13:00. A broker with another day boundary would give other candles.
+- The first trades are on June 1, 2021, to let the daily and weekly measures fill in. The last possible day is November 19, 2026, where the 1-hour files end.
+- A day is skipped for a market if fewer than 135 of the 150 one-minute bars from 8:00 to 10:29 exist, if any 5-minute bar in that stretch is missing, or if the 5:00 to 9:00 candle is incomplete. A trade still open when the day's bars end is closed at the last price, and such trades are counted in the report.
+
+### Two ways of filling the same signals
+- A, the indicator's own bookkeeping. A bar that both forms the pullback wick and touches the order counts as filled at the order price. On the fill bar, the stop counts only if the bar closes beyond it. This is what the chart labels would show.
+- B, as it could be traded. The verdict is on B.
+  - If the pullback wick and the touch come in the same bar, nobody can know it is a pullback bar until it closes. So the entry is at that bar's close, if the close is at or beyond the order price. If it is not, the order stays live as a resting stop order.
+  - A resting order fills at the order price, or at the bar's open if that is worse. Inside the fill bar the 1-minute bars decide the stop: stopped if the fill minute closes beyond the stop, or if any later minute trades through it.
+  - Everything after the fill bar is the same as A.
+- Cost for both: 0.005% of price per round trip, charged once per trade whatever the part exits. The double-cost check uses 0.01%.
+
+### Counting
+- Results are in R: profit or loss divided by the distance from entry to the first stop.
+- The three markets move together, so a day counts once: each market's trades for the day are added up, and the day's result is the average across the markets that traded. All statistics are on those daily numbers unless stated.
+- Period: June 1, 2021 to November 19, 2026, as one test. The rule has no fitted period to keep apart, and it is run once.
+
+### Pass, on fill B (all must hold)
+1. At least 150 traded days.
+2. Average above zero, with a t-stat of 2.58 or more.
+3. Profit factor of 1.15 or more.
+4. Average above zero at double cost.
+5. Average above zero on at least two of the three markets taken alone.
+6. A positive total in at least four of the six calendar years 2021 to 2026.
+7. Long trades alone and short trades alone each have an average above zero, counting every trade equally.
+
+### Also reported, without changing the verdict
+- Fill A, next to B.
+- Win rate, trades per market, how trades ended (stop, break-even, target, too fast, time), and how many orders were cancelled and why.
+- A dry run of the same code on made-up prices with no cost. Made-up prices have no edge, so B should average about zero there. If A does not, the gap is how much the indicator's own bookkeeping flatters it.
+
+### What a result means
+- PASS: a forward watch on new 1-minute data, and the prop-rules calculator before any challenge. It is not a reason to trade or to buy a challenge.
+- FAIL: the rule is rejected. It is not re-run with other settings, sessions, timeframes or filters on these files.
+- Fewer than 150 traded days is a FAIL marked "too few trades": the rule was not shown to work, and loosening it to get more trades would be tuning.
+- Testing it on the market it was written for (Bitcoin, 15-minute bars) would be a new study with new data and its own count.
+- This study runs once.
