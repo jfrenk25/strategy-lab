@@ -18,8 +18,8 @@ def check(name):
         data, _ = pm.load_daily(idea.get("markets", "all"))
         for p in idea.get("grid", []):
             full = mod.positions(data, p).reindex(index=data["close"].index, columns=data["close"].columns).fillna(0.0).to_numpy()
-            for frac in (0.6, 0.85):
-                t = int(len(full) * frac)
+            rng = np.random.default_rng(0)
+            for t in sorted({int(len(full) * 0.6), int(len(full) * 0.85)} | {int(x) for x in rng.integers(len(full) // 4, len(full) - 1, size=20)}):
                 part = mod.positions({k: v.iloc[:t] for k, v in data.items()}, p).reindex(index=data["close"].index[:t], columns=data["close"].columns).fillna(0.0).to_numpy()
                 bad = int((np.abs(part - full[:t]) > 1e-9).any(axis=1).sum())
                 if bad: problems.append(f"{p}: look-ahead, weights on {bad} days change when later data is removed")
@@ -28,11 +28,11 @@ def check(name):
     for p in idea.get("grid", []):
         full = np.nan_to_num(np.asarray(mod.signals(df, p), dtype=float))
         if len(full) != len(df): problems.append(f"{p}: wrong output length"); continue
-        for frac in (0.5, 0.8):
-            t = int(len(df) * frac)
+        bad = 0
+        for t in lab.lookahead_cuts(full):               # half way, four fifths, and right after 40 bars on which the idea signals
             part = np.nan_to_num(np.asarray(mod.signals(df.iloc[:t], p), dtype=float))
-            bad = int((part != full[:t]).sum())
-            if bad: problems.append(f"{p}: look-ahead, {bad} signals change when later data is removed")
+            bad += int((part != full[:t]).sum())
+        if bad: problems.append(f"{p}: look-ahead, {bad} signals change when later data is removed")
     return problems
 
 

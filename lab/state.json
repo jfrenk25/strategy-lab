@@ -1,6 +1,8 @@
 {
+ "rules_version": 4,
  "attempts": 104,
- "tested": {
+ "tested": {},
+ "tested_v3": {
   "donchian_breakout.py": "844011b198a5",
   "rsi2_reversion.py": "25170c877cf8",
   "ts_momentum.py": "76890517d13f",

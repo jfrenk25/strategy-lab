@@ -635,3 +635,73 @@ Every combination of six parts. Times are New York time. The high side is descri
 - With `m1` gaps and `gapstop`, the risk is about the size of one minute's range. The files cannot show what happened inside a minute, and the fill rules count the unclear minutes against the trade. A reject there is a reject on 1-minute data, not proof about tick data.
 - The study covers three index markets in the New York morning. It says nothing about forex, gold or crypto on small charts, which the lab cannot test.
 - All 96 results are logged, including the ones that fail. This study runs once.
+
+## Rules version 4: fixes from the audit (written November 23, 2026, before anything was run under it)
+An audit on November 23, 2026 checked the lab against an outside backtesting library, planted known edges in shuffled prices, and had an independent reviewer read the code. The arithmetic held up. Four things in the rules made passing much harder than intended, and two checks were weak. This section replaces the parts named below. Everything else in this file stands. Jeff asked for the fixes and a re-run on November 23, 2026.
+
+Version 3 results are kept as they were: `lab/screen/v3/` and `lab/results/v3/`. The version 3 code is commit 413dae0.
+
+### 1. One cost table for every track
+The 1-hour tracks charged about five to ten times what the intraday studies charged for the same index, and several times a prop firm's published commission. A no-edge idea started about 3 standard errors below zero on fifteen markets. From version 4 there is one table, in `lab/costs.py`.
+
+| Market | Per side | Round trip at November 2026 prices |
+|---|---|---|
+| Nasdaq 100, S&P 500, Dow, DAX | 0.005% | Nasdaq 2.8 points, S&P 0.8, Dow 5.2 |
+| EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD | 0.006% | EURUSD 1.3 pips |
+| EURJPY, GBPJPY | 0.008% | GBPJPY 3.4 pips |
+| Gold | 0.006% | 0.48 USD |
+| Oil | 0.02% | 3.5 cents |
+| Bitcoin | 0.065% | about 97 USD |
+| Ether | 0.075% | about 2.90 USD |
+
+- The cost is charged on entry and on exit. A stopped exit pays the per-side cost once more. The double-cost check doubles all of it.
+- Position mode trades at the daily close, when spreads are wide, so each change of weight pays twice the per-side cost.
+- Where the numbers come from: FTMO US publishes 5 USD per forex lot round trip and 0.0025% per side on expiring index, commodity and metal contracts; its rolling index and oil contracts carry no commission. FTMO publishes 0.0325% per side on crypto. FTMO publishes no typical spreads, so the spread part is an estimate from third-party listings. It is the weakest part of the table.
+- Crypto is now dearer than before (0.03% and 0.04% per side under version 3). Everything else is cheaper.
+- To correct a number, read the spread and commission off the trading platform. A changed table is a new rules version.
+- Intraday studies from here on use this table too. Studies 1 to 8 ran at 0.005% per round trip, which is about half of it for an index. They all failed at the lower cost, so no verdict changes.
+- A third-party page says FTMO US offers three US indices, gold, oil, Bitcoin and forex. The DAX and Ether may not be tradable there. They stay in the lab as markets, and this is noted where it matters.
+
+### 2. Every market is read from April 21, 2021
+- Gold's file starts in 2009. Under version 3 that made gold 47% of the screen sample for six-market ideas, and 13 of the main track's 16 test years were gold alone.
+- From version 4 every track drops bars before April 21, 2021, for gold as for the rest. The main track then has three test years (the blocks starting April 2023, 2024 and 2025).
+- Everything from April 21, 2026 on is one quarantine block, including later years.
+
+### 3. Every screened idea runs on all fifteen markets
+- Version 3 did this only for triggers registered after November 20, 2026. From version 4 it holds for the whole catalogue.
+- "Profitable in at least half of the markets" counts the markets that traded in the window. A market that is closed whenever the idea fires is left out, as in the forward watch.
+
+### 4. Checks repaired
+- Position mode, "beats 95% of time-shifted copies": the old copies wrapped weights from the end of a year to its start, so they had already seen the days they were applied to. On no-edge prices trend ideas passed 0% to 3% of the time and contrarian ideas up to 97%. The copies now use weights from 20 or more days earlier, and the real run is scored the same way. Measured on 60 no-edge datasets: 3% to 15% pass, rising with the lookback, the same for trend and contrarian. It should be 5%. The check is now a little easy for slow ideas, which the other checks cover.
+- Position mode Sharpe is annualised with the idea's own number of rows a year, not 365.
+- Look-ahead checks (`check_trigger.py`, `check_idea.py`, `check_screen.py`): the old ones cut the data at two points and missed a one-bar peek most of the time (17 of 40 and 4 of 40 in the audit). They now also cut right after 20 to 40 bars on which the signal fires. Test files that peek one bar ahead, fire rarely, or use a centred window were caught on every market. All 60 registered triggers, the built-in parts and the eight ideas pass.
+- Signals are reduced to -1, 0 or +1 before they are used.
+- `lab.py --permtest NAME` works only for an idea that has already been tested, so it cannot give a free look.
+- The quarantine block is read once per idea whatever the version: `quarantine_used` is now enforced.
+- `screen.py --selftest` draws a sample of the whole catalogue and uses all fifteen markets.
+
+### 5. What the code has always done, now written down
+- A gap through the target fills at the target price, not at the better open.
+- An opposite signal closes the trade at that bar's close and opens the other way at the next open.
+- The six-bar cooldown counts from every signal, including one that was ignored because a trade was open.
+- A trade is counted in the window in which it was entered, even if it exits later.
+- The random-entry baseline has no cooldown and no opposite-signal exit. On no-edge prices the check passes 2% to 3% of the time, not 5%. It is slightly strict.
+- The t-stat treats trades in different markets as independent. Markets that move together make it slightly lenient.
+
+### 6. The bar does not change
+- Screen and confirm thresholds are as before. The survivor bar carries on from the 155 ideas sent to confirm under versions 1 to 3, so the first version 4 survivor needs a t-stat of 3.41 and the bar only rises.
+- The main track's attempt counter stays at 104. A re-run of an idea tested under version 3 is judged at the bar for attempt 104 and is not a new attempt.
+- What the audit found about power still holds: with about 300 trades in the two confirm years, a true profit factor near 1.25 is not caught, and one near 1.45 is caught about half the time. Two unseen years cannot show a small edge. The fixes are more history or a longer forward watch, not a lower bar.
+
+### 7. The re-run
+- Main track: the eight ideas tested under version 3 are run once more. The journal marks each "version 4 re-run".
+- Screen track: all 17,200 catalogue ideas are screened again into a new log, `lab/screen/log.csv`. A survivor gets its one confirm run.
+- 155 ideas had their confirm years read under version 3. If one of them survives the version 4 screen, its confirm run is not a first look. The journal and its confirm file say so.
+- The screen years were seen under version 3 by every idea. That is what a screen is for: it only picks who goes to confirm.
+- Forward watch: candidates and near misses from version 4 are added. The 20 ideas already watched stay. No forward trade had been counted before this version, so all forward results use the version 4 costs.
+- The new-market test and the intraday studies ran once under their own rules and are not re-run.
+
+### What a version 4 result means
+- A CANDIDATE is worth watching on new data and nothing more, as before.
+- A REJECT now says "not shown to work at roughly real costs", which is a stronger statement than under version 3.
+- The cost table is an estimate. A result that depends on it being exactly right is not a result.

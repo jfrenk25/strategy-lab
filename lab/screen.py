@@ -20,7 +20,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import lab
 
-CATALOGUE_VERSION = 3              # 2 = triggers appended from lab/triggers; 3 = triggers registered from here on run on fifteen markets
+CATALOGUE_VERSION = 4              # 2 = triggers appended from lab/triggers; 3 = new triggers run on fifteen markets; 4 = rules version 4: one cost table, every market from April 21, 2021, every idea on fifteen markets, new log
+SURVIVORS_BEFORE = 155             # ideas sent to confirm under versions 1 to 3 (lab/screen/v3): the survivor bar carries on from here
 SEED = 20261120                    # fixes the order in which the catalogue is screened
 SCREEN_LAST_BLOCK = 2023           # the screen sees trades entered before April 21, 2024
 CONFIRM_BLOCKS = (2024, 2025)      # April 21, 2024 to April 20, 2026: one run per survivor
@@ -34,11 +35,10 @@ TRIG_DIR = os.path.join(HERE, "triggers")
 REGISTRY = os.path.join(OUT, "registry.json")       # triggers in the order they were added; append-only
 MAX_VARIANTS = 3
 PLUGINS = {}                                        # trigger name -> loaded module
-NEW_FEES = {"NAS100": 0.00025, "SPX500": 0.00025, "USOIL": 0.0003, "EURUSD": 0.00015, "GBPUSD": 0.00015,
-            "USDJPY": 0.00015, "AUDUSD": 0.00015, "USDCAD": 0.00015, "EURJPY": 0.00015}      # per side; bars in lab/data_new
-FEES_ALL = {**lab.FEES, **NEW_FEES}
+NEW_FEES = lab.EXTRA_FEES                           # per side; one table for the whole lab, in lab/costs.py
+FEES_ALL = lab.ALL_FEES
 UNIVERSES = {"six": list(lab.FEES), "fifteen": list(lab.FEES) + list(NEW_FEES)}
-NEW_UNIVERSE = "fifteen"                            # every trigger registered from catalogue version 3 on
+NEW_UNIVERSE = "fifteen"                            # kept in each spec so idea ids do not change; from version 4 every idea runs on fifteen
 LOG_COLS = ["date", "id", "name", "trades", "pf", "t", "double_cost_pf", "markets_profitable", "screen"]
 
 
@@ -156,9 +156,10 @@ def validate_trigger(name):
                     problems.append(f"{m} {p}: wrong output length"); continue
                 if not (full != 0).any():
                     problems.append(f"{m} {p}: never fires")
-                for frac in (0.5, 0.8):
-                    cut = int(len(df) * frac); bad = int((_plugin_event(mod, df.iloc[:cut], p) != full[:cut]).sum())
-                    if bad: problems.append(f"{m} {p}: look-ahead, {bad} signals change when later data is removed")
+                cuts = lab.lookahead_cuts(full); bad = 0
+                for cut in cuts:                     # half way, four fifths, and right after 40 bars on which the trigger fires
+                    bad += int((_plugin_event(mod, df.iloc[:cut], p) != full[:cut]).sum())
+                if bad: problems.append(f"{m} {p}: look-ahead, {bad} signals change when later data is removed ({len(cuts)} cut points)")
             except Exception as e:
                 problems.append(f"{m} {p}: error {e!r}")
     return problems
@@ -280,15 +281,8 @@ def signals(spec, f):
 # ---------------------------------------------------------------- testing
 
 def load_market_any(m):
-    """Bars, block numbers and ATR for any market. The six lab markets come from lab/data, the nine added ones from lab/data_new."""
-    if m in lab.FEES:
-        return lab.load_market(m)
-    df = pd.read_csv(os.path.join(HERE, "data_new", f"{m}_1h.csv.gz"), parse_dates=["time"]).set_index("time")
-    idx = df.index                                       # same construction as lab.load_market
-    block = np.where((idx.month > 4) | ((idx.month == 4) & (idx.day >= 21)), idx.year, idx.year - 1).astype(np.int64)
-    pc = df["close"].shift(1)
-    tr = pd.concat([df["high"] - df["low"], (df["high"] - pc).abs(), (df["low"] - pc).abs()], axis=1).max(axis=1)
-    return df, block, (tr.rolling(14, min_periods=14).mean() / df["close"]).fillna(0.01).to_numpy()
+    """Bars, block numbers and ATR for any of the fifteen markets. One loader for the whole lab."""
+    return lab.load_market(m)
 
 
 def load(frames=None):
@@ -304,16 +298,16 @@ def load(frames=None):
 
 
 def run_spec(spec, data, markets=None):
-    """Simulate one idea. By default on the markets of its own universe (six for older ideas, fifteen from version 3 on)."""
+    """Simulate one idea on every market the lab holds (from version 4, whatever universe the idea was first screened on)."""
     am, rr = lab.EXITS[spec["exit"]]; runs = {}
     if markets is None:
-        markets = [m for m in UNIVERSES[spec.get("universe", "six")] if m in data]
+        markets = [m for m in UNIVERSES["fifteen"] if m in data]
     for m in markets:
         D = data[m]
         d = lab._cooldown(np.ascontiguousarray(signals(spec, D["feats"])), lab.COOLDOWN)
         slf = np.clip(am * D["atrp"], 0.001, 0.20)
-        runs[m] = dict(slf=slf, rr=rr, x1=lab._simulate(*D["ohlc"], d, slf, rr, FEES_ALL[m], lab.SLIP),
-                       x2=lab._simulate(*D["ohlc"], d, slf, rr, FEES_ALL[m] * 2, lab.SLIP * 2))
+        runs[m] = dict(slf=slf, rr=rr, x1=lab._simulate(*D["ohlc"], d, slf, rr, FEES_ALL[m], lab.SLIPS[m]),
+                       x2=lab._simulate(*D["ohlc"], d, slf, rr, FEES_ALL[m] * 2, lab.SLIPS[m] * 2))
     return runs
 
 
@@ -322,10 +316,12 @@ def window_stats(runs, data, in_window, random_baseline=False):
     R, R2, by_market, rnd, actual = [], [], {}, np.zeros(1000), 0.0
     for m, run in runs.items():
         blk = data[m]["block"]; ei, r, sd = run["x1"]; ei2, r2, _ = run["x2"]
-        k = in_window(blk[ei]); R.append(r[k]); R2.append(r2[in_window(blk[ei2])]); by_market[m] = float(r[k].sum())
+        k = in_window(blk[ei]); R.append(r[k]); R2.append(r2[in_window(blk[ei2])])
+        if k.any():                                          # a market with no trade in the window is left out of the count
+            by_market[m] = float(r[k].sum())
         if random_baseline and k.any():
             w = np.where(in_window(blk))[0]
-            rnd += lab._random(*data[m]["ohlc"][:3], int(w[0]), int(w[-1]), sd[k].astype(np.int64), run["slf"], run["rr"], FEES_ALL[m], lab.SLIP, 1000, 11)
+            rnd += lab._random(*data[m]["ohlc"][:3], int(w[0]), int(w[-1]), sd[k].astype(np.int64), run["slf"], run["rr"], FEES_ALL[m], lab.SLIPS[m], 1000, 11)
             actual += float(r[k].sum())
     R = np.concatenate(R); R2 = np.concatenate(R2)
     out = dict(trades=int(len(R)), pf=lab._pf(R) if len(R) else float("nan"), totalR=float(R.sum()) if len(R) else 0.0, t=lab._tstat(R),
@@ -342,7 +338,7 @@ def screen_checks(st):
         f"trades >= {S['trades']}": bool(st["trades"] >= S["trades"]),
         f"profit factor >= {S['pf']}": bool(st["pf"] >= S["pf"]),
         f"t-stat >= {S['t']}": bool(st["t"] >= S["t"]),
-        "profitable in half the markets": bool(nm[1] and nm[0] / nm[1] >= S["market_share"]),
+        "profitable in half the markets that traded": bool(nm[1] and nm[0] / nm[1] >= S["market_share"]),
         "profit factor > 1 at double costs": bool(st["dbl_pf"] > 1.0),
     }
 
@@ -352,7 +348,7 @@ def confirm_checks(st, need_t, k):
     return {
         f"trades >= {C['trades']}": bool(st["trades"] >= C["trades"]),
         f"profit factor >= {C['pf']}": bool(st["pf"] >= C["pf"]),
-        "profitable in half the markets": bool(nm[1] and nm[0] / nm[1] >= C["market_share"]),
+        "profitable in half the markets that traded": bool(nm[1] and nm[0] / nm[1] >= C["market_share"]),
         "profit factor > 1 at double costs": bool(st["dbl_pf"] > 1.0),
         "beats 95% of random entries": bool(st["beats_random"] >= C["random_pct"]),
         f"t-stat >= {need_t:.2f} (bar for survivor {k})": bool(st["t"] >= need_t),
@@ -361,17 +357,19 @@ def confirm_checks(st, need_t, k):
 
 def in_screen(b): return b <= SCREEN_LAST_BLOCK
 def in_confirm(b): return np.isin(b, CONFIRM_BLOCKS)
-def in_quarantine(b): return b == lab.QUARANTINE
+def in_quarantine(b): return b >= lab.QUARANTINE
 
 
 def selftest(n):
     """Run n catalogue ideas on shuffled prices. Any pass there is luck by construction. Nothing is logged."""
     rng = np.random.default_rng(3); frames = {}
-    for m in lab.FEES:
+    for m in FEES_ALL:
+        if not os.path.exists(lab._path(m)): continue
         df, block, _ = lab.load_market(m); pdf = lab.permute(df, rng); pc = pdf["close"].shift(1)
         tr = pd.concat([pdf["high"] - pdf["low"], (pdf["high"] - pc).abs(), (pdf["low"] - pc).abs()], axis=1).max(axis=1)
         frames[m] = (pdf, block, (tr.rolling(14, min_periods=14).mean() / pdf["close"]).fillna(0.01).to_numpy())
-    data = load(frames); specs = catalogue()[-n:]; passed = 0
+    specs = catalogue(); specs = random.Random(3).sample(specs, min(n, len(specs)))      # a sample of the whole catalogue
+    data = load(frames); passed = 0
     for spec in specs:
         st = window_stats(run_spec(spec, data), data, in_screen)
         passed += all(screen_checks(st).values())
@@ -392,8 +390,9 @@ def main():
         print("registered new triggers: " + ", ".join(added))
     os.makedirs(os.path.join(OUT, "confirm"), exist_ok=True)
     state_path = os.path.join(OUT, "state.json"); log_path = os.path.join(OUT, "log.csv")
-    state = json.load(open(state_path)) if os.path.exists(state_path) else dict(catalogue_version=CATALOGUE_VERSION, screened=0, survivors=0, confirmed=0, candidates=0)
-    state["catalogue_version"] = CATALOGUE_VERSION
+    state = json.load(open(state_path)) if os.path.exists(state_path) else dict(catalogue_version=CATALOGUE_VERSION, screened=0, survivors=SURVIVORS_BEFORE, confirmed=0, candidates=0)
+    assert state.get("catalogue_version") == CATALOGUE_VERSION, "lab/screen holds another version's state: results of an older version belong in lab/screen/v3"
+    seen_before = {os.path.basename(f)[:-5] for f in __import__("glob").glob(os.path.join(OUT, "v3", "confirm", "*.json"))}
     done = set()
     if os.path.exists(log_path):
         done = {row["id"] for row in csv.DictReader(open(log_path, newline=""))}
@@ -418,7 +417,8 @@ def main():
         state["survivors"] += 1; k = state["survivors"]; need_t = NormalDist().inv_cdf(1 - 0.05 / max(k, SURVIVOR_FLOOR))
         cf = window_stats(runs, data, in_confirm, random_baseline=True); checks = confirm_checks(cf, need_t, k)
         res = dict(id=spec["id"], name=spec["name"], spec={x: spec[x] for x in ("trigger", "params", "direction", "regime", "session", "exit", "universe") if x in spec},
-                   date=today, survivor=k, need_t=float(need_t), screen=st, confirm=cf, checks=checks, verdict="REJECT")
+                   date=today, survivor=k, need_t=float(need_t), screen=st, confirm=cf, checks=checks, verdict="REJECT", catalogue_version=CATALOGUE_VERSION,
+                   confirm_years_seen_before=spec["id"] in seen_before)
         day["survivors"].append(spec["name"])
         if all(checks.values()):
             state["confirmed"] += 1; day["confirmed"].append(spec["name"])
@@ -432,6 +432,7 @@ def main():
         with open(os.path.join(HERE, "JOURNAL.md"), "a") as j:
             j.write(f"\n### {today} · screen survivor {k} · `{spec['name']}` · {res['verdict']}\n"
                     f"- Source: machine-built from parts (screen catalogue, id {spec['id']}). No stated reason.\n"
+                    + ("- This idea's confirm years were already read once under version 3 costs, so this is not a first look.\n" if res["confirm_years_seen_before"] else "") +
                     f"- Screen years: {st['trades']} trades, profit factor {st['pf']:.2f}, t-stat {st['t']:.2f}\n"
                     f"- Confirm years: {cf['trades']} trades, profit factor {cf['pf']:.2f}, {cf['totalR']:+.1f}R, t-stat {cf['t']:.2f} (needed {need_t:.2f}); "
                     f"markets {cf['markets_profitable'][0]} of {cf['markets_profitable'][1]}; double-cost profit factor {cf['dbl_pf']:.2f}; beats {cf['beats_random']:.0f}% of random entries\n"
@@ -443,7 +444,7 @@ def main():
         j.write(f"\n### {today} · screen batch · {day['screened']} ideas\n"
                 + (f"- New triggers registered: {', '.join(added)}.\n" if added else "") +
                 f"- Passed the screen: {len(day['survivors'])}. Confirmed on unseen years: {len(day['confirmed'])}. Candidates: {len(day['candidates'])}.\n"
-                f"- Totals: {state['screened']} of {len(specs)} catalogue ideas screened, {state['survivors']} survivors, {state['confirmed']} confirmed, {state['candidates']} candidates.\n"
+                f"- Totals under version 4: {state['screened']} of {len(specs)} catalogue ideas screened, {state['survivors'] - SURVIVORS_BEFORE} survivors ({state['survivors']} with the {SURVIVORS_BEFORE} from earlier versions, which set the bar), {state['confirmed']} confirmed, {state['candidates']} candidates.\n"
                 f"- Every screened idea is in `lab/screen/log.csv`.\n")
     json.dump(state, open(state_path, "w"), indent=1)
     print(f"screened {day['screened']}: {len(day['survivors'])} passed the screen, {len(day['confirmed'])} confirmed, {len(day['candidates'])} candidates. "

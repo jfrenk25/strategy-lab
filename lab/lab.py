@@ -15,11 +15,14 @@ import pandas as pd
 from numba import njit
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-FEES = {"BTCUSD": 0.0003, "ETHUSD": 0.0004, "XAUUSD": 0.0002, "GBPJPY": 0.00015, "USA30": 0.00025, "DEU30": 0.00025}   # per side
-EXTRA_FEES = {"NAS100": 0.00025, "SPX500": 0.00025, "USOIL": 0.0003, "EURUSD": 0.00015, "GBPUSD": 0.00015,
-              "USDJPY": 0.00015, "AUDUSD": 0.00015, "USDCAD": 0.00015, "EURJPY": 0.00015}    # the nine markets in lab/data_new
+sys.path.insert(0, HERE)
+import costs
+RULES_VERSION = 4                                              # see "Rules version 4" in LAB_RULES.md; version 3 code is commit 413dae0
+FEES = {m: costs.COST[m] for m in costs.SIX}                   # per side; the lab's first six markets (lab/data)
+EXTRA_FEES = {m: v for m, v in costs.COST.items() if m not in costs.SIX}    # the nine markets in lab/data_new
 ALL_FEES = {**FEES, **EXTRA_FEES}
-SLIP, COOLDOWN = 0.0002, 6
+SLIPS = dict(costs.STOP_SLIP)                                  # extra on a stopped exit, per market
+COOLDOWN = 6
 EXITS = [(2.0, 1.5), (2.0, 2.5), (3.0, 1.5), (3.0, 2.5)]       # (stop in ATRs, target as a multiple of the stop)
 QUARANTINE = 2026                                             # block held back; an idea may touch it once
 MIN_TRAIN_TRADES, MAX_GRID = 20, 12
@@ -33,8 +36,10 @@ def _path(m):
 
 def load_market(m):
     df = pd.read_csv(_path(m), parse_dates=["time"]).set_index("time")
+    df = df[df.index >= pd.Timestamp(costs.DATA_START, tz=df.index.tz)]      # every market from the same day, gold too
     idx = df.index
     block = np.where((idx.month > 4) | ((idx.month == 4) & (idx.day >= 21)), idx.year, idx.year - 1).astype(np.int64)
+    block = np.minimum(block, QUARANTINE)                                    # everything from April 21, 2026 on is the quarantine block
     pc = df["close"].shift(1)
     tr = pd.concat([df["high"] - df["low"], (df["high"] - pc).abs(), (df["low"] - pc).abs()], axis=1).max(axis=1)
     atrp = (tr.rolling(14, min_periods=14).mean() / df["close"]).fillna(0.01).to_numpy()
@@ -133,10 +138,10 @@ def _collect(mod, idea, frames, costs=(1, 2)):
         o, h, l, c = (np.ascontiguousarray(df[x].to_numpy(np.float64)) for x in ("open", "high", "low", "close"))
         cfgs = {}
         for gi, p in enumerate(idea["grid"]):
-            d = _cooldown(np.ascontiguousarray(np.nan_to_num(np.asarray(mod.signals(df, p), dtype=np.float64)).astype(np.int64)), COOLDOWN)
+            d = _cooldown(np.ascontiguousarray(np.sign(np.nan_to_num(np.asarray(mod.signals(df, p), dtype=np.float64))).astype(np.int64)), COOLDOWN)
             for xi, (am, rr) in enumerate(EXITS):
                 slf = np.clip(am * atrp, 0.001, 0.20)
-                cfgs[(gi, xi)] = tuple(_simulate(o, h, l, c, d, slf, rr, ALL_FEES[m] * k, SLIP * k) for k in costs)
+                cfgs[(gi, xi)] = tuple(_simulate(o, h, l, c, d, slf, rr, ALL_FEES[m] * k, SLIPS[m] * k) for k in costs)
         store[m] = dict(cfgs=cfgs, block=block, ohlc=(o, h, l, c), atrp=atrp)
         blocks = sorted(set(block.tolist()))
         for Tb in blocks:
@@ -201,7 +206,15 @@ def neighbour_test(mod, idea, frames):
     return dict(runs=runs, profitable=good, total=len(runs), passed=bool(not runs or good / len(runs) >= T["neighbour_share"]))
 
 
-def run_idea(mod, attempts):
+def lookahead_cuts(fired, n_fired=40, seed=0):
+    """Where to cut the data for a look-ahead test: half way, four fifths, and right after up to 40 bars on which the
+    signal fires. A signal that peeks even one bar ahead changes on the last bar before such a cut."""
+    n = len(fired); idx = np.flatnonzero(np.asarray(fired) != 0); idx = idx[idx >= n // 4]
+    pick = np.random.default_rng(seed).choice(idx, size=min(n_fired, len(idx)), replace=False) if len(idx) else np.array([], dtype=int)
+    return sorted({int(n * 0.5), int(n * 0.8)} | {int(i) + 1 for i in pick})
+
+
+def run_idea(mod, attempts, quarantine_ok=True):
     idea = mod.IDEA
     assert len(idea["grid"]) <= MAX_GRID, "grid too large"
     assert idea.get("reason") and idea.get("loser"), "an idea must state why the edge exists and who loses"
@@ -216,7 +229,7 @@ def run_idea(mod, attempts):
         by_block[pk["block"]] = by_block.get(pk["block"], 0.0) + float(r.sum()); by_market[pk["market"]] = by_market.get(pk["market"], 0.0) + float(r.sum())
         if len(r):
             w = np.where(s["block"] == pk["block"])[0]; am, rr = EXITS[pk["cfg"][1]]
-            rnd += _random(*s["ohlc"][:3], int(w[0]), int(w[-1]), sd[msk].astype(np.int64), np.clip(am * s["atrp"], 0.001, 0.20), rr, ALL_FEES[pk["market"]], SLIP, 1000, 11)
+            rnd += _random(*s["ohlc"][:3], int(w[0]), int(w[-1]), sd[msk].astype(np.int64), np.clip(am * s["atrp"], 0.001, 0.20), rr, ALL_FEES[pk["market"]], SLIPS[pk["market"]], 1000, 11)
             actual += float(r.sum())
     R_all = np.concatenate(R_all) if R_all else np.array([]); R_dbl = np.concatenate(R_dbl) if R_dbl else np.array([])
     need_t = NormalDist().inv_cdf(1 - 0.05 / attempts)
@@ -242,7 +255,9 @@ def run_idea(mod, attempts):
     if all(res["checks"].values()):
         res["neighbours"] = neighbour_test(mod, idea, frames)
         res["checks"]["nearby settings stay profitable (two thirds or more)"] = res["neighbours"]["passed"]
-    if all(res["checks"].values()):
+    if all(res["checks"].values()) and not quarantine_ok:
+        res["verdict"] = "REJECT (quarantine already used)"          # the quarantine block is read once per idea, whatever the version
+    elif all(res["checks"].values()):
         qr = []
         for pk in q_picks:
             s = store[pk["market"]]; (ei, R, sd), _ = s["cfgs"][pk["cfg"]]; qr.append(R[s["block"][ei] == QUARANTINE])
@@ -256,6 +271,7 @@ def main():
     state_path = os.path.join(HERE, "state.json"); state = json.load(open(state_path))
     want = sys.argv[1:]
     if want and want[0] == "--permtest":
+        assert want[1] + ".py" in state["tested"], "--permtest is a diagnostic for ideas that have already been tested: test the idea first (it counts as an attempt)"
         f = want[1] + ".py"; spec = importlib.util.spec_from_file_location(want[1], os.path.join(HERE, "ideas", f)); mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
         frames = _frames(mod.IDEA); store, picks, _ = _collect(mod, mod.IDEA, frames, costs=(1,)); actual = _total(store, picks)
         n = int(want[2]) if len(want) > 2 else N_PERM
@@ -272,20 +288,22 @@ def main():
         problems = check(f[:-3])
         if problems:                       # a broken idea is not a test: it is not counted and not marked as tested
             print(f"INVALID    {f[:-3]}: " + "; ".join(problems)); continue
-        state["attempts"] += 1
+        rerun = state.get("tested_v3", {}).get(f) == digest      # tested under version 3: a re-run is not a new attempt
+        if not rerun: state["attempts"] += 1
+        q_ok = f not in state["quarantine_used"]
         is_pos = mod.IDEA.get("mode") == "position"
         if is_pos:
             import position_mode
-            res = position_mode.run_idea(mod, state["attempts"])
+            res = position_mode.run_idea(mod, state["attempts"], quarantine_ok=q_ok)
         else:
-            res = run_idea(mod, state["attempts"])
-        res["file"], res["hash"], res["date"] = f, digest, datetime.date.today().isoformat()
+            res = run_idea(mod, state["attempts"], quarantine_ok=q_ok)
+        res["file"], res["hash"], res["date"], res["rules_version"], res["rerun_of_version_3"] = f, digest, datetime.date.today().isoformat(), RULES_VERSION, bool(rerun)
         if "quarantine" in res: state["quarantine_used"].append(f)
         state["tested"][f] = digest
         json.dump(res, open(os.path.join(HERE, "results", f"{f[:-3]}_{digest}.json"), "w"), indent=1, default=float)
         fails = [k for k, v in res["checks"].items() if not v]
         with open(os.path.join(HERE, "JOURNAL.md"), "a") as j:
-            j.write(f"\n### {res['date']} · attempt {res['attempts']} · `{mod.IDEA['name']}` · {res['verdict']}\n"
+            j.write(f"\n### {res['date']} · " + (f"version 4 re-run, bar for attempt {res['attempts']}" if rerun else f"attempt {res['attempts']}") + f" · `{mod.IDEA['name']}` · {res['verdict']}\n"
                     f"- Source: {mod.IDEA['source']}\n- Reason claimed: {mod.IDEA['reason']}\n- Who loses: {mod.IDEA['loser']}\n"
                     + (position_mode.journal_lines(res) if is_pos else
                        f"- Out-of-sample: {res['trades']} trades, profit factor {res['pf']:.2f}, {res['totalR']:+.1f}R, t-stat {res['t']:.2f} (needed {res['need_t']:.2f})\n"

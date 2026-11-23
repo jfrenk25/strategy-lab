@@ -7,17 +7,18 @@ An idea file sets IDEA["mode"] = "position" and defines:
 A cell is NaN when that market has no bar that day. A weight earns the NEXT day's return.
 The engine caps total exposure at 1 (sum of absolute weights) and charges costs on every change.
 """
-import os
+import os, sys
 from statistics import NormalDist
 import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-FEES = {"BTCUSD": 0.0003, "ETHUSD": 0.0004, "XAUUSD": 0.0002, "GBPJPY": 0.00015, "USA30": 0.00025, "DEU30": 0.00025}   # per side
-EXTRA_FEES = {"NAS100": 0.00025, "SPX500": 0.00025, "USOIL": 0.0003, "EURUSD": 0.00015, "GBPUSD": 0.00015,
-              "USDJPY": 0.00015, "AUDUSD": 0.00015, "USDCAD": 0.00015, "EURJPY": 0.00015}    # the nine markets in lab/data_new
+sys.path.insert(0, HERE)
+import costs
+FEES = {m: costs.COST[m] for m in costs.SIX}                   # per side; one table for the whole lab, in lab/costs.py
+EXTRA_FEES = {m: v for m, v in costs.COST.items() if m not in costs.SIX}
 ALL_FEES = {**FEES, **EXTRA_FEES}
-SLIP = 0.0002
+CHANGE_COST = {m: v * costs.POSITION_MULT for m, v in ALL_FEES.items()}    # what one change of weight pays (trades at the daily close)
 QUARANTINE = 2026
 MIN_TRAIN_DAYS, MAX_GRID, N_PERM, N_SHIFT = 250, 12, 200, 1000
 T = dict(sharpe=0.8, days=500, block_share=0.60, market_share=0.50, shift_pct=95.0, perm_p=0.01, q_days=100)
@@ -31,6 +32,7 @@ def load_daily(markets="all"):
         path = os.path.join(HERE, "data_new" if m in EXTRA_FEES else "data", f"{m}_1h.csv.gz")
         if not os.path.exists(path) or (markets not in ("all", "fifteen") and m not in markets): continue
         h = pd.read_csv(path, parse_dates=["time"]).set_index("time")
+        h = h[h.index >= pd.Timestamp(costs.DATA_START, tz=h.index.tz)]          # every market from the same day, gold too
         day = (h.index + pd.Timedelta(hours=2)).floor("D").tz_localize(None)
         d = h.groupby(day).agg(open=("open", "first"), high=("high", "max"), low=("low", "min"), close=("close", "last"), volume=("volume", "sum"), n=("close", "size"))
         d = d[d["n"] >= 6]                                   # drop stub days with only a few bars
@@ -38,7 +40,7 @@ def load_daily(markets="all"):
     data = {f: pd.DataFrame(wide[f]).sort_index() for f in FIELDS}
     idx = data["close"].index
     block = np.where((idx.month > 4) | ((idx.month == 4) & (idx.day >= 21)), idx.year, idx.year - 1).astype(np.int64)
-    return data, block
+    return data, np.minimum(block, QUARANTINE)                                   # everything from April 21, 2026 on is the quarantine block
 
 
 def net_returns(data, w, cost_mult=1.0):
@@ -50,7 +52,7 @@ def net_returns(data, w, cost_mult=1.0):
     w = w.where(close.ffill().notna(), 0.0)                                      # nothing before a market exists
     gross = w.abs().sum(axis=1)
     w = w.div(gross.where(gross > 1.0, 1.0), axis=0)                             # cap total exposure at 1
-    cost = pd.Series({m: ALL_FEES[m] + SLIP for m in close.columns}) * cost_mult
+    cost = pd.Series({m: CHANGE_COST[m] for m in close.columns}) * cost_mult
     contrib = w.shift(1).fillna(0.0) * ret - w.diff().abs().fillna(w.abs()) * cost
     return contrib.sum(axis=1), contrib, w
 
@@ -123,7 +125,7 @@ def permutation_p(mod, idea, data, block, actual, n=N_PERM, seed=7):
     return (beat + 1) / (n + 1)
 
 
-def run_idea(mod, attempts):
+def run_idea(mod, attempts, quarantine_ok=True):
     idea = mod.IDEA
     assert len(idea["grid"]) <= MAX_GRID, "grid too large"
     assert idea.get("reason") and idea.get("loser"), "an idea must state why the edge exists and who loses"
@@ -133,26 +135,30 @@ def run_idea(mod, attempts):
     runs2, _, _ = _walk_forward(mod, idea, data, block, cost_mult=2.0)
     r2, _ = _oos(runs2, picks, block)                          # same picks, double costs
     x = r.to_numpy(); active = int((x != 0).sum())
-    sharpe = float(x.mean() / x.std(ddof=1) * np.sqrt(365)) if len(x) > 2 and x.std(ddof=1) > 0 else float("nan")
+    per_year = len(x) / max((r.index[-1] - r.index[0]).days / 365.25, 1e-9) if len(x) > 2 else 365.0     # rows a year in this idea's own calendar
+    sharpe = float(x.mean() / x.std(ddof=1) * np.sqrt(per_year)) if len(x) > 2 and x.std(ddof=1) > 0 else float("nan")
     eq = np.cumprod(1 + x) if len(x) else np.array([1.0]); peak = np.maximum.accumulate(eq)
     by_block = {int(b): float(r[block[np.isin(data["close"].index, r.index)] == b].sum()) for b, _ in picks} if len(x) else {}
     by_market = contrib.sum().to_dict() if len(contrib) else {}
     traded = {m: v for m, v in by_market.items() if abs(v) > 1e-12}
-    # timing baseline: the same positions, shifted in time inside each test block
-    rng = np.random.default_rng(11); shifted = np.zeros(N_SHIFT); close = data["close"]
+    # timing baseline: the same positions, applied late. A copy uses the weights from 20 or more days earlier, so it
+    # never holds a weight that was set with knowledge of the days it is applied to. The real run is scored the same way.
+    rng = np.random.default_rng(11); shifted = np.zeros(N_SHIFT); close = data["close"]; actual_cmp = 0.0
     ret = close.ffill().pct_change().where(close.notna()).fillna(0.0)
-    cost = pd.Series({m: ALL_FEES[m] + SLIP for m in close.columns})
+    cost = pd.Series({m: CHANGE_COST[m] for m in close.columns}).to_numpy()
+    score = lambda ws, rr: float((ws[:-1] * rr[1:]).sum() - (np.abs(np.diff(ws, axis=0)) * cost).sum())
     for Tb, gi in picks:
-        m = block == Tb; w = runs[gi][2][m].to_numpy(); rr = ret[m].to_numpy(); n = len(w)
+        pos = np.flatnonzero(block == Tb); W = runs[gi][2].to_numpy(); rr = ret.to_numpy()[pos]; n = len(pos)
         if n < 60: continue
+        actual_cmp += score(W[pos], rr)
+        lags = rng.integers(20, n - 20, size=N_SHIFT)
         for k in range(N_SHIFT):
-            ws = np.roll(w, rng.integers(20, n - 20), axis=0)
-            shifted[k] += float((ws[:-1] * rr[1:]).sum() - (np.abs(np.diff(ws, axis=0)) * cost.to_numpy()).sum())
+            shifted[k] += score(W[np.maximum(pos - lags[k], 0)], rr)
     need_t = NormalDist().inv_cdf(1 - 0.05 / attempts)
     nb = [int(sum(v > 0 for v in by_block.values())), len(by_block)]; nm = [int(sum(v > 0 for v in traded.values())), len(traded)]
     res = dict(name=idea["name"], mode="position", markets=list(close.columns), days=active, sharpe=sharpe, total=float(x.sum()) if len(x) else 0.0,
                maxdd=float(((eq - peak) / peak).min()), t=_t(x[x != 0]) if active > 2 else float("nan"), need_t=float(need_t), attempts=attempts,
-               dbl_total=float(r2.sum()) if len(r2) else 0.0, beats_shifted=float((shifted < x.sum()).mean() * 100) if len(x) else float("nan"),
+               dbl_total=float(r2.sum()) if len(r2) else 0.0, beats_shifted=float((shifted < actual_cmp).mean() * 100) if len(x) else float("nan"),
                blocks_profitable=nb, markets_profitable=nm, by_block={k: round(v, 4) for k, v in sorted(by_block.items())},
                by_market={k: round(float(v), 4) for k, v in by_market.items()}, picks=[[b, idea["grid"][g]] for b, g in picks])
     res["checks"] = {
@@ -168,7 +174,9 @@ def run_idea(mod, attempts):
     if all(res["checks"].values()):
         res["perm_p"] = float(permutation_p(mod, idea, data, block, res["total"]))
         res["checks"][f"permutation test p <= {T['perm_p']}"] = bool(res["perm_p"] <= T["perm_p"])
-    if all(res["checks"].values()) and q_pick is not None:
+    if all(res["checks"].values()) and q_pick is not None and not quarantine_ok:
+        res["verdict"] = "REJECT (quarantine already used)"
+    elif all(res["checks"].values()) and q_pick is not None:
         q = runs[q_pick[1]][0][block == QUARANTINE].to_numpy()
         res["quarantine"] = dict(days=int((q != 0).sum()), total=float(q.sum()))
         res["verdict"] = "CANDIDATE" if res["quarantine"]["days"] >= T["q_days"] and res["quarantine"]["total"] > 0 else "REJECT (failed quarantine)"
