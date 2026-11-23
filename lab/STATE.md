@@ -163,6 +163,10 @@ Spot check done later on 2026-11-20, when pages could be opened:
 - Study 2, 36 registered variations on full-session bars: 1 passed the screen, 0 confirmed. The survivor lost money in 2024, 2025 and 2026. Nearest miss: 30-minute range, fixed check, hold to 15:55, with the break (t-stat 1.645 against 1.65); rejected, confirm years not looked at.
 - Study 4, the six "with the break, hold to 15:55" versions as one group on 2024 onward: FAIL. 720 days, profit factor 1.07, t-stat 0.50 against a bar of 2.58; only 2025 was positive.
 - The opening range idea is closed on these files: no further versions, groups or filters.
+- Study 6, Coil Reclaim (a first-hour breakout with a pullback entry, from a GitHub indicator Jeff sent): FAIL, too few trades. Fill B: 53 trades on 50 days, average +0.157R a day, profit factor 1.40, t-stat 1.06 against a bar of 2.58. Not evidence either way.
+  - Two thirds of the days were skipped by a mistake in the study's own data rule: it needed bars from 8:00 New York time, and the files only have them in winter.
+  - The rule is rejected on these files and is not re-run with other settings. Its summer days were never computed. Running them needs 1-minute bars from about 7:00 New York time all year, a new registered study and Jeff's go-ahead.
+- Data fact for any later intraday study: `data_1m/*_1m_full.csv.gz` starts at 13:00 UTC every day. That is 8:00 New York time from November to mid-March and 9:00 the rest of the year. Check coverage in New York time by month before writing a rule that needs pre-open bars.
 - Each study runs once. Rules are in `LAB_RULES.md`, results in `lab/intraday/` and the journal.
 
 ## Next

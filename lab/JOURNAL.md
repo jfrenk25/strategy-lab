@@ -1193,3 +1193,18 @@ Attempt counter starts at 96.
 - Passed the screen: 0. Confirmed on unseen years: 0. Candidates: 0.
 - Totals: 15720 of 15720 catalogue ideas screened, 151 survivors, 0 confirmed, 0 candidates.
 - Every screened idea is in `lab/screen/log.csv`.
+
+### 2026-11-22 · intraday study 6 · Coil Reclaim, first-hour breakout with a pullback entry · FAIL (too few trades)
+- Source: github.com/Allencake/coil-reclaim-indicator, default settings. Nasdaq 100, S&P 500 and Dow, 5-minute bars built from 1-minute bars, New York first hour, June 1, 2021 to November 19, 2026. One test, t-stat bar 2.58, verdict on fill B. Rules fixed in LAB_RULES.md and pushed before the code was written.
+- Fill B (as it could be traded): 53 trades on 50 days, win rate 51%, average +0.157R a day, profit factor 1.40, t-stat 1.06. By year: {2021: -3.1, 2022: +1.3, 2023: +3.0, 2024: +8.4, 2025: -0.9, 2026: -0.8}. Average at double cost +0.120R. Per market: {'NAS100': +0.231 (15 days), 'SPX500': +0.631 (17 days), 'USA30': -0.243 (20 days)}.
+- Long trades alone: 29 trades, average +0.338R. Short trades alone: 24 trades, average -0.020R. Cost averaged 0.039R a trade. Endings: 19 stops, 14 break-even, 11 targets, 9 "too fast". 51% of trades reached 1R.
+- Fill A (the indicator's own bookkeeping): 61 trades on 56 days, win rate 44%, average +0.087R a day, profit factor 1.20, t-stat 0.60.
+- Orders: 135 placed. 65 cancelled because price reached the order with no pullback first, 17 because a bar closed back inside the range. Breakout bars turned away: 1,302 too large for their range, 418 blocked at a daily level, 287 outside a clean zone, 40 waiting for a pullback.
+- Dry run on made-up prices with no cost, before the real run: fill A 238 trades, average -0.022R a day, t-stat -0.31; fill B 214 trades, average -0.040R a day, t-stat -0.54. Both about zero, as they should be with no edge.
+- Verdict: FAIL (too few trades). Failed: at least 150 traded days; average above zero with t-stat >= 2.58; positive in four of six years; longs and shorts each above zero.
+- Notes on study 6, written after it ran:
+  - Only 450 of 1,414 days per market were usable, all between November and mid-March. The cause is a mistake in the registered rules, not the rule under test. The rules say the 1-minute files run from 8:00 to 16:14 New York time. They start at 13:00 UTC every day, which is 8:00 in winter and 9:00 in summer. The day rule needed bars from 8:00, so every summer day was skipped.
+  - The mistake was found from the day counts after the run. Nothing was re-run. The summer days were never computed by this study.
+  - Even with every day usable, the rule trades about once in 25 market-days here, so about 165 trades on roughly 155 days. That is close to the 150-day floor.
+  - What the 50 days show: a positive average that is well inside what luck gives (t-stat 1.06), carried by 2024 and by long trades. It is not evidence for the rule and not evidence against it.
+  - Fill B came out ahead of fill A. On 50 days that difference means nothing.

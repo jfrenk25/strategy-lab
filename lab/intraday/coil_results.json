@@ -1,0 +1,270 @@
+{
+ "A": {
+  "days": {
+   "n": 56,
+   "mean": 0.08717314966373794,
+   "t": 0.5984570001987836,
+   "pf": 1.1971294957322058,
+   "win": 0.4642857142857143,
+   "total": 4.881696381169325
+  },
+  "double_cost_mean": 0.04272453155083781,
+  "by_year": {
+   "2021": -3.130910056681626,
+   "2022": -0.7333012104159364,
+   "2023": 5.639629549083143,
+   "2024": 7.039618723054343,
+   "2025": -0.08984903327458738,
+   "2026": -3.8434915905960096
+  },
+  "by_market": {
+   "NAS100": {
+    "n": 17,
+    "mean": 0.08824600604864714,
+    "t": 0.32557737799203557,
+    "pf": 1.203244690073258,
+    "win": 0.47058823529411764,
+    "total": 1.5001821028270015
+   },
+   "SPX500": {
+    "n": 20,
+    "mean": 0.3861778472366416,
+    "t": 1.5417533451495877,
+    "pf": 2.217646374930073,
+    "win": 0.55,
+    "total": 7.723556944732832
+   },
+   "USA30": {
+    "n": 22,
+    "mean": -0.20712216139466563,
+    "t": -0.9856060168782071,
+    "pf": 0.6326974017167023,
+    "win": 0.36363636363636365,
+    "total": -4.556687550682644
+   }
+  },
+  "longs": {
+   "n": 35,
+   "mean": 0.2326266819331109,
+   "t": 1.1783320408340834,
+   "pf": 1.5367963474169082,
+   "win": 0.5142857142857142,
+   "total": 8.141933867658881
+  },
+  "shorts": {
+   "n": 26,
+   "mean": -0.1336493219531421,
+   "t": -0.6793540518099754,
+   "pf": 0.7346998748215461,
+   "win": 0.34615384615384615,
+   "total": -3.474882370781695
+  },
+  "trades": 61,
+  "trade_stats": {
+   "n": 61,
+   "mean": 0.07650904093241294,
+   "t": 0.539755475543361,
+   "pf": 1.1651143607519474,
+   "win": 0.4426229508196721,
+   "total": 4.667051496877189
+  },
+  "gross_trade_mean": 0.1214456243759057,
+  "avg_cost_r": 0.044936583443492745,
+  "endings": {
+   "stop": 26,
+   "breakeven": 13,
+   "too_fast": 11,
+   "target": 11
+  },
+  "reached_1r": 0.4426229508196721,
+  "checks": {
+   "at least 150 traded days": false,
+   "average above zero with t-stat >= 2.58": false,
+   "profit factor >= 1.15": true,
+   "average above zero at double cost": "True",
+   "positive on two of three markets": true,
+   "positive in four of six years": false,
+   "longs and shorts each above zero": false
+  },
+  "passed": false,
+  "counts": {
+   "NAS100": {
+    "orders": 37,
+    "no_pullback": 18,
+    "back_inside": 1,
+    "expired": 0,
+    "day_end_order": 0,
+    "skipped_days": 964,
+    "used_days": 450,
+    "skip_blocked": 139,
+    "skip_big_bar": 444,
+    "skip_wait_pullback": 10,
+    "skip_not_clean": 93,
+    "forced_close": 0
+   },
+   "SPX500": {
+    "orders": 50,
+    "no_pullback": 24,
+    "back_inside": 6,
+    "expired": 0,
+    "day_end_order": 0,
+    "skipped_days": 964,
+    "used_days": 450,
+    "skip_blocked": 157,
+    "skip_big_bar": 430,
+    "skip_wait_pullback": 18,
+    "skip_not_clean": 95,
+    "forced_close": 0
+   },
+   "USA30": {
+    "orders": 50,
+    "no_pullback": 24,
+    "back_inside": 3,
+    "expired": 0,
+    "day_end_order": 0,
+    "skipped_days": 964,
+    "used_days": 450,
+    "skip_blocked": 124,
+    "skip_big_bar": 428,
+    "skip_wait_pullback": 12,
+    "skip_not_clean": 99,
+    "forced_close": 0
+   }
+  }
+ },
+ "B": {
+  "days": {
+   "n": 50,
+   "mean": 0.15720719535320848,
+   "t": 1.0591545300452525,
+   "pf": 1.3975673567501206,
+   "win": 0.52,
+   "total": 7.860359767660425
+  },
+  "double_cost_mean": 0.1196831227726706,
+  "by_year": {
+   "2021": -3.1261632146277556,
+   "2022": 1.28490246287578,
+   "2023": 2.991707917460779,
+   "2024": 8.435852356160629,
+   "2025": -0.9341757778608928,
+   "2026": -0.7917639763481121
+  },
+  "by_market": {
+   "NAS100": {
+    "n": 15,
+    "mean": 0.23061945646583232,
+    "t": 0.7983365183215326,
+    "pf": 1.5647979390108975,
+    "win": 0.6,
+    "total": 3.459291846987485
+   },
+   "SPX500": {
+    "n": 17,
+    "mean": 0.6306915533510171,
+    "t": 2.9895234362690037,
+    "pf": 6.014084862666883,
+    "win": 0.7058823529411765,
+    "total": 10.721756406967291
+   },
+   "USA30": {
+    "n": 20,
+    "mean": -0.24281938111820342,
+    "t": -1.0612334855729246,
+    "pf": 0.5893256973576534,
+    "win": 0.3,
+    "total": -4.8563876223640685
+   }
+  },
+  "longs": {
+   "n": 29,
+   "mean": 0.33791566593846306,
+   "t": 1.6613882345102937,
+   "pf": 1.9412625922699664,
+   "win": 0.5862068965517241,
+   "total": 9.79955431221543
+  },
+  "shorts": {
+   "n": 24,
+   "mean": -0.01978723669269684,
+   "t": -0.09506389421013194,
+   "pf": 0.9557926540139675,
+   "win": 0.4166666666666667,
+   "total": -0.47489368062472415
+  },
+  "trades": 53,
+  "trade_stats": {
+   "n": 53,
+   "mean": 0.17593699304888125,
+   "t": 1.200556487465138,
+   "pf": 1.4408095742979146,
+   "win": 0.5094339622641509,
+   "total": 9.324660631590707
+  },
+  "gross_trade_mean": 0.21489411615253365,
+  "avg_cost_r": 0.038957123103652395,
+  "endings": {
+   "stop": 19,
+   "breakeven": 14,
+   "target": 11,
+   "too_fast": 9
+  },
+  "reached_1r": 0.5094339622641509,
+  "checks": {
+   "at least 150 traded days": false,
+   "average above zero with t-stat >= 2.58": false,
+   "profit factor >= 1.15": true,
+   "average above zero at double cost": "True",
+   "positive on two of three markets": true,
+   "positive in four of six years": false,
+   "longs and shorts each above zero": false
+  },
+  "passed": false,
+  "counts": {
+   "NAS100": {
+    "orders": 36,
+    "no_pullback": 18,
+    "back_inside": 3,
+    "expired": 0,
+    "day_end_order": 0,
+    "skipped_days": 964,
+    "used_days": 450,
+    "skip_blocked": 138,
+    "skip_big_bar": 444,
+    "skip_wait_pullback": 10,
+    "skip_not_clean": 94,
+    "forced_close": 0
+   },
+   "SPX500": {
+    "orders": 50,
+    "no_pullback": 24,
+    "back_inside": 9,
+    "expired": 0,
+    "day_end_order": 0,
+    "skipped_days": 964,
+    "used_days": 450,
+    "skip_blocked": 156,
+    "skip_big_bar": 430,
+    "skip_wait_pullback": 18,
+    "skip_not_clean": 95,
+    "forced_close": 0
+   },
+   "USA30": {
+    "orders": 49,
+    "no_pullback": 23,
+    "back_inside": 5,
+    "expired": 0,
+    "day_end_order": 0,
+    "skipped_days": 964,
+    "used_days": 450,
+    "skip_blocked": 124,
+    "skip_big_bar": 428,
+    "skip_wait_pullback": 12,
+    "skip_not_clean": 98,
+    "forced_close": 0
+   }
+  }
+ },
+ "verdict": "FAIL (too few trades)",
+ "run_date": "2026-11-22"
+}
