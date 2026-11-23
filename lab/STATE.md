@@ -10,7 +10,7 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 ## Rules version 4 (2026-11-23, read this first)
 - An audit found the arithmetic right and the rules stacked against passing: costs several times too high on the 1-hour tracks, gold counted from 2009, and one broken position-mode check. `LAB_RULES.md` ends with "Rules version 4", which fixes them. Costs are in `costs.py`.
 - Everything was re-run once under version 4. Main track: 8 of 8 rejected. Screen: 17,200 ideas, 267 passed the screen, 0 confirmed, 0 candidates. Best confirm t-stat 3.50 against 3.68.
-- The survivor count stands at 422 (155 from before plus 267), so the next survivor needs a t-stat of about 3.69.
+- The survivor count stands at 422 (155 from before plus 267), so the next survivor needs a t-stat of about 3.68.
 - Version 3 results are in `screen/v3/` and `results/v3/`. Never edit or re-run them. Numbers elsewhere in this file dated before 2026-11-23 are version 3 numbers.
 - At roughly real costs the catalogue still shows no edge: median screen profit factor 0.92. Lower costs did not turn losers into winners.
 - The second-nearest miss was a moon-phase rule. A near miss among hundreds of tries is not evidence. The forward watch (44 ideas) is where near misses get settled.
