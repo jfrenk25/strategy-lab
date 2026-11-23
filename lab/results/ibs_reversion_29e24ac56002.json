@@ -1,0 +1,55 @@
+{
+ "name": "ibs_reversion",
+ "markets": [
+  "BTCUSD",
+  "ETHUSD",
+  "XAUUSD",
+  "GBPJPY",
+  "USA30",
+  "DEU30"
+ ],
+ "trades": 1437,
+ "pf": 0.8833930397418917,
+ "totalR": -106.95359381656888,
+ "t": -2.1356873152904616,
+ "need_t": 3.301545184757089,
+ "attempts": 104,
+ "dbl_pf": 0.8232167321237825,
+ "beats_random": 43.9,
+ "blocks_profitable": [
+  0,
+  3
+ ],
+ "markets_profitable": [
+  1,
+  6
+ ],
+ "by_block": {
+  "2023": -64.6,
+  "2024": -20.4,
+  "2025": -22.0
+ },
+ "by_market": {
+  "BTCUSD": 3.9,
+  "ETHUSD": -17.7,
+  "XAUUSD": -31.1,
+  "GBPJPY": -20.9,
+  "USA30": -16.5,
+  "DEU30": -24.7
+ },
+ "checks": {
+  "profit factor >= 1.15": false,
+  "trades >= 150": true,
+  "profitable in 60% of test years": false,
+  "profitable in half the markets": false,
+  "profit factor > 1 at double costs": false,
+  "beats 95% of random entries": false,
+  "t-stat >= 3.30 (bar for attempt 104)": false
+ },
+ "verdict": "REJECT",
+ "file": "ibs_reversion.py",
+ "hash": "29e24ac56002",
+ "date": "2026-11-23",
+ "rules_version": 4,
+ "rerun_of_version_3": true
+}

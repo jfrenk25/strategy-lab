@@ -7,6 +7,18 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - Lab built and run on two seed ideas (both rejected). See `JOURNAL.md`.
 - 96 ideas tested before the lab existed. None passed.
 
+## Rules version 4 (2026-11-23, read this first)
+- An audit found the arithmetic right and the rules stacked against passing: costs several times too high on the 1-hour tracks, gold counted from 2009, and one broken position-mode check. `LAB_RULES.md` ends with "Rules version 4", which fixes them. Costs are in `costs.py`.
+- Everything was re-run once under version 4. Main track: 8 of 8 rejected. Screen: 17,200 ideas, 267 passed the screen, 0 confirmed, 0 candidates. Best confirm t-stat 3.50 against 3.68.
+- The survivor count stands at 422 (155 from before plus 267), so the next survivor needs a t-stat of about 3.69.
+- Version 3 results are in `screen/v3/` and `results/v3/`. Never edit or re-run them. Numbers elsewhere in this file dated before 2026-11-23 are version 3 numbers.
+- At roughly real costs the catalogue still shows no edge: median screen profit factor 0.92. Lower costs did not turn losers into winners.
+- The second-nearest miss was a moon-phase rule. A near miss among hundreds of tries is not evidence. The forward watch (44 ideas) is where near misses get settled.
+- Trend following in position mode made money in all three test years under version 4 (`ts_momentum` Sharpe 1.17) but did no better than the same positions held 20 or more days late. It is market exposure, not timing.
+- Crypto costs went up under version 4 (0.065% and 0.075% per side). Everything else went down.
+- The cost table's spread part is an estimate. FTMO US may not offer the DAX or Ether.
+- Power has not changed: about 300 trades in two confirm years cannot show a profit factor near 1.25. More history is the real fix and the lab does not have it yet.
+
 ## Rules learned (read before every task)
 - Costs decide most outcomes on short timeframes. Prefer ideas that trade less often.
 - An idea with no stated loser has failed every time so far.
@@ -203,4 +215,4 @@ Spot check done later on 2026-11-20, when pages could be opened:
 - The inbox is empty. Fill `ideas/inbox/` from "151 Trading Strategies" (see `AGENT.md`) and from the X scout prompt in `GROK_SCOUT_PROMPT.md`.
 
 ## Last session
-2026-11-23 (scheduled daily run, nobody present; earlier the same day study 7) · paper track: 24 abstracts today (101 in all), 5 kept, 4 written up, 0 tested; `arxiv_2512_12924`, `arxiv_2603_13638` and `arxiv_2609_07946` can't be tested here, `quantpedia_silicon_satoshi` waits for Jeff · main track: not run, attempts stay at 104 · 6 triggers added, 1,480 ideas screened, 4 passed the screen, 0 confirmed, 0 candidates · totals 17,200 screened, 155 survivors, 0 confirmed · forward watch 20 ideas, 0 forward trades, price data ends 2026-11-20
+2026-11-23 (with Jeff) · study 8 run (96 sweep and fair value gap scenarios, 0 passed) · audit of the lab · rules version 4 written, pushed, then everything re-run once: main track 8 of 8 rejected, screen 17,200 ideas, 267 survivors, 0 confirmed, 0 candidates · forward watch 44 ideas, 0 forward trades, price data ends 2026-11-20 · attempts stay at 104 · earlier the same day: study 7 and the scheduled daily run (24 abstracts, 6 triggers)

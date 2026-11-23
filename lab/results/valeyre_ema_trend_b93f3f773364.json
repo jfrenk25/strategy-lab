@@ -1,0 +1,95 @@
+{
+ "name": "valeyre_ema_trend",
+ "mode": "position",
+ "markets": [
+  "BTCUSD",
+  "ETHUSD",
+  "XAUUSD",
+  "GBPJPY",
+  "USA30",
+  "DEU30",
+  "NAS100",
+  "SPX500",
+  "USOIL",
+  "EURUSD",
+  "GBPUSD",
+  "USDJPY",
+  "AUDUSD",
+  "USDCAD",
+  "EURJPY"
+ ],
+ "days": 1096,
+ "sharpe": 0.889461507135025,
+ "total": 0.08974418492356413,
+ "maxdd": -0.04335806300620171,
+ "t": 1.5400651924288602,
+ "need_t": 3.301545184757089,
+ "attempts": 104,
+ "dbl_total": 0.08785673373833239,
+ "beats_shifted": 0.4,
+ "blocks_profitable": [
+  3,
+  3
+ ],
+ "markets_profitable": [
+  8,
+  15
+ ],
+ "by_block": {
+  "2023": 0.0336,
+  "2024": 0.0137,
+  "2025": 0.0424
+ },
+ "by_market": {
+  "BTCUSD": 0.0187,
+  "ETHUSD": -0.0026,
+  "XAUUSD": 0.0497,
+  "GBPJPY": 0.0068,
+  "USA30": 0.0055,
+  "DEU30": 0.0116,
+  "NAS100": 0.0143,
+  "SPX500": 0.0124,
+  "USOIL": -0.0074,
+  "EURUSD": -0.0073,
+  "GBPUSD": -0.0078,
+  "USDJPY": -0.004,
+  "AUDUSD": -0.0033,
+  "USDCAD": -0.0072,
+  "EURJPY": 0.0103
+ },
+ "picks": [
+  [
+   2023,
+   {
+    "span": 100
+   }
+  ],
+  [
+   2024,
+   {
+    "span": 120
+   }
+  ],
+  [
+   2025,
+   {
+    "span": 120
+   }
+  ]
+ ],
+ "checks": {
+  "Sharpe >= 0.8": true,
+  "days in the market >= 500": true,
+  "profitable in 60% of test years": true,
+  "half the markets contribute a profit": true,
+  "still profitable at double costs": true,
+  "beats 95% of time-shifted copies of itself": false,
+  "t-stat >= 3.30 (bar for attempt 104)": false
+ },
+ "verdict": "REJECT",
+ "file": "valeyre_ema_trend.py",
+ "hash": "b93f3f773364",
+ "date": "2026-11-23",
+ "rules_version": 4,
+ "rerun_of_version_3": true
+}

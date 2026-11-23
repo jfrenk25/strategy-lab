@@ -1,0 +1,55 @@
+{
+ "name": "channel_bounce",
+ "markets": [
+  "BTCUSD",
+  "ETHUSD",
+  "XAUUSD",
+  "GBPJPY",
+  "USA30",
+  "DEU30"
+ ],
+ "trades": 3105,
+ "pf": 0.8622010477337929,
+ "totalR": -279.1833893680544,
+ "t": -3.840463555770963,
+ "need_t": 3.301545184757089,
+ "attempts": 104,
+ "dbl_pf": 0.7896882107886465,
+ "beats_random": 10.2,
+ "blocks_profitable": [
+  0,
+  3
+ ],
+ "markets_profitable": [
+  1,
+  6
+ ],
+ "by_block": {
+  "2023": -102.4,
+  "2024": -122.0,
+  "2025": -54.7
+ },
+ "by_market": {
+  "BTCUSD": -116.7,
+  "ETHUSD": -83.1,
+  "XAUUSD": -37.8,
+  "GBPJPY": -3.4,
+  "USA30": -50.6,
+  "DEU30": 12.3
+ },
+ "checks": {
+  "profit factor >= 1.15": false,
+  "trades >= 150": true,
+  "profitable in 60% of test years": false,
+  "profitable in half the markets": false,
+  "profit factor > 1 at double costs": false,
+  "beats 95% of random entries": false,
+  "t-stat >= 3.30 (bar for attempt 104)": false
+ },
+ "verdict": "REJECT",
+ "file": "channel_bounce.py",
+ "hash": "1834e8cac3ca",
+ "date": "2026-11-23",
+ "rules_version": 4,
+ "rerun_of_version_3": true
+}

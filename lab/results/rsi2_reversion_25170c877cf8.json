@@ -1,0 +1,55 @@
+{
+ "name": "rsi2_reversion",
+ "markets": [
+  "BTCUSD",
+  "ETHUSD",
+  "XAUUSD",
+  "GBPJPY",
+  "USA30",
+  "DEU30"
+ ],
+ "trades": 1878,
+ "pf": 0.902001337319412,
+ "totalR": -127.90162512988199,
+ "t": -2.018746449625187,
+ "need_t": 3.301545184757089,
+ "attempts": 104,
+ "dbl_pf": 0.8302379241531134,
+ "beats_random": 8.200000000000001,
+ "blocks_profitable": [
+  0,
+  3
+ ],
+ "markets_profitable": [
+  1,
+  6
+ ],
+ "by_block": {
+  "2023": -35.2,
+  "2024": -46.0,
+  "2025": -46.7
+ },
+ "by_market": {
+  "BTCUSD": -22.6,
+  "ETHUSD": -27.3,
+  "XAUUSD": 8.5,
+  "GBPJPY": -27.7,
+  "USA30": -32.8,
+  "DEU30": -26.0
+ },
+ "checks": {
+  "profit factor >= 1.15": false,
+  "trades >= 150": true,
+  "profitable in 60% of test years": false,
+  "profitable in half the markets": false,
+  "profit factor > 1 at double costs": false,
+  "beats 95% of random entries": false,
+  "t-stat >= 3.30 (bar for attempt 104)": false
+ },
+ "verdict": "REJECT",
+ "file": "rsi2_reversion.py",
+ "hash": "25170c877cf8",
+ "date": "2026-11-23",
+ "rules_version": 4,
+ "rerun_of_version_3": true
+}

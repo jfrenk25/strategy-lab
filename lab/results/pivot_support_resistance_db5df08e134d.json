@@ -1,0 +1,55 @@
+{
+ "name": "pivot_support_resistance",
+ "markets": [
+  "BTCUSD",
+  "ETHUSD",
+  "XAUUSD",
+  "GBPJPY",
+  "USA30",
+  "DEU30"
+ ],
+ "trades": 4342,
+ "pf": 0.8909571761255151,
+ "totalR": -231.87759284469922,
+ "t": -3.041856175628841,
+ "need_t": 3.301545184757089,
+ "attempts": 104,
+ "dbl_pf": 0.78389642674694,
+ "beats_random": 45.0,
+ "blocks_profitable": [
+  1,
+  3
+ ],
+ "markets_profitable": [
+  3,
+  6
+ ],
+ "by_block": {
+  "2023": -168.5,
+  "2024": 0.7,
+  "2025": -64.1
+ },
+ "by_market": {
+  "BTCUSD": -114.4,
+  "ETHUSD": -86.8,
+  "XAUUSD": 2.1,
+  "GBPJPY": -57.3,
+  "USA30": 6.1,
+  "DEU30": 18.5
+ },
+ "checks": {
+  "profit factor >= 1.15": false,
+  "trades >= 150": true,
+  "profitable in 60% of test years": false,
+  "profitable in half the markets": true,
+  "profit factor > 1 at double costs": false,
+  "beats 95% of random entries": false,
+  "t-stat >= 3.30 (bar for attempt 104)": false
+ },
+ "verdict": "REJECT",
+ "file": "pivot_support_resistance.py",
+ "hash": "db5df08e134d",
+ "date": "2026-11-23",
+ "rules_version": 4,
+ "rerun_of_version_3": true
+}

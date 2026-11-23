@@ -1,0 +1,55 @@
+{
+ "name": "donchian_breakout",
+ "markets": [
+  "BTCUSD",
+  "ETHUSD",
+  "XAUUSD",
+  "GBPJPY",
+  "USA30",
+  "DEU30"
+ ],
+ "trades": 1908,
+ "pf": 1.0563526457645467,
+ "totalR": 73.54958781746217,
+ "t": 1.0812035002047509,
+ "need_t": 3.301545184757089,
+ "attempts": 104,
+ "dbl_pf": 0.972434784524449,
+ "beats_random": 95.3,
+ "blocks_profitable": [
+  2,
+  3
+ ],
+ "markets_profitable": [
+  3,
+  6
+ ],
+ "by_block": {
+  "2023": 75.7,
+  "2024": 28.1,
+  "2025": -30.2
+ },
+ "by_market": {
+  "BTCUSD": -5.1,
+  "ETHUSD": -2.9,
+  "XAUUSD": 36.3,
+  "GBPJPY": -20.1,
+  "USA30": 15.1,
+  "DEU30": 50.2
+ },
+ "checks": {
+  "profit factor >= 1.15": false,
+  "trades >= 150": true,
+  "profitable in 60% of test years": true,
+  "profitable in half the markets": true,
+  "profit factor > 1 at double costs": false,
+  "beats 95% of random entries": true,
+  "t-stat >= 3.30 (bar for attempt 104)": false
+ },
+ "verdict": "REJECT",
+ "file": "donchian_breakout.py",
+ "hash": "844011b198a5",
+ "date": "2026-11-23",
+ "rules_version": 4,
+ "rerun_of_version_3": true
+}

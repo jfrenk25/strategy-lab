@@ -1,0 +1,77 @@
+{
+ "name": "ts_momentum",
+ "mode": "position",
+ "markets": [
+  "BTCUSD",
+  "ETHUSD",
+  "XAUUSD",
+  "GBPJPY",
+  "USA30",
+  "DEU30"
+ ],
+ "days": 1096,
+ "sharpe": 1.1728339046779896,
+ "total": 0.30566222475979743,
+ "maxdd": -0.09446850455576411,
+ "t": 2.030712581270594,
+ "need_t": 3.301545184757089,
+ "attempts": 104,
+ "dbl_total": 0.2983733963781169,
+ "beats_shifted": 9.6,
+ "blocks_profitable": [
+  3,
+  3
+ ],
+ "markets_profitable": [
+  4,
+  6
+ ],
+ "by_block": {
+  "2023": 0.1408,
+  "2024": 0.0866,
+  "2025": 0.0784
+ },
+ "by_market": {
+  "BTCUSD": 0.1036,
+  "ETHUSD": -0.0528,
+  "XAUUSD": 0.1265,
+  "GBPJPY": 0.0702,
+  "USA30": -0.009,
+  "DEU30": 0.067
+ },
+ "picks": [
+  [
+   2023,
+   {
+    "lookback": 252
+   }
+  ],
+  [
+   2024,
+   {
+    "lookback": 252
+   }
+  ],
+  [
+   2025,
+   {
+    "lookback": 252
+   }
+  ]
+ ],
+ "checks": {
+  "Sharpe >= 0.8": true,
+  "days in the market >= 500": true,
+  "profitable in 60% of test years": true,
+  "half the markets contribute a profit": true,
+  "still profitable at double costs": true,
+  "beats 95% of time-shifted copies of itself": false,
+  "t-stat >= 3.30 (bar for attempt 104)": false
+ },
+ "verdict": "REJECT",
+ "file": "ts_momentum.py",
+ "hash": "76890517d13f",
+ "date": "2026-11-23",
+ "rules_version": 4,
+ "rerun_of_version_3": true
+}

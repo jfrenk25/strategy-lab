@@ -1,0 +1,81 @@
+{
+ "id": "c5336d4832",
+ "name": "a158_vsumd_n20.follow.low_vol.asia.stop3_rr2.5",
+ "spec": {
+  "trigger": "plugin:a158_vsumd",
+  "params": {
+   "n": 20
+  },
+  "direction": "follow",
+  "regime": "low_vol",
+  "session": "asia",
+  "exit": 3,
+  "universe": "fifteen"
+ },
+ "date": "2026-11-23",
+ "survivor": 311,
+ "need_t": 3.5972952654724284,
+ "screen": {
+  "trades": 303,
+  "pf": 1.301437911011799,
+  "totalR": 60.60910005321824,
+  "t": 2.0912299322716623,
+  "dbl_pf": 1.1686806169690878,
+  "markets_profitable": [
+   10,
+   13
+  ],
+  "by_market": {
+   "BTCUSD": 7.8,
+   "ETHUSD": 10.8,
+   "XAUUSD": 2.9,
+   "GBPJPY": 8.3,
+   "USA30": 2.5,
+   "SPX500": 2.5,
+   "USOIL": -0.6,
+   "EURUSD": 2.9,
+   "GBPUSD": -4.6,
+   "USDJPY": 21.6,
+   "AUDUSD": -7.9,
+   "USDCAD": 1.8,
+   "EURJPY": 12.6
+  }
+ },
+ "confirm": {
+  "trades": 245,
+  "pf": 1.3087793706612527,
+  "totalR": 50.902346947705055,
+  "t": 1.9310235214758928,
+  "dbl_pf": 1.17849200361427,
+  "markets_profitable": [
+   9,
+   12
+  ],
+  "by_market": {
+   "BTCUSD": 12.3,
+   "ETHUSD": 16.0,
+   "XAUUSD": 4.0,
+   "GBPJPY": -4.3,
+   "DEU30": 1.9,
+   "USOIL": 1.4,
+   "EURUSD": 5.2,
+   "GBPUSD": 12.2,
+   "USDJPY": 10.2,
+   "AUDUSD": 1.5,
+   "USDCAD": -5.2,
+   "EURJPY": -4.3
+  },
+  "beats_random": 98.8
+ },
+ "checks": {
+  "trades >= 60": true,
+  "profit factor >= 1.15": true,
+  "profitable in half the markets that traded": true,
+  "profit factor > 1 at double costs": true,
+  "beats 95% of random entries": true,
+  "t-stat >= 3.60 (bar for survivor 311)": false
+ },
+ "verdict": "REJECT",
+ "catalogue_version": 4,
+ "confirm_years_seen_before": true
+}

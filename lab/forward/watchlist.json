@@ -505,5 +505,603 @@
    "need_t": 3.4
   },
   "verdict": null
+ },
+ {
+  "id": "c9e430d9cc",
+  "name": "gtja118_open_reach_n20.follow.low_vol.london.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:gtja118_open_reach",
+   "params": {
+    "n": 20
+   },
+   "direction": "follow",
+   "regime": "low_vol",
+   "session": "london",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 723,
+   "pf": 1.331,
+   "t": 3.5,
+   "need_t": 3.68
+  },
+  "verdict": null
+ },
+ {
+  "id": "aabfee74d4",
+  "name": "lunar_phase_synodic29.5306.fade.high_vol.any.stop2_rr1.5",
+  "spec": {
+   "trigger": "plugin:lunar_phase",
+   "params": {
+    "synodic": 29.530588853
+   },
+   "direction": "fade",
+   "regime": "high_vol",
+   "session": "any",
+   "exit": 0,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 371,
+   "pf": 1.423,
+   "t": 3.36,
+   "need_t": 3.68
+  },
+  "verdict": null
+ },
+ {
+  "id": "b120889724",
+  "name": "streak_k5.follow.low_vol.asia.stop3_rr2.5",
+  "spec": {
+   "trigger": "streak",
+   "params": {
+    "k": 5
+   },
+   "direction": "follow",
+   "regime": "low_vol",
+   "session": "asia",
+   "exit": 3
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 830,
+   "pf": 1.244,
+   "t": 2.85,
+   "need_t": 3.51
+  },
+  "verdict": null
+ },
+ {
+  "id": "35a2c2e4a1",
+  "name": "a158_rsqr_n20.follow.none.asia.stop3_rr1.5",
+  "spec": {
+   "trigger": "plugin:a158_rsqr",
+   "params": {
+    "n": 20
+   },
+   "direction": "follow",
+   "regime": "none",
+   "session": "asia",
+   "exit": 2,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 783,
+   "pf": 1.23,
+   "t": 2.83,
+   "need_t": 3.58
+  },
+  "verdict": null
+ },
+ {
+  "id": "e80f5a143d",
+  "name": "a158_rsqr_n20.follow.low_vol.any.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:a158_rsqr",
+   "params": {
+    "n": 20
+   },
+   "direction": "follow",
+   "regime": "low_vol",
+   "session": "any",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 1449,
+   "pf": 1.177,
+   "t": 2.78,
+   "need_t": 3.59
+  },
+  "verdict": null
+ },
+ {
+  "id": "ed73f39ccf",
+  "name": "a158_rsqr_n20.follow.low_vol.london.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:a158_rsqr",
+   "params": {
+    "n": 20
+   },
+   "direction": "follow",
+   "regime": "low_vol",
+   "session": "london",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 436,
+   "pf": 1.319,
+   "t": 2.64,
+   "need_t": 3.58
+  },
+  "verdict": null
+ },
+ {
+  "id": "52cb777da0",
+  "name": "alpha052_q0.95.fade.low_vol.asia.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:alpha052",
+   "params": {
+    "q": 0.95
+   },
+   "direction": "fade",
+   "regime": "low_vol",
+   "session": "asia",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 943,
+   "pf": 1.199,
+   "t": 2.49,
+   "need_t": 3.65
+  },
+  "verdict": null
+ },
+ {
+  "id": "318b6c91ef",
+  "name": "a158_rsqr_n20.follow.none.asia.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:a158_rsqr",
+   "params": {
+    "n": 20
+   },
+   "direction": "follow",
+   "regime": "none",
+   "session": "asia",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 747,
+   "pf": 1.223,
+   "t": 2.48,
+   "need_t": 3.58
+  },
+  "verdict": null
+ },
+ {
+  "id": "35fd4d48bc",
+  "name": "a158_resi_n60.follow.low_vol.ny.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:a158_resi",
+   "params": {
+    "n": 60
+   },
+   "direction": "follow",
+   "regime": "low_vol",
+   "session": "ny",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 294,
+   "pf": 1.365,
+   "t": 2.42,
+   "need_t": 3.57
+  },
+  "verdict": null
+ },
+ {
+  "id": "d5557c273a",
+  "name": "alpha052_q0.95.fade.low_vol.asia.stop3_rr1.5",
+  "spec": {
+   "trigger": "plugin:alpha052",
+   "params": {
+    "q": 0.95
+   },
+   "direction": "fade",
+   "regime": "low_vol",
+   "session": "asia",
+   "exit": 2,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 1045,
+   "pf": 1.159,
+   "t": 2.31,
+   "need_t": 3.65
+  },
+  "verdict": null
+ },
+ {
+  "id": "244f489882",
+  "name": "a158_rsqr_n20.follow.high_vol.asia.stop3_rr1.5",
+  "spec": {
+   "trigger": "plugin:a158_rsqr",
+   "params": {
+    "n": 20
+   },
+   "direction": "follow",
+   "regime": "high_vol",
+   "session": "asia",
+   "exit": 2,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 415,
+   "pf": 1.254,
+   "t": 2.26,
+   "need_t": 3.58
+  },
+  "verdict": null
+ },
+ {
+  "id": "c9309c6915",
+  "name": "cmf_extreme_n20.follow.with_trend.ny.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:cmf_extreme",
+   "params": {
+    "n": 20
+   },
+   "direction": "follow",
+   "regime": "with_trend",
+   "session": "ny",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 1084,
+   "pf": 1.162,
+   "t": 2.26,
+   "need_t": 3.62
+  },
+  "verdict": null
+ },
+ {
+  "id": "d35f35d691",
+  "name": "a158_corr_n60.follow.low_vol.ny.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:a158_corr",
+   "params": {
+    "n": 60
+   },
+   "direction": "follow",
+   "regime": "low_vol",
+   "session": "ny",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 425,
+   "pf": 1.262,
+   "t": 2.19,
+   "need_t": 3.56
+  },
+  "verdict": null
+ },
+ {
+  "id": "b79a674091",
+  "name": "alpha052_q0.95.fade.low_vol.asia.stop2_rr2.5",
+  "spec": {
+   "trigger": "plugin:alpha052",
+   "params": {
+    "q": 0.95
+   },
+   "direction": "fade",
+   "regime": "low_vol",
+   "session": "asia",
+   "exit": 1,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 1076,
+   "pf": 1.152,
+   "t": 2.13,
+   "need_t": 3.65
+  },
+  "verdict": null
+ },
+ {
+  "id": "a46f22cf04",
+  "name": "a158_resi_n60.follow.low_vol.any.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:a158_resi",
+   "params": {
+    "n": 60
+   },
+   "direction": "follow",
+   "regime": "low_vol",
+   "session": "any",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 462,
+   "pf": 1.23,
+   "t": 2.01,
+   "need_t": 3.57
+  },
+  "verdict": null
+ },
+ {
+  "id": "8365f6b609",
+  "name": "a158_rsqr_n20.follow.high_vol.asia.stop2_rr2.5",
+  "spec": {
+   "trigger": "plugin:a158_rsqr",
+   "params": {
+    "n": 20
+   },
+   "direction": "follow",
+   "regime": "high_vol",
+   "session": "asia",
+   "exit": 1,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 421,
+   "pf": 1.232,
+   "t": 1.96,
+   "need_t": 3.59
+  },
+  "verdict": null
+ },
+ {
+  "id": "1ca3ca41d9",
+  "name": "a158_rsqr_n20.follow.with_trend.asia.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:a158_rsqr",
+   "params": {
+    "n": 20
+   },
+   "direction": "follow",
+   "regime": "with_trend",
+   "session": "asia",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 500,
+   "pf": 1.192,
+   "t": 1.79,
+   "need_t": 3.58
+  },
+  "verdict": null
+ },
+ {
+  "id": "02d6d38afd",
+  "name": "turn_of_month_hour0.fade.against_trend.any.stop2_rr2.5",
+  "spec": {
+   "trigger": "plugin:turn_of_month",
+   "params": {
+    "hour": 0
+   },
+   "direction": "fade",
+   "regime": "against_trend",
+   "session": "any",
+   "exit": 1,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 432,
+   "pf": 1.199,
+   "t": 1.74,
+   "need_t": 3.63
+  },
+  "verdict": null
+ },
+ {
+  "id": "74072a5926",
+  "name": "a158_rsqr_n20.follow.with_trend.asia.stop3_rr1.5",
+  "spec": {
+   "trigger": "plugin:a158_rsqr",
+   "params": {
+    "n": 20
+   },
+   "direction": "follow",
+   "regime": "with_trend",
+   "session": "asia",
+   "exit": 2,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 529,
+   "pf": 1.163,
+   "t": 1.71,
+   "need_t": 3.59
+  },
+  "verdict": null
+ },
+ {
+  "id": "8785da4231",
+  "name": "a158_rsqr_n20.follow.low_vol.asia.stop3_rr1.5",
+  "spec": {
+   "trigger": "plugin:a158_rsqr",
+   "params": {
+    "n": 20
+   },
+   "direction": "follow",
+   "regime": "low_vol",
+   "session": "asia",
+   "exit": 2,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 390,
+   "pf": 1.188,
+   "t": 1.68,
+   "need_t": 3.58
+  },
+  "verdict": null
+ },
+ {
+  "id": "f996390d48",
+  "name": "cl_three_soldiers_trend6.follow.none.asia.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:cl_three_soldiers",
+   "params": {
+    "trend": 6
+   },
+   "direction": "follow",
+   "regime": "none",
+   "session": "asia",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 338,
+   "pf": 1.222,
+   "t": 1.67,
+   "need_t": 3.64
+  },
+  "verdict": null
+ },
+ {
+  "id": "68f31264b8",
+  "name": "a158_rsqr_n20.follow.with_trend.asia.stop2_rr2.5",
+  "spec": {
+   "trigger": "plugin:a158_rsqr",
+   "params": {
+    "n": 20
+   },
+   "direction": "follow",
+   "regime": "with_trend",
+   "session": "asia",
+   "exit": 1,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 540,
+   "pf": 1.155,
+   "t": 1.54,
+   "need_t": 3.58
+  },
+  "verdict": null
+ },
+ {
+  "id": "532a8e022a",
+  "name": "alpha046_q0.95.fade.low_vol.ny.stop3_rr2.5",
+  "spec": {
+   "trigger": "plugin:alpha046",
+   "params": {
+    "q": 0.95
+   },
+   "direction": "fade",
+   "regime": "low_vol",
+   "session": "ny",
+   "exit": 3,
+   "universe": "fifteen"
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 459,
+   "pf": 1.172,
+   "t": 1.53,
+   "need_t": 3.62
+  },
+  "verdict": null
+ },
+ {
+  "id": "9b44ccc13d",
+  "name": "open_distance_frac1.follow.with_trend.asia.stop2_rr1.5",
+  "spec": {
+   "trigger": "plugin:open_distance",
+   "params": {
+    "frac": 1.0
+   },
+   "direction": "follow",
+   "regime": "with_trend",
+   "session": "asia",
+   "exit": 0
+  },
+  "why": "near miss",
+  "registered": "2026-11-23",
+  "start": "2026-11-24",
+  "confirm": {
+   "trades": 143,
+   "pf": 1.211,
+   "t": 1.13,
+   "need_t": 3.53
+  },
+  "verdict": null
  }
 ]
