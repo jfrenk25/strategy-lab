@@ -166,6 +166,9 @@ Spot check done later on 2026-11-20, when pages could be opened:
 - Study 6, Coil Reclaim (a first-hour breakout with a pullback entry, from a GitHub indicator Jeff sent): FAIL, too few trades. Fill B: 53 trades on 50 days, average +0.157R a day, profit factor 1.40, t-stat 1.06 against a bar of 2.58. Not evidence either way.
   - Two thirds of the days were skipped by a mistake in the study's own data rule: it needed bars from 8:00 New York time, and the files only have them in winter.
   - The rule is rejected on these files and is not re-run with other settings. Its summer days were never computed. Running them needs 1-minute bars from about 7:00 New York time all year, a new registered study and Jeff's go-ahead.
+- Study 7, the "7H Profile · Fractal Model" script (an anonymous ICT-style paste Jeff sent: daily direction, a 7-hour block that sweeps and closes back, then a sweep-and-reclaim entry) on 1-hour bars, fifteen markets: FAIL. 1,167 trades on 758 days, average -0.082R a day after costs, profit factor 0.78, t-stat -2.71. Before costs +0.028R a day, t-stat 0.92. Positive on 4 of 15 markets, negative in all six years.
+  - Rejected on 1-hour bars and not re-run with other settings. The script recommends 15-minute or 5-minute charts, which the lab cannot test on 24-hour data.
+  - Third sweep-and-reverse rule to show nothing here, after the built-in `sweep` trigger and study 6's family. Treat ICT-style sweep rules on 1-hour bars as a dead class.
 - Data fact for any later intraday study: `data_1m/*_1m_full.csv.gz` starts at 13:00 UTC every day. That is 8:00 New York time from November to mid-March and 9:00 the rest of the year. Check coverage in New York time by month before writing a rule that needs pre-open bars.
 - Each study runs once. Rules are in `LAB_RULES.md`, results in `lab/intraday/` and the journal.
 

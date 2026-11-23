@@ -1208,3 +1208,19 @@ Attempt counter starts at 96.
   - Even with every day usable, the rule trades about once in 25 market-days here, so about 165 trades on roughly 155 days. That is close to the 150-day floor.
   - What the 50 days show: a positive average that is well inside what luck gives (t-stat 1.06), carried by 2024 and by long trades. It is not evidence for the rule and not evidence against it.
   - Fill B came out ahead of fill A. On 50 days that difference means nothing.
+
+### 2026-11-23 · study 7 · "7H Profile · Fractal Model" script on 1-hour bars · FAIL
+- Source: an anonymous Pine Script paste, pastebin.com/9AMMivPh, default settings. Fifteen markets, 1-hour bars, trades entered June 1, 2021 to April 20, 2026. One test, t-stat bar 2.58. Rules fixed in LAB_RULES.md and pushed before the code was written. Quarantine bars not touched.
+- After costs: 1,167 trades on 758 days, win rate 42%, average -0.082R a day, profit factor 0.78, t-stat -2.71. By year: {2021: -8.4, 2022: -15.0, 2023: -16.0, 2024: -3.8, 2025: -18.7, 2026: -0.2}. Average at double cost -0.192R.
+- Before costs: average +0.028R a day, profit factor 1.09, t-stat 0.92. Costs averaged 0.110R a trade.
+- Long trades alone: 634 trades, average -0.037R. Short trades alone: 533 trades, average -0.168R.
+- Per market, average R a trade after costs (trades): BTCUSD +0.066 (107), ETHUSD -0.087 (94), XAUUSD -0.023 (62), GBPJPY +0.013 (60), USA30 -0.030 (92), DEU30 -0.224 (59), NAS100 -0.031 (98), SPX500 -0.163 (95), USOIL -0.271 (62), EURUSD +0.006 (68), GBPUSD -0.336 (72), USDJPY -0.186 (96), AUDUSD -0.109 (67), USDCAD +0.013 (69), EURJPY -0.176 (66). Positive on 4 of 15.
+- By group: crypto -0.006 (201), forex -0.118 (498), gold and oil -0.147 (124), indices -0.100 (344). By profile: Asia -0.133 (294), London -0.065 (304), New York -0.095 (569).
+- Endings: 784 closed at the 15:00 time exit, 298 stops, 85 targets.
+- How often it sets up: 20,513 market-days, a daily direction on 15,638 of them, 10,628 profiles formed, 7,113 of those invalidated, 1,191 triggers.
+- Dry run on made-up prices with no cost, before the real run: 261 trades, average +0.034R a day, t-stat 0.62. About zero, as it should be with no edge.
+- Verdict: FAIL. Failed: average above zero with t-stat >= 2.58; profit factor >= 1.15; average above zero at double cost; positive on 8 of 15 markets; positive in four of six years; longs and shorts each above zero.
+- Notes on study 7, written after it ran:
+  - Before costs the rule is not distinguishable from zero. After the lab's normal costs it loses in every year.
+  - Two thirds of the trades never reach the stop or the target and are closed at 15:00. On 1-hour bars the stop sits at a sweep low up to 20 hours old, so the 2R target is far away.
+  - This is the script's slowest allowed chart, not the 15-minute or 5-minute chart it recommends. The result says nothing certain about those.
