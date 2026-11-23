@@ -192,6 +192,10 @@ Spot check done later on 2026-11-20, when pages could be opened:
 - Study 7, the "7H Profile · Fractal Model" script (an anonymous ICT-style paste Jeff sent: daily direction, a 7-hour block that sweeps and closes back, then a sweep-and-reclaim entry) on 1-hour bars, fifteen markets: FAIL. 1,167 trades on 758 days, average -0.082R a day after costs, profit factor 0.78, t-stat -2.71. Before costs +0.028R a day, t-stat 0.92. Positive on 4 of 15 markets, negative in all six years.
   - Rejected on 1-hour bars and not re-run with other settings. The script recommends 15-minute or 5-minute charts, which the lab cannot test on 24-hour data.
   - Third sweep-and-reverse rule to show nothing here, after the built-in `sweep` trigger and study 6's family. Treat ICT-style sweep rules on 1-hour bars as a dead class.
+- Study 8, sweep, fair value gap, return to the gap (a post by @L2WTrades on X that Jeff sent), 96 registered scenarios on 1-minute bars, Nasdaq, S&P 500 and Dow, 9:30 to 12:00 New York time: all 96 REJECTED at the screen (June 2021 to December 2023). Best t-stat 1.54 against 1.65. 39 of 96 above zero after costs, 52 before costs; the dry run with no edge gave 46 of 94.
+  - No scenario reached the confirm years, so 2024 to 2026 was never computed for this rule.
+  - Stop at the gap: 7 of 48 above zero, median cost 0.173R a trade. Stop at the sweep extreme: 32 of 48 above zero, median +0.019R a day, none significant.
+  - Not re-run with other numbers, and no scenario is added, on these files. ICT-style sweep rules are now a dead class on the lab's 1-minute index bars as well as on 1-hour bars. Tick data or 24-hour 1-minute data for other markets would be different information and a new study.
 - Data fact for any later intraday study: `data_1m/*_1m_full.csv.gz` starts at 13:00 UTC every day. That is 8:00 New York time from November to mid-March and 9:00 the rest of the year. Check coverage in New York time by month before writing a rule that needs pre-open bars.
 - Each study runs once. Rules are in `LAB_RULES.md`, results in `lab/intraday/` and the journal.
 

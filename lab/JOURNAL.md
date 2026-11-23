@@ -1254,3 +1254,114 @@ Attempt counter starts at 96.
 - Passed the screen: 4. Confirmed on unseen years: 0. Candidates: 0.
 - Totals: 17200 of 17200 catalogue ideas screened, 155 survivors, 0 confirmed, 0 candidates.
 - Every screened idea is in `lab/screen/log.csv`.
+
+### 2026-11-23 · study 8 · sweep, fair value gap, return to the gap · 96 scenarios · 0 passed the screen, 0 confirmed
+- Source: a post by @L2WTrades on X (x.com/L2WTrades/status/2124841683896406023). Nasdaq 100, S&P 500 and Dow, 1-minute bars, 9:30 to 12:00 New York time.
+- Screen: 2021-06-01 to 2023-12-31. Confirm: 2024-01-01 to 2026-11-19, t-stat bar 2.33. Results in R after a cost of 0.005% of price per round trip.
+- The family in the screen years: 39 of 96 scenarios with trades had an average above zero after costs, 52 before costs. Median average -0.036R a day after costs, +0.026R before. Median cost 0.066R a trade. 62 scenarios had 150 or more traded days.
+- `pdhl.window.m1.edge.gapstop.2r` · REJECT: screen 231 days, average -0.243R (-0.055R before costs), profit factor 0.67, t-stat -2.65
+- `pdhl.window.m1.edge.gapstop.3r` · REJECT: screen 231 days, average -0.194R (-0.007R before costs), profit factor 0.76, t-stat -1.80
+- `pdhl.window.m1.edge.gapstop.opp` · REJECT: screen 192 days, average -0.136R (+0.049R before costs), profit factor 0.88, t-stat -0.41
+- `pdhl.window.m1.edge.sweepstop.2r` · REJECT: screen 231 days, average -0.036R (+0.011R before costs), profit factor 0.94, t-stat -0.42
+- `pdhl.window.m1.edge.sweepstop.3r` · REJECT: screen 231 days, average +0.010R (+0.057R before costs), profit factor 1.01, t-stat 0.09
+- `pdhl.window.m1.edge.sweepstop.opp` · REJECT: screen 187 days, average +0.016R (+0.063R before costs), profit factor 1.02, t-stat 0.09
+- `pdhl.window.m1.mid.gapstop.2r` · REJECT: screen 222 days, average -0.573R (-0.196R before costs), profit factor 0.42, t-stat -5.29
+- `pdhl.window.m1.mid.gapstop.3r` · REJECT: screen 222 days, average -0.528R (-0.151R before costs), profit factor 0.49, t-stat -4.47
+- `pdhl.window.m1.mid.gapstop.opp` · REJECT: screen 183 days, average -0.535R (-0.168R before costs), profit factor 0.60, t-stat -1.39
+- `pdhl.window.m1.mid.sweepstop.2r` · REJECT: screen 222 days, average -0.104R (-0.048R before costs), profit factor 0.84, t-stat -1.22
+- `pdhl.window.m1.mid.sweepstop.3r` · REJECT: screen 222 days, average +0.010R (+0.066R before costs), profit factor 1.01, t-stat 0.09
+- `pdhl.window.m1.mid.sweepstop.opp` · REJECT: screen 181 days, average -0.012R (+0.043R before costs), profit factor 0.99, t-stat -0.06
+- `pdhl.window.m5.edge.gapstop.2r` · REJECT: screen 124 days, average -0.136R (-0.053R before costs), profit factor 0.81, t-stat -1.12
+- `pdhl.window.m5.edge.gapstop.3r` · REJECT: screen 124 days, average -0.105R (-0.023R before costs), profit factor 0.87, t-stat -0.70
+- `pdhl.window.m5.edge.gapstop.opp` · REJECT: screen 101 days, average -0.207R (-0.126R before costs), profit factor 0.78, t-stat -0.70
+- `pdhl.window.m5.edge.sweepstop.2r` · REJECT: screen 124 days, average -0.143R (-0.119R before costs), profit factor 0.77, t-stat -1.33
+- `pdhl.window.m5.edge.sweepstop.3r` · REJECT: screen 124 days, average -0.104R (-0.081R before costs), profit factor 0.84, t-stat -0.85
+- `pdhl.window.m5.edge.sweepstop.opp` · REJECT: screen 82 days, average -0.226R (-0.199R before costs), profit factor 0.70, t-stat -1.24
+- `pdhl.window.m5.mid.gapstop.2r` · REJECT: screen 107 days, average -0.323R (-0.150R before costs), profit factor 0.61, t-stat -2.42
+- `pdhl.window.m5.mid.gapstop.3r` · REJECT: screen 107 days, average -0.204R (-0.031R before costs), profit factor 0.76, t-stat -1.27
+- `pdhl.window.m5.mid.gapstop.opp` · REJECT: screen 90 days, average -0.445R (-0.280R before costs), profit factor 0.60, t-stat -1.08
+- `pdhl.window.m5.mid.sweepstop.2r` · REJECT: screen 107 days, average -0.155R (-0.126R before costs), profit factor 0.76, t-stat -1.29
+- `pdhl.window.m5.mid.sweepstop.3r` · REJECT: screen 107 days, average -0.164R (-0.135R before costs), profit factor 0.77, t-stat -1.18
+- `pdhl.window.m5.mid.sweepstop.opp` · REJECT: screen 80 days, average -0.256R (-0.223R before costs), profit factor 0.68, t-stat -1.25
+- `pdhl.overnight.m1.edge.gapstop.2r` · REJECT: screen 595 days, average -0.279R (-0.102R before costs), profit factor 0.54, t-stat -6.23
+- `pdhl.overnight.m1.edge.gapstop.3r` · REJECT: screen 595 days, average -0.232R (-0.056R before costs), profit factor 0.64, t-stat -4.52
+- `pdhl.overnight.m1.edge.gapstop.opp` · REJECT: screen 579 days, average +0.060R (+0.236R before costs), profit factor 1.06, t-stat 0.29
+- `pdhl.overnight.m1.edge.sweepstop.2r` · REJECT: screen 595 days, average +0.011R (+0.039R before costs), profit factor 1.02, t-stat 0.25
+- `pdhl.overnight.m1.edge.sweepstop.3r` · REJECT: screen 595 days, average +0.037R (+0.066R before costs), profit factor 1.07, t-stat 0.72
+- `pdhl.overnight.m1.edge.sweepstop.opp` · REJECT: screen 482 days, average +0.082R (+0.117R before costs), profit factor 1.12, t-stat 0.79
+- `pdhl.overnight.m1.mid.gapstop.2r` · REJECT: screen 588 days, average -0.488R (-0.129R before costs), profit factor 0.41, t-stat -8.95
+- `pdhl.overnight.m1.mid.gapstop.3r` · REJECT: screen 588 days, average -0.474R (-0.115R before costs), profit factor 0.46, t-stat -8.02
+- `pdhl.overnight.m1.mid.gapstop.opp` · REJECT: screen 572 days, average -0.297R (+0.061R before costs), profit factor 0.77, t-stat -1.37
+- `pdhl.overnight.m1.mid.sweepstop.2r` · REJECT: screen 588 days, average +0.009R (+0.042R before costs), profit factor 1.02, t-stat 0.20
+- `pdhl.overnight.m1.mid.sweepstop.3r` · REJECT: screen 588 days, average +0.055R (+0.088R before costs), profit factor 1.11, t-stat 1.03
+- `pdhl.overnight.m1.mid.sweepstop.opp` · REJECT: screen 479 days, average +0.038R (+0.079R before costs), profit factor 1.05, t-stat 0.36
+- `pdhl.overnight.m5.edge.gapstop.2r` · REJECT: screen 455 days, average -0.118R (-0.035R before costs), profit factor 0.80, t-stat -2.10
+- `pdhl.overnight.m5.edge.gapstop.3r` · REJECT: screen 455 days, average -0.127R (-0.045R before costs), profit factor 0.82, t-stat -1.90
+- `pdhl.overnight.m5.edge.gapstop.opp` · REJECT: screen 433 days, average -0.140R (-0.057R before costs), profit factor 0.85, t-stat -0.99
+- `pdhl.overnight.m5.edge.sweepstop.2r` · REJECT: screen 455 days, average +0.011R (+0.028R before costs), profit factor 1.02, t-stat 0.22
+- `pdhl.overnight.m5.edge.sweepstop.3r` · REJECT: screen 455 days, average +0.022R (+0.038R before costs), profit factor 1.05, t-stat 0.38
+- `pdhl.overnight.m5.edge.sweepstop.opp` · REJECT: screen 293 days, average -0.078R (-0.056R before costs), profit factor 0.88, t-stat -0.85
+- `pdhl.overnight.m5.mid.gapstop.2r` · REJECT: screen 423 days, average -0.243R (-0.072R before costs), profit factor 0.65, t-stat -4.03
+- `pdhl.overnight.m5.mid.gapstop.3r` · REJECT: screen 423 days, average -0.236R (-0.065R before costs), profit factor 0.70, t-stat -3.31
+- `pdhl.overnight.m5.mid.gapstop.opp` · REJECT: screen 399 days, average -0.147R (+0.025R before costs), profit factor 0.86, t-stat -0.62
+- `pdhl.overnight.m5.mid.sweepstop.2r` · REJECT: screen 423 days, average +0.033R (+0.053R before costs), profit factor 1.07, t-stat 0.62
+- `pdhl.overnight.m5.mid.sweepstop.3r` · REJECT: screen 423 days, average +0.049R (+0.068R before costs), profit factor 1.10, t-stat 0.78
+- `pdhl.overnight.m5.mid.sweepstop.opp` · REJECT: screen 286 days, average -0.006R (+0.019R before costs), profit factor 0.99, t-stat -0.06
+- `swing4h.window.m1.edge.gapstop.2r` · REJECT: screen 158 days, average -0.226R (-0.043R before costs), profit factor 0.70, t-stat -2.10
+- `swing4h.window.m1.edge.gapstop.3r` · REJECT: screen 158 days, average -0.154R (+0.029R before costs), profit factor 0.81, t-stat -1.18
+- `swing4h.window.m1.edge.gapstop.opp` · REJECT: screen 126 days, average +0.202R (+0.384R before costs), profit factor 1.19, t-stat 0.44
+- `swing4h.window.m1.edge.sweepstop.2r` · REJECT: screen 158 days, average +0.005R (+0.051R before costs), profit factor 1.01, t-stat 0.04
+- `swing4h.window.m1.edge.sweepstop.3r` · REJECT: screen 158 days, average +0.051R (+0.097R before costs), profit factor 1.07, t-stat 0.38
+- `swing4h.window.m1.edge.sweepstop.opp` · REJECT: screen 126 days, average +0.207R (+0.251R before costs), profit factor 1.26, t-stat 0.83
+- `swing4h.window.m1.mid.gapstop.2r` · REJECT: screen 149 days, average -0.711R (-0.339R before costs), profit factor 0.31, t-stat -6.82
+- `swing4h.window.m1.mid.gapstop.3r` · REJECT: screen 149 days, average -0.709R (-0.337R before costs), profit factor 0.35, t-stat -6.01
+- `swing4h.window.m1.mid.gapstop.opp` · REJECT: screen 119 days, average -0.597R (-0.225R before costs), profit factor 0.55, t-stat -1.23
+- `swing4h.window.m1.mid.sweepstop.2r` · REJECT: screen 149 days, average -0.008R (+0.048R before costs), profit factor 0.99, t-stat -0.07
+- `swing4h.window.m1.mid.sweepstop.3r` · REJECT: screen 149 days, average +0.029R (+0.085R before costs), profit factor 1.04, t-stat 0.21
+- `swing4h.window.m1.mid.sweepstop.opp` · REJECT: screen 119 days, average +0.072R (+0.125R before costs), profit factor 1.08, t-stat 0.28
+- `swing4h.window.m5.edge.gapstop.2r` · REJECT: screen 78 days, average +0.020R (+0.100R before costs), profit factor 1.03, t-stat 0.13
+- `swing4h.window.m5.edge.gapstop.3r` · REJECT: screen 78 days, average +0.175R (+0.255R before costs), profit factor 1.24, t-stat 0.85
+- `swing4h.window.m5.edge.gapstop.opp` · REJECT: screen 60 days, average -0.196R (-0.114R before costs), profit factor 0.79, t-stat -0.54
+- `swing4h.window.m5.edge.sweepstop.2r` · REJECT: screen 78 days, average -0.032R (-0.009R before costs), profit factor 0.95, t-stat -0.22
+- `swing4h.window.m5.edge.sweepstop.3r` · REJECT: screen 78 days, average +0.016R (+0.039R before costs), profit factor 1.03, t-stat 0.10
+- `swing4h.window.m5.edge.sweepstop.opp` · REJECT: screen 54 days, average +0.056R (+0.081R before costs), profit factor 1.09, t-stat 0.23
+- `swing4h.window.m5.mid.gapstop.2r` · REJECT: screen 65 days, average -0.393R (-0.227R before costs), profit factor 0.54, t-stat -2.40
+- `swing4h.window.m5.mid.gapstop.3r` · REJECT: screen 65 days, average -0.218R (-0.052R before costs), profit factor 0.75, t-stat -1.05
+- `swing4h.window.m5.mid.gapstop.opp` · REJECT: screen 51 days, average -0.712R (-0.542R before costs), profit factor 0.37, t-stat -2.07
+- `swing4h.window.m5.mid.sweepstop.2r` · REJECT: screen 65 days, average -0.037R (-0.010R before costs), profit factor 0.94, t-stat -0.22
+- `swing4h.window.m5.mid.sweepstop.3r` · REJECT: screen 65 days, average -0.045R (-0.018R before costs), profit factor 0.94, t-stat -0.23
+- `swing4h.window.m5.mid.sweepstop.opp` · REJECT: screen 46 days, average -0.029R (+0.000R before costs), profit factor 0.96, t-stat -0.09
+- `swing4h.overnight.m1.edge.gapstop.2r` · REJECT: screen 330 days, average -0.241R (-0.062R before costs), profit factor 0.66, t-stat -3.47
+- `swing4h.overnight.m1.edge.gapstop.3r` · REJECT: screen 330 days, average -0.254R (-0.074R before costs), profit factor 0.68, t-stat -3.16
+- `swing4h.overnight.m1.edge.gapstop.opp` · REJECT: screen 285 days, average +0.613R (+0.793R before costs), profit factor 1.58, t-stat 1.34
+- `swing4h.overnight.m1.edge.sweepstop.2r` · REJECT: screen 330 days, average +0.057R (+0.089R before costs), profit factor 1.11, t-stat 0.85
+- `swing4h.overnight.m1.edge.sweepstop.3r` · REJECT: screen 330 days, average +0.076R (+0.108R before costs), profit factor 1.13, t-stat 0.94
+- `swing4h.overnight.m1.edge.sweepstop.opp` · REJECT: screen 244 days, average +0.281R (+0.319R before costs), profit factor 1.39, t-stat 1.54
+- `swing4h.overnight.m1.mid.gapstop.2r` · REJECT: screen 320 days, average -0.512R (-0.145R before costs), profit factor 0.46, t-stat -6.20
+- `swing4h.overnight.m1.mid.gapstop.3r` · REJECT: screen 320 days, average -0.569R (-0.202R before costs), profit factor 0.44, t-stat -6.53
+- `swing4h.overnight.m1.mid.gapstop.opp` · REJECT: screen 274 days, average -0.046R (+0.323R before costs), profit factor 0.97, t-stat -0.09
+- `swing4h.overnight.m1.mid.sweepstop.2r` · REJECT: screen 320 days, average +0.094R (+0.131R before costs), profit factor 1.19, t-stat 1.36
+- `swing4h.overnight.m1.mid.sweepstop.3r` · REJECT: screen 320 days, average +0.079R (+0.117R before costs), profit factor 1.14, t-stat 0.97
+- `swing4h.overnight.m1.mid.sweepstop.opp` · REJECT: screen 236 days, average +0.155R (+0.199R before costs), profit factor 1.21, t-stat 0.93
+- `swing4h.overnight.m5.edge.gapstop.2r` · REJECT: screen 203 days, average -0.010R (+0.072R before costs), profit factor 0.98, t-stat -0.11
+- `swing4h.overnight.m5.edge.gapstop.3r` · REJECT: screen 203 days, average -0.023R (+0.059R before costs), profit factor 0.97, t-stat -0.20
+- `swing4h.overnight.m5.edge.gapstop.opp` · REJECT: screen 169 days, average +0.412R (+0.498R before costs), profit factor 1.46, t-stat 1.29
+- `swing4h.overnight.m5.edge.sweepstop.2r` · REJECT: screen 203 days, average +0.094R (+0.111R before costs), profit factor 1.20, t-stat 1.14
+- `swing4h.overnight.m5.edge.sweepstop.3r` · REJECT: screen 203 days, average +0.102R (+0.119R before costs), profit factor 1.21, t-stat 1.09
+- `swing4h.overnight.m5.edge.sweepstop.opp` · REJECT: screen 131 days, average +0.133R (+0.154R before costs), profit factor 1.25, t-stat 0.92
+- `swing4h.overnight.m5.mid.gapstop.2r` · REJECT: screen 181 days, average -0.177R (-0.007R before costs), profit factor 0.75, t-stat -1.78
+- `swing4h.overnight.m5.mid.gapstop.3r` · REJECT: screen 181 days, average -0.011R (+0.158R before costs), profit factor 0.99, t-stat -0.09
+- `swing4h.overnight.m5.mid.gapstop.opp` · REJECT: screen 150 days, average +0.211R (+0.385R before costs), profit factor 1.20, t-stat 0.44
+- `swing4h.overnight.m5.mid.sweepstop.2r` · REJECT: screen 181 days, average +0.067R (+0.087R before costs), profit factor 1.14, t-stat 0.78
+- `swing4h.overnight.m5.mid.sweepstop.3r` · REJECT: screen 181 days, average +0.119R (+0.139R before costs), profit factor 1.23, t-stat 1.16
+- `swing4h.overnight.m5.mid.sweepstop.opp` · REJECT: screen 116 days, average +0.069R (+0.093R before costs), profit factor 1.12, t-stat 0.42
+- Verdict: all 96 REJECTED at the screen. No scenario reached the confirm years, so January 2024 to November 2026 was never computed for this rule.
+- Dry run on made-up prices with no cost, before the real run: 0 of 96 passed, 46 of 94 scenarios with trades had an average above zero, median average -0.004R a day. About zero, as it should be with no edge.
+- Notes on study 8, written after it ran:
+  - Usable days: Nasdaq 1,404, S&P 500 1,394, Dow 1,404. 62 scenarios had 150 or more traded days in the screen years; 34 are rejects marked "too few trades", 32 of them `window` scenarios.
+  - Best t-stat 1.54 (`swing4h.overnight.m1.edge.sweepstop.opp`) against a screen bar of 1.65. 23 scenarios lost with a t-stat of -1.65 or worse.
+  - Before costs, 52 of 96 were above zero and the median was +0.026R a day. The dry run with no edge in it gave 46 of 94. The family as a whole is not distinguishable from zero before costs and is below zero after them.
+  - Stop at the gap: 7 of 48 above zero after costs, median -0.212R a day, median cost 0.173R a trade. With `m1` gaps and a `mid` entry the cost is about 0.35R a trade. The post's own stop is the part that does the damage.
+  - Stop at the sweep extreme: 32 of 48 above zero after costs, median +0.019R a day, none with a t-stat of 1.65. This is where the least bad results are. It is not evidence of an edge, and under this study's rules it is not re-run or narrowed on these files.
+  - Win rate: 27% for the median scenario. Endings over all scenarios: 29,674 stops (7,452 of them in the fill minute), 7,029 targets, 5,022 time exits.
+  - Fourth sweep-and-reverse test to show nothing here, and the first on the small charts the method is sold for.
