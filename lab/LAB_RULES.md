@@ -481,3 +481,70 @@ These were fixed before any result was computed. Each is forced by the data.
 - Fewer than 150 traded days is a FAIL marked "too few trades": the rule was not shown to work, and loosening it to get more trades would be tuning.
 - Testing it on the market it was written for (Bitcoin, 15-minute bars) would be a new study with new data and its own count.
 - This study runs once.
+
+## Study 7: the "7H Profile · Fractal Model" script on 1-hour bars (written November 23, 2026, before this rule was run on any lab data)
+One rule from one outside source, at its default settings, on the lab's fifteen markets. Code: `lab/intraday/fractal7h.py`. Data: the lab's 1-hour files.
+
+### Where the rule comes from
+- An anonymous paste, pastebin.com/9AMMivPh, sent by Jeff on November 23, 2026. It is a TradingView indicator in Pine Script, 1,155 lines, titled "7H Profile · Fractal Model Pro". It was posted on November 22, 2026 by a user called "ajiim" with no author, licence or credits in the code. Where it came from before that is unknown.
+- It gives no backtest. Its on-chart panel counts wins and losses for the few setups on screen, which is not evidence.
+- It has about 90 settings, most of them drawing options. This study uses the defaults and changes none.
+- The script says it works on charts of 1 hour or lower and recommends 15, 5 or 3 minutes. The lab holds 24-hour data on 1-hour bars only, so this is the script's slowest allowed chart, not its recommended one. On 1-hour bars the script picks its "method A" by itself.
+
+### What has been seen
+- These 1-hour files have been used for the whole screen track. None of that computed this rule. The built-in `sweep` trigger is a simpler relative and confirmed nothing.
+- Before these rules were written, the session read the script in full and checked file coverage in New York time, by market and by season: every market has the hours from 1:00 to 11:00 on at least 99% of weekdays, summer and winter. No result of any kind was computed.
+
+### The rule (the script's defaults)
+Times are New York time. Every decision is made at the close of a 1-hour bar.
+- The day starts at 18:00 and is cut into blocks of 7 hours: 18:00 to 1:00 (Asia), 1:00 to 8:00 (London), 8:00 to 15:00 (New York), and the rest to 18:00. A gap of 7 hours or more in the bars also starts a new day.
+- Daily direction, set when a day ends:
+  - A swing low is a day whose low is below the day before and not above the day after. A swing high is the mirror. One of each is kept as the "relevant" swing. A newer swing replaces it if it is more extreme, or if it stands at least half a daily ATR (14 days) away and the pullback to it was no more than 50% of the move since.
+  - A day that dips below the relevant swing low and closes back above it turns the direction up, and that day's low becomes the new relevant low. The mirror turns it down.
+  - A day that closes below the relevant swing low turns the direction down. A close above the relevant swing high turns it up.
+  - No trading for a day if the day before left a wick against the direction of more than 40% of its range.
+  - No trading for the rest of a day once a bar closes beyond the midpoint between the previous day's close and the relevant swing on the other side.
+- The 7-hour profile, which must agree with the daily direction:
+  - Asia or London: the block dips below the previous block's low and closes back above it (up), or the mirror (down).
+  - New York: a bar in the New York block closes back above the low of the Asia and London blocks after the block has dipped below it, on an up bar (up), or the mirror (down). Only if no earlier profile formed that day.
+  - The profile is dead once price trades beyond its extreme. An Asia or London profile is also dead once price, in the New York block, trades beyond the midpoint between its extreme and the close of its block (for an Asia profile, the close of the London block).
+- Entry, from 1:00 to 11:59 only, one a day for each market, at least 4 bars after the last one:
+  - A swing low on 1-hour bars is a bar with a low below the 3 bars on each side.
+  - A sweep: a bar trades below the latest swing low not yet used. The lowest low from there on is the sweep low. It is dropped after 20 bars.
+  - The trigger: an up bar closes above the open of the most recent run of down bars, as it stood at the sweep low.
+  - Buy if the daily direction is up and an up profile is alive. Selling is the mirror in every part.
+- Stop at the sweep low (the bar's own low if that is not below the close). Target at twice the risk. Everything is closed at the open of the 15:00 bar.
+- A bar that opens beyond the stop or target is closed at its open. A bar that reaches both stop and target counts as a stop.
+
+### Where the lab's version differs from the script on a TradingView chart
+Fixed before any result was computed.
+- 1-hour bars, for the reason above. A sweep followed by a trigger within 20 bars means within 20 hours here and within 5 hours on a 15-minute chart.
+- Entry at the open of the bar after the trigger, as everywhere else in the lab. The script books the trigger bar's close. The stop and target stay where the script put them, and R is measured against the risk the script set.
+- A tie between two equal lows or highs does not make a swing. TradingView's own tie rule is not documented, and ties are rare.
+- Cost as in the rest of the lab: the market's fee on entry and exit, and 0.02% slippage on a stop. The double-cost check doubles both.
+- Gold is read from April 21, 2021, like the other markets, although its file starts earlier.
+
+### Counting
+- Results are in R, after costs.
+- One number per day: the average across the markets that traded that day. All statistics are on those daily numbers unless stated.
+- Period: trades entered from June 1, 2021 to April 20, 2026, as one test. Later bars are the lab's quarantine and are not touched.
+
+### Pass (all must hold)
+1. At least 150 traded days.
+2. Average above zero, with a t-stat of 2.58 or more.
+3. Profit factor of 1.15 or more.
+4. Average above zero at double cost.
+5. Average above zero on at least 8 of the 15 markets taken alone.
+6. A positive total in at least four of the six calendar years 2021 to 2026.
+7. Long trades alone and short trades alone each have an average above zero, counting every trade equally.
+
+### Also reported, without changing the verdict
+- The same figures before costs, so that a rule killed only by costs can be told from a rule with nothing in it.
+- Trades by market group (crypto, forex, indices, gold and oil), by profile (Asia, London, New York), and how trades ended.
+- A dry run of the same code on made-up prices with no cost, which should average about zero.
+
+### What a result means
+- PASS: one run on the quarantine bars, then the forward watch, then the prop-rules calculator. It is not a reason to trade or to buy a challenge.
+- FAIL: the rule is rejected on 1-hour bars. It is not re-run here with other settings, hours or markets.
+- A fail here says nothing certain about 15-minute or 5-minute charts. Testing those needs 24-hour data on those bars, which the lab does not hold, and would be a new study.
+- This study runs once.
