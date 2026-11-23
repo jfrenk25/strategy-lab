@@ -1224,3 +1224,33 @@ Attempt counter starts at 96.
   - Before costs the rule is not distinguishable from zero. After the lab's normal costs it loses in every year.
   - Two thirds of the trades never reach the stop or the target and are closed at 15:00. On 1-hour bars the stop sits at a sweep low up to 20 hours old, so the 2R target is far away.
   - This is the script's slowest allowed chart, not the 15-minute or 5-minute chart it recommends. The result says nothing certain about those.
+
+### 2026-11-23 · screen survivor 152 · `gtja003_pressure_sum_n6.follow.low_vol.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 21fe7d06e8). No stated reason.
+- Screen years: 416 trades, profit factor 1.26, t-stat 2.13
+- Confirm years: 294 trades, profit factor 1.06, +12.6R, t-stat 0.45 (needed 3.41); markets 10 of 15; double-cost profit factor 0.94; beats 87% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.41 (bar for survivor 152)
+
+### 2026-11-23 · screen survivor 153 · `gtja003_pressure_sum_n6.follow.with_trend.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 0012c62c25). No stated reason.
+- Screen years: 850 trades, profit factor 1.15, t-stat 1.87
+- Confirm years: 596 trades, profit factor 0.98, -8.4R, t-stat -0.21 (needed 3.41); markets 6 of 15; double-cost profit factor 0.90; beats 74% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.41 (bar for survivor 153)
+
+### 2026-11-23 · screen survivor 154 · `gtja003_pressure_sum_n20.follow.low_vol.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id c919ace888). No stated reason.
+- Screen years: 847 trades, profit factor 1.13, t-stat 1.68
+- Confirm years: 477 trades, profit factor 0.99, -2.1R, t-stat -0.06 (needed 3.41); markets 6 of 15; double-cost profit factor 0.88; beats 74% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.41 (bar for survivor 154)
+
+### 2026-11-23 · screen survivor 155 · `gtja009_ease_of_movement_n15.follow.with_trend.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 4ade681196). No stated reason.
+- Screen years: 1559 trades, profit factor 1.11, t-stat 1.88
+- Confirm years: 719 trades, profit factor 1.02, +10.0R, t-stat 0.23 (needed 3.41); markets 7 of 15; double-cost profit factor 0.93; beats 82% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.41 (bar for survivor 155)
+
+### 2026-11-23 · screen batch · 1480 ideas
+- New triggers registered: gtja003_pressure_sum, gtja009_ease_of_movement, gtja118_open_reach, lunar_phase, td_differential, vsa_no_demand.
+- Passed the screen: 4. Confirmed on unseen years: 0. Candidates: 0.
+- Totals: 17200 of 17200 catalogue ideas screened, 155 survivors, 0 confirmed, 0 candidates.
+- Every screened idea is in `lab/screen/log.csv`.

@@ -1,0 +1,38 @@
+id: quantpedia_silicon_satoshi
+title: "Silicon vs. Satoshi: Tactical Asset Rotation Between NASDAQ-100 and Bitcoin"
+authors: "Cyril Dujava (Quantpedia)"
+published: "2026-07-02"
+url: "https://quantpedia.com/silicon-vs-satoshi-tactical-asset-rotation-between-nasdaq-100-and-bitcoin/"
+found: "2026-11-23"
+status: extracted
+market: "A Nasdaq 100 fund (QQQ), bitcoin and cash"
+timeframe: "Daily closes on the stock market's calendar; the whole account is in one asset or in cash"
+data_needed:
+  - "daily closes of a Nasdaq 100 fund"
+  - "bitcoin closes sampled on the same trading days (the write-up resamples hourly Bitfinex bars)"
+testable_here: true
+why_not: ""
+missing_data: []
+formulas:
+  - name: "Breakout"
+    definition: "B(t) = 1 if C(t) > max of C over the w trading days before t, else 0."
+    variables: "C: daily close of the asset. w: lookback; the write-up tries 5, 10, 15, 20, 25, 30, 40 and 50 days."
+  - name: "Rotation, variant A"
+    definition: "If B_QQQ(t) = 1 hold QQQ; else if B_BTC(t) = 1 hold bitcoin; else hold cash at 0%."
+    variables: "Variant B checks bitcoin first, then QQQ."
+rules:
+  entry_long: "Hold the first asset in the checking order whose close is above its highest close of the previous w days."
+  entry_short: ""
+  exit: "The page read says the account is in cash when neither asset breaks out. It does not say whether a position is kept after the breakout day until some exit level, so the exit is unclear."
+  holding_period: "Not stated"
+reported_results:
+  sample_period: "January 2019 to December 2025"
+  markets: "QQQ and bitcoin (Bitfinex)"
+  headline: "Variant A, 20 days: 39.5% a year, Sharpe 1.68, largest drawdown 17.6%. Variant A, 5 days: 43.7%, Sharpe 1.69. Variant B, 5 days: 47.1%, Sharpe 1.42. Holding 50/50: 44.1%, Sharpe 1.19, drawdown 59%. Bitcoin alone: 55.9%, Sharpe 0.89, drawdown 77%."
+  costs_included: "No. Costs are not modelled and cash earns 0%."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: pending
+may_stop_working: ""
+notes: "A vendor's research post, not a paper on arXiv, SSRN or NBER; picked up from a web search. The lab holds both markets from April 2021, but the rule was not coded, for two reasons. First, the exit is unclear in what was read, and guessing it would make the test the lab's rule, not the write-up's. Second, it is a trend breakout in position mode, and the lab's own notes close that class after two failures (ts_momentum, valeyre_ema_trend) and after the built-in breakout trigger confirmed nothing. Eight lookbacks and two orderings were shown with no costs on a period when both assets rose strongly. Testing it would need Jeff's go-ahead and a reading of the exit. It cites a companion paper on gold and bitcoin (SSRN 6729918), which could not be opened."

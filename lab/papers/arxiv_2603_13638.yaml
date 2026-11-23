@@ -1,0 +1,46 @@
+id: arxiv_2603_13638
+title: "Performance-Driven Causal Signal Engineering for Financial Markets under Non-Stationarity"
+authors: "Lucas A. Souza"
+published: "2026-03-13"
+url: "https://arxiv.org/abs/2603.13638"
+found: "2026-11-21"
+status: cant_test
+market: "EURUSDT and BTCUSDT spot on Binance"
+timeframe: "1-minute bars; the median position lasts 22 to 23 minutes"
+data_needed:
+  - "1-minute open, high, low, close and volume for EURUSDT and BTCUSDT, January 2022 to December 2025"
+testable_here: false
+why_not: "The rule is defined and fitted on 1-minute bars, with training windows of 720 to 12,000 minutes. The lab has 1-hour bars only. Several settings are also unpublished."
+missing_data: [one_minute_bars]
+formulas:
+  - name: "Robust score of each indicator"
+    definition: "Z(t) = (I(t) - m(t)) / s(t), where m is the median of I over the previous w_norm bars and s is the median absolute deviation over the same bars plus a small eps."
+    variables: "I: one of four indicators (RSI, Money Flow Index, MACD histogram, Bollinger %B). w_norm: 5,000 minutes in the paper's figures; the backtest value and eps are not given. Indicator lengths are not given."
+  - name: "Composite"
+    definition: "F0(t) = (Z_RSI + Z_MFI + Z_MACD + Z_BB) / 4."
+    variables: ""
+  - name: "Slope"
+    definition: "dF0(t) = (F0(t) - F0(t-n)) / n, then a moving average of length w_MA."
+    variables: "n = 2 and w_MA = 2 in the paper's gating analysis; an appendix example uses n = 5."
+  - name: "Signal"
+    definition: "F(t) = c1 x F0(t) + c2 x dF0(t), with c1 = tanh(|L1 x F0|) and c2 = A x (1 - tanh(|L2 x F0|))."
+    variables: "L1, L2, A: positive constants chosen on each training window; their values and grids are not in the text read."
+  - name: "Position"
+    definition: "p(t) = 1 if p(t-1) = 0 and F(t) > +theta; p(t) = 0 if p(t-1) = 1 and F(t) < -theta; otherwise p(t-1). Return R(t) = p(t-1) x r(t)."
+    variables: "theta: 1.0 reported, from the grid 0.6, 0.8, 1.0, 1.4, 1.6. r: one-bar price return."
+rules:
+  entry_long: "Go long when the signal F rises above +theta while flat. The position earns from the next bar."
+  entry_short: ""
+  exit: "Go flat when F falls below -theta while long. No stop or target."
+  holding_period: "Not fixed; median 22 to 23 minutes."
+reported_results:
+  sample_period: "January 2022 to December 2025, walk-forward: settings chosen on a validation window by profit divided by the square root of its length, then frozen for the next block"
+  markets: "EURUSDT, BTCUSDT"
+  headline: "With no costs: EURUSDT total return 2.62 against 0.03 for holding, largest drawdown 11% against 20%, 30,208 trades. BTCUSDT 1.60 against 0.85, drawdown 44% against 68%, 23,158 trades. The author calls these an upper bound."
+  costs_included: "No. Every headline figure is at zero cost; a separate cost analysis was not read."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "Kept on 2026-11-21, read in full on 2026-11-23. About 30,000 trades in four years at zero cost: at the lab's fees (0.03% a side for bitcoin) the cost alone would be many times the reported gain. Unpublished: indicator lengths, the Bollinger width, eps, the backtest normalisation window, L1, L2, A and their grids. theta was chosen from a chart of the whole sample, so it is not purely walk-forward. The formulas for the four indicators and the results reached the lab as a machine summary. The class (a mix of RSI, MFI, MACD and Bollinger) is the indicator-mix class that has lost every time in this lab; no trigger was made."

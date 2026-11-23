@@ -849,5 +849,101 @@
   ],
   "timed": false,
   "universe": "fifteen"
+ },
+ {
+  "name": "gtja003_pressure_sum",
+  "hash": "328d4defe65d",
+  "added": "2026-11-23",
+  "source": "Guotai Junan Securities, 191 short-horizon price-volume alpha factors (2017), Alpha#3 and Alpha#59, as listed at https://bigquant.com/wiki/doc/Pyf0TYya6H",
+  "summary": "+1 when the n-bar sum of close-minus-true-low (up bars) and close-minus-true-high (down bars) first reaches a high extreme of its own past, -1 at a low extreme.",
+  "variants": [
+   {
+    "n": 6
+   },
+   {
+    "n": 20
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "gtja009_ease_of_movement",
+  "hash": "65834d53a31a",
+  "added": "2026-11-23",
+  "source": "Guotai Junan Securities, 191 short-horizon price-volume alpha factors (2017), Alpha#9 and Alpha#68, as listed at https://bigquant.com/wiki/doc/Pyf0TYya6H",
+  "summary": "+1 when smoothed ease of movement (midpoint move x range / volume) first reaches a high extreme of its own past, -1 at a low extreme.",
+  "variants": [
+   {
+    "n": 7
+   },
+   {
+    "n": 15
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "gtja118_open_reach",
+  "hash": "b5c699078087",
+  "added": "2026-11-23",
+  "source": "Guotai Junan Securities, 191 short-horizon price-volume alpha factors (2017), Alpha#118, as listed at https://bigquant.com/wiki/doc/Pyf0TYya6H",
+  "summary": "+1 when the 20-bar ratio of (high - open) to (open - low) first reaches a high extreme of its own past, -1 at a low extreme.",
+  "variants": [
+   {
+    "n": 20
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "lunar_phase",
+  "hash": "4bb20ae32270",
+  "added": "2026-11-23",
+  "source": "Dichev and Janes, \"Lunar Cycle Effects in Stock Returns\", Journal of Private Equity 6(4), 2003; Yuan, Zheng and Zhu, \"Are Investors Moonstruck? Lunar Phases and Stock Returns\", Journal of Empirical Finance 13(1), 2006",
+  "summary": "+1 on the first bar at or after each new moon, -1 on the first bar at or after each full moon (mean lunar cycle).",
+  "variants": [
+   {
+    "synodic": 29.530588853
+   }
+  ],
+  "timed": true,
+  "universe": "fifteen"
+ },
+ {
+  "name": "td_differential",
+  "hash": "8c2bbcf28988",
+  "added": "2026-11-23",
+  "source": "Thomas DeMark, New Market Timing Techniques (Wiley, 1997), TD Differential and TD Reverse Differential, as described at https://www.litefinance.org/blog/for-professionals/a-set-of-differential-tools-by-thomas-demark-td-differential-td-anti-differential-td-reverse-differential/",
+  "summary": "reverse=0: +1 after two lower closes with buying pressure rising and selling pressure falling, -1 for the mirror. reverse=1: the continuation version, with the pressure conditions swapped.",
+  "variants": [
+   {
+    "reverse": 0
+   },
+   {
+    "reverse": 1
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "vsa_no_demand",
+  "hash": "e434b9252737",
+  "added": "2026-11-23",
+  "source": "Tom Williams, Master the Markets (TradeGuider), no-demand and no-supply bars, as described at https://www.luxalgo.com/library/concept/no-demand-no-supply-bars/ and https://therighttrader.com/learn/volume-and-order-flow/no-demand-bar",
+  "summary": "-1 on an up-close bar with a narrow range and volume below each of the two bars before it (no demand); +1 on the down-close mirror (no supply).",
+  "variants": [
+   {
+    "k": 1.0
+   },
+   {
+    "k": 0.5
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
  }
 ]

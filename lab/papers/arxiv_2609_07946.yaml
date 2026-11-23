@@ -1,0 +1,45 @@
+id: arxiv_2609_07946
+title: "Simple Dynamic Stock/Bond/Gold Portfolios"
+authors: "Nikhil Devanathan, Alexandros E. Tzikas, Stephen P. Boyd"
+published: "2026-09-07"
+url: "https://arxiv.org/abs/2609.07946"
+found: "2026-11-21"
+status: cant_test
+market: "Three US funds (S&P 500, aggregate bonds, gold) plus cash at the federal funds rate"
+timeframe: "Daily data; weights reset on the last trading day of each month"
+data_needed:
+  - "daily total-return prices of an S&P 500 fund, an aggregate bond fund and a gold fund from January 2006"
+  - "the daily federal funds rate"
+  - "for the fuller version: bond yields, inflation, the VIX and Fama-French factor returns"
+testable_here: false
+why_not: "A third of the portfolio is a bond fund and idle money earns the federal funds rate. The lab holds neither, and its S&P 500 bars start in April 2021 while the study starts in 2006."
+missing_data: [bond_prices, cash_rate, longer_history, macro_data]
+formulas:
+  - name: "Trailing volatility"
+    definition: "sigma(t) = standard deviation of the portfolio's daily returns over the last 11 days x sqrt(252)."
+    variables: "The 11-day window came from what the authors call a modest search."
+  - name: "Volatility control"
+    definition: "If sigma(t) > target: risky weights = (target / sigma(t)) x w_fixed and cash = 1 - target / sigma(t). Otherwise hold w_fixed with no cash."
+    variables: "target = 7% a year. w_fixed = (0.6, 0.4, 0) or (0.5, 0.3, 0.2) in stocks, bonds, gold."
+  - name: "Optimised weights"
+    definition: "Each month choose w to maximise alpha.w + r_cash x (1 - sum(w)) - (s / 2) x sum|w - w_now|, subject to w >= 0, sum(w) <= 1, sqrt(w' Sigma w) <= target, and the normalised weights staying within an L1 distance of 1 from (0.5, 0.3, 0.2)."
+    variables: "alpha: expected monthly returns. Sigma: 11-day trailing covariance, annualised. s = 0.0005. r_cash: federal funds compounded over 21 days. w_now: weights after drift."
+  - name: "Simple return forecast"
+    definition: "alpha = exponentially weighted mean of daily returns with a 252-day half-life, x 21."
+    variables: "The fuller version replaces this with a rolling ridge regression on past returns, volumes, volatilities and macro series (appendix not read)."
+rules:
+  entry_long: "On the last trading day of each month set the three fund weights by volatility control or by the optimiser. Long only, no leverage."
+  entry_short: ""
+  exit: "Weights are reset the next month. No stops."
+  holding_period: "One month"
+reported_results:
+  sample_period: "January 2006 to January 2026"
+  markets: "SPY, AGG, GLD, cash"
+  headline: "Net of costs (return / volatility / Sharpe / largest drawdown): 60/40 held 8.1% / 11.3% / 0.56 / 33.7%; 50/30/20 held 9.1% / 10.3% / 0.70 / 27.1%; 50/30/20 with volatility control 7.8% / 7.3% / 0.82 / 15.9%; simple optimiser 10.4% / 9.3% / 0.91 / 15.8%; full optimiser 11.6% / 9.0% / 1.08 / 18.1%."
+  costs_included: "Yes: 0.05% per rebalance, also inside the optimiser's objective."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "Kept on 2026-11-21, read in full on 2026-11-23. The rule details and the results table reached the lab as a machine summary of the paper; the abstract was read as text. Not read: the regression appendix and the cost appendix. Unclear: the exact wording of the distance limit and which day's close is traded. An allocation rule, so no trigger was made. Dropping the bond fund and the cash rate to fit the lab's markets would be a different rule, not this paper's."

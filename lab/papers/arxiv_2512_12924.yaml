@@ -1,0 +1,44 @@
+id: arxiv_2512_12924
+title: "Interpretable Hypothesis-Driven Trading: A Rigorous Walk-Forward Validation Framework for Market Microstructure Signals"
+authors: "Gagan Deep, Akash Deep, William Lamptey"
+published: "2025-12-15"
+url: "https://arxiv.org/abs/2512.12924"
+found: "2026-11-23"
+status: cant_test
+market: "100 US stocks"
+timeframe: "Daily bars; positions held until target, stop or 30 days"
+data_needed:
+  - "daily open, high, low, close and volume for 100 US stocks, 2015 to 2024"
+  - "a sector label for each stock (for the 50% per sector limit)"
+testable_here: false
+why_not: "The rule picks among 100 single US stocks each day and caps exposure by sector. The lab holds no single stocks."
+missing_data: [daily_stock_prices, sector_labels]
+formulas:
+  - name: "Volume imbalance"
+    definition: "Sum of signed volume over the last 5 days: a day's volume counts as positive on an up day and negative on a down day."
+    variables: "The exact scaling was not in the text read."
+  - name: "Volume ratio"
+    definition: "VR(t) = V(t) / mean of V over the last 20 days."
+    variables: "V: daily share volume."
+  - name: "Price efficiency"
+    definition: "PE(t) = |P(t) - P(t-10)| / sum over the last 10 days of |P(s) - P(s-1)|."
+    variables: "P: daily close. 1 means a straight-line move, near 0 means a choppy one."
+  - name: "Gate for taking a setup"
+    definition: "A setup of type h with confidence c is taken when that type's past win rate is above 0.45 + (1 - c) x 0.10. With probability eps a setup is taken at random instead (eps = 0.7 in training, 0.1 in testing)."
+    variables: "c: fixed confidence per setup type (0.60 to 0.75)."
+rules:
+  entry_long: "Five setup types, each with a fixed confidence, target and stop: accumulation (0.75, +8%, -4%), flow momentum (0.70, +10%, -5%), mean reversion (0.65, +5%, -3%), breakout (0.68, +7%, -4%), range-bound value (0.60, +5%, -3%). A signal at day t's close is filled at day t+1's open. The thresholds on the three measures that define each setup are in Appendix B, which was not read."
+  entry_short: ""
+  exit: "Target, stop, or 30 days after entry, whichever comes first."
+  holding_period: "Up to 30 trading days. At most 5 positions, 20% of the account each, 50% per sector."
+reported_results:
+  sample_period: "January 2015 to October 2024; 34 test windows of 63 days, each after a 252-day training window"
+  markets: "100 US stocks"
+  headline: "Annual return 0.55%, Sharpe 0.33 (the S&P 500 fund: 0.86), largest drawdown 2.76%, 140 trades, 46.5% winners, 14 of 34 windows positive, p-value 0.34. The authors call the result not significant."
+  costs_included: "Yes: $1 per order and 0.05% slippage (the discussion section says 0.10% per trade, which conflicts)."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "The authors' own result is a null: positive in 2020 to 2024, negative in 2015 to 2019, not significant overall, and they note the stock list has survivorship bias. The methods reached the lab partly as a machine summary of a truncated page; Appendix B with the setup thresholds was not read, so the setups cannot be coded from this file. The arXiv stamp is 15 December 2025 while the paper body carries a date of 24 August 2026. No trigger was made: volume ratio is the built-in vol_spike and price efficiency is the same idea as a158_rsqr."
