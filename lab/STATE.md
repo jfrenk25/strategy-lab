@@ -208,6 +208,9 @@ Spot check done later on 2026-11-20, when pages could be opened:
   - No scenario reached the confirm years, so 2024 to 2026 was never computed for this rule.
   - Stop at the gap: 7 of 48 above zero, median cost 0.173R a trade. Stop at the sweep extreme: 32 of 48 above zero, median +0.019R a day, none significant.
   - Not re-run with other numbers, and no scenario is added, on these files. ICT-style sweep rules are now a dead class on the lab's 1-minute index bars as well as on 1-hour bars. Tick data or 24-hour 1-minute data for other markets would be different information and a new study.
+- Study 9, the pull to the midnight open (a post by @RHerman on X that Jeff sent): NOT SUPPORTED. The post's touch rate holds up (85.4% of 151 Nasdaq setup days here, 82.5% in the post), but the level is only a median 0.138% from the open on those days. It was reached before a phantom level the same distance below on 53.4% of decided days (p 0.26), and the equal-risk trade lost 0.047R after costs.
+  - Rule learned: a high touch rate for a level says how near the level is, not that price is drawn to it. Ask for the first-touch count against a level the same distance the other way.
+  - Not re-run with another floor, target or session on these files.
 - Data fact for any later intraday study: `data_1m/*_1m_full.csv.gz` starts at 13:00 UTC every day. That is 8:00 New York time from November to mid-March and 9:00 the rest of the year. Check coverage in New York time by month before writing a rule that needs pre-open bars.
 - Each study runs once. Rules are in `LAB_RULES.md`, results in `lab/intraday/` and the journal.
 
@@ -215,4 +218,4 @@ Spot check done later on 2026-11-20, when pages could be opened:
 - The inbox is empty. Fill `ideas/inbox/` from "151 Trading Strategies" (see `AGENT.md`) and from the X scout prompt in `GROK_SCOUT_PROMPT.md`.
 
 ## Last session
-2026-11-23 (with Jeff) · study 8 run (96 sweep and fair value gap scenarios, 0 passed) · audit of the lab · rules version 4 written, pushed, then everything re-run once: main track 8 of 8 rejected, screen 17,200 ideas, 267 survivors, 0 confirmed, 0 candidates · forward watch 44 ideas, 0 forward trades, price data ends 2026-11-20 · attempts stay at 104 · earlier the same day: study 7 and the scheduled daily run (24 abstracts, 6 triggers)
+2026-11-23 (with Jeff) · study 8 run (96 sweep and fair value gap scenarios, 0 passed) · audit of the lab · rules version 4 written, pushed, then everything re-run once: main track 8 of 8 rejected, screen 17,200 ideas, 267 survivors, 0 confirmed, 0 candidates · forward watch 44 ideas, 0 forward trades, price data ends 2026-11-20 · attempts stay at 104 · earlier the same day: study 7 and the scheduled daily run (24 abstracts, 6 triggers) · later the same day, study 9 (pull to the midnight open): not supported

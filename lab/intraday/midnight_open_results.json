@@ -1,0 +1,568 @@
+{
+ "date": "2026-11-23",
+ "first_day": "2021-04-22",
+ "last_day": "2026-11-19",
+ "post": {
+  "rate": 0.825,
+  "days": 300,
+  "period": "2015-2025"
+ },
+ "verdict": "NOT SUPPORTED",
+ "checks": {
+  "at least 100 setup days": true,
+  "level reached before the phantom level on more than half of decided days (p <= 0.05)": false,
+  "trade average above zero after costs with t-stat >= 1.65": false,
+  "trade average above zero at double cost": false
+ },
+ "markets": {
+  "NAS100": {
+   "usable_days": 1349,
+   "groups": {
+    "setup": {
+     "days": 151,
+     "touch_rate": 0.8543046357615894,
+     "level_first": 63,
+     "phantom_first": 55,
+     "same_minute": 31,
+     "neither": 2,
+     "level_first_share": 0.5338983050847458,
+     "p_above_half": 0.25974540937831403,
+     "median_dist_pct": 0.13822759305699364,
+     "trade": {
+      "trades": 112,
+      "mean_r": -0.04728367908933102,
+      "t": -0.49104753748809765,
+      "pf": 0.9098909266716896,
+      "win_rate": 0.5267857142857143,
+      "mean_r_before_cost": 0.03845109203728222,
+      "mean_r_double_cost": -0.1330184502159443,
+      "avg_cost_r": 0.08573477112661325,
+      "total_r": -5.295772058005074,
+      "by_year_r": {
+       "2021": 0.94,
+       "2022": 0.51,
+       "2023": 4.61,
+       "2024": 0.2,
+       "2025": -5.12,
+       "2026": -6.43
+      },
+      "endings": {
+       "target": 57,
+       "stop": 53,
+       "time": 2
+      }
+     }
+    },
+    "below_no_gap": {
+     "days": 488,
+     "touch_rate": 0.6352459016393442,
+     "level_first": 208,
+     "phantom_first": 205,
+     "same_minute": 20,
+     "neither": 55,
+     "level_first_share": 0.5036319612590799,
+     "p_above_half": 0.4608097859018543,
+     "median_dist_pct": 0.42143023285358294,
+     "trade": {
+      "trades": 471,
+      "mean_r": -0.05708398421319477,
+      "t": -1.2813367467064833,
+      "pf": 0.8850628124334314,
+      "win_rate": 0.49256900212314225,
+      "mean_r_before_cost": -0.01170778127722864,
+      "mean_r_double_cost": -0.10246018714916094,
+      "avg_cost_r": 0.045376202935966156,
+      "total_r": -26.886556564414736,
+      "by_year_r": {
+       "2021": -5.93,
+       "2022": -21.58,
+       "2023": 4.12,
+       "2024": -8.06,
+       "2025": 1.84,
+       "2026": 2.72
+      },
+      "endings": {
+       "target": 206,
+       "stop": 207,
+       "time": 58
+      }
+     }
+    },
+    "mirror_setup": {
+     "days": 128,
+     "touch_rate": 0.703125,
+     "level_first": 50,
+     "phantom_first": 62,
+     "same_minute": 14,
+     "neither": 2,
+     "level_first_share": 0.44642857142857145,
+     "p_above_half": 0.8904344262511078,
+     "median_dist_pct": 0.17337018609386434,
+     "trade": {
+      "trades": 108,
+      "mean_r": -0.19355629112117095,
+      "t": -2.0019791823507314,
+      "pf": 0.67848633963831,
+      "win_rate": 0.4444444444444444,
+      "mean_r_before_cost": -0.1161741226320429,
+      "mean_r_double_cost": -0.270938459610299,
+      "avg_cost_r": 0.07738216848912803,
+      "total_r": -20.904079441086463,
+      "by_year_r": {
+       "2021": -5.57,
+       "2022": -9.78,
+       "2023": -1.48,
+       "2024": 0.85,
+       "2025": -1.09,
+       "2026": -3.84
+      },
+      "endings": {
+       "target": 47,
+       "stop": 59,
+       "time": 2
+      }
+     }
+    },
+    "above_no_gap": {
+     "days": 582,
+     "touch_rate": 0.6391752577319587,
+     "level_first": 235,
+     "phantom_first": 253,
+     "same_minute": 28,
+     "neither": 66,
+     "level_first_share": 0.48155737704918034,
+     "p_above_half": 0.805119519022762,
+     "median_dist_pct": 0.3628603024751239,
+     "trade": {
+      "trades": 549,
+      "mean_r": -0.0996698032696095,
+      "t": -2.411902598759724,
+      "pf": 0.8090553130758592,
+      "win_rate": 0.46994535519125685,
+      "mean_r_before_cost": -0.0490634660183115,
+      "mean_r_double_cost": -0.15027614052090746,
+      "avg_cost_r": 0.050606337251298,
+      "total_r": -54.71872199501561,
+      "by_year_r": {
+       "2021": 6.46,
+       "2022": -8.05,
+       "2023": -26.08,
+       "2024": 2.98,
+       "2025": -10.42,
+       "2026": -19.6
+      },
+      "endings": {
+       "target": 232,
+       "stop": 251,
+       "time": 66
+      }
+     }
+    }
+   },
+   "setup_by_distance": [
+    {
+     "max_dist_pct": 0.067,
+     "days": 50,
+     "touch_rate": 0.98,
+     "level_first": 13,
+     "phantom_first": 8,
+     "same_minute": 29,
+     "neither": 0,
+     "level_first_share": 0.6190476190476191,
+     "p_above_half": 0.19165515899658203,
+     "median_dist_pct": 0.024300850570794882
+    },
+    {
+     "max_dist_pct": 0.197,
+     "days": 50,
+     "touch_rate": 0.8,
+     "level_first": 23,
+     "phantom_first": 25,
+     "same_minute": 2,
+     "neither": 0,
+     "level_first_share": 0.4791666666666667,
+     "p_above_half": 0.6672670939616907,
+     "median_dist_pct": 0.13281473110793834
+    },
+    {
+     "max_dist_pct": 1.777,
+     "days": 51,
+     "touch_rate": 0.7843137254901961,
+     "level_first": 27,
+     "phantom_first": 22,
+     "same_minute": 0,
+     "neither": 2,
+     "level_first_share": 0.5510204081632653,
+     "p_above_half": 0.2840862064245826,
+     "median_dist_pct": 0.34077383466360633
+    }
+   ]
+  },
+  "SPX500": {
+   "usable_days": 1348,
+   "groups": {
+    "setup": {
+     "days": 135,
+     "touch_rate": 0.7925925925925926,
+     "level_first": 53,
+     "phantom_first": 60,
+     "same_minute": 20,
+     "neither": 2,
+     "level_first_share": 0.4690265486725664,
+     "p_above_half": 0.7740733656671289,
+     "median_dist_pct": 0.0943578893679744,
+     "trade": {
+      "trades": 101,
+      "mean_r": -0.23269441385227738,
+      "t": -2.297189957286973,
+      "pf": 0.6305114252618852,
+      "win_rate": 0.43564356435643564,
+      "mean_r_before_cost": -0.11716878196188873,
+      "mean_r_double_cost": -0.34822004574266596,
+      "avg_cost_r": 0.11552563189038863,
+      "total_r": -23.502135799080015,
+      "by_year_r": {
+       "2021": -6.11,
+       "2022": -4.39,
+       "2023": -1.33,
+       "2024": -2.14,
+       "2025": -5.44,
+       "2026": -4.09
+      },
+      "endings": {
+       "target": 44,
+       "stop": 55,
+       "time": 2
+      }
+     }
+    },
+    "below_no_gap": {
+     "days": 469,
+     "touch_rate": 0.5991471215351812,
+     "level_first": 204,
+     "phantom_first": 184,
+     "same_minute": 12,
+     "neither": 69,
+     "level_first_share": 0.5257731958762887,
+     "p_above_half": 0.16738168712657184,
+     "median_dist_pct": 0.2971758564466442,
+     "trade": {
+      "trades": 442,
+      "mean_r": -0.007272330573390911,
+      "t": -0.1620283717102733,
+      "pf": 0.9839774895165248,
+      "win_rate": 0.5294117647058824,
+      "mean_r_before_cost": 0.04811614971117923,
+      "mean_r_double_cost": -0.06266081085796103,
+      "avg_cost_r": 0.05538848028457012,
+      "total_r": -3.2143701134387825,
+      "by_year_r": {
+       "2021": -5.36,
+       "2022": -3.33,
+       "2023": 3.27,
+       "2024": -1.33,
+       "2025": 4.29,
+       "2026": -0.75
+      },
+      "endings": {
+       "target": 192,
+       "stop": 178,
+       "time": 72
+      }
+     }
+    },
+    "mirror_setup": {
+     "days": 122,
+     "touch_rate": 0.7131147540983607,
+     "level_first": 39,
+     "phantom_first": 69,
+     "same_minute": 9,
+     "neither": 5,
+     "level_first_share": 0.3611111111111111,
+     "p_above_half": 0.99865765097936,
+     "median_dist_pct": 0.15650299238805954,
+     "trade": {
+      "trades": 103,
+      "mean_r": -0.3798342866457429,
+      "t": -3.998535526550818,
+      "pf": 0.45456594095015673,
+      "win_rate": 0.36893203883495146,
+      "mean_r_before_cost": -0.2866037915119248,
+      "mean_r_double_cost": -0.473064781779561,
+      "avg_cost_r": 0.09323049513381812,
+      "total_r": -39.12293152451152,
+      "by_year_r": {
+       "2021": -6.66,
+       "2022": -10.59,
+       "2023": -7.52,
+       "2024": -0.08,
+       "2025": -6.73,
+       "2026": -7.54
+      },
+      "endings": {
+       "target": 34,
+       "stop": 64,
+       "time": 5
+      }
+     }
+    },
+    "above_no_gap": {
+     "days": 622,
+     "touch_rate": 0.6286173633440515,
+     "level_first": 270,
+     "phantom_first": 261,
+     "same_minute": 16,
+     "neither": 75,
+     "level_first_share": 0.5084745762711864,
+     "p_above_half": 0.3642496964791392,
+     "median_dist_pct": 0.2384004567483962,
+     "trade": {
+      "trades": 582,
+      "mean_r": -0.05962401403888397,
+      "t": -1.4967323551350096,
+      "pf": 0.879106113093805,
+      "win_rate": 0.5017182130584192,
+      "mean_r_before_cost": 0.0070596506732192085,
+      "mean_r_double_cost": -0.1263076787509871,
+      "avg_cost_r": 0.06668366471210317,
+      "total_r": -34.70117617063047,
+      "by_year_r": {
+       "2021": -11.17,
+       "2022": 3.68,
+       "2023": -5.35,
+       "2024": -9.05,
+       "2025": 4.83,
+       "2026": -17.63
+      },
+      "endings": {
+       "target": 257,
+       "stop": 248,
+       "time": 77
+      }
+     }
+    }
+   },
+   "setup_by_distance": [
+    {
+     "max_dist_pct": 0.057,
+     "days": 45,
+     "touch_rate": 0.9333333333333333,
+     "level_first": 12,
+     "phantom_first": 13,
+     "same_minute": 20,
+     "neither": 0,
+     "level_first_share": 0.48,
+     "p_above_half": 0.6549810171127319,
+     "median_dist_pct": 0.02362854784069459
+    },
+    {
+     "max_dist_pct": 0.145,
+     "days": 45,
+     "touch_rate": 0.7777777777777778,
+     "level_first": 23,
+     "phantom_first": 22,
+     "same_minute": 0,
+     "neither": 0,
+     "level_first_share": 0.5111111111111111,
+     "p_above_half": 0.5,
+     "median_dist_pct": 0.0943578893679744
+    },
+    {
+     "max_dist_pct": 1.147,
+     "days": 45,
+     "touch_rate": 0.6666666666666666,
+     "level_first": 18,
+     "phantom_first": 25,
+     "same_minute": 0,
+     "neither": 2,
+     "level_first_share": 0.4186046511627907,
+     "p_above_half": 0.8889735899219886,
+     "median_dist_pct": 0.2439595978533467
+    }
+   ]
+  },
+  "USA30": {
+   "usable_days": 1348,
+   "groups": {
+    "setup": {
+     "days": 119,
+     "touch_rate": 0.8319327731092437,
+     "level_first": 44,
+     "phantom_first": 55,
+     "same_minute": 19,
+     "neither": 1,
+     "level_first_share": 0.4444444444444444,
+     "p_above_half": 0.8861869214449765,
+     "median_dist_pct": 0.07574059322796149,
+     "trade": {
+      "trades": 84,
+      "mean_r": -0.237225485708367,
+      "t": -2.132150124586454,
+      "pf": 0.6242123332775252,
+      "win_rate": 0.44047619047619047,
+      "mean_r_before_cost": -0.10832932106941144,
+      "mean_r_double_cost": -0.3661216503473225,
+      "avg_cost_r": 0.12889616463895553,
+      "total_r": -19.926940799502827,
+      "by_year_r": {
+       "2021": -2.79,
+       "2022": -6.59,
+       "2023": -1.86,
+       "2024": -4.13,
+       "2025": -0.79,
+       "2026": -3.77
+      },
+      "endings": {
+       "target": 37,
+       "stop": 46,
+       "time": 1
+      }
+     }
+    },
+    "below_no_gap": {
+     "days": 509,
+     "touch_rate": 0.6326129666011788,
+     "level_first": 230,
+     "phantom_first": 195,
+     "same_minute": 24,
+     "neither": 60,
+     "level_first_share": 0.5411764705882353,
+     "p_above_half": 0.04949203550449435,
+     "median_dist_pct": 0.2892797737907293,
+     "trade": {
+      "trades": 473,
+      "mean_r": 0.010530588918767163,
+      "t": 0.23951446612936123,
+      "pf": 1.0232312055158608,
+      "win_rate": 0.53276955602537,
+      "mean_r_before_cost": 0.0700675687410318,
+      "mean_r_double_cost": -0.049006390903497475,
+      "avg_cost_r": 0.05953697982226465,
+      "total_r": 4.980968558576868,
+      "by_year_r": {
+       "2021": -8.13,
+       "2022": 7.43,
+       "2023": 12.25,
+       "2024": -9.99,
+       "2025": 4.43,
+       "2026": -1.02
+      },
+      "endings": {
+       "target": 221,
+       "stop": 191,
+       "time": 61
+      }
+     }
+    },
+    "mirror_setup": {
+     "days": 116,
+     "touch_rate": 0.7586206896551724,
+     "level_first": 35,
+     "phantom_first": 66,
+     "same_minute": 14,
+     "neither": 1,
+     "level_first_share": 0.3465346534653465,
+     "p_above_half": 0.9993340874429002,
+     "median_dist_pct": 0.1250757673365854,
+     "trade": {
+      "trades": 95,
+      "mean_r": -0.431179623592091,
+      "t": -4.318268901326863,
+      "pf": 0.4171254761651469,
+      "win_rate": 0.3368421052631579,
+      "mean_r_before_cost": -0.3179037633044345,
+      "mean_r_double_cost": -0.5444554838797476,
+      "avg_cost_r": 0.1132758602876566,
+      "total_r": -40.96206424124865,
+      "by_year_r": {
+       "2021": -4.8,
+       "2022": -6.35,
+       "2023": -10.54,
+       "2024": -1.69,
+       "2025": -13.79,
+       "2026": -3.8
+      },
+      "endings": {
+       "target": 32,
+       "stop": 62,
+       "time": 1
+      }
+     }
+    },
+    "above_no_gap": {
+     "days": 604,
+     "touch_rate": 0.6539735099337748,
+     "level_first": 260,
+     "phantom_first": 250,
+     "same_minute": 22,
+     "neither": 72,
+     "level_first_share": 0.5098039215686274,
+     "p_above_half": 0.3451412439629225,
+     "median_dist_pct": 0.26539440418763727,
+     "trade": {
+      "trades": 568,
+      "mean_r": -0.0759991996021725,
+      "t": -1.8818017527482693,
+      "pf": 0.8490395890206395,
+      "win_rate": 0.4823943661971831,
+      "mean_r_before_cost": -0.010067544939917683,
+      "mean_r_double_cost": -0.14193085426442734,
+      "avg_cost_r": 0.06593165466225483,
+      "total_r": -43.16754537403398,
+      "by_year_r": {
+       "2021": -12.93,
+       "2022": -11.06,
+       "2023": -1.36,
+       "2024": 0.06,
+       "2025": -16.22,
+       "2026": -1.66
+      },
+      "endings": {
+       "target": 250,
+       "stop": 245,
+       "time": 73
+      }
+     }
+    }
+   },
+   "setup_by_distance": [
+    {
+     "max_dist_pct": 0.046,
+     "days": 39,
+     "touch_rate": 0.8974358974358975,
+     "level_first": 8,
+     "phantom_first": 15,
+     "same_minute": 16,
+     "neither": 0,
+     "level_first_share": 0.34782608695652173,
+     "p_above_half": 0.95343017578125,
+     "median_dist_pct": 0.023291904204277604
+    },
+    {
+     "max_dist_pct": 0.119,
+     "days": 40,
+     "touch_rate": 0.925,
+     "level_first": 19,
+     "phantom_first": 18,
+     "same_minute": 3,
+     "neither": 0,
+     "level_first_share": 0.5135135135135135,
+     "p_above_half": 0.5,
+     "median_dist_pct": 0.07458474044336685
+    },
+    {
+     "max_dist_pct": 1.016,
+     "days": 40,
+     "touch_rate": 0.675,
+     "level_first": 17,
+     "phantom_first": 22,
+     "same_minute": 0,
+     "neither": 1,
+     "level_first_share": 0.4358974358974359,
+     "p_above_half": 0.8316081824050343,
+     "median_dist_pct": 0.198178438240878
+    }
+   ]
+  }
+ }
+}

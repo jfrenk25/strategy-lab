@@ -3178,3 +3178,23 @@ Attempt counter starts at 96.
 - Tests of the changed code on made-up prices, before the run: no-edge runs passed 0 times at confirm; a planted edge of profit factor 1.37 on about 700 confirm trades was caught 88% of the time (38% under version 3 costs for the same planted move); peeking test files were caught on every market; the position-mode check passed 3% to 15% of no-edge runs for trend and contrarian alike.
 - Not fixed: two confirm years cannot show a small edge. The cost table's spread part is an estimate, not FTMO's own figures.
 
+
+### 2026-11-23 · study 9 · pull to the midnight open · NOT SUPPORTED
+- Source: a post by @RHerman on X (x.com/rherman/status/2124971266839076991): on the Nasdaq, when the 9:30 open is below the midnight open and above the previous close, price got back to the midnight open in 82.5% of almost 300 sessions, 2015 to 2025.
+- Lab data: 1-minute bars, 2021-04-22 to 2026-11-19. Costs from `costs.py`. No screen and confirm split: there are too few days.
+- NAS100, the post's setup: 151 days of 1349. Midnight open touched on 85.4%. Reached before the phantom level the same distance below on 63 days, after it on 55, both in one minute on 31, neither on 2 (53.4% of decided days, p 0.260). Median distance 0.138% of price. Trade: 112 trades, average -0.047R after costs (+0.038R before), win rate 53%, profit factor 0.91, t-stat -0.49.
+- SPX500, the post's setup: 135 days of 1348. Midnight open touched on 79.3%. Reached before the phantom level the same distance below on 53 days, after it on 60, both in one minute on 20, neither on 2 (46.9% of decided days, p 0.774). Median distance 0.094% of price. Trade: 101 trades, average -0.233R after costs (-0.117R before), win rate 44%, profit factor 0.63, t-stat -2.30.
+- USA30, the post's setup: 119 days of 1348. Midnight open touched on 83.2%. Reached before the phantom level the same distance below on 44 days, after it on 55, both in one minute on 19, neither on 1 (44.4% of decided days, p 0.886). Median distance 0.076% of price. Trade: 84 trades, average -0.237R after costs (-0.108R before), win rate 44%, profit factor 0.62, t-stat -2.13.
+- Nasdaq, `below_no_gap`: 488 days, touched 63.5%, level first on 50.4% of decided days (p 0.461).
+- Nasdaq, `mirror_setup`: 128 days, touched 70.3%, level first on 44.6% of decided days (p 0.890).
+- Nasdaq, `above_no_gap`: 582 days, touched 63.9%, level first on 48.2% of decided days (p 0.805).
+- Checks failed: level reached before the phantom level on more than half of decided days (p <= 0.05); trade average above zero after costs with t-stat >= 1.65; trade average above zero at double cost.
+- Notes on study 9, written after it ran:
+  - The post's count holds up. The setup came up on 151 of 1,349 Nasdaq days (11%, the same share as the post's 300 sessions in eleven years) and the midnight open was touched on 85.4% of them, against the post's 82.5%.
+  - The touch rate is explained by distance. On setup days the midnight open sits a median 0.138% of price from the open, about a third of the 0.42% on other days that open below it. Those other days were touched 63.5% of the time. In the nearest third of setup days (within 0.067%) the level was touched on 98%.
+  - There is no sign of a pull. The midnight open was reached before the phantom level on 63 days and after it on 55 (53.4%, p 0.26). On 31 days both were reached in the same minute, because the level was that close.
+  - The trade lost: 112 trades, +0.038R before costs and -0.047R after, profit factor 0.91. Costs average 0.085R a trade at this distance.
+  - S&P 500 and Dow, reported only: level first on 46.9% and 44.4% of decided days, and the trade lost 0.23R and 0.24R.
+  - Seen in the reported groups, not tested: on mirror-setup days (gap down, open above the midnight open) price reached the midnight open first less than half the time on all three indices (44.6%, 36.1%, 34.7%). That is one look at three markets that move together, in years when indices mostly rose, found after the fact. It is not a result and is not to be tested on these files. If it is ever tested, it needs new data and its own rules.
+  - With 118 decided days the study could not have told 50% from 55%. It rules out a pull as strong as the post's wording suggests, not a small one.
+
