@@ -705,3 +705,53 @@ The 1-hour tracks charged about five to ten times what the intraday studies char
 - A CANDIDATE is worth watching on new data and nothing more, as before.
 - A REJECT now says "not shown to work at roughly real costs", which is a stronger statement than under version 3.
 - The cost table is an estimate. A result that depends on it being exactly right is not a result.
+
+## Study 9: the pull to the midnight open (written November 23, 2026, before this rule was run on any lab data)
+One claim from one outside source, tested as a claim first and as a trade second. Code: `lab/intraday/midnight_open.py`. Data: `lab/data_1m/*_1m_full.csv.gz` and the 1-hour files. Costs from `costs.py` (rules version 4).
+
+### Where the claim comes from
+- A post by @RHerman on X, x.com/rherman/status/2124971266839076991, November 23, 2026, sent by Jeff the same day.
+- The claim: on Nasdaq futures, when regular hours open below the midnight open but above the previous day's close, price gets back to the midnight open in 82.5% of sessions. "Almost 300 sessions", 2015 to 2025, the author's own study, not published.
+- The post says this is a filter and not an entry signal. It gives no stop, no target and no distances. Its profile sells TradingView indicators.
+- The post says "one specific configuration", so other configurations were looked at and this one was picked.
+
+### Why a touch rate is not enough
+- How often price reaches a level depends mostly on how near the level is. A market with no pull at all reaches a level 82.5% of the time when it sits about 0.22 of a typical session move away.
+- So the study asks a second question the post does not: is the midnight open reached sooner than a made-up level the same distance on the other side of the open? With no pull that is a coin flip.
+
+### What has been seen
+- The 1-minute files were used by intraday studies 1 to 8. None of them computed this.
+- Before these rules were written, the session counted bars only: of 1,444 days in each index file, about 1,393 have at least 370 of the 390 regular-hours minutes, 1,440 have a 9:30 bar and 1,443 have a midnight hourly bar. No setup was counted and no price was compared.
+- The code ran on made-up prices only: 400 days matched a plain second calculation with 0 mismatches. Across 24 made-up markets with no pull, the setup came up on 11% of days, the level was touched on 64% of them, and it was reached before the phantom level on 50.2% of decided days.
+- A draft counted a minute that reached both levels as a loss for the claim. That is right for a trade and unfair to the claim, so such a minute now decides nothing in the first-touch count. Changed on made-up prices, before any lab data was read.
+
+### Definitions (New York time)
+- Midnight open: the open of the 1-hour bar that starts at 00:00.
+- Previous close: the close of the last 1-minute bar from 15:45 to 15:59 on the previous day that has bars.
+- Open: the open of the 9:30 one-minute bar.
+- The post's setup: previous close below the open, and the open below the midnight open.
+- Distance: the midnight open minus the open. The phantom level is the open minus the same distance.
+- A day needs a 9:30 bar, at least 370 of the 390 minutes from 9:30 to 15:59, a midnight bar and a previous close. Days run from April 22, 2021 to November 19, 2026.
+- There is no screen and confirm split. About 150 setup days are expected and that is too few to cut in two.
+
+### What is measured, on Nasdaq 100
+1. Touch rate: the share of setup days on which a bar from 9:30 to 15:59 reaches the midnight open. Set beside the post's 82.5%.
+2. First touch: on each setup day, which is reached first, the midnight open or the phantom level. A minute that reaches both, and a day that reaches neither, decide nothing.
+3. The trade: buy at the 9:30 open, target the midnight open, stop at the phantom level, so risk and reward are equal. Taken only when the distance is at least 0.04% of price, so that costs are at most a quarter of the risk. A bar that reaches both counts as a stop. A bar that opens beyond the stop or target is closed at its open. Anything still open is closed at the open of the 15:55 bar. Costs: 0.005% of price per side, and once more on a stopped exit. Results in R.
+
+### Verdict (all must hold for SUPPORTED)
+1. At least 100 setup days.
+2. The midnight open is reached first on more than half of the decided days, with a one-sided binomial p of 0.05 or less.
+3. The trade's average is above zero after costs, with a t-stat of 1.65 or more.
+4. The trade's average is above zero at double cost.
+
+### Also reported, without changing the verdict
+- The same three measures on three other groups of days: open below the midnight open with no gap up; the mirror setup (previous close above the open, open above the midnight open, with everything turned upside down); and open above the midnight open with no gap down. If the setup does no better than "open below the midnight open" alone, the gap adds nothing.
+- The setup days split into thirds by distance.
+- S&P 500 and Dow. The post is about the Nasdaq, and the three move together, so these are not extra evidence.
+
+### What a result means
+- SUPPORTED means the pull showed up in about 150 days of one market, with no unseen data behind it. It earns a forward watch on new 1-minute data. It is not a reason to trade.
+- NOT SUPPORTED means the pull did not show on this data. With about 150 days the study can tell 50% from about 60%, not 50% from 55%.
+- The lab's data starts in 2021 and is an index price, not the futures contract. The post covers 2015 to 2025. A different touch rate here does not show the post's count is wrong.
+- This study runs once. No other distance floor, target or session is tried on these files afterwards.
