@@ -755,3 +755,62 @@ One claim from one outside source, tested as a claim first and as a trade second
 - NOT SUPPORTED means the pull did not show on this data. With about 150 days the study can tell 50% from about 60%, not 50% from 55%.
 - The lab's data starts in 2021 and is an index price, not the futures contract. The post covers 2015 to 2025. A different touch rate here does not show the post's count is wrong.
 - This study runs once. No other distance floor, target or session is tried on these files afterwards.
+
+## Study 10: thirteen claims from one account (written November 23, 2026, before this code was run on any lab data)
+Jeff asked for a scan of the whole @RHerman account on X and a test of what can be tested. Code: `lab/intraday/herman_claims.py`. Data: the 1-hour files and `lab/data_1m/*_1m_full.csv.gz`. Costs from `costs.py` (rules version 4).
+
+### What the scan found
+- About 1,400 of the account's own posts were read as headlines, back to August 2025. 565 carry a percentage. 29 were opened in full.
+- Roughly half the percentage posts are readings from the author's paid indicators ("74% SHORTS today"). The rule behind the number is not published, so they cannot be tested.
+- Most of the rest are rates for a price level being reached or left alone, from the author's own unpublished studies of futures from 2015. Since October 2026 these posts add a "distance alone predicts" rate and say "a frequency, not a trade signal. No entries, stops or costs modelled".
+- A few are strategy backtests of three weeks to one year. The author calls several of them overfitted or says they fail on a longer chart. One says a plain opening range breakout is break-even (profit factor 1.03 on 2,629 trades), which matches the lab's own opening range studies.
+- The rest is arithmetic about win rates and losing streaks. It is correct and it is not a trading rule.
+- Not tested, and why: indicator readings (rule not published); posts whose setup uses an unnamed "08:00 overnight filter"; volume profile and VWAP posts (no volume data); news-minute posts (no 8:30 minute data in summer); seasonal posts (5 years is too few); the Russell (no data); a Bollinger band rule on 3 weeks (needs minute bars before 9:00); the midnight open (study 9); the 11:00 candle (the lab's screen already holds inside-bar breakouts).
+
+### What has been seen
+- The minute and hourly files were used by studies 1 to 9 and the screen. None of them computed any of the thirteen claims.
+- Before these rules were written, the session counted bars per hour of the day in four hourly files and the first and last minute of each day in one minute file. No setup was counted and no price was compared.
+- The code ran on made-up prices only. A mixed path (hourly bars before the minute bars start) was compared with a pure minute path on 10,324 setups: 0 mismatches, 609 left undecided by an hourly bar. Over 12 to 24 made-up markets every claim came out near a coin flip (48% to 53% for the claim's side) with trade averages near zero.
+- A draft counted an hourly bar that reaches both sides as a loss. On made-up prices that made a no-edge rule lose 0.03R to 0.18R. Such a bar now counts as no trade. For the two claims that only have hourly bars the trade has no target, so the order inside a bar does not matter. Changed on made-up prices, before any lab data was read.
+
+### The one test used for every level claim
+- At the check time the price is P and the claim names a level L. The phantom level is the same distance on the other side of P.
+- Level reached: the share of setup events where a bar in the window reaches L. Set beside the post's rate.
+- First touch: which is reached first, L or the phantom level. A claim that L is taken points to L. A claim that L survives points to the phantom level. A bar that reaches both, and a window that reaches neither, decide nothing. With no edge this is a coin flip.
+- The trade: enter at P on the claim's side, target and stop at the two levels, so risk and reward are equal. A bar that opens beyond a level is closed at its open. Anything still open is closed at the last close of the window. Taken only when the distance is at least 0.04% of price. An hourly bar that reaches both sides counts as no trade.
+- Claims 5 and 12 only have hourly bars. Their trade is: enter away from the level, stop at the level, no target, out at the last close of the window.
+- Costs: the per-side cost in `costs.py`, twice, and once more on a stopped exit. Results in R (the distance to the level).
+- Minute bars are used from the first minute bar of the day (8:00 in winter, 9:00 in summer) to 15:59. Hourly bars are used before that and for the 16:00 hour.
+
+### Definitions (New York time)
+- Trading day: 18:00 the evening before to 17:00. A day needs at least 20 hourly bars, 5 of the 6 London bars and 6 of the 8 Asia bars. Claims that use minute bars need a 9:30 bar and at least 370 of the 390 minutes from 9:30 to 15:59. Days run from May 3, 2021 to November 19, 2026.
+- Asia: 18:00 to 01:59. London: 02:00 to 07:59. Overnight: both. New York session: 08:00 to 15:59. The posts do not give the Asia hours; these are the lab's.
+- Yesterday's high, low, open and range: from the previous trading day. Daily open: the 18:00 open. Midnight open: the open of the 00:00 hourly bar. 9:30 open: the open of the 9:30 minute bar.
+- "Sweeps": trades beyond. "Hour N" is the hourly candle that starts at N:00.
+
+### The thirteen claims
+1. `c01_sweep_reclaim_0800`, Nasdaq. The 8:00 candle trades below the 7:00 low, not above the 7:00 high, and closes above the 7:00 low. Level: the 8:00 high. Check time 9:00, window to 9:59. Claim: taken (post: 85.9%).
+2. `c02_hour_sweep_reclaim`, Nasdaq. An hourly candle from 9:00 to 14:00 trades below the prior candle's low (not above its high) and closes back above that low. Level: the candle's high. Window: the next hour. Claim: taken. The same upside down for a swept high (post: 62.2% and 58.6%).
+3. `c03_hour_sweep_continue`, Nasdaq. Same candles, but the close is beyond the swept level. Level: the candle's own low (high). Claim: taken again in the next hour (post: 65.5% and 69.5%).
+4. `c04_wide_breakout_holds`, Nasdaq. An hourly candle from 9:00 to 14:00 trades above the prior high and closes above it, and its range is more than 1.3 times the median range of that hour on the previous 20 days. Level: the candle's low. Window: the next hour. Claim: survives. The same upside down (post: taken 12.2% and 14.2%).
+5. `c05_friday_last_hour`, Nasdaq, Fridays. Level: the 15:00 candle's high. Window: the 16:00 hourly candle. Left out when the 16:00 open is within 0.10 of the median range of the last 24 hourly candles of the level, or beyond it. Claim: survives (post: 84.9%).
+6. `c06_red_morning`, Nasdaq. The 11:59 close is below the 9:30 open. Level: the high from 9:30 to 11:59. Check time 13:30, window to 15:59. Claim: survives (post: 85.5%).
+7. `c07_asia_low_taken_below_opens`, Nasdaq. London traded below the Asia low, and the 9:30 open is below the midnight open and below the 18:00 open. Level: the Asia high. Check time 9:30, window to 15:59. Claim: survives (post: 74.4%).
+8. `c08_dow_expansion_below_pdl`, Dow. London took an Asia side and its last close is beyond that side, and the 9:30 open is below yesterday's low. Level: the overnight high. Check time 9:30. Claim: survives (post: 83.3%).
+9. `c09_quiet_london_above_pdh`, Nasdaq. London's range is under 0.7 times the median of the previous 20 London ranges, and the 9:30 open is above yesterday's high. Level: yesterday's New York session low. Check time 9:30. Claim: survives (post: 96.8%).
+10. `c10_prior_low_only_bearish_london`, Nasdaq. Yesterday traded below the low of the day before and not above its high, and London closed below its open. Level: the overnight low. Check time 8:00, window to 15:59. Claim: taken (post: 88.8%).
+11. `c11_wide_day_untouched`, Nasdaq. Yesterday's range is more than 1.3 times the median range of the 24 days before it, and the overnight session stayed inside yesterday's high and low. Level: the overnight high. Check time 8:00. Claim: taken (post: 86.6%).
+12. `c12_gold_below_two_opens`, gold. The 8:00 open is below yesterday's open and below the midnight open, each by more than 0.25 of the median range of the previous 24 days. Level: the overnight high. Window 8:00 to 16:59. Claim: survives (post: 86.8%).
+13. `c13_weekday_direction`, Nasdaq. Buy the 9:30 open on Monday, Tuesday and Friday, sell it on Wednesday and Thursday, out at the 15:59 close. The post gives a 1-year backtest and no stop, so none is used. Measured in percent of price after two cost sides.
+- Events that share the claim's level but not its setup are reported next to each claim as "other days".
+
+### Verdict, per claim
+- First touch supports the claim: the claim's side comes first on more than half of decided events, with a one-sided binomial p of 0.05 / 13 = 0.0038 or less.
+- The trade passes: at least 50 trades, average above zero after costs, t-stat of 2.67 or more (5% shared over 13 tests), and average above zero at double cost.
+- There is no screen and confirm split. Most claims have 60 to 200 events.
+
+### What a result means
+- A trade that passes showed up once on data the claim's author may also have seen (2021 to 2026 is inside the posts' 2015 to 2026). It earns a forward watch on new data. It is not a reason to trade.
+- No pass means the lab's translation of the claim made no money here. The posts themselves say they are not trade signals.
+- The lab's prices are index and spot prices from 2021, not futures from 2015, and the Asia hours and the "recent median" windows are the lab's guesses. A different rate here does not show a post's count is wrong.
+- This study runs once. No other target, stop, window or session definition is tried on these files afterwards.
