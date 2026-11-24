@@ -240,6 +240,14 @@ Spot check done later on 2026-11-20, when pages could be opened:
   - Trades after costs: the two hourly sweep rules lost 0.09R to 0.10R a trade on about 2,400 trades each (t about -4.8), all of it cost. Nearest to passing: gold below two opens +0.142R on 165 trades (t 2.27), and narrow London with an open above yesterday's high +0.117R on 86 trades (t 2.16), against a bar of 2.67. Both are trades with the day's direction in years when it paid; neither is on the forward watch.
   - Rule learned again: a published rate for a level being reached is a fact about distance. The account now says so itself ("a frequency, not a trade signal").
   - Not re-run with another target, stop, window or session definition on these files.
+- Study 11, the 1-hour and 15-minute "CC" setups (a post by @tradermike1234 on X that Jeff sent: a candle closes beyond the prior low, a smaller candle pokes up and fails, sell with target and stop the same distance away), 8 registered scenarios on 1-minute bars, Nasdaq, S&P 500 and Dow, 9:00 to 15:55 New York time: all 8 REJECTED at the screen (June 2021 to December 2023). Confirm years not looked at.
+  - 1-hour model (4 scenarios, 295 to 453 trades): won 46% to 48% of trades before costs, averaged -0.06R to -0.08R a day before costs and -0.13R to -0.18R after. T-stats -2.45 to -3.24.
+  - 15-minute model (4 scenarios, 566 to 1,929 trades): won 51% to 54% before costs, averaged -0.03R to +0.01R a day before costs and -0.14R to -0.15R after. T-stats -2.62 to -4.76.
+  - Every scenario lost on all three markets and in every screen year but one (two 1-hour scenarios were about flat in 2022).
+  - Cost was 0.07R to 0.14R a trade, because the target is close. At that cost a 1-to-1 trade needs about 57% wins to break even. The post's "highest win rate" came out as 54% at best.
+  - The early 15-minute versions (confirmation in the first 5 minutes) won 54% of 566 and 602 trades. Counted per day, as registered, that is +0.013R before costs. It is not evidence: the three markets fire together, so the trades are not independent.
+  - With study 10's claim 3 (the same setup candle with no entry rule: a coin flip), the "close beyond the prior candle, target its extreme" idea has now failed with and without a pullback entry. Do not test another entry for it on these files.
+  - Not re-run with other numbers, and no scenario is added, on these files.
 - Data fact for any later intraday study: `data_1m/*_1m_full.csv.gz` starts at 13:00 UTC every day. That is 8:00 New York time from November to mid-March and 9:00 the rest of the year. Check coverage in New York time by month before writing a rule that needs pre-open bars.
 - Each study runs once. Rules are in `LAB_RULES.md`, results in `lab/intraday/` and the journal.
 

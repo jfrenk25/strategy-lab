@@ -1,0 +1,420 @@
+{
+ "date": "2026-11-24",
+ "first_day": "2021-06-01",
+ "split": "2024-01-01",
+ "last_day": "2026-11-19",
+ "usable_days": {
+  "NAS100": 1361,
+  "SPX500": 1359,
+  "USA30": 1361
+ },
+ "need_t": 2.3263478740408408,
+ "survivors": 0,
+ "confirmed": 0,
+ "scenarios": [
+  {
+   "scenario": "h1.early.plain",
+   "parts": {
+    "model": "h1",
+    "timing": "early",
+    "stop": "plain"
+   },
+   "skipped_small": 91,
+   "screen": {
+    "days": 234,
+    "trades": 334,
+    "mean_r": -0.18223721318668715,
+    "total_r": -42.64350788568479,
+    "t": -3.0127772628865808,
+    "pf": 0.6527541907017432,
+    "win_rate": 47.00598802395209,
+    "mean_r_double_cost": -0.2873030757022686,
+    "mean_r_before_cost": -0.07717135067110564,
+    "avg_cost_r": 0.10224587093180453,
+    "markets_positive": 0,
+    "per_market_mean_r": {
+     "NAS100": -0.1441,
+     "SPX500": -0.0089,
+     "USA30": -0.2839
+    },
+    "by_year_r": {
+     "2021": -18.75,
+     "2022": -0.05,
+     "2023": -23.85
+    },
+    "long_mean_r": -0.16941440587783954,
+    "short_mean_r": -0.13471050035026735,
+    "endings": {
+     "stop": 165,
+     "target": 146,
+     "time": 23
+    },
+    "win_rate_before_cost": 47.604790419161674,
+    "trades_per_traded_day": 1.4273504273504274
+   },
+   "screen_checks": {
+    "traded days >= 150": true,
+    "average above zero with t-stat >= 1.65": false,
+    "profit factor >= 1.1": false,
+    "positive on two of three markets": false,
+    "average above zero at double cost": false
+   },
+   "screen_pass": false,
+   "verdict": "REJECT"
+  },
+  {
+   "scenario": "h1.early.minstop",
+   "parts": {
+    "model": "h1",
+    "timing": "early",
+    "stop": "minstop"
+   },
+   "skipped_small": 8,
+   "screen": {
+    "days": 213,
+    "trades": 295,
+    "mean_r": -0.1543460636418867,
+    "total_r": -32.875711555721864,
+    "t": -2.448790037449491,
+    "pf": 0.6959690641394669,
+    "win_rate": 45.42372881355932,
+    "mean_r_double_cost": -0.2337450951468189,
+    "mean_r_before_cost": -0.07494703213695453,
+    "avg_cost_r": 0.07849062948016172,
+    "markets_positive": 0,
+    "per_market_mean_r": {
+     "NAS100": -0.1579,
+     "SPX500": -0.0861,
+     "USA30": -0.2166
+    },
+    "by_year_r": {
+     "2021": -13.9,
+     "2022": 2.72,
+     "2023": -21.7
+    },
+    "long_mean_r": -0.12969724929819762,
+    "short_mean_r": -0.19388829615215658,
+    "endings": {
+     "stop": 148,
+     "target": 123,
+     "time": 23,
+     "stop_fill_minute": 1
+    },
+    "win_rate_before_cost": 46.101694915254235,
+    "trades_per_traded_day": 1.3849765258215962
+   },
+   "screen_checks": {
+    "traded days >= 150": true,
+    "average above zero with t-stat >= 1.65": false,
+    "profit factor >= 1.1": false,
+    "positive on two of three markets": false,
+    "average above zero at double cost": false
+   },
+   "screen_pass": false,
+   "verdict": "REJECT"
+  },
+  {
+   "scenario": "h1.any.plain",
+   "parts": {
+    "model": "h1",
+    "timing": "any",
+    "stop": "plain"
+   },
+   "skipped_small": 98,
+   "screen": {
+    "days": 300,
+    "trades": 453,
+    "mean_r": -0.16885385965896688,
+    "total_r": -50.656157897690065,
+    "t": -3.2357899908107752,
+    "pf": 0.6637255799306795,
+    "win_rate": 46.57836644591612,
+    "mean_r_double_cost": -0.2615275276928814,
+    "mean_r_before_cost": -0.0761801916250523,
+    "avg_cost_r": 0.09067603036216663,
+    "markets_positive": 0,
+    "per_market_mean_r": {
+     "NAS100": -0.1013,
+     "SPX500": -0.0204,
+     "USA30": -0.302
+    },
+    "by_year_r": {
+     "2021": -19.65,
+     "2022": -3.18,
+     "2023": -27.82
+    },
+    "long_mean_r": -0.1397767306234745,
+    "short_mean_r": -0.15168114499088078,
+    "endings": {
+     "stop": 220,
+     "target": 191,
+     "time": 42
+    },
+    "win_rate_before_cost": 47.46136865342163,
+    "trades_per_traded_day": 1.51
+   },
+   "screen_checks": {
+    "traded days >= 150": true,
+    "average above zero with t-stat >= 1.65": false,
+    "profit factor >= 1.1": false,
+    "positive on two of three markets": false,
+    "average above zero at double cost": false
+   },
+   "screen_pass": false,
+   "verdict": "REJECT"
+  },
+  {
+   "scenario": "h1.any.minstop",
+   "parts": {
+    "model": "h1",
+    "timing": "any",
+    "stop": "minstop"
+   },
+   "skipped_small": 9,
+   "screen": {
+    "days": 281,
+    "trades": 410,
+    "mean_r": -0.13161496707338619,
+    "total_r": -36.98380574762152,
+    "t": -2.447093694510365,
+    "pf": 0.7272677670675863,
+    "win_rate": 45.85365853658537,
+    "mean_r_double_cost": -0.2032940433191108,
+    "mean_r_before_cost": -0.05993589082766155,
+    "avg_cost_r": 0.0712748055984218,
+    "markets_positive": 0,
+    "per_market_mean_r": {
+     "NAS100": -0.1115,
+     "SPX500": -0.061,
+     "USA30": -0.2389
+    },
+    "by_year_r": {
+     "2021": -16.04,
+     "2022": 0.39,
+     "2023": -21.34
+    },
+    "long_mean_r": -0.08774316081462236,
+    "short_mean_r": -0.2081067605356843,
+    "endings": {
+     "stop": 200,
+     "target": 167,
+     "time": 42,
+     "stop_fill_minute": 1
+    },
+    "win_rate_before_cost": 46.82926829268293,
+    "trades_per_traded_day": 1.4590747330960854
+   },
+   "screen_checks": {
+    "traded days >= 150": true,
+    "average above zero with t-stat >= 1.65": false,
+    "profit factor >= 1.1": false,
+    "positive on two of three markets": false,
+    "average above zero at double cost": false
+   },
+   "screen_pass": false,
+   "verdict": "REJECT"
+  },
+  {
+   "scenario": "m15.two.early",
+   "parts": {
+    "model": "m15",
+    "setup": "two",
+    "timing": "early"
+   },
+   "skipped_small": 239,
+   "screen": {
+    "days": 330,
+    "trades": 566,
+    "mean_r": -0.1368876436746402,
+    "total_r": -45.172922412631266,
+    "t": -2.6219019233945797,
+    "pf": 0.7340077815996903,
+    "win_rate": 54.416961130742045,
+    "mean_r_double_cost": -0.28712107683368676,
+    "mean_r_before_cost": 0.01334578948440634,
+    "avg_cost_r": 0.14048101053746498,
+    "markets_positive": 0,
+    "per_market_mean_r": {
+     "NAS100": -0.0253,
+     "SPX500": -0.0442,
+     "USA30": -0.0908
+    },
+    "by_year_r": {
+     "2021": -28.02,
+     "2022": -2.58,
+     "2023": -14.57
+    },
+    "long_mean_r": -0.04302432442920496,
+    "short_mean_r": -0.06014963465624715,
+    "endings": {
+     "target": 308,
+     "stop": 250,
+     "stop_fill_minute": 8
+    },
+    "win_rate_before_cost": 54.416961130742045,
+    "trades_per_traded_day": 1.715151515151515
+   },
+   "screen_checks": {
+    "traded days >= 150": true,
+    "average above zero with t-stat >= 1.65": false,
+    "profit factor >= 1.1": false,
+    "positive on two of three markets": false,
+    "average above zero at double cost": false
+   },
+   "screen_pass": false,
+   "verdict": "REJECT"
+  },
+  {
+   "scenario": "m15.two.any",
+   "parts": {
+    "model": "m15",
+    "setup": "two",
+    "timing": "any"
+   },
+   "skipped_small": 382,
+   "screen": {
+    "days": 587,
+    "trades": 1731,
+    "mean_r": -0.1479315949252637,
+    "total_r": -86.8358462211298,
+    "t": -4.7566720010142465,
+    "pf": 0.6301654481697558,
+    "win_rate": 51.12651646447141,
+    "mean_r_double_cost": -0.2674806740826722,
+    "mean_r_before_cost": -0.028382515767855224,
+    "avg_cost_r": 0.11499244523985608,
+    "markets_positive": 0,
+    "per_market_mean_r": {
+     "NAS100": -0.0573,
+     "SPX500": -0.1155,
+     "USA30": -0.1064
+    },
+    "by_year_r": {
+     "2021": -31.14,
+     "2022": -26.22,
+     "2023": -29.47
+    },
+    "long_mean_r": -0.046335299755816975,
+    "short_mean_r": -0.14093510763278433,
+    "endings": {
+     "target": 878,
+     "stop": 827,
+     "time": 14,
+     "stop_fill_minute": 12
+    },
+    "win_rate_before_cost": 51.12651646447141,
+    "trades_per_traded_day": 2.9488926746166952
+   },
+   "screen_checks": {
+    "traded days >= 150": true,
+    "average above zero with t-stat >= 1.65": false,
+    "profit factor >= 1.1": false,
+    "positive on two of three markets": false,
+    "average above zero at double cost": false
+   },
+   "screen_pass": false,
+   "verdict": "REJECT"
+  },
+  {
+   "scenario": "m15.twothree.early",
+   "parts": {
+    "model": "m15",
+    "setup": "twothree",
+    "timing": "early"
+   },
+   "skipped_small": 254,
+   "screen": {
+    "days": 346,
+    "trades": 602,
+    "mean_r": -0.13561112630918745,
+    "total_r": -46.921449702978855,
+    "t": -2.668678002325553,
+    "pf": 0.7350883506635938,
+    "win_rate": 53.98671096345515,
+    "mean_r_double_cost": -0.2846252695640033,
+    "mean_r_before_cost": 0.013403016945628395,
+    "avg_cost_r": 0.13937767354818228,
+    "markets_positive": 0,
+    "per_market_mean_r": {
+     "NAS100": -0.0354,
+     "SPX500": -0.0498,
+     "USA30": -0.0983
+    },
+    "by_year_r": {
+     "2021": -28.8,
+     "2022": -4.25,
+     "2023": -13.88
+    },
+    "long_mean_r": -0.05940461015604889,
+    "short_mean_r": -0.059732988582234824,
+    "endings": {
+     "target": 325,
+     "stop": 268,
+     "stop_fill_minute": 9
+    },
+    "win_rate_before_cost": 53.98671096345515,
+    "trades_per_traded_day": 1.739884393063584
+   },
+   "screen_checks": {
+    "traded days >= 150": true,
+    "average above zero with t-stat >= 1.65": false,
+    "profit factor >= 1.1": false,
+    "positive on two of three markets": false,
+    "average above zero at double cost": false
+   },
+   "screen_pass": false,
+   "verdict": "REJECT"
+  },
+  {
+   "scenario": "m15.twothree.any",
+   "parts": {
+    "model": "m15",
+    "setup": "twothree",
+    "timing": "any"
+   },
+   "skipped_small": 417,
+   "screen": {
+    "days": 599,
+    "trades": 1929,
+    "mean_r": -0.1368981705635833,
+    "total_r": -82.00200416758639,
+    "t": -4.617332917833101,
+    "pf": 0.6364198631896351,
+    "win_rate": 51.27008812856402,
+    "mean_r_double_cost": -0.25552591123125656,
+    "mean_r_before_cost": -0.018270429895909927,
+    "avg_cost_r": 0.1138692729611432,
+    "markets_positive": 0,
+    "per_market_mean_r": {
+     "NAS100": -0.0294,
+     "SPX500": -0.1346,
+     "USA30": -0.1071
+    },
+    "by_year_r": {
+     "2021": -33.75,
+     "2022": -20.14,
+     "2023": -28.11
+    },
+    "long_mean_r": -0.05038948610578769,
+    "short_mean_r": -0.1275084193058119,
+    "endings": {
+     "target": 982,
+     "stop": 919,
+     "stop_fill_minute": 14,
+     "time": 14
+    },
+    "win_rate_before_cost": 51.27008812856402,
+    "trades_per_traded_day": 3.2203672787979967
+   },
+   "screen_checks": {
+    "traded days >= 150": true,
+    "average above zero with t-stat >= 1.65": false,
+    "profit factor >= 1.1": false,
+    "positive on two of three markets": false,
+    "average above zero at double cost": false
+   },
+   "screen_pass": false,
+   "verdict": "REJECT"
+  }
+ ]
+}
