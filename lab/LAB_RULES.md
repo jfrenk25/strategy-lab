@@ -814,3 +814,107 @@ Jeff asked for a scan of the whole @RHerman account on X and a test of what can 
 - No pass means the lab's translation of the claim made no money here. The posts themselves say they are not trade signals.
 - The lab's prices are index and spot prices from 2021, not futures from 2015, and the Asia hours and the "recent median" windows are the lab's guesses. A different rate here does not show a post's count is wrong.
 - This study runs once. No other target, stop, window or session definition is tried on these files afterwards.
+
+## Study 11: the 1-hour and 15-minute "CC" setups, on 1-minute bars (written November 24, 2026, before this rule was run on any lab data)
+One post, two written checklists, 8 fixed scenarios. Code: `lab/intraday/strat_cc.py`. Data: `lab/data_1m/*_1m_full.csv.gz`, and the 7:00 and 8:00 candles from the 1-hour files. Costs from `costs.py` (rules version 4).
+
+### Where the rule comes from
+- A post by @tradermike1234 on X, x.com/tradermike1234/status/2125172071374237862, November 24, 2026, sent by Jeff the same day. The rules are in two images.
+- The post calls it "hands down the highest win rate setup in the trading industry". It gives no win rate, trade log or backtest. The author's profile says "1:1 risk reward is king".
+- 1-hour model, short side (the post says to flip it for longs): (1) a 1-hour candle closes below the prior candle's low, and its own low is the target as long as the next candle does not take it at once; (2) a 15-minute candle takes out the prior candle's high and closes lower; (3) on the 1-minute chart, a fair value gap and a close below a swing low; (4) enter on that close, target the 1-hour low, stop above the entry "with ample room, set for a true 1:1".
+- 15-minute model: (1) a 15-minute candle closes below the prior low, or takes the prior high first and then closes below the prior low; its low is the target; (2) a 5-minute candle takes out the prior candle's high and closes lower; (3) best when that comes with 10 minutes left in the 15-minute candle (for the 1-hour model: within 30 minutes); (4) if the trade is 1 to 1 right now with the stop at or above the 5-minute high, enter at market; if not, wait for a pullback up that makes it 1 to 1; if the low goes first, skip it.
+- The post does not say which hours to trade, how long an order waits, how small a gap can be, what "strong close" or "ample room" mean beyond the lines above, or what to do at the end of the day.
+
+### Why this is run although sweep and gap rules are a dead class on these files
+- Study 8 (sweep of a day-level high or low, a gap, a return to the gap, targets of 2R or more) rejected all 96 scenarios on these files and closed that class.
+- This rule shares two pieces with it: a candle that pokes above a high and closes back, and a 1-minute gap. The trade is different. The direction comes from a larger candle that just closed beyond the prior low, the target is that candle's low, and the stop is the same distance away. Nothing in studies 6 to 8 tested a continuation trade at 1 to 1.
+- Jeff approved the study on November 24, 2026, before any of it was computed. This is the last study of this family on these files whatever it shows.
+
+### What has been seen
+- The minute and hourly files were used by studies 1 to 10 and the screen. None of them computed this rule.
+- Study 10, claim 3, is this rule's first step on the Nasdaq with no entry rule: a 1-hour candle closes beyond the prior low (high), and the next hour is said to take that low (high). 3,535 events. The level was reached on 73.8% of them. Against a phantom level the same distance the other way it came first on 50.6% of decided events (p 0.256), and the equal-risk trade from the close made +0.022R before costs and -0.098R after. So the first step alone is a coin flip here. What is new in study 11 is the entry: waiting for a small candle to poke up and fail before selling.
+- Before these rules were written, the session counted bars in the three minute files and the three hourly files. On June 1, 2021 to November 19, 2026, 1,359 to 1,361 days per market have at least 27 of the 30 minutes from 9:00 to 9:29 and at least 370 of the 385 minutes from 9:30 to 15:54. On those days 99.8% to 99.9% of 5-minute candles, 99.6% to 99.8% of 15-minute candles and 98.4% to 99.3% of 1-hour candles have every minute. The 7:00 and 8:00 hourly bars are there on 99.9% or more of those days. No price was read or compared.
+- The code ran on made-up prices only:
+  - Six hand-built days with answers worked out on paper: all right. One paper answer was a minute off and was corrected; the code did not change.
+  - Against a plain minute-by-minute version of the same rule: 0 mismatches in 1,543 trades (400 days, both sides, 8 scenarios).
+  - Look-ahead: 221 trades were re-run with every price after the fill minute changed. No fill moved.
+  - A draft applied the small-trade floor on the short side only, because the long side runs on prices turned upside down. Found reading the code, fixed before any run.
+- With no edge in the prices and no cost, each scenario won 48% to 50% of its trades and averaged between -0.004R and -0.040R (three made-up markets, 775 to 4,608 trades each). The small minus comes from the fill rules, which count unclear minutes against the trade.
+- No result of any kind was computed on lab data.
+
+### Candle words (New York time)
+- Candles are built from the minute bars, counted from 9:00: 1-hour candles start at 9:00, 10:00 and so on; 15-minute and 5-minute candles the same way. A candle with a missing minute is not used for anything. The 7:00 and 8:00 candles come from the 1-hour files.
+- "Takes out the high" means trades above it by any amount. Equal is not above.
+- The short side is described. The long side is the mirror in every part.
+
+### The 8 scenarios
+1-hour model, four scenarios `h1.<timing>.<stop>`:
+- Setup candle: a 1-hour candle whose low is below the prior candle's low, whose high is not above the prior candle's high, and whose close is below the prior candle's low. Setup candles run from 8:00 to 13:00. The target is the setup candle's low.
+- The hour after the setup candle is the trading hour (9:00 to 14:00).
+- Confirmation: the first 15-minute candle inside the trading hour that trades above the prior 15-minute candle's high, does not trade below its low, and closes below its own open and below that prior high. `early`: only the first two 15-minute candles count (the confirmation comes within 30 minutes). `any`: all four count. In the 9:00 hour the 9:00 candle cannot confirm, because the minute files do not have the candle before it all year.
+- Entry signal: the first 1-minute bar after the confirmation candle, inside the trading hour, that closes below the latest 1-minute swing low, with a down gap already complete. Both are looked for from the first minute of the confirmation candle.
+  - Swing low: a minute whose low is below the lows of the minute before and the minute after. The latest one that was complete before the signal bar is used.
+  - Down gap: three minutes in a row where the low of the first is above the high of the third, by at least 0.25 times the average range of the up to 24 minute bars before it (at least 6). This is the lab's `fair_value_gap` floor.
+- Sell at the open of the next minute. `plain`: the stop is as far above the entry as the target is below, wherever that falls. `minstop`: the stop must also be at or above the highest price since the confirmation candle began; see "Entry and stop" below.
+
+15-minute model, four scenarios `m15.<setup>.<timing>`:
+- Setup candle: a 15-minute candle whose low and close are below the prior candle's low. `two`: its high is not above the prior candle's high. `twothree`: its high may be above it too. Setup candles run from 9:15 to 14:30. The target is the setup candle's low.
+- The 15 minutes after the setup candle are the trading window (9:30 to 14:45 starts).
+- Confirmation: a 5-minute candle inside the window that trades above the prior 5-minute candle's high, does not trade below its low, and closes below its own open and below that prior high. `early`: only the first 5-minute candle counts (10 minutes left). `any`: all three count; the first one is used.
+- Sell at the open of the minute after the confirmation candle, with the stop rule below. The minimum stop is the confirmation candle's high.
+
+Entry and stop (15-minute model, and `minstop` in the 1-hour model):
+- Call the target T and the minimum stop S. The halfway price is (S + T) / 2.
+- If the open is at or above halfway: sell at the open. The stop goes as far above the entry as T is below, which is at or above S.
+- If the open is below halfway: a sell order rests at halfway, with the stop at S. It fills in the first minute whose high reaches it. If a minute opens above it, the fill is at that open and the stop is again as far above as T is below.
+- The order is cancelled when T trades, including in a minute that reaches both the order and T. It is also cancelled at 15:55.
+
+For every scenario:
+- The setup is over as soon as the target trades before the entry.
+- No trade if the risk is under 4 round-trip costs (0.04% of price: about 10 Nasdaq points). The post does not say this. Without it, entries a few points from the target would pay more than 0.25R in costs. Skipped trades are counted.
+
+### Fills and exits, the same for every scenario
+- A sale at a minute's open: that minute counts in full. If its high reaches the stop it is a loss of 1R, even if its low also reaches the target.
+- A resting order filled inside a minute: if that minute's high reaches the stop, the trade is stopped for a loss of 1R. A target cannot be hit in that minute.
+- After that, minute by minute: a bar that opens beyond the stop or the target is closed at its open. A bar that reaches both counts as a stop. Anything still open is closed at the open of the 15:55 bar, or at the last price before it if that bar is missing.
+- One trade at a time per market. Trades are taken in the order they fill; one that would fill while another is open is dropped.
+- Cost: the per-side cost in `costs.py` twice, and once more on a stopped exit. In R that is the cost divided by the risk.
+- A day is skipped for a market if it has fewer than 27 of the 30 minutes from 9:00 to 9:29 or fewer than 370 of the 385 minutes from 9:30 to 15:54.
+
+### Markets and counting
+- Nasdaq 100, S&P 500 and Dow, tested together.
+- Results are in R: profit or loss divided by the distance from entry to target, after costs.
+- The three markets move together, so a day counts once: the day's result is the average of all trades taken that day. All statistics are on those daily averages unless stated.
+
+### Data split
+- Screen years: June 1, 2021 to December 31, 2023.
+- Confirm years: January 1, 2024 to November 19, 2026. A scenario sees these only if it passes the screen.
+
+### Screen (all must hold)
+1. At least 150 traded days.
+2. Average above zero, with a t-stat of 1.65 or more.
+3. Profit factor of 1.10 or more.
+4. Average above zero on at least two of the three markets taken alone.
+5. Average above zero at double cost.
+
+### Confirm (one run per survivor; all must hold)
+1. At least 150 traded days.
+2. Average above zero, with a t-stat at or above the normal quantile at 1 - 0.05 / survivors, where survivors is counted as 5 if fewer than 5 pass the screen. So the bar is 2.33 or higher.
+3. Profit factor of 1.15 or more.
+4. Average above zero on at least two of the three markets taken alone.
+5. Average above zero at double cost.
+6. A positive total in at least two of the calendar years 2024, 2025 and 2026.
+7. Long trades alone and short trades alone each have an average above zero, counting every trade equally.
+
+### Also reported, without changing the verdict
+- The win rate before costs for each scenario. Every trade risks what it aims to make, so 50% is what no edge looks like, and the post's claim is about win rate.
+- The average before costs, the average cost in R, results by market and year, longs and shorts, how trades ended, and the number of small trades skipped.
+- The dry run on made-up prices with no cost.
+
+### What a result means
+- CONFIRMED: a forward watch on new 1-minute data, then the prop-rules calculator before any challenge. It is not a reason to trade or to buy a challenge.
+- Everything else is rejected. No scenario is re-run with other numbers on these files, and no scenario is added after the data has been seen.
+- Fewer than 150 traded days is a reject marked "too few trades".
+- The files cannot show what happened inside a minute, and the fill rules count the unclear minutes against the trade. A reject is a reject on 1-minute data.
+- The study covers three index markets from 9:00 to 15:55 New York time. It says nothing about futures tick charts, forex or other hours.
+- All 8 results are logged, including the ones that fail. This study runs once.
