@@ -1,0 +1,992 @@
+{
+ "date": "2026-11-23",
+ "first_day": "2021-05-03",
+ "last_day": "2026-11-19",
+ "bar": {
+  "t": 2.67,
+  "p": 0.0038461538461538464,
+  "min_trades": 50
+ },
+ "passed": [],
+ "claims": {
+  "c01_sweep_reclaim_0800": {
+   "setup": {
+    "events": 183,
+    "level_reached_rate": 0.8415300546448088,
+    "level_first": 93,
+    "phantom_first": 81,
+    "same_bar": 9,
+    "neither": 0,
+    "claim_side_share": 0.5344827586206896,
+    "p_above_half": 0.20220165345469987,
+    "median_dist_pct": 0.09516276879540041,
+    "trade": {
+     "trades": 138,
+     "mean": -0.058863849015855584,
+     "t": -0.6724821253666672,
+     "pf": 0.8906041285116987,
+     "win_rate": 0.5289855072463768,
+     "mean_before_cost": 0.057971014492753624,
+     "mean_double_cost": -0.17569871252446478,
+     "total": -8.12321116418807,
+     "by_year": {
+      "2021": -3.84,
+      "2022": 5.54,
+      "2023": -4.39,
+      "2024": -2.29,
+      "2025": -0.94,
+      "2026": -2.19
+     },
+     "endings": {
+      "target": 73,
+      "stop": 65,
+      "time": 0
+     }
+    }
+   },
+   "other_days": {
+    "events": 1197,
+    "level_reached_rate": 0.6591478696741855,
+    "level_first": 503,
+    "phantom_first": 546,
+    "same_bar": 38,
+    "neither": 110,
+    "claim_side_share": 0.47950428979980936,
+    "p_above_half": 0.91286453873103,
+    "median_dist_pct": 0.15963106562624454,
+    "trade": {
+     "trades": 1022,
+     "mean": -0.11274722094756069,
+     "t": -3.6993353304451637,
+     "pf": 0.7874458761753172,
+     "win_rate": 0.4931506849315068,
+     "mean_before_cost": -0.025071473337257736,
+     "mean_double_cost": -0.20042296855786368,
+     "total": -115.22765980840703,
+     "by_year": {
+      "2021": -0.9,
+      "2022": -47.55,
+      "2023": -13.68,
+      "2024": -5.03,
+      "2025": -36.35,
+      "2026": -11.72
+     },
+     "endings": {
+      "target": 440,
+      "stop": 472,
+      "time": 110
+     }
+    }
+   },
+   "unit": "R",
+   "market": "NAS100",
+   "claim": "8:00 candle sweeps the 7:00 low and closes back above it; the 9:00 candle takes the 8:00 high",
+   "post_rate_level_reached": 0.859,
+   "post": "x.com/RHerman/status/2121347390456443239",
+   "checks": {
+    "claim_side_first_more_than_half": false,
+    "trade_passes": false
+   }
+  },
+  "c02_hour_sweep_reclaim": {
+   "setup": {
+    "events": 2660,
+    "level_reached_rate": 0.6,
+    "level_first": 1079,
+    "phantom_first": 1071,
+    "same_bar": 131,
+    "neither": 379,
+    "claim_side_share": 0.501860465116279,
+    "p_above_half": 0.4400035714665344,
+    "median_dist_pct": 0.13332015006627135,
+    "trade": {
+     "trades": 2238,
+     "mean": -0.09285266526925087,
+     "t": -4.61326045420419,
+     "pf": 0.8150875349043482,
+     "win_rate": 0.4959785522788204,
+     "mean_before_cost": 0.0037407772265786294,
+     "mean_double_cost": -0.18944610776508033,
+     "total": -207.80426487258345,
+     "by_year": {
+      "2021": -51.43,
+      "2022": -23.6,
+      "2023": -23.82,
+      "2024": -37.26,
+      "2025": -40.86,
+      "2026": -30.81
+     },
+     "endings": {
+      "target": 934,
+      "stop": 925,
+      "time": 379
+     }
+    }
+   },
+   "other_days": {
+    "events": 3535,
+    "level_reached_rate": 0.1818953323903819,
+    "level_first": 608,
+    "phantom_first": 675,
+    "same_bar": 2,
+    "neither": 2250,
+    "claim_side_share": 0.47388932190179267,
+    "p_above_half": 0.9712016967263272,
+    "median_dist_pct": 0.4332821268330428,
+    "trade": {
+     "trades": 3530,
+     "mean": -0.06607175344321942,
+     "t": -5.671460748399672,
+     "pf": 0.7965785485397004,
+     "win_rate": 0.4594900849858357,
+     "mean_before_cost": -0.032307246407382785,
+     "mean_double_cost": -0.09983626047905605,
+     "total": -233.23328965456454,
+     "by_year": {
+      "2021": -40.27,
+      "2022": -47.11,
+      "2023": -38.64,
+      "2024": -42.09,
+      "2025": -39.96,
+      "2026": -25.16
+     },
+     "endings": {
+      "target": 606,
+      "stop": 674,
+      "time": 2250
+     }
+    }
+   },
+   "unit": "R",
+   "market": "NAS100",
+   "claim": "1H candle sweeps the prior low (high) and closes back inside; the next hour takes its high (low)",
+   "post_rate_level_reached": 0.604,
+   "post": "x.com/RHerman/status/2107087504218452357",
+   "checks": {
+    "claim_side_first_more_than_half": false,
+    "trade_passes": false
+   }
+  },
+  "c03_hour_sweep_continue": {
+   "setup": {
+    "events": 3535,
+    "level_reached_rate": 0.7377652050919378,
+    "level_first": 1524,
+    "phantom_first": 1487,
+    "same_bar": 344,
+    "neither": 180,
+    "claim_side_share": 0.5061441381600797,
+    "p_above_half": 0.25589435807843974,
+    "median_dist_pct": 0.08427227147446048,
+    "trade": {
+     "trades": 2543,
+     "mean": -0.09837151530531095,
+     "t": -4.970440747132276,
+     "pf": 0.8168913155865676,
+     "win_rate": 0.5080613448682658,
+     "mean_before_cost": 0.021590248176039415,
+     "mean_double_cost": -0.21833327878666126,
+     "total": -250.15876342140575,
+     "by_year": {
+      "2021": -24.36,
+      "2022": -71.46,
+      "2023": -77.46,
+      "2024": -11.74,
+      "2025": -24.43,
+      "2026": -40.71
+     },
+     "endings": {
+      "target": 1206,
+      "stop": 1157,
+      "time": 180
+     }
+    }
+   },
+   "other_days": {
+    "events": 2661,
+    "level_reached_rate": 0.3739195791055994,
+    "level_first": 830,
+    "phantom_first": 851,
+    "same_bar": 11,
+    "neither": 969,
+    "claim_side_share": 0.49375371802498513,
+    "p_above_half": 0.7042164211128137,
+    "median_dist_pct": 0.24967036672398155,
+    "trade": {
+     "trades": 2591,
+     "mean": -0.07081309590206944,
+     "t": -4.257226471534412,
+     "pf": 0.8315968058238087,
+     "win_rate": 0.48552682362022387,
+     "mean_before_cost": -0.009129985638167316,
+     "mean_double_cost": -0.13249620616597155,
+     "total": -183.47673148226193,
+     "by_year": {
+      "2021": -17.35,
+      "2022": -5.37,
+      "2023": -51.78,
+      "2024": -38.43,
+      "2025": -33.58,
+      "2026": -36.97
+     },
+     "endings": {
+      "target": 797,
+      "stop": 825,
+      "time": 969
+     }
+    }
+   },
+   "unit": "R",
+   "market": "NAS100",
+   "claim": "1H candle sweeps the prior low (high) and closes beyond it; the next hour takes that low (high) again",
+   "post_rate_level_reached": 0.675,
+   "post": "x.com/RHerman/status/2107087504218452357",
+   "checks": {
+    "claim_side_first_more_than_half": false,
+    "trade_passes": false
+   }
+  },
+  "c04_wide_breakout_holds": {
+   "setup": {
+    "events": 1261,
+    "level_reached_rate": 0.10626486915146709,
+    "level_first": 127,
+    "phantom_first": 163,
+    "same_bar": 0,
+    "neither": 971,
+    "claim_side_share": 0.5620689655172414,
+    "p_above_half": 0.019834309171372834,
+    "median_dist_pct": 0.6567289296042419,
+    "trade": {
+     "trades": 1261,
+     "mean": 0.019249958439729757,
+     "t": 1.1420871275716,
+     "pf": 1.0822758089107425,
+     "win_rate": 0.5194290245836638,
+     "mean_before_cost": 0.038545908443423156,
+     "mean_double_cost": -4.599156396364185e-05,
+     "total": 24.274197592499224,
+     "by_year": {
+      "2021": -0.02,
+      "2022": 15.88,
+      "2023": 3.07,
+      "2024": 0.99,
+      "2025": 5.17,
+      "2026": -0.82
+     },
+     "endings": {
+      "target": 163,
+      "stop": 127,
+      "time": 971
+     }
+    }
+   },
+   "other_days": {
+    "events": 2274,
+    "level_reached_rate": 0.22383465259454705,
+    "level_first": 481,
+    "phantom_first": 512,
+    "same_bar": 2,
+    "neither": 1279,
+    "claim_side_share": 0.5156092648539778,
+    "p_above_half": 0.17054503386431472,
+    "median_dist_pct": 0.3396311273653324,
+    "trade": {
+     "trades": 2269,
+     "mean": -0.012357679659231296,
+     "t": -0.7971587286082222,
+     "pf": 0.9616483509140538,
+     "win_rate": 0.5090348171000441,
+     "mean_before_cost": 0.0288401010449117,
+     "mean_double_cost": -0.05355546036337429,
+     "total": -28.039575146795812,
+     "by_year": {
+      "2021": 4.37,
+      "2022": 5.63,
+      "2023": -7.82,
+      "2024": -5.51,
+      "2025": -13.62,
+      "2026": -11.09
+     },
+     "endings": {
+      "target": 511,
+      "stop": 479,
+      "time": 1279
+     }
+    }
+   },
+   "unit": "R",
+   "market": "NAS100",
+   "claim": "wide 1H candle breaks the prior high (low) and closes beyond; the next hour leaves its low (high) alone",
+   "post_rate_level_reached": 0.132,
+   "post": "x.com/RHerman/status/2122434552027312558",
+   "checks": {
+    "claim_side_first_more_than_half": false,
+    "trade_passes": false
+   }
+  },
+  "c05_friday_last_hour": {
+   "setup": {
+    "events": 252,
+    "level_reached_rate": 0.13095238095238096,
+    "level_first": 24,
+    "phantom_first": 40,
+    "same_bar": 9,
+    "neither": 179,
+    "claim_side_share": 0.625,
+    "p_above_half": 0.029970594783500858,
+    "median_dist_pct": 0.17747806570353497,
+    "trade": {
+     "trades": 237,
+     "mean": -0.029069718522246504,
+     "t": -0.6981872380023362,
+     "pf": 0.8820325723274064,
+     "win_rate": 0.4641350210970464,
+     "mean_before_cost": 0.04697925851215742,
+     "mean_double_cost": -0.10511869555665046,
+     "total": -6.889523289772422,
+     "by_year": {
+      "2021": -1.4,
+      "2022": 1.72,
+      "2023": -7.08,
+      "2024": 2.17,
+      "2025": -4.44,
+      "2026": 2.14
+     },
+     "endings": {
+      "target": 0,
+      "stop": 25,
+      "time": 212
+     }
+    }
+   },
+   "other_days": {
+    "events": 989,
+    "level_reached_rate": 0.2082912032355915,
+    "level_first": 140,
+    "phantom_first": 131,
+    "same_bar": 66,
+    "neither": 652,
+    "claim_side_share": 0.4833948339483395,
+    "p_above_half": 0.7281866426492654,
+    "median_dist_pct": 0.1966815386472146,
+    "trade": {
+     "trades": 923,
+     "mean": -0.06500676182071538,
+     "t": -2.31461374234969,
+     "pf": 0.7912044562006986,
+     "win_rate": 0.4322860238353196,
+     "mean_before_cost": 0.011823948737259187,
+     "mean_double_cost": -0.1418374723786899,
+     "total": -60.0012411605203,
+     "by_year": {
+      "2021": -1.97,
+      "2022": 1.36,
+      "2023": -13.35,
+      "2024": -0.74,
+      "2025": -17.42,
+      "2026": -27.88
+     },
+     "endings": {
+      "target": 0,
+      "stop": 156,
+      "time": 767
+     }
+    }
+   },
+   "unit": "R",
+   "market": "NAS100",
+   "claim": "Friday: the 16:00 hour leaves the 15:00 high alone",
+   "post_rate_level_reached": 0.151,
+   "post": "x.com/RHerman/status/2110981587475349781",
+   "checks": {
+    "claim_side_first_more_than_half": false,
+    "trade_passes": false
+   }
+  },
+  "c06_red_morning": {
+   "setup": {
+    "events": 632,
+    "level_reached_rate": 0.18354430379746836,
+    "level_first": 92,
+    "phantom_first": 115,
+    "same_bar": 2,
+    "neither": 423,
+    "claim_side_share": 0.5555555555555556,
+    "p_above_half": 0.06301710267089979,
+    "median_dist_pct": 0.7904319601015489,
+    "trade": {
+     "trades": 623,
+     "mean": 0.0012672701540534233,
+     "t": 0.0488723510928395,
+     "pf": 1.0048795066019418,
+     "win_rate": 0.4895666131621188,
+     "mean_before_cost": 0.025737087846284423,
+     "mean_double_cost": -0.02320254753817758,
+     "total": 0.7895093059752827,
+     "by_year": {
+      "2021": -4.96,
+      "2022": 9.83,
+      "2023": -3.05,
+      "2024": -4.75,
+      "2025": 2.17,
+      "2026": 1.55
+     },
+     "endings": {
+      "target": 111,
+      "stop": 89,
+      "time": 423
+     }
+    }
+   },
+   "other_days": {
+    "events": 749,
+    "level_reached_rate": 0.5086782376502003,
+    "level_first": 263,
+    "phantom_first": 280,
+    "same_bar": 19,
+    "neither": 187,
+    "claim_side_share": 0.5156537753222836,
+    "p_above_half": 0.24617695051665786,
+    "median_dist_pct": 0.23589951889539224,
+    "trade": {
+     "trades": 672,
+     "mean": -0.047474090378693296,
+     "t": -1.3782449705089865,
+     "pf": 0.8914191024030826,
+     "win_rate": 0.5104166666666666,
+     "mean_before_cost": 0.019503318574369915,
+     "mean_double_cost": -0.11445149933175654,
+     "total": -31.902588734481895,
+     "by_year": {
+      "2021": -8.64,
+      "2022": -21.38,
+      "2023": 2.29,
+      "2024": 20.76,
+      "2025": -14.44,
+      "2026": -10.49
+     },
+     "endings": {
+      "target": 250,
+      "stop": 235,
+      "time": 187
+     }
+    }
+   },
+   "unit": "R",
+   "market": "NAS100",
+   "claim": "red 9:30-11:59 morning; the 13:30-15:59 afternoon leaves the morning high alone",
+   "post_rate_level_reached": 0.145,
+   "post": "x.com/RHerman/status/2118372793083732293",
+   "checks": {
+    "claim_side_first_more_than_half": false,
+    "trade_passes": false
+   }
+  },
+  "c07_asia_low_taken_below_opens": {
+   "setup": {
+    "events": 428,
+    "level_reached_rate": 0.4602803738317757,
+    "level_first": 165,
+    "phantom_first": 157,
+    "same_bar": 0,
+    "neither": 106,
+    "claim_side_share": 0.48757763975155277,
+    "p_above_half": 0.6919737043927123,
+    "median_dist_pct": 0.7661883745847894,
+    "trade": {
+     "trades": 428,
+     "mean": -0.04625277785194033,
+     "t": -1.0666628524883455,
+     "pf": 0.896065616454608,
+     "win_rate": 0.4696261682242991,
+     "mean_before_cost": -0.02477745243385365,
+     "mean_double_cost": -0.06772810327002705,
+     "total": -19.796188920630463,
+     "by_year": {
+      "2021": -5.99,
+      "2022": 8.58,
+      "2023": -15.02,
+      "2024": 1.83,
+      "2025": -2.27,
+      "2026": -6.92
+     },
+     "endings": {
+      "target": 157,
+      "stop": 165,
+      "time": 106
+     }
+    }
+   },
+   "other_days": {
+    "events": 953,
+    "level_reached_rate": 0.7366211962224554,
+    "level_first": 414,
+    "phantom_first": 403,
+    "same_bar": 78,
+    "neither": 58,
+    "claim_side_share": 0.49326805385556916,
+    "p_above_half": 0.6626811149126584,
+    "median_dist_pct": 0.2455315138704226,
+    "trade": {
+     "trades": 835,
+     "mean": -0.07697704136876038,
+     "t": -2.2548034619834816,
+     "pf": 0.8528123330478167,
+     "win_rate": 0.49700598802395207,
+     "mean_before_cost": -0.010197231759238076,
+     "mean_double_cost": -0.14375685097828267,
+     "total": -64.27582954291492,
+     "by_year": {
+      "2021": -22.78,
+      "2022": -20.41,
+      "2023": -16.71,
+      "2024": -18.61,
+      "2025": -1.78,
+      "2026": 16.01
+     },
+     "endings": {
+      "target": 383,
+      "stop": 394,
+      "time": 58
+     }
+    }
+   },
+   "unit": "R",
+   "market": "NAS100",
+   "claim": "London took the Asia low, 9:30 open below the midnight and 18:00 opens; the Asia high survives",
+   "post_rate_level_reached": 0.256,
+   "post": "x.com/RHerman/status/2121271896281059710",
+   "checks": {
+    "claim_side_first_more_than_half": false,
+    "trade_passes": false
+   }
+  },
+  "c08_dow_expansion_below_pdl": {
+   "setup": {
+    "events": 120,
+    "level_reached_rate": 0.2,
+    "level_first": 24,
+    "phantom_first": 33,
+    "same_bar": 0,
+    "neither": 63,
+    "claim_side_share": 0.5789473684210527,
+    "p_above_half": 0.14462187355451372,
+    "median_dist_pct": 0.8726434702009777,
+    "trade": {
+     "trades": 120,
+     "mean": 0.03687176546699221,
+     "t": 0.535698944013506,
+     "pf": 1.1194158213585184,
+     "win_rate": 0.525,
+     "mean_before_cost": 0.05277534948475371,
+     "mean_double_cost": 0.020968181449230724,
+     "total": 4.424611856039065,
+     "by_year": {
+      "2021": -0.1,
+      "2022": 0.82,
+      "2023": -0.49,
+      "2024": -0.84,
+      "2025": 4.09,
+      "2026": 0.95
+     },
+     "endings": {
+      "target": 33,
+      "stop": 24,
+      "time": 63
+     }
+    }
+   },
+   "other_days": {
+    "events": 1260,
+    "level_reached_rate": 0.6944444444444444,
+    "level_first": 559,
+    "phantom_first": 515,
+    "same_bar": 81,
+    "neither": 105,
+    "claim_side_share": 0.4795158286778399,
+    "p_above_half": 0.9151580533279545,
+    "median_dist_pct": 0.2181729553837811,
+    "trade": {
+     "trades": 1116,
+     "mean": -0.10720120380270079,
+     "t": -3.6550017201254748,
+     "pf": 0.7986714934111248,
+     "win_rate": 0.48118279569892475,
+     "mean_before_cost": -0.035622261678829995,
+     "mean_double_cost": -0.1787801459265716,
+     "total": -119.63654344381408,
+     "by_year": {
+      "2021": 2.94,
+      "2022": -15.08,
+      "2023": -46.36,
+      "2024": -29.78,
+      "2025": -7.04,
+      "2026": -24.33
+     },
+     "endings": {
+      "target": 488,
+      "stop": 523,
+      "time": 105
+     }
+    }
+   },
+   "unit": "R",
+   "market": "USA30",
+   "claim": "London expanded past an Asia side, 9:30 open below yesterday's low; the overnight high survives",
+   "post_rate_level_reached": 0.167,
+   "post": "x.com/RHerman/status/2121709773557289321",
+   "checks": {
+    "claim_side_first_more_than_half": false,
+    "trade_passes": false
+   }
+  },
+  "c09_quiet_london_above_pdh": {
+   "setup": {
+    "events": 86,
+    "level_reached_rate": 0.046511627906976744,
+    "level_first": 3,
+    "phantom_first": 6,
+    "same_bar": 0,
+    "neither": 77,
+    "claim_side_share": 0.6666666666666666,
+    "p_above_half": 0.25390624999999933,
+    "median_dist_pct": 1.5574888550863017,
+    "trade": {
+     "trades": 86,
+     "mean": 0.11711327703884118,
+     "t": 2.1596638514161914,
+     "pf": 1.7979557948148626,
+     "win_rate": 0.5813953488372093,
+     "mean_before_cost": 0.12453215196291423,
+     "mean_double_cost": 0.10969440211476804,
+     "total": 10.071741825340341,
+     "by_year": {
+      "2021": 6.0,
+      "2022": -0.56,
+      "2023": 4.08,
+      "2024": 0.73,
+      "2025": -2.61,
+      "2026": 2.43
+     },
+     "endings": {
+      "target": 6,
+      "stop": 3,
+      "time": 77
+     }
+    }
+   },
+   "other_days": {
+    "events": 1293,
+    "level_reached_rate": 0.41453982985305493,
+    "level_first": 409,
+    "phantom_first": 359,
+    "same_bar": 24,
+    "neither": 501,
+    "claim_side_share": 0.4674479166666667,
+    "p_above_half": 0.9671731760016531,
+    "median_dist_pct": 0.8538199834405412,
+    "trade": {
+     "trades": 1255,
+     "mean": -0.03166979335359798,
+     "t": -1.3589242717212715,
+     "pf": 0.9182657718433117,
+     "win_rate": 0.5067729083665339,
+     "mean_before_cost": -0.005973230004867967,
+     "mean_double_cost": -0.057366356702327995,
+     "total": -39.745590658765465,
+     "by_year": {
+      "2021": -16.7,
+      "2022": -15.72,
+      "2023": 8.79,
+      "2024": -3.26,
+      "2025": -7.28,
+      "2026": -5.57
+     },
+     "endings": {
+      "target": 353,
+      "stop": 401,
+      "time": 501
+     }
+    }
+   },
+   "unit": "R",
+   "market": "NAS100",
+   "claim": "narrow London, 9:30 open above yesterday's high; yesterday's New York low survives",
+   "post_rate_level_reached": 0.032,
+   "post": "x.com/RHerman/status/2122721451765850502",
+   "checks": {
+    "claim_side_first_more_than_half": false,
+    "trade_passes": false
+   }
+  },
+  "c10_prior_low_only_bearish_london": {
+   "setup": {
+    "events": 186,
+    "level_reached_rate": 0.8279569892473119,
+    "level_first": 80,
+    "phantom_first": 75,
+    "same_bar": 30,
+    "neither": 1,
+    "claim_side_share": 0.5161290322580645,
+    "p_above_half": 0.37405547598938604,
+    "median_dist_pct": 0.2047841573769797,
+    "trade": {
+     "trades": 151,
+     "mean": -0.021672630635952404,
+     "t": -0.26198417658430795,
+     "pf": 0.9579059255111878,
+     "win_rate": 0.5165562913907285,
+     "mean_before_cost": 0.03891527575447769,
+     "mean_double_cost": -0.08226053702638245,
+     "total": -3.272567226028813,
+     "by_year": {
+      "2021": -1.19,
+      "2022": -5.72,
+      "2023": -2.86,
+      "2024": -4.04,
+      "2025": 3.4,
+      "2026": 7.14
+     },
+     "endings": {
+      "target": 78,
+      "stop": 72,
+      "time": 1
+     }
+    }
+   },
+   "other_days": {
+    "events": 1194,
+    "level_reached_rate": 0.6130653266331658,
+    "level_first": 522,
+    "phantom_first": 476,
+    "same_bar": 57,
+    "neither": 139,
+    "claim_side_share": 0.5230460921843687,
+    "p_above_half": 0.07714041311094838,
+    "median_dist_pct": 0.43176320789240596,
+    "trade": {
+     "trades": 1129,
+     "mean": -0.018193328675002597,
+     "t": -0.635758068180228,
+     "pf": 0.9618288799890218,
+     "win_rate": 0.5022143489813995,
+     "mean_before_cost": 0.020656764730988954,
+     "mean_double_cost": -0.05704342208099416,
+     "total": -20.540268074077932,
+     "by_year": {
+      "2021": -9.22,
+      "2022": 14.34,
+      "2023": -23.42,
+      "2024": 5.52,
+      "2025": -5.15,
+      "2026": -2.61
+     },
+     "endings": {
+      "target": 518,
+      "stop": 472,
+      "time": 139
+     }
+    }
+   },
+   "unit": "R",
+   "market": "NAS100",
+   "claim": "yesterday took only the prior day's low, London red; the overnight low is taken after 8:00",
+   "post_rate_level_reached": 0.888,
+   "post": "x.com/RHerman/status/2114620555794305292",
+   "checks": {
+    "claim_side_first_more_than_half": false,
+    "trade_passes": false
+   }
+  },
+  "c11_wide_day_untouched": {
+   "setup": {
+    "events": 169,
+    "level_reached_rate": 0.7869822485207101,
+    "level_first": 84,
+    "phantom_first": 64,
+    "same_bar": 17,
+    "neither": 4,
+    "claim_side_share": 0.5675675675675675,
+    "p_above_half": 0.05901962339086482,
+    "median_dist_pct": 0.27264184795256546,
+    "trade": {
+     "trades": 146,
+     "mean": 0.10366091168695148,
+     "t": 1.2695267507855421,
+     "pf": 1.2366585590281352,
+     "win_rate": 0.5821917808219178,
+     "mean_before_cost": 0.158621032809932,
+     "mean_double_cost": 0.04870079056397087,
+     "total": 15.134493106294915,
+     "by_year": {
+      "2021": 1.51,
+      "2022": -2.47,
+      "2023": 1.62,
+      "2024": 10.95,
+      "2025": 4.58,
+      "2026": -1.05
+     },
+     "endings": {
+      "target": 82,
+      "stop": 60,
+      "time": 4
+     }
+    }
+   },
+   "other_days": {
+    "events": 1206,
+    "level_reached_rate": 0.6965174129353234,
+    "level_first": 478,
+    "phantom_first": 510,
+    "same_bar": 123,
+    "neither": 95,
+    "claim_side_share": 0.48380566801619435,
+    "p_above_half": 0.8531130800033689,
+    "median_dist_pct": 0.2810885055377055,
+    "trade": {
+     "trades": 1052,
+     "mean": -0.09463453556788637,
+     "t": -3.141254013870134,
+     "pf": 0.8201080283048536,
+     "win_rate": 0.47718631178707227,
+     "mean_before_cost": -0.03533648612006843,
+     "mean_double_cost": -0.15393258501570428,
+     "total": -99.55553141741646,
+     "by_year": {
+      "2021": -12.07,
+      "2022": -47.66,
+      "2023": 1.12,
+      "2024": -5.35,
+      "2025": -17.75,
+      "2026": -17.84
+     },
+     "endings": {
+      "target": 461,
+      "stop": 496,
+      "time": 95
+     }
+    }
+   },
+   "unit": "R",
+   "market": "NAS100",
+   "claim": "wide day yesterday, neither of its ends taken by 8:00; the overnight high is taken after 8:00",
+   "post_rate_level_reached": 0.866,
+   "post": "x.com/RHerman/status/2112793523636596754",
+   "checks": {
+    "claim_side_first_more_than_half": false,
+    "trade_passes": false
+   }
+  },
+  "c12_gold_below_two_opens": {
+   "setup": {
+    "events": 165,
+    "level_reached_rate": 0.12727272727272726,
+    "level_first": 21,
+    "phantom_first": 29,
+    "same_bar": 0,
+    "neither": 115,
+    "claim_side_share": 0.58,
+    "p_above_half": 0.1611181601787766,
+    "median_dist_pct": 1.0180090256006433,
+    "trade": {
+     "trades": 165,
+     "mean": 0.1415576864421344,
+     "t": 2.267805807491197,
+     "pf": 1.6356406157955092,
+     "win_rate": 0.5818181818181818,
+     "mean_before_cost": 0.15539210190017644,
+     "mean_double_cost": 0.12772327098409234,
+     "total": 23.357018262952174,
+     "by_year": {
+      "2021": 2.17,
+      "2022": 2.47,
+      "2023": 7.07,
+      "2024": 2.98,
+      "2025": -1.21,
+      "2026": 9.88
+     },
+     "endings": {
+      "target": 0,
+      "stop": 21,
+      "time": 144
+     }
+    }
+   },
+   "other_days": {
+    "events": 1255,
+    "level_reached_rate": 0.5968127490039841,
+    "level_first": 415,
+    "phantom_first": 462,
+    "same_bar": 212,
+    "neither": 166,
+    "claim_side_share": 0.5267958950969214,
+    "p_above_half": 0.060149696175054036,
+    "median_dist_pct": 0.28169453051344456,
+    "trade": {
+     "trades": 1189,
+     "mean": -0.07617447502699728,
+     "t": -1.2596998382049418,
+     "pf": 0.887151176643041,
+     "win_rate": 0.3162321278385198,
+     "mean_before_cost": 0.003131790348814536,
+     "mean_double_cost": -0.1554807404028091,
+     "total": -90.57145080709978,
+     "by_year": {
+      "2021": -14.08,
+      "2022": -28.5,
+      "2023": -10.71,
+      "2024": -31.9,
+      "2025": 6.36,
+      "2026": -11.74
+     },
+     "endings": {
+      "target": 0,
+      "stop": 686,
+      "time": 503
+     }
+    }
+   },
+   "unit": "R",
+   "market": "XAUUSD",
+   "claim": "gold at 8:00 below yesterday's open and the midnight open; the overnight high survives",
+   "post_rate_level_reached": 0.132,
+   "post": "x.com/RHerman/status/2123808611596177583",
+   "checks": {
+    "claim_side_first_more_than_half": false,
+    "trade_passes": false
+   }
+  },
+  "c13_weekday_direction": {
+   "setup": {
+    "events": 1381,
+    "trade": {
+     "trades": 1381,
+     "mean": 0.031020960469998835,
+     "t": 0.973788538369167,
+     "pf": 1.0753813641798582,
+     "win_rate": 0.5271542360608255,
+     "mean_before_cost": 0.04102096046999883,
+     "mean_double_cost": 0.02102096046999882,
+     "total": 42.83994640906839,
+     "by_year": {
+      "2021": -7.92,
+      "2022": -28.19,
+      "2023": 36.79,
+      "2024": 24.46,
+      "2025": 3.48,
+      "2026": 14.23
+     }
+    }
+   },
+   "unit": "percent of price",
+   "market": "NAS100",
+   "claim": "9:30 to the close: long Monday, Tuesday, Friday; short Wednesday, Thursday",
+   "post_rate_level_reached": null,
+   "post": "x.com/RHerman/status/2106451718431187258",
+   "checks": {
+    "trade_passes": false
+   }
+  }
+ }
+}
