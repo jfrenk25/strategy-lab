@@ -3218,3 +3218,39 @@ Attempt counter starts at 96.
 - Read: the posts' rates mostly hold up on the lab's prices. That shows the counting is honest, not that there is a trade. Against a level the same distance the other way, no claim's side came first often enough to clear p 0.0038, and no trade cleared t 2.67.
 - Nearest: `c12_gold_below_two_opens` (t 2.27) and `c09_quiet_london_above_pdh` (t 2.16). Thirteen tests were run, so one or two results near t 2 are expected with no edge at all. Neither goes on the forward watch.
 - The two hourly sweep rules were flat before costs and lost about 0.1R a trade after. On a one-hour window the level is close and costs are a tenth of the risk.
+
+### 2026-11-24 · screen survivor 423 · `td_camouflage_back1.follow.none.asia.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 00a5a353cc). No stated reason.
+- Screen years: 209 trades, profit factor 1.35, t-stat 1.96
+- Confirm years: 168 trades, profit factor 0.76, -32.7R, t-stat -1.66 (needed 3.68); markets 5 of 13; double-cost profit factor 0.71; beats 10% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets that traded; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.68 (bar for survivor 423)
+
+### 2026-11-24 · screen survivor 424 · `td_camouflage_back1.follow.none.asia.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 8c70e3b722). No stated reason.
+- Screen years: 207 trades, profit factor 1.48, t-stat 2.55
+- Confirm years: 168 trades, profit factor 0.84, -20.0R, t-stat -1.01 (needed 3.68); markets 7 of 13; double-cost profit factor 0.81; beats 20% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.68 (bar for survivor 424)
+
+### 2026-11-24 · screen survivor 425 · `td_countdown_count13_setup9.follow.high_vol.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 36775c8a6e). No stated reason.
+- Screen years: 476 trades, profit factor 1.21, t-stat 1.90
+- Confirm years: 315 trades, profit factor 0.88, -29.3R, t-stat -1.04 (needed 3.68); markets 8 of 15; double-cost profit factor 0.84; beats 29% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.68 (bar for survivor 425)
+
+### 2026-11-24 · screen survivor 426 · `td_countdown_count13_setup9.fade.high_vol.asia.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id e9d25e5d9e). No stated reason.
+- Screen years: 347 trades, profit factor 1.20, t-stat 1.67
+- Confirm years: 242 trades, profit factor 1.08, +11.5R, t-stat 0.59 (needed 3.68); markets 8 of 15; double-cost profit factor 1.02; beats 82% of random entries
+- Failed: profit factor >= 1.15; beats 95% of random entries; t-stat >= 3.68 (bar for survivor 426)
+
+### 2026-11-24 · screen survivor 427 · `td_line_break_k3.follow.high_vol.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 3ba5066200). No stated reason.
+- Screen years: 1799 trades, profit factor 1.11, t-stat 1.93
+- Confirm years: 1293 trades, profit factor 0.95, -38.5R, t-stat -0.74 (needed 3.68); markets 6 of 15; double-cost profit factor 0.90; beats 50% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets that traded; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.68 (bar for survivor 427)
+
+### 2026-11-24 · screen batch · 1400 ideas
+- New triggers registered: acceleration, friday_monday_sign, td_camouflage, td_clop, td_clopwin, td_countdown, td_line_break, turnaround_tuesday.
+- Passed the screen: 5. Confirmed on unseen years: 0. Candidates: 0.
+- Totals under version 4: 18600 of 18600 catalogue ideas screened, 272 survivors (427 with the 155 from earlier versions, which set the bar), 0 confirmed, 0 candidates.
+- Every screened idea is in `lab/screen/log.csv`.

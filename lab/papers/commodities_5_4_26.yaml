@@ -1,0 +1,40 @@
+id: commodities_5_4_26
+title: "Overnight and Daytime Returns in Commodity ETFs: Do Session Anomalies Survive Trading Costs and Multiple Testing?"
+authors: "Zhefan Wu, Eugene Pinsky"
+published: "2026-11-10"      # online date, Commodities 5(4), 26
+url: "https://www.mdpi.com/2813-2432/5/4/26"
+found: "2026-11-24"
+status: cant_test
+market: "Nine US-listed commodity funds: DBA, DBB, DBC, DBE, DBO, DBP, GLD, SLV, USO"
+timeframe: "Daily open and close; each day is two sessions (close to open, open to close) and a position lasts one session"
+data_needed:
+  - "daily exchange open and close prices, adjusted for distributions, for nine commodity funds from 2007"
+testable_here: false
+why_not: "The rule trades the gap between a US-listed fund's closing price and its next opening price. The lab has no fund prices and no exchange open or close: its gold and oil are round-the-clock spot prices with no overnight session, and it starts in 2021, not 2007."
+missing_data: [daily_etf_open_close, history_before_2021]
+formulas:
+  - name: "Session returns"
+    definition: "Overnight R_n(t) = Open(t) / Close(t-1) - 1. Daytime R_d(t) = Close(t) / Open(t) - 1."
+    variables: "Open and Close: the fund's recorded exchange prices on day t."
+  - name: "Session rule"
+    definition: "Target z = +1 (Long), -1 (Short), 0 (Cash), sign(previous return of the same session) (Momentum), or minus that sign (Reversal)."
+    variables: "A previous return of exactly zero gives Cash. The overnight target is set at the prior close, the daytime target at the open."
+  - name: "Strategy"
+    definition: "One overnight rule paired with one daytime rule: 25 pairs per fund."
+    variables: "Written overnight first: Long/Reversal is long every night and against yesterday's daytime move every day."
+rules:
+  entry_long: "At a session boundary, when that session's rule gives +1 (for Long/Reversal: every close, and every open after a down daytime session the day before)."
+  entry_short: "At a session boundary, when the rule gives -1 (for Long/Reversal: every open after an up daytime session the day before)."
+  exit: "At the next session boundary, when the target changes. The position is re-set to its target at every boundary. No stop and no target price."
+  holding_period: "One session: overnight or one trading day's hours."
+reported_results:
+  sample_period: "9 January 2007 to 31 December 2025, 4,776 trading days per fund"
+  markets: "The nine funds above"
+  headline: "With no costs 68 of 207 active rule and fund pairs beat buy and hold; at 0.01% of traded value 24; at 0.02% only 4. The best family, Long/Reversal, breaks even against buy and hold at about 0.005% (GLD) to 0.024% (DBE). No test for data-mining rejects at 5% (smallest p 0.107). The authors conclude there is no robust gain after costs in this family, and say this is not proof the market is efficient."
+  costs_included: "Yes, as scenarios: 0, 0.01%, 0.02%, 0.05% and 0.10% of traded value, plus borrowing-fee scenarios. Fills are at recorded open and close prices, not auction fills."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "Same authors and same design as jrfm_19_9_692 (bitcoin and ether sessions). The result is a negative one by the authors' own account, so there is little to chase even with the data. Figures other than the abstract's came from the helper's summary of the later sections. The gold fund here is not the lab's gold: spot gold trades through the US night, so it has no close-to-open gap to trade."

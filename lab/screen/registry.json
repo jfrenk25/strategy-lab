@@ -945,5 +945,129 @@
   ],
   "timed": false,
   "universe": "fifteen"
+ },
+ {
+  "name": "acceleration",
+  "hash": "7804aeddce92",
+  "added": "2026-11-24",
+  "source": "D. Ardila-Alvarez, Z. Forro and D. Sornette, \"The acceleration effect and Gamma factor in asset pricing\", Physica A 569, 125367 (2021), https://ideas.repec.org/a/eee/phsmap/v569y2021ics0378437120307196.html",
+  "summary": "+1 when the last n bars' return minus the n bars' return before it first rises 2 standard deviations above its own recent average; -1 when it first falls 2 below.",
+  "variants": [
+   {
+    "n": 24,
+    "z": 2.0
+   },
+   {
+    "n": 72,
+    "z": 2.0
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "friday_monday_sign",
+  "hash": "ae174799b48f",
+  "added": "2026-11-24",
+  "source": "F. Cross, \"The Behavior of Stock Prices on Fridays and Mondays\", Financial Analysts Journal 29(6), 1973; A. Abraham and D. Ikenberry, \"The Individual Investor and the Weekend Effect\", JFQA 29(2), 1994",
+  "summary": "On the Monday bar that starts at `hour` UTC: +1 if Friday rose (20:00 UTC Thursday to 20:00 UTC Friday), -1 if it fell.",
+  "variants": [
+   {
+    "hour": 0
+   },
+   {
+    "hour": 13
+   }
+  ],
+  "timed": true,
+  "universe": "fifteen"
+ },
+ {
+  "name": "td_camouflage",
+  "hash": "170bc078468b",
+  "added": "2026-11-24",
+  "source": "T. DeMark, \"The New Science of Technical Analysis\" (1994); J. Perl, \"DeMark Indicators\" (2008); rule read at wickra-docs.pages.dev/Indicators/Indicator-TdCamouflage",
+  "summary": "+1 when the close is below the previous close but above the open and the low is under the previous low; -1 for the mirror image.",
+  "variants": [
+   {
+    "back": 1
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "td_clop",
+  "hash": "1712a5f5ff6c",
+  "added": "2026-11-24",
+  "source": "J. Perl, \"DeMark Indicators\" (2008), TD Clop, after T. DeMark; rule read at wickra-docs.pages.dev/Indicators/Indicator-TdClop",
+  "summary": "+1 when the bar opens below the previous bar's open and close and closes above both; -1 for the mirror image.",
+  "variants": [
+   {
+    "back": 1
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "td_clopwin",
+  "hash": "7ed25aa3e970",
+  "added": "2026-11-24",
+  "source": "J. Perl, \"DeMark Indicators\" (2008), TD Clopwin, after T. DeMark; rule read at wickra-docs.pages.dev/Indicators/Indicator-TdClopwin",
+  "summary": "The bar's open and close are both inside the previous bar's body: +1 if it closes above its open, -1 if below.",
+  "variants": [
+   {
+    "back": 1
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "td_countdown",
+  "hash": "c17cf5378251",
+  "added": "2026-11-24",
+  "source": "T. DeMark, \"The New Science of Technical Analysis\" (1994), TD Sequential countdown; J. Perl, \"DeMark Indicators\" (2008)",
+  "summary": "+1 at the 13th close at or below the low two bars earlier after nine closes in a row below the close four bars earlier; -1 for the mirror image.",
+  "variants": [
+   {
+    "setup": 9,
+    "count": 13
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "td_line_break",
+  "hash": "af16e95d732f",
+  "added": "2026-11-24",
+  "source": "T. DeMark, \"The New Science of Technical Analysis\" (1994), TD Points and TD Lines",
+  "summary": "+1 when the close crosses above the falling line through the last two swing highs, -1 when it crosses below the rising line through the last two swing lows.",
+  "variants": [
+   {
+    "k": 1
+   },
+   {
+    "k": 3
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "turnaround_tuesday",
+  "hash": "cfd7a8692ab8",
+  "added": "2026-11-24",
+  "source": "L. Williams, \"Turnaround Tuesday\"; rule read in \"Turnaround Tuesday: The One-Day Edge That Still Works\", Alpha Algo Trading Research, https://algotr.substack.com/p/turnaround-tuesday-the-one-day-edge (2026)",
+  "summary": "On the Monday bar that starts at `hour` UTC: +1 if its close is above the close at the same hour on Friday, -1 if below.",
+  "variants": [
+   {
+    "hour": 20
+   }
+  ],
+  "timed": true,
+  "universe": "fifteen"
  }
 ]

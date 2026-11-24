@@ -1,0 +1,41 @@
+id: quantpedia_gold_btc_dual_momentum
+title: "Dual Momentum Allocation Between Physical Gold and Bitcoin (Digital Gold)"
+authors: "Cyril Dujava (Quantpedia)"
+published: "2026-05-06"
+url: "https://quantpedia.com/dual-momentum-allocation-between-physical-gold-and-bitcoin-digital-gold/"
+found: "2026-11-24"
+status: extracted
+market: "A gold fund (GLD), a bitcoin fund (IBIT) and cash"
+timeframe: "Weekly, decided and traded at Wednesday's close on the stock market's calendar"
+data_needed:
+  - "weekly closes of a gold fund"
+  - "bitcoin closes sampled at the same time (the write-up resamples hourly Bitfinex bars to the gold fund's close)"
+testable_here: true
+why_not: ""
+missing_data: []
+formulas:
+  - name: "Lookback return"
+    definition: "R_a(X) = P_a(t) / P_a(t - X weeks) - 1"
+    variables: "a: gold or bitcoin. X: lookback in weeks, tried at 1, 2, 3, 4, 6, 8, 12, 20, 24 and 28. The headline version averages the 4, 8 and 12 week versions."
+  - name: "Choice"
+    definition: "Hold bitcoin if R_btc > R_gold and R_btc > 0. Hold gold if R_gold > R_btc and R_gold > 0. Otherwise cash."
+    variables: "Never both at once."
+  - name: "Volatility cap (second version)"
+    definition: "w = min(1, 0.20 / (sd x sqrt(52)))"
+    variables: "sd: standard deviation of the chosen asset's weekly returns over 12 weeks. w: share of the account in the asset; the rest is cash."
+rules:
+  entry_long: "Each Wednesday close: buy whichever of gold and bitcoin has the higher X-week return, if that return is above zero."
+  entry_short: "None."
+  exit: "Re-decided every Wednesday close: switch to the other asset or to cash when the choice changes. No stop and no target."
+  holding_period: "One week at a time"
+reported_results:
+  sample_period: "31 December 2018 to April 2026"
+  markets: "GLD and bitcoin (IBIT, earlier BITO; the page is not clear on which price series covers which years)"
+  headline: "8-week version: 79.9% a year, Sharpe 1.64, worst drawdown about 44%. Average of the 4, 8 and 12 week versions: 64.7% a year, Sharpe 1.47, drawdown 49%. With the volatility cap: 12.0% a year, Sharpe 1.37, drawdown 12.3% (the page's own discussion gives 14.4% and 10.8% instead). Bitcoin held throughout: 46.7% a year, Sharpe 0.73."
+  costs_included: "No costs are stated."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: pending
+may_stop_working: ""
+notes: "Not coded. The lab holds spot gold and bitcoin, and a weekly rule can be run on daily bars in position mode. But this is a momentum rotation with a trend filter, and the lab's notes close that class after two failures (`ts_momentum`, `valeyre_ema_trend`: both made money and neither beat the same positions held weeks late). The idea adds no new information to those, only a two-asset basket, so it should not be a third attempt without Jeff's go-ahead. Sister post to `quantpedia_silicon_satoshi`, which waits for the same reason. Cautions: the lookbacks were compared on the same seven years they are reported on, with no held-out data; the signal and the trade use the same Wednesday close; no costs; the sample is one bitcoin boom and a strong gold run. Two sets of figures for the capped version disagree on the page. Per-lookback tables are images and were not read. A fund is not the lab's spot price, and from April 2021 the lab would cover only about five of the page's seven years."

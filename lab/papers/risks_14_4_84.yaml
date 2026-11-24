@@ -1,0 +1,43 @@
+id: risks_14_4_84
+title: "A Comparative Analysis of Overnight vs. Daytime Static and Momentum Strategies Across Sector ETFs"
+authors: "Gourav Salotra, Tharunya Katikireddy, Yaswanth Anumolu, Eugene Pinsky"
+published: "2026-04-08"      # online date, Risks 14(4), 84
+url: "https://www.mdpi.com/2227-9091/14/4/84/htm"
+found: "2026-11-24"
+status: cant_test
+market: "The S&P 500 fund SPY and nine US sector funds (XLB, XLE, XLF, XLI, XLK, XLP, XLU, XLV, XLY)"
+timeframe: "Daily open (9:30 New York) and close (16:00); a position lasts one session, overnight or daytime"
+data_needed:
+  - "daily exchange open and close prices, adjusted for splits and dividends, for SPY and nine sector funds from 1999"
+testable_here: false
+why_not: "The rule needs each fund's 9:30 opening and 16:00 closing price, for sector funds the lab does not hold, back to 1999. The lab's S&P 500 is an hourly index price from 2021; it has no sector funds at all."
+missing_data: [daily_etf_open_close, sector_etfs, history_before_2021]
+formulas:
+  - name: "Session returns"
+    definition: "R_co(i) = O(i) / C(i-1) - 1 (overnight). R_oc(i) = C(i) / O(i) - 1 (daytime)."
+    variables: "O(i), C(i): open and close on day i. s(x) = +1 if x >= 0, else -1."
+  - name: "Strategy 1: Long, Cash"
+    definition: "R(i) = R_co(i)"
+    variables: "Buy at the close, sell at the next open, hold cash in the day. Two trades a day."
+  - name: "Strategy 18: Long, Reversal"
+    definition: "R(i) = (1 + R_co(i)) x (1 - s(R_co(i)) x R_oc(i)) - 1"
+    variables: "Long every night. In the day: long if the night just ended fell, short if it rose or was flat."
+  - name: "Cost"
+    definition: "Wealth is multiplied by (1 - a) for every trade."
+    variables: "a: cost per trade, 0, 0.01% or 0.02% in the main tables."
+rules:
+  entry_long: "Strategy 18: buy at every close; at the open, stay long for the day if the overnight return was negative."
+  entry_short: "Strategy 18: at the open, go short for the day if the overnight return was zero or positive."
+  exit: "At the next open or close, by the clock. No stop and no target."
+  holding_period: "One session"
+reported_results:
+  sample_period: "1 January 1999 to 19 December 2025 (the text also says 1999 to 2024 in places)"
+  markets: "SPY and nine sector funds"
+  headline: "With no costs, 100 dollars in Long/Reversal grew to between about 8,500 and 31,000 on six sector funds, against 422 to 1,169 for buy and hold. Of 240 rule and fund pairs, 42 beat buy and hold at no cost, 13 at 0.01% a trade and 7 at 0.02%. On SPY the overnight-only rule fell from 774 to 57 once 0.02% a trade was charged."
+  costs_included: "As scenarios: 0, 0.01% and 0.02% per trade, about two trades a day. Slippage and borrowing are left out."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "Third paper of this design from the same group (see jrfm_19_9_692 and commodities_5_4_26). The page read has inconsistent figures: two different buy-and-hold values for SPY, two sample lengths, and a Sharpe ratio printed as both 1.61 and 0.61 for one strategy. The helper read the start and a later part of a long page; some tables were not seen. The edge, where there is one, is gone at a cost of 0.02% a trade by the authors' own tables. Even with the data it would also need an exit at a set time, which the lab's engines lack."

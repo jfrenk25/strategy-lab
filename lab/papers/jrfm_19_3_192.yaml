@@ -1,0 +1,40 @@
+id: jrfm_19_3_192
+title: "Optimal and Non-Optimal MACD Parameter Ranges with Stop-Loss and Take-Profit Rules: Evidence from the Gold Market"
+authors: "Byung-Kook Kang"
+published: "2026-03-05"      # online date, Journal of Risk and Financial Management 19(3), 192
+url: "https://www.mdpi.com/1911-8074/19/3/192"
+found: "2026-11-24"
+status: extracted
+market: "Spot gold against the US dollar"
+timeframe: "Daily closes; always long or short, about one trade a month"
+data_needed:
+  - "daily closes of spot gold"
+testable_here: true
+why_not: ""
+missing_data: []
+formulas:
+  - name: "MACD line"
+    definition: "M = EMA(P, n1) - EMA(P, n2)"
+    variables: "P: daily close. EMA(P, n): exponential moving average over n days. n1 from 3 to 20, n2 from 5 to 40, n1 below n2."
+  - name: "Signal line"
+    definition: "S = EMA(M, n3)"
+    variables: "n3 from 3 to 40. With the limits above this gives 19,456 parameter sets."
+  - name: "Best group named by the author"
+    definition: "n1 in 5..9, n2 in 33..40, n3 in 37..40: 160 parameter sets, judged as a group."
+    variables: "The author's point is that the whole group does well, not one member of it. No single set is recommended."
+rules:
+  entry_long: "M crosses above S. The order is filled at the next day's close."
+  entry_short: "M crosses below S. Filled at the next day's close."
+  exit: "The first opposite cross closes the trade at the next close and opens the other side. Optional fixed exits measured from the entry price: stop and target of 5% or 10%, tried as four pairs (5/5, 10/10, 10/5, 5/10). Same-side signals are ignored while a trade is open."
+  holding_period: "Until the opposite cross, a stop or a target; roughly a month on average (about 130 trades in 11 years)."
+reported_results:
+  sample_period: "3 January 2011 to 31 December 2021; ranges chosen on 2011 to 2019 in three sub-periods, checked on 2020 to 2021"
+  markets: "Spot gold (daily closes from Investing.com)"
+  headline: "For the best group: Sharpe ratio 0.64 with no fixed exits, 1.08 with 10% stop and 10% target, 1.41 with 5% and 10%. These figures came from the helper's summary of the later sections, not from text read word for word."
+  costs_included: "No. The paper assumes no trading costs."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: pending
+may_stop_working: ""
+notes: "Not coded. Three reasons. (1) It is a moving-average crossover on price alone, a class the lab's notes close ('Do not add more of them'); SuperTrend and two other indicator mixes lost on both sides in the screen. (2) The rule as written needs exits the lab's engines do not have: fills at the next day's close and stops and targets set as a percent of the entry price. Signal mode uses ATR stops on 1-hour bars; position mode has no stop at all. (3) The paper recommends a group of 160 parameter sets and no single one, so any one set would be the lab's pick. The lab does hold gold, but only from April 2021, so the paper's own years (2011 to 2021) cannot be re-run and almost all of the lab's data is after publication. Unclear in the paper: whether stops are checked on daily highs and lows or on closes, and whether the Sharpe ratio is yearly. No costs, and the good ranges were found on the same decade they are reported on (2020 to 2021 is the only held-out part). The author names no loser."
