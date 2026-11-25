@@ -2,3 +2,4 @@ numpy
 pandas
 numba
 pyyaml
+pandas_market_calendars
