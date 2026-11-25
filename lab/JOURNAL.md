@@ -3308,3 +3308,9 @@ Attempt counter starts at 96.
 - Passed the screen: 6. Confirmed on unseen years: 0. Candidates: 0.
 - Totals under version 4: 19720 of 19720 catalogue ideas screened, 278 survivors (433 with the 155 from earlier versions, which set the bar), 0 confirmed, 0 candidates.
 - Every screened idea is in `lab/screen/log.csv`.
+
+### 2026-11-25 · book forward watch · registered
+- One paper account, three legs at fixed sizes: Cutler RSI dip-buy (NAS100, position 0.3754x the balance), copy v3 (gold, 0.2514% risked per position), RTH open ATR breakout version A (NAS100, 0.1457% risked per trade).
+- Trades count from 2026-11-26 00:00 UTC. Verdict once per firm (FTMO 1-Step, The5ers 1-step): PAPER PASS, PAPER FAIL or TOO SLOW. Rules: `lab/book/REGISTRATION.md` and "Book forward watch" in `LAB_RULES.md`.
+- Check at registration: replayed from 2024-01-01, `forward_book.py` matches the study's own files on all 602 firm days and passes on firm day 171 on both firms.
+- State: WATCHING, 0 firm days. Price data ends before the start date.
