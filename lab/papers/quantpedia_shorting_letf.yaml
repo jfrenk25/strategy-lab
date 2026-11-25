@@ -1,0 +1,39 @@
+id: quantpedia_shorting_letf
+title: "Shorting Leveraged ETFs: The Role of Borrowing Costs and Rebalancing in Volatility-Decay Strategies"
+authors: "David Belobrad, Filip Kalus (Quantpedia)"
+published: "2026-10-23"      # date of the blog post
+url: "https://quantpedia.com/shorting-leveraged-etfs-the-role-of-borrowing-costs-and-rebalancing-in-volatility-decay-strategies/"
+found: "2026-11-25"
+status: cant_test
+market: "TQQQ and SQQQ, the three-times long and three-times short Nasdaq 100 funds"
+timeframe: "Daily bars; held all the time, rebalanced every 1, 5, 10 or 20 days"
+data_needed:
+  - "daily prices of TQQQ and SQQQ from July 2015"
+  - "the daily fee for borrowing each fund to sell it short"
+  - "prices 10 minutes before the close for the pre-close version"
+testable_here: false
+why_not: "The rule sells two leveraged funds short and its result turns on their borrowing fees. The lab holds neither fund and no borrow fees."
+missing_data: [leveraged_etf_prices, borrow_fees]
+formulas:
+  - name: "Target weights"
+    definition: "w_TQQQ = -0.5, w_SQQQ = -0.5 of the account"
+    variables: "Both funds are sold short in equal value. The pair is neutral to the Nasdaq on the day it is set and earns the decay that daily-reset leveraged funds suffer when prices swing."
+  - name: "Tranche rebalancing"
+    definition: "Split the account into k equal parts; each day bring one part back to -0.5 / -0.5"
+    variables: "k is 5, 10 or 20, so each part is rebalanced every k days."
+rules:
+  entry_long: ""
+  entry_short: "Sell short TQQQ and SQQQ in equal value. There is no signal: the position is always on."
+  exit: "None. Weights are brought back to half and half on the schedule: every day, every 5 days, or by tranches of 5, 10 or 20 days. One version places orders 10 minutes before the close."
+  holding_period: "Indefinite"
+reported_results:
+  sample_period: "13 July 2015 to 8 August 2026"
+  markets: "TQQQ and SQQQ (QuantConnect data)"
+  headline: "Per year: 3.9% with no frictions (Sharpe 0.77); 2.1% with borrow fees (Sharpe 0.41); -1.3% for the daily pre-close version (Sharpe -0.57); 2.2% with 10-day tranches (Sharpe 0.34); 2.1% with 20-day tranches (Sharpe 0.23)."
+  costs_included: "Yes in all but the first figure: borrow fees, and trading costs in the pre-close version"
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "Not a timing rule: it is a standing short of two funds, and what it earns is set by their decay against their borrow fees. The lab's Nasdaq 100 bars cannot stand in for either fund, because the funds' own prices carry the daily reset, fees and financing. The authors' own numbers leave little after costs and they say the gains come in bursts of high volatility. A short of a three-times fund can lose more than the account in a sharp one-way move; the post's worst falls were not in the text read."

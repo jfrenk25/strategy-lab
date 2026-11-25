@@ -1,0 +1,38 @@
+id: quantpedia_correlation_acceleration
+title: "Correlation Acceleration: Detecting Market Stress Through Rising ETF Correlations"
+authors: "David Mesicek (Quantpedia)"
+published: "2026-11-06"      # date of the blog post
+url: "https://quantpedia.com/correlation-acceleration-detecting-market-stress-through-rising-etf-correlations/"
+found: "2026-11-25"
+status: cant_test
+market: "SPY (the S&P 500 fund), with nine US sector funds as the signal"
+timeframe: "Daily bars; each short is held for one trading day"
+data_needed:
+  - "daily prices of nine US sector funds: XLB, XLE, XLF, XLI, XLK, XLP, XLU, XLV, XLY"
+  - "daily open and close of SPY"
+testable_here: false
+why_not: "The signal is the average correlation among nine US sector funds. The lab holds no sector funds."
+missing_data: [sector_etf_prices, daily_etf_open_close]
+formulas:
+  - name: "Average sector correlation"
+    definition: "corrN(t) = mean over the 36 pairs (i, j) of Pearson correlation of daily returns of fund i and fund j over the last N days"
+    variables: "N is 20 for the fast measure and 60 for the slow one. Nine funds give 36 pairs."
+  - name: "Acceleration test"
+    definition: "signal(t) = 1 if corr20(t) > X * corr60(t), else 0"
+    variables: "X is tried from 1.00 to 1.25 in steps of 0.01. The author calls 1.12 to 1.25 the robust region; the worked example uses 1.13."
+rules:
+  entry_long: ""
+  entry_short: "When signal(t) is 1 at day t's close, sell SPY short at the next day's open. At most one unit short; signals do not stack."
+  exit: "Cover after one trading day."
+  holding_period: "One trading day"
+reported_results:
+  sample_period: "Not stated in the text read"
+  markets: "SPY, with the short laid over a long SPY holding"
+  headline: "At X = 1.13, holding SPY with the short on top: total return 879% against 823% for SPY alone, largest fall -37.7% against -55.1%, Sharpe 0.58 against 0.52."
+  costs_included: "Not stated"
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "The lab has the S&P 500 index but none of the nine sector funds, and the signal is built only from them, so nothing was approximated. The range of X called robust was picked after looking at the results on the same data, so the example figures are in-sample. The gain over holding SPY is small (Sharpe 0.58 against 0.52). Unclear: the sample dates, whether the one-day short ends at the next open or the next close, and costs. The author names no loser."

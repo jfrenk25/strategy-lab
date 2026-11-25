@@ -1,0 +1,38 @@
+id: quantpedia_btc_mtf_macd
+title: "How to Design a Simple Multi-Timeframe Trend Strategy on Bitcoin"
+authors: "David Mesicek (Quantpedia)"
+published: "2025-11-13"      # date of the blog post
+url: "https://quantpedia.com/how-to-design-a-simple-multi-timeframe-trend-strategy-on-bitcoin/"
+found: "2026-11-25"
+status: extracted
+market: "Bitcoin against the US dollar (Gemini exchange)"
+timeframe: "1-hour bars for the entry, daily bars for the trend filter; a trade lasts a few hours"
+data_needed:
+  - "1-hour open and close of bitcoin"
+  - "daily closes of bitcoin (can be built from the hourly bars)"
+testable_here: true
+why_not: ""
+missing_data: []
+formulas:
+  - name: "MACD line"
+    definition: "M = EMA(C, 12) - EMA(C, 26)"
+    variables: "C: close. EMA(C, n): exponential moving average over n bars. Worked out once on 1-hour bars (M_h) and once on daily bars (M_d). The post gives these as the usual settings."
+  - name: "Signal line"
+    definition: "S = EMA(M, 9)"
+    variables: "S_h on 1-hour bars, S_d on daily bars."
+rules:
+  entry_long: "The daily filter is up (M_d above S_d on the last finished daily bar, so it changes only after midnight) and on the 1-hour chart M_h crosses above S_h."
+  entry_short: "None. Short signals are ignored."
+  exit: "Final version: hold while each 1-hour bar closes above its open; sell at the close of the first bar that closes below its open. Earlier version: sell after one 1-hour bar."
+  holding_period: "Variable, a few hours; no average is given"
+reported_results:
+  sample_period: "December 2018 to November 2025"
+  markets: "Bitcoin, hourly and daily bars from Gemini"
+  headline: "Hourly MACD cross alone: 2,262 trades, 4.6% a year, Sharpe 0.33, largest fall -23.9%. With the daily filter, one-bar hold: about 1,000 trades, 6.6% a year, Sharpe 0.80, largest fall -12.4%. With the first-down-bar exit: Sharpe 1.07, Calmar 0.87 (its return and trade count are only in charts). Holding bitcoin made over 60% a year with a fall of nearly -80%."
+  costs_included: "Not stated; no fee, spread or slippage is mentioned"
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: pending
+may_stop_working: ""
+notes: "Not coded. Three reasons. (1) The entry is a moving-average (MACD) crossover on price alone, a class the lab's notes close; the same call was made for jrfm_19_3_192. (2) The rule's exit is its own: sell at the close of the first falling 1-hour bar. Signal mode leaves only by an ATR stop or target, and position mode holds daily bars, so neither engine can run it as written. It would need its own registered study. (3) No costs are stated. With about 1,000 trades in seven years and the lab's bitcoin cost of 0.065% a side, costs alone would take about 0.13% a trade, roughly 19% a year against a reported 6.6% a year for the one-bar version. The lab does hold hourly bitcoin, but from April 2021 on a different exchange. Unclear: the fill price at entry, the size of each trade, and whether the MACD is read on finished bars. The post says nothing was optimised and shows no held-out test. The author names no loser."

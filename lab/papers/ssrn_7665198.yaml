@@ -1,0 +1,38 @@
+id: ssrn_7665198
+title: "Ornstein-Uhlenbeck Mean Reversion Process Applied on S&P 500 Point-in-Time Constituents over 20 Years: Short Half-Life Against Trending Assets"
+authors: "Serhat Girgin (QuanterLab Research)"
+published: "2026-10-24"
+url: "https://quanterlab.com/research/ornstein-uhlenbeck-mean-reversion-process-applied-on-s-p-500-point-in-time"
+found: "2026-11-25"
+status: cant_test
+market: "Single stocks in the S&P 500, membership as it stood on each date"
+timeframe: "Daily closes; five stocks chosen every six months; trades last until the z-score recovers"
+data_needed:
+  - "daily closes of every S&P 500 member, 2005 to 2025"
+  - "the list of index members on each date"
+testable_here: false
+why_not: "The rule ranks all S&P 500 stocks by half-life and trades five of them. The lab holds no single stocks and no membership history."
+missing_data: [daily_stock_prices, index_membership_history]
+formulas:
+  - name: "Half-life"
+    definition: "Fit x(t) - x(t-1) = a + b * x(t-1) + e on one year of detrended closes; half-life = -ln(2) / ln(1 + b)"
+    variables: "x: the stock's close with its one-year trend line removed. b: the fitted pull toward the mean (negative for a mean-reverting stock). The exact detrending was not read word for word."
+  - name: "z-score"
+    definition: "z(t) = (x(t) - m) / s over the last 60 trading days"
+    variables: "m and s: the mean and the standard deviation of the fitted mean-reverting process over 60 days."
+rules:
+  entry_long: "Every 1 January and 1 July pick the five index members with the shortest half-life. For each, buy at the close when z falls below -1.25."
+  entry_short: "None in the part read word for word (long only)."
+  exit: "Sell at the close when z rises back above -0.5. Stop out when z falls below -3.5, and do not buy again until z is back above -3.5."
+  holding_period: "Not fixed. Each stock gets a fixed 20% of the account."
+reported_results:
+  sample_period: "3 January 2006 to 31 December 2025, 40 six-month windows"
+  markets: "S&P 500 members; a second group of five trending stocks as the comparison; SPY as the yardstick"
+  headline: "One dollar grew to 2.78 in the short half-life group, 1.90 in the trending group and 5.38 in SPY. Sharpe 0.55, 0.29 and 0.51. Scaled to SPY's risk the short half-life group reached 5.75."
+  costs_included: "No. The author estimates that 0.1% a side would cut the risk-matched yearly return from about 9.1% to about 5.7%."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "The z-score entry and exit could be computed on any one price series, but the paper's rule is the selection of five stocks out of 500 by half-life, and that cannot be done on fifteen markets without making a different rule. The author says the design cannot tell the half-life effect apart from simply avoiding trending stocks, and that no record of the settings tried was kept. Unscaled, the rule made about half of what holding SPY made. The helper's summary of the page's second half mentioned short trades; the part read word for word says long only."

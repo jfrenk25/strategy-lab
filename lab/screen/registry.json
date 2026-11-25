@@ -1069,5 +1069,72 @@
   ],
   "timed": true,
   "universe": "fifteen"
+ },
+ {
+  "name": "advance_block",
+  "hash": "bbe3f39e59ac",
+  "added": "2026-11-25",
+  "source": "TA-Lib, CDLADVANCEBLOCK, https://ta-lib.org/functions/cdladvanceblock.html; pattern from S. Nison, Japanese Candlestick Charting Techniques, 1991",
+  "summary": "-1 when three up bars with rising closes have shrinking bodies and a growing upper shadow; +1 for three down bars with shrinking bodies and a growing lower shadow.",
+  "variants": [
+   {
+    "shadow": 0.5
+   },
+   {
+    "shadow": 1.0
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "cooper_volume_filter",
+  "hash": "b81393d7d295",
+  "added": "2026-11-25",
+  "source": "M. Cooper, Filter Rules Based on Price and Volume in Individual Security Overreaction, Review of Financial Studies 12(4), 1999",
+  "summary": "+1 after a large n-bar rise and -1 after a large n-bar fall, kept only when volume over those n bars was lower (falling=1) or higher (falling=0) than over the n bars before.",
+  "variants": [
+   {
+    "n": 24,
+    "falling": 1
+   },
+   {
+    "n": 24,
+    "falling": 0
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "three_line_strike",
+  "hash": "e2e6a1742b0d",
+  "added": "2026-11-25",
+  "source": "TA-Lib, CDL3LINESTRIKE, https://ta-lib.org/functions/cdl3linestrike.html",
+  "summary": "+1 when three up bars with rising closes are followed by a down bar that closes below the first bar's open; -1 for three down bars and an up bar closing above the first bar's open.",
+  "variants": [
+   {
+    "slack": 0.1
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
+ },
+ {
+  "name": "three_methods",
+  "hash": "784158f12b82",
+  "added": "2026-11-25",
+  "source": "TA-Lib, CDLRISEFALL3METHODS, https://ta-lib.org/functions/cdlrisefall3methods.html; pattern from S. Nison, Japanese Candlestick Charting Techniques, 1991",
+  "summary": "+1 when a long up bar, three small down bars inside its range and a long up bar closing above the first follow one another; -1 for the mirror image.",
+  "variants": [
+   {
+    "k": 1.0
+   },
+   {
+    "k": 1.5
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
  }
 ]
