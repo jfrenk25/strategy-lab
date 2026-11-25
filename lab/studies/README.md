@@ -36,4 +36,4 @@ Code: `forward_studies.py`. Output: `lab/forward/studies_status.json`. This is s
 ### What to expect
 - An edge of the size seen in the studies will probably not reach the t-stat bar in 200 trades. HOLDING UP is the likely best case. The watch is better at showing that a rule has stopped working than at proving it works.
 - The watch only moves when `lab/data_1m/NAS100_1m_full.csv.gz` and `lab/data_new/NAS100_1h.csv.gz` are refreshed. The daily run does not refresh the 1-minute file.
-- The daily run does not call `forward_studies.py`. Run it by hand after a refresh, or add it to the run.
+- The daily run calls `forward_studies.py` right after `forward.py` (step 7 in `lab/AGENT.md`).
