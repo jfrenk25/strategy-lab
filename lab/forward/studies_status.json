@@ -1,0 +1,34 @@
+{
+ "start": "2026-11-21",
+ "last_1m_bar": "2026-11-20 16:14:00",
+ "items": {
+  "breakout_A": {
+   "forward_trades": 0,
+   "needed_for_verdict": 200,
+   "sum_R": 0.0,
+   "profit_factor": null,
+   "status": "WATCHING"
+  },
+  "breakout_B": {
+   "forward_trades": 0,
+   "needed_for_verdict": 200,
+   "sum_R": 0.0,
+   "profit_factor": null,
+   "status": "WATCHING"
+  },
+  "dipbuy": {
+   "forward_trades": 0,
+   "needed_for_verdict": 40,
+   "sum_R": 0.0,
+   "profit_factor": null,
+   "status": "WATCHING"
+  },
+  "pair_0.25_plus_1.5": {
+   "days": 0,
+   "total_pct": 0.0,
+   "deepest_drawdown_pct": 0.0,
+   "worst_day_pct": 0.0
+  }
+ },
+ "last_1h_bar": "2026-11-20 00:00:00"
+}
