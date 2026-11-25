@@ -1,0 +1,18 @@
+{
+ "registered": "2026-11-25",
+ "start": "2026-11-26",
+ "sizes": {
+  "cutler_dip_buy": 0.3754,
+  "copy_v3_gold": 0.2514,
+  "rth_breakout_A": 0.1457
+ },
+ "data_ends": {
+  "NAS100 minute bars": "2026-11-20 21:14:00+00:00",
+  "NAS100 hourly bars": "2026-11-20 05:00:00+00:00",
+  "Gold minute bars": "2026-11-24 14:59:00+00:00"
+ },
+ "counted_to": "2026-11-20 06:00:00+00:00",
+ "state": "WATCHING: no price bars after the start date yet",
+ "firm_days": 0,
+ "updated": "2026-11-25"
+}

@@ -19,6 +19,13 @@ Find out whether any mechanical trading idea survives the checks in `LAB_RULES.m
 - The cost table's spread part is an estimate. FTMO US may not offer the DAX or Ether.
 - Power has not changed: about 300 trades in two confirm years cannot show a profit factor near 1.25. More history is the real fix and the lab does not have it yet.
 
+## Book forward watch (registered 2026-11-25)
+- Three rules in one $100k paper account at fixed sizes: Cutler RSI dip-buy and RTH open ATR breakout on NAS100, copy v3 on gold. Registration and verdict rules: `book/REGISTRATION.md`. Code: `book/forward_book.py`. Status: `book/status.json`.
+- Counts trades entered from 2026-11-26. State on 2026-11-25: WATCHING, 0 firm days. NAS100 bars end 2026-11-20 and gold minute bars end 2026-11-24, so nothing moves until the next data refresh from Jeff's PC.
+- It needs gold 1-minute bars in `data_1m/XAUUSD_1m_<year>.csv.gz` as well as the NAS100 files. The 2026 gold file was added at registration.
+- The studies behind it live in the Trading Lab project docs (book2-result-2026-11-25.md), not in this repo. On past data the book fit a 1-step challenge at this size; its closest call was 2.7% under the midnight balance against a 3% limit. All three legs were picked with hindsight.
+- Never change `book/` except through `forward_book.py` writing `status.json`. A different book or size is a new registration.
+
 ## Rules learned (read before every task)
 - Costs decide most outcomes on short timeframes. Prefer ideas that trade less often.
 - An idea with no stated loser has failed every time so far.

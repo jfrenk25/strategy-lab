@@ -35,6 +35,7 @@ That tracks candidates and near misses on price bars newer than their registrati
 | Screen machine-built ideas, confirm survivors | `lab/screen.py` | `lab/screen/log.csv`, `lab/screen/confirm/` |
 | Add a trigger to the screen's catalogue | you or an agent | `lab/triggers/`, `lab/tools/check_trigger.py` |
 | Watch candidates and near misses on new prices | `lab/forward.py` | `lab/forward/` |
+| Watch the three-leg book as one paper prop account | `lab/book/forward_book.py` | `lab/book/` |
 | Find papers, write one file each, test what can be tested | paper track | `lab/papers/`, `lab/tools/paper.py`, `lab/tools/check_formula.py` |
 | Read the day's summary | you | `lab/briefs/` |
 | Remember between sessions | everyone | `lab/STATE.md`, `lab/JOURNAL.md` |

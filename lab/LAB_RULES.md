@@ -918,3 +918,13 @@ For every scenario:
 - The files cannot show what happened inside a minute, and the fill rules count the unclear minutes against the trade. A reject is a reject on 1-minute data.
 - The study covers three index markets from 9:00 to 15:55 New York time. It says nothing about futures tick charts, forex or other hours.
 - All 8 results are logged, including the ones that fail. This study runs once.
+
+## Book forward watch: three legs in one account (added November 25, 2026, before any price bar after that day existed)
+A fourth kind of watch. One paper account runs three rules at fixed sizes on new prices, against 1-step challenge rules. No money is involved. Code: `lab/book/forward_book.py`.
+
+- The registration is `lab/book/REGISTRATION.md`: the legs, their sizes, the costs, what counts and the verdict. It is part of these rules and is never edited.
+- Legs: Cutler RSI dip-buy on NAS100, copy v3 on gold, RTH open ATR breakout (version A) on NAS100. They were chosen in studies run in the Trading Lab project on April 2021 to April 2026. That choice is hindsight, which is why the book is watched before anything else is done with it.
+- Only trades entered from November 26, 2026 count.
+- Verdict, once per firm: PAPER PASS, PAPER FAIL or TOO SLOW, as the registration defines them. Before that the state is WATCHING.
+- A PAPER PASS is one start date on one stretch of prices. It is a reason to consider a demo account. It is not a guarantee.
+- This watch reads 1-minute bars (NAS100, gold) as well as 1-hour bars. It does not use the screen's engine, and it puts nothing on the screen's forward watch.
