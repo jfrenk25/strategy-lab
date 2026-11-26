@@ -3314,3 +3314,33 @@ Attempt counter starts at 96.
 - Trades count from 2026-11-26 00:00 UTC. Verdict once per firm (FTMO 1-Step, The5ers 1-step): PAPER PASS, PAPER FAIL or TOO SLOW. Rules: `lab/book/REGISTRATION.md` and "Book forward watch" in `LAB_RULES.md`.
 - Check at registration: replayed from 2024-01-01, `forward_book.py` matches the study's own files on all 602 firm days and passes on firm day 171 on both firms.
 - State: WATCHING, 0 firm days. Price data ends before the start date.
+
+### 2026-11-26 · screen survivor 434 · `month_end_reversal_hour0_leg2.follow.against_trend.any.stop2_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id ac72016988). No stated reason.
+- Screen years: 354 trades, profit factor 1.30, t-stat 2.30
+- Confirm years: 261 trades, profit factor 1.04, +7.5R, t-stat 0.28 (needed 3.68); markets 6 of 15; double-cost profit factor 0.96; beats 84% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets that traded; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.68 (bar for survivor 434)
+
+### 2026-11-26 · screen survivor 435 · `month_end_reversal_hour0_leg1.fade.with_trend.any.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 331e22304f). No stated reason.
+- Screen years: 401 trades, profit factor 1.21, t-stat 1.91
+- Confirm years: 269 trades, profit factor 0.95, -8.7R, t-stat -0.43 (needed 3.68); markets 6 of 15; double-cost profit factor 0.88; beats 44% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets that traded; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.68 (bar for survivor 435)
+
+### 2026-11-26 · screen survivor 436 · `month_end_reversal_hour0_leg1.fade.high_vol.any.stop2_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id c2840af376). No stated reason.
+- Screen years: 176 trades, profit factor 1.30, t-stat 1.73
+- Confirm years: 126 trades, profit factor 0.82, -15.5R, t-stat -1.13 (needed 3.68); markets 9 of 15; double-cost profit factor 0.75; beats 32% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.68 (bar for survivor 436)
+
+### 2026-11-26 · screen survivor 437 · `month_end_reversal_hour0_leg1.fade.high_vol.any.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 9dd646acc4). No stated reason.
+- Screen years: 176 trades, profit factor 1.40, t-stat 2.19
+- Confirm years: 126 trades, profit factor 1.03, +2.2R, t-stat 0.16 (needed 3.68); markets 7 of 15; double-cost profit factor 0.97; beats 69% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets that traded; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.68 (bar for survivor 437)
+
+### 2026-11-26 · screen batch · 160 ideas
+- New triggers registered: month_end_reversal, same_weekday_sign.
+- Passed the screen: 4. Confirmed on unseen years: 0. Candidates: 0.
+- Totals under version 4: 19880 of 19880 catalogue ideas screened, 282 survivors (437 with the 155 from earlier versions, which set the bar), 0 confirmed, 0 candidates.
+- Every screened idea is in `lab/screen/log.csv`.

@@ -1,0 +1,37 @@
+id: arxiv_1710_07470
+title: "Profitability of simple stationary technical trading rules with high-frequency data of Chinese Index Futures"
+authors: "Jing-Chao Chen, Yu Zhou, Xi Wang"
+published: "2017-10-20"
+url: "https://arxiv.org/abs/1710.07470"
+found: "2026-11-26"
+status: cant_test
+market: "CSI 300 stock index futures (China), main contract"
+timeframe: "15-second, 30-second and 60-second bars; every position is closed by the end of the day"
+data_needed:
+  - "15, 30 and 60 second bars of CSI 300 index futures, 2012 to 2016"
+testable_here: false
+why_not: "The rules run on bars of 15 to 60 seconds of a Chinese index future. The lab holds 1-hour bars and does not hold that market."
+missing_data: [sub_minute_bars, csi300_futures]
+formulas:
+  - name: "Moving-average ratio"
+    definition: "R(t) = MA(C, ns) / MA(C, nl)"
+    variables: "C: close. ns in {1, 5, 10, 15} bars, nl in {20, 30, 60, 120} bars. b: a band of 0.0001 to 0.0015."
+  - name: "Scaled Bollinger distance"
+    definition: "B(t) = (C(t) - EMA(C, n)) / sigma(t)"
+    variables: "sigma: the spread of the close around its EMA. n in {20, 30, 60, 120}. K: a level from 0.1 to 2.5."
+rules:
+  entry_long: "Ratio rule: buy when R crosses above 1 + b. Bollinger rule: buy when B crosses above +K. Stochastic rule: buy when the K line crosses above the D line while K is between 20 and 80."
+  entry_short: "The mirror image: R crosses below 1 - b; B crosses below -K; the K line crosses below D between 20 and 80."
+  exit: "Ratio rule: leave when R is back inside the band. Bollinger rule: leave when B crosses back through the level. Stochastic rule: leave on the opposite cross. Everything is closed at the end of each day."
+  holding_period: "Minutes to hours, never overnight"
+reported_results:
+  sample_period: "4 January 2012 to 30 December 2016"
+  markets: "CSI 300 index futures"
+  headline: "Before costs the best rule (Bollinger on 30-second bars, n = 120, K = 0.1) made 59% a year with a Sharpe of 2.33; the best ratio rule made 49% a year. Once a trading cost is charged, no rule makes money."
+  costs_included: "Both shown. The headline numbers are before costs; the authors' own conclusion is that none survives costs."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "All three families are indicator crossings (moving averages, a stochastic and a band), which the lab's notes close as a class in any case. The cost table in the copy read was garbled, so the cost level is not quoted. The second half of the paper was read only through the helper's summary. The authors name no loser."

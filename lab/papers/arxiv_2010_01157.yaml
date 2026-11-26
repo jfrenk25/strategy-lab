@@ -1,0 +1,37 @@
+id: arxiv_2010_01157
+title: "Gold Standard Pairs Trading Rules: Are They Valid?"
+authors: "Miroslav Fil"
+published: "2020-10-02"
+url: "https://arxiv.org/abs/2010.01157"
+found: "2026-11-26"
+status: cant_test
+market: "Pairs of US stocks listed in New York (about 2,800 after a liquidity screen)"
+timeframe: "Daily closes; pairs chosen on 12 months, traded for the next 6"
+data_needed:
+  - "daily closes of a few thousand US stocks, 1990 to 2020"
+testable_here: false
+why_not: "The rule picks its pairs out of thousands of single stocks. The lab holds fifteen markets and no single stocks."
+missing_data: [daily_stock_prices]
+formulas:
+  - name: "Distance spread"
+    definition: "d(t) = p_i(t) - p_j(t), scaled by its spread over the 12 formation months"
+    variables: "p: a stock's log price, normalised at the start of the formation window. The 20 pairs with the smallest sum of squared d over the formation window are traded. The exact scaling was not in the text read."
+  - name: "Cointegration spread"
+    definition: "e(t) = p_i(t) - a - b * p_j(t), the residual of an Engle-Granger regression fitted on the formation window"
+    variables: "a, b: fitted on the 12 formation months. Pairs that pass the test at the chosen confidence level are kept, up to the target count."
+rules:
+  entry_long: "Buy the spread (buy stock i, sell stock j) when the scaled spread falls below -2."
+  entry_short: "Sell the spread when the scaled spread rises above +2."
+  exit: "Close when the scaled spread crosses zero, or when the 6 trading months end. Orders are filled one day after the signal."
+  holding_period: "Until the spread is back at zero; at most 6 months"
+reported_results:
+  sample_period: "January 1990 to June 2020, also split into six sub-periods"
+  markets: "NYSE stocks"
+  headline: "With the standard settings the distance method made 0.11% a month and the cointegration method 0.18%, against 0.47% for the market. Yearly Sharpe -0.86 and -0.27 against 0.38. The best settings found with hindsight made 0.64% and 1.03% a month. Pairs trading did better than the market only in falling markets."
+  costs_included: "Yes: 0.26% to 0.35% a side depending on the decade, and 0.6% a year to borrow the short leg."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "The entry and exit levels could be computed for any two price series, but the rule is the choice of the closest 20 pairs out of thousands of stocks, and the lab cannot make that choice. Trading the lab's fifteen markets as pairs would be the book's 3.8 (still open for position mode), not this paper. The author's own result is that the textbook settings lose to the market after costs and that the best settings change from one period to the next."

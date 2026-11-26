@@ -1136,5 +1136,41 @@
   ],
   "timed": false,
   "universe": "fifteen"
+ },
+ {
+  "name": "month_end_reversal",
+  "hash": "e8a7650e752e",
+  "added": "2026-11-26",
+  "source": "Etula, Rinne, Suominen and Vaittinen, \"Dash for Cash: Monthly Market Impact of Institutional Liquidity Needs\", Review of Financial Studies 33(1), 2020, https://doi.org/10.1093/rfs/hhz054",
+  "summary": "At 00:00 UTC on the fourth-last weekday of a month: +1 if the five weekdays before it fell, -1 if they rose (leg 1). At 00:00 UTC on the fourth weekday of a month: +1 if the four weekdays before it fell, -1 if they rose (leg 2).",
+  "variants": [
+   {
+    "leg": 1,
+    "hour": 0
+   },
+   {
+    "leg": 2,
+    "hour": 0
+   }
+  ],
+  "timed": true,
+  "universe": "fifteen"
+ },
+ {
+  "name": "same_weekday_sign",
+  "hash": "9cb9c8a03842",
+  "added": "2026-11-26",
+  "source": "Z. Da and X. Zhang, \"Same-Weekday Momentum\", working paper, 2025, https://papers.ssrn.com/abstract=4806275; Keloharju, Linnainmaa and Nyberg, \"Return Seasonalities\", Journal of Finance 71(4), 2016",
+  "summary": "Once a day at `hour` UTC: +1 if the 24 hours from this hour rose on average on the same weekday 5 to 52 weeks ago, -1 if they fell on average.",
+  "variants": [
+   {
+    "hour": 0
+   },
+   {
+    "hour": 13
+   }
+  ],
+  "timed": true,
+  "universe": "fifteen"
  }
 ]

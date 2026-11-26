@@ -1,0 +1,35 @@
+id: mql5_london_breakout_gold
+title: "London Breakout on Gold: 3.7 Years of Backtests, What Works and What Does Not"
+authors: "Shanawaz Mohammed Nabi Rasool Pinjori (MQL5 blog; the author sells the trading robot)"
+published: "2026-10-13"      # date of the blog post
+url: "https://www.mql5.com/en/blogs/post/777540"
+found: "2026-11-26"
+status: extracted
+market: "Gold against the US dollar (XAUUSD)"
+timeframe: "Tick data; one trade a day at most, opened after 08:00 and closed by 21:00 broker time"
+data_needed:
+  - "gold prices fine enough to place stop orders at the edge of a five-hour range (the author used ticks)"
+  - "the broker's server time zone, which the post does not state"
+testable_here: true
+why_not: ""
+missing_data: []
+formulas:
+  - name: "Overnight range"
+    definition: "H = highest price and L = lowest price from 03:00 to 08:00 broker time; width = (H - L) / price"
+    variables: "A day is skipped when the width is under 0.30% or over 1.60% of price."
+rules:
+  entry_long: "At 08:00 place a buy stop a small distance above H. If it fills, the sell order is cancelled."
+  entry_short: "At 08:00 place a sell stop a small distance below L. If it fills, the buy order is cancelled."
+  exit: "Stop at the other side of the range, but never further than 0.6% of price. Target at 2.5 times the risk. When the trade is 1.5 times the risk ahead the stop moves to the entry price. Everything is closed at 21:00."
+  holding_period: "Within the day, 13 hours at most"
+reported_results:
+  sample_period: "January 2023 to September 2026; settings chosen on 2023 to 2025, 2026 kept back"
+  markets: "Gold, on two brokers' tick data"
+  headline: "715 trades, profit factor 1.38, about 49% winners, largest fall 17.3% risking 1% a trade (1.37 on the second broker). 2026 alone: profit factor 1.61 on 157 trades."
+  costs_included: "Not stated. No commission, spread or slippage is mentioned."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: pending
+may_stop_working: ""
+notes: "Not coded. The lab holds 1-hour gold, which is enough to find the range, but the rule cannot be run as written. (1) Its exits are its own: a stop at the range edge with a cap, a move to break-even at 1.5R and a clock exit at 21:00. Signal mode leaves only by an ATR stop or target. It would need its own registered study, like the intraday studies. (2) The post withholds the size of the entry buffer and the server's time zone, so the five range hours cannot be placed in UTC without a guess. (3) The built-in session_open trigger and the registered opening_range_break and open_distance triggers already screen breaks of an early-session range on gold, and none was confirmed. The sample starts in 2023, three years in which gold rose strongly, and the settings were chosen on 2023 to 2025. A vendor's backtest of a product on sale is not independent evidence. The author names no loser."

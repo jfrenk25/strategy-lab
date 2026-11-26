@@ -1,0 +1,37 @@
+id: arxiv_2604_26063
+title: "A Volume-Price-Adjusted MACD Trading Strategy with Sensitivity Calibration for U.S. Equity Indices"
+authors: "Luyun Lin, Lixing Lin, Zhen Zhang, Moxuan Zheng, Yiqing Wang"
+published: "2026-04-28"
+url: "https://arxiv.org/abs/2604.26063"
+found: "2026-11-26"
+status: extracted
+market: "Three US index funds: SPY, QQQ and DIA"
+timeframe: "Daily bars; long or in cash; a trade lasts from one cross to the next (weeks to months)"
+data_needed:
+  - "daily open, high, low, close and volume of SPY, QQQ and DIA"
+testable_here: true
+why_not: ""
+missing_data: []
+formulas:
+  - name: "Adjusted price"
+    definition: "P*(t) = sum over the N bars before t of [ C(i) * V(i) * s(i) * r(i) ] / sum of V(i)"
+    variables: "C: close. V: volume. s(i): standard deviation of (high - low) divided by the close. r(i): |close - open| / (high - low). N and the window of the standard deviation are not given in the text read."
+  - name: "VP-MACD and its signal line"
+    definition: "M = EMA(P*, 12) - EMA(P*, 26); S = EMA(M, 9)"
+    variables: "EMA(x, n): exponential moving average over n daily bars."
+rules:
+  entry_long: "Buy when M crosses above lambda * S: M(t-1) <= lambda * S(t-1) and M(t) > lambda * S(t). Lambda lies between 0.8 and 1.0 and is picked for each index on 2018 to 2022. The order is filled at the next day's open."
+  entry_short: "None. The rule is long or in cash."
+  exit: "Sell when M crosses below S (the plain cross, with no lambda). Filled at the next day's open."
+  holding_period: "Not fixed. The whole account is in the fund or in cash."
+reported_results:
+  sample_period: "Settings chosen on 2018 to 2022 (1,259 days); tested on 2023 to February 2026 (791 days)"
+  markets: "SPY, QQQ, DIA"
+  headline: "From the helper's summary of the results tables, not checked word for word: on the test years the adjusted rule made a Sharpe of about 0.96 on SPY (6 trades), 1.51 on QQQ (21 trades) and 1.08 on DIA; the plain MACD made 0.47 on SPY (40 trades)."
+  costs_included: "Yes: 0.04% a side (0.03% fee and 0.01% slippage)."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: pending
+may_stop_working: ""
+notes: "Not coded. Three reasons. (1) It is a moving-average (MACD) crossover with a volume weighting, a class the lab's notes close; the same call was made for jrfm_19_3_192 and quantpedia_btc_mtf_macd. (2) Two settings are missing from the text read: the length N of the price window and the window of the range's standard deviation. Lambda is fitted per index, and the fitted values were seen only in a summary. Any numbers the lab chose would be the lab's. (3) The test rests on 6 to 21 trades per fund in three rising years, which cannot tell the rule from holding the fund. The lab holds the three indices as CFD prices with a data vendor's volume, not the funds' own volume, which the formula leans on. The last part of the paper was read only through the helper's summary. The authors name no loser."
