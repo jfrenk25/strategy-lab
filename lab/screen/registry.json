@@ -1172,5 +1172,24 @@
   ],
   "timed": true,
   "universe": "fifteen"
+ },
+ {
+  "name": "noise_band_break",
+  "hash": "ea12c7a1ce1e",
+  "added": "2026-11-27",
+  "source": "Zarattini, Aziz and Barbon, \"Beat the Market: An Effective Intraday Momentum Strategy for S&P500 ETF (SPY)\", 2024, SSRN 4824172, https://alexandria.unisg.ch/server/api/core/bitstreams/a99aba00-f967-49b3-aceb-f544dc386e0b/content",
+  "summary": "+1 when the close first rises above the day's open (or previous close, if higher) by more than the average move from the open at this hour over the last 14 days; -1 for the mirror below.",
+  "variants": [
+   {
+    "anchor": 0,
+    "days": 14
+   },
+   {
+    "anchor": 13,
+    "days": 14
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
  }
 ]

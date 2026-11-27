@@ -3344,3 +3344,21 @@ Attempt counter starts at 96.
 - Passed the screen: 4. Confirmed on unseen years: 0. Candidates: 0.
 - Totals under version 4: 19880 of 19880 catalogue ideas screened, 282 survivors (437 with the 155 from earlier versions, which set the bar), 0 confirmed, 0 candidates.
 - Every screened idea is in `lab/screen/log.csv`.
+
+### 2026-11-27 · screen survivor 438 · `noise_band_break_anchor0_days14.follow.low_vol.ny.stop3_rr1.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id b3f247ab8d). No stated reason.
+- Screen years: 1914 trades, profit factor 1.10, t-stat 2.03
+- Confirm years: 1343 trades, profit factor 1.01, +6.2R, t-stat 0.14 (needed 3.69); markets 9 of 15; double-cost profit factor 0.93; beats 86% of random entries
+- Failed: profit factor >= 1.15; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.69 (bar for survivor 438)
+
+### 2026-11-27 · screen survivor 439 · `noise_band_break_anchor0_days14.follow.low_vol.ny.stop3_rr2.5` · REJECT
+- Source: machine-built from parts (screen catalogue, id 5be842c2f7). No stated reason.
+- Screen years: 1767 trades, profit factor 1.12, t-stat 2.16
+- Confirm years: 1236 trades, profit factor 0.97, -22.7R, t-stat -0.42 (needed 3.69); markets 7 of 15; double-cost profit factor 0.91; beats 43% of random entries
+- Failed: profit factor >= 1.15; profitable in half the markets that traded; profit factor > 1 at double costs; beats 95% of random entries; t-stat >= 3.69 (bar for survivor 439)
+
+### 2026-11-27 · screen batch · 320 ideas
+- New triggers registered: noise_band_break.
+- Passed the screen: 2. Confirmed on unseen years: 0. Candidates: 0.
+- Totals under version 4: 20200 of 20200 catalogue ideas screened, 284 survivors (439 with the 155 from earlier versions, which set the bar), 0 confirmed, 0 candidates.
+- Every screened idea is in `lab/screen/log.csv`.

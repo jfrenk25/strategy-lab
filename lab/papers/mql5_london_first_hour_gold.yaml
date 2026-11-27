@@ -1,0 +1,35 @@
+id: mql5_london_first_hour_gold
+title: "Should You Chase the London Open on Gold? 2,158 Days of XAUUSD M5 Data"
+authors: "Ryuzo Fukushima (MQL5 blog; the post promotes the author's signal service and trading robot)"
+published: "2026-11-13"      # date of the blog post
+url: "https://www.mql5.com/en/blogs/post/780305"
+found: "2026-11-27"
+status: extracted
+market: "Gold against the US dollar (XAUUSD)"
+timeframe: "5-minute bars in the post; the rule itself reads one hour and holds 4 or 7 hours"
+data_needed:
+  - "gold prices at 08:00, 09:00, 13:00 and 16:00 London time"
+  - "for the stop version: the high and low of the 08:00 to 09:00 hour and prices fine enough to see the stop hit"
+testable_here: true
+why_not: ""
+missing_data: []
+formulas:
+  - name: "First-hour direction"
+    definition: "s = sign( P(09:00) - P(08:00) ), London time"
+    variables: "P(h) is the gold price at hour h. s = +1 after a rising first hour, -1 after a falling one."
+rules:
+  entry_long: "At 09:00 London time, buy if the 08:00 to 09:00 hour closed above its open."
+  entry_short: "At 09:00 London time, sell if that hour closed below its open."
+  exit: "Close at 13:00 London time (also measured at 16:00). Stop version: stop at the first hour's low for a buy or its high for a sell, else out at 13:00."
+  holding_period: "4 hours (7 in the second measurement)"
+reported_results:
+  sample_period: "14 June 2018 to 6 November 2026, 2,158 weekdays"
+  markets: "Gold, one broker's 5-minute bars"
+  headline: "No edge. Buys after a rising hour were ahead at 13:00 on 51.0% of 1,150 days, against 52.0% for buying every day; sells after a falling hour 46.8% of 1,008 days, against 48.0% for selling every day. Halves of the sample: 48.7% and 49.4%. With the stop, about half the trades were stopped."
+  costs_included: "No. The main count has no spread or commission."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: pending
+may_stop_working: ""
+notes: "Not coded. The lab holds the bars the base rule needs, but its exit is a clock time, which neither signal mode nor position mode has; it would need its own registered study, and there is little reason to ask for one, because the author's own count shows the rule doing no better than trading the same way every day, before any cost. Written up as a stated rule with a reported null. The post gives win shares, not returns, so its 'ahead' rates cannot be turned into a profit factor. The registered `session_open` and `lagged_session_sign` parts already screen 'the way the hours before a session went' with the lab's exits, so no trigger was made from it."

@@ -1,0 +1,41 @@
+id: ssrn_4824172
+title: "Beat the Market: An Effective Intraday Momentum Strategy for S&P500 ETF (SPY)"
+authors: "Carlo Zarattini, Andrew Aziz, Andrea Barbon"
+published: "2024-05-10"      # first version; the version read is dated 3 February 2025
+url: "https://alexandria.unisg.ch/server/api/core/bitstreams/a99aba00-f967-49b3-aceb-f544dc386e0b/content"
+found: "2026-11-24"          # kept on that day; the full text was first read on 2026-11-27
+status: cant_test
+market: "SPY, the S&P 500 fund, in regular US trading hours"
+timeframe: "1-minute bars, decisions every 30 minutes, nothing held overnight"
+data_needed:
+  - "1-minute prices and volume of SPY in regular hours (09:30 to 16:00 New York), for the half-hour checks and the day's VWAP"
+  - "the 09:30 open and the 16:00 close of every day"
+testable_here: false
+why_not: "The rule checks price every half hour against a band and a volume-weighted average price built from 1-minute bars of the cash session; the lab holds 1-hour bars of an index contract, with no cash-session open at 09:30."
+missing_data: ["intraday_bars_under_1h", "vwap", "cash_session_open_close"]
+formulas:
+  - name: "Typical move by time of day"
+    definition: "sigma(t, HH:MM) = average over the last 14 days i of | Close(t-i, HH:MM) / Open(t-i, 09:30) - 1 |"
+    variables: "t is today; HH:MM is a time of day; Close(d, HH:MM) is the price at that time on day d; Open(d, 09:30) is that day's opening price."
+  - name: "Noise band"
+    definition: "UB = max(Open(t), Close(t-1, 16:00)) * (1 + VM * sigma); LB = min(Open(t), Close(t-1, 16:00)) * (1 - VM * sigma)"
+    variables: "VM is a multiplier, 1 in the base case. The band is drawn from today's open or yesterday's close, whichever makes it wider."
+  - name: "Size (dynamic version)"
+    definition: "shares = equity / Open * min(4, 2% / sigma_SPY)"
+    variables: "sigma_SPY is the volatility of the last 14 daily returns; leverage is capped at 4."
+rules:
+  entry_long: "At a half-hour mark (first one 10:00), if price is above UB, go long."
+  entry_short: "At a half-hour mark, if price is below LB, go short."
+  exit: "Trailing stop checked at half-hour marks: for a long the higher of UB and the day's VWAP, for a short the lower of LB and VWAP. A cross of the opposite band reverses the position. Everything is closed at 16:00."
+  holding_period: "Minutes to hours, inside one session"
+reported_results:
+  sample_period: "May 2007 to April 2024 (a later part of the text says to the end of 2024)"
+  markets: "SPY"
+  headline: "With the VWAP stop: 9.7% a year, Sharpe 1.24, 7,668 trades. With dynamic size: 19.6% a year, Sharpe 1.33, largest fall 25%, 43% winners. Holding SPY: 7.2% a year, Sharpe 0.45."
+  costs_included: "Yes: 0.0035 USD a share commission and 0.001 USD a share slippage. Financing of the leveraged version is not described."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "The full text opened on 2026-11-27 from the University of St. Gallen's repository (SSRN itself refuses). Left unclear by the paper: whether fills are at the bar's close, how a stop between two half-hour marks is handled, and any out-of-sample check of VM = 1. The typical move is defined as a 14-day average in one place and with a divisor of 13 in another. The authors run trading businesses. A related SSRN paper found by title only, not read: an independent replication and audit (7323419). The band itself needs only an open and a time of day, so a one-market cousin of it on 1-hour bars went into the screen as the trigger `noise_band_break`; that screens the event with the lab's exits and is not a test of this paper."

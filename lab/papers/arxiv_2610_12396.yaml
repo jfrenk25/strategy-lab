@@ -1,0 +1,41 @@
+id: arxiv_2610_12396
+title: "Mixup Barcodes for Topology-Aware Financial Decision Making"
+authors: "Buddha Nath Sharma, Joe Opitz, Adam Moser, Sayam Palrecha, Sushovan Majhi, Atish Mitra"
+published: "2026-10-01"      # month taken from the arXiv number; the day was not visible in the text read
+url: "https://arxiv.org/abs/2610.12396"
+found: "2026-11-27"
+status: cant_test
+market: "SPY (S&P 500 fund) and bitcoin against the dollar"
+timeframe: "Daily closes; positions last months"
+data_needed:
+  - "daily closes of SPY from January 2010 and of bitcoin from January 2017: the reference shape is built once from the first 210 (SPY) or 180 (bitcoin) days of those samples, and the settings were chosen on them"
+  - "a persistent-homology library for the stress score"
+testable_here: false
+why_not: "The stress score compares each day with a reference window fixed at the start of the authors' samples (2010 for SPY, 2017 for bitcoin), and its settings were fitted on those samples; the lab reads nothing before April 21, 2021, where the rule would make only a handful of trades."
+missing_data: ["longer_daily_history"]
+formulas:
+  - name: "Golden cross"
+    definition: "enter when SMA50 crosses above SMA200; leave when SMA50 crosses below SMA200"
+    variables: "SMA50 and SMA200 are the 50-day and 200-day averages of the close."
+  - name: "Stress score S"
+    definition: "S = 30-day trailing mean of ( 0.45 * W + 0.50 * MP + 0.05 * E ), clipped to 0..1"
+    variables: "Standardised log prices of the last w days are turned into a cloud of points by delay embedding (dimension d, lag tau). W is the distance between the cloud's connected-component diagram and that of a fixed reference cloud; MP is the share of the reference cloud's loop lifetime lost when today's cloud is merged in; E is the absolute change in loop entropy. Each term is rescaled to 0..1 using past values only. SPY: w 90, d 4, tau 3. Bitcoin: w 60, d 4, tau 2."
+  - name: "Position size"
+    definition: "alpha = 1 if S < 0.30; (0.60 - S) / 0.30 if 0.30 <= S <= 0.60; 0 above 0.60"
+    variables: "alpha is the share of capital held while a golden cross is in force, recomputed daily."
+rules:
+  entry_long: "On a golden cross, if S is below 0.60 that day. Size alpha."
+  entry_short: "None."
+  exit: "On a death cross. Also, once S has cut the position to zero it stays flat until the next golden cross."
+  holding_period: "Months"
+reported_results:
+  sample_period: "SPY January 2010 to December 2024; bitcoin January 2017 to December 2024"
+  markets: "SPY, BTC/USD"
+  headline: "SPY: 9.6% a year, Sharpe 1.12, largest fall 16.4%, against 9.5% and 0.73 for the plain cross and 13.7% and 0.84 for holding. Bitcoin: 19.6% a year, Sharpe 1.24, largest fall 18.4%, against 34.9% and 0.87 for the plain cross and 47.6% and 0.95 for holding. 7 entries on SPY, 8 on bitcoin."
+  costs_included: "Yes: 0.05% of every change in the position."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "The entry is a moving-average crossover, a class the lab's notes close; the paper's addition is the size rule. By the authors' own account the figures are in-sample: the embedding settings were picked by Sharpe on the same data out of 72 combinations, and the scored version beats the plain cross on Sharpe in only 22 of 72 (bitcoin) and 26 of 72 (SPY) of them. It earns less than holding on both markets. Unclear: whether a score of exactly 0.60 is flat or not (the text says both), and the publication day. Read through a summary of the PDF on 2026-11-27; the weights and thresholds above come from that reading."

@@ -1,0 +1,35 @@
+id: mql5_gold_night_hold
+title: "Is your edge real? Testing 49,000 rule variants after spread and swap - and the one gold timing rule that survived"
+authors: "Istvan Oldemar Schuch (MQL5 blog; the post promotes the author's free tools and a trading robot)"
+published: "2026-11-06"      # date of the blog post
+url: "https://www.mql5.com/en/blogs/post/779464"
+found: "2026-11-27"
+status: extracted
+market: "Gold against the US dollar (XAUUSD)"
+timeframe: "1-hour bars; one trade a night, held 9 hours"
+data_needed:
+  - "1-hour gold prices"
+  - "New York clock time with daylight saving, to place 18:00 and 03:00"
+testable_here: true
+why_not: ""
+missing_data: []
+formulas:
+  - name: "Night hold"
+    definition: "r(d) = P(d+1, 03:00 NY) / P(d, 18:00 NY) - 1, taken for d = Monday to Thursday"
+    variables: "P(d, h) is the gold price at hour h New York time on day d. 18:00 is when metals trading reopens; 03:00 is the start of London trading."
+rules:
+  entry_long: "Buy gold at 18:00 New York time on Monday, Tuesday, Wednesday and Thursday evenings."
+  entry_short: "None. The rule is long only."
+  exit: "Sell 9 hours later, at 03:00 New York time. The rule itself has no stop."
+  holding_period: "9 hours"
+reported_results:
+  sample_period: "January 2011 to October 2026, 2,489 trades"
+  markets: "Gold, one broker's 1-hour history"
+  headline: "After costs +2.74 basis points a trade (t 2.86). First 60% of the sample +0.07 (t 0.06); last 40%, from mid-2020, +5.49 (t 3.57). By evening: Monday +3.02, Tuesday +5.58, Wednesday -1.07, Thursday +3.46. One night's standard deviation is about 48 basis points."
+  costs_included: "Yes: the larger of 1.5 times the live spread and the spread on the entry bar, plus commission; no swap, because the hold does not cross the broker's midnight. The spread and commission values are not given."
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: pending
+may_stop_working: ""
+notes: "Not coded. The lab holds 1-hour gold, but the rule leaves at a set clock time and has no stop or target, and signal mode leaves only by an ATR stop or target while position mode holds daily bars that roll at 22:00 UTC. As with jrfm_19_9_692 it would need its own registered study with a time exit, and Jeff's go-ahead. Points against it, all from the post itself: it is the one survivor of about 49,000 variants tried on the same history, so its t of 2.86 is far below any bar that counts those tries; the whole gain comes from mid-2020 on, years in which gold rose strongly; one of the four evenings loses; and adding Sunday evening cuts it to +1.56 (t 1.68). The post's money simulation uses a different rule (three evenings and a 2.3% stop). The lab's built-in clock trigger already screens 'gold at a given hour' with the lab's exits. The author gives a session reason (reopen to London start) but names no loser."
