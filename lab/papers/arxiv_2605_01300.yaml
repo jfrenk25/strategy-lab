@@ -1,0 +1,47 @@
+id: arxiv_2605_01300
+title: "Visibility graphs can make money in financial markets"
+authors: "Rafal Rak"
+published: "2026-05-02"
+url: "https://arxiv.org/abs/2605.01300"
+found: "2026-11-28"
+status: cant_test
+market: "Dow Jones 30, EURUSD and gold, traded as CFDs on a MetaTrader 5 demo account"
+timeframe: "1-minute, 5-minute and 30-minute bars together; about 3 to 5 trades a day"
+data_needed:
+  - "1-minute, 5-minute and 30-minute bars of the Dow, EURUSD and gold for 2024 and 2025"
+  - "the settings chosen on each 30-day window (they are refitted every 7 days)"
+testable_here: false
+why_not: "The signal must agree on 1-minute, 5-minute and 30-minute bars at once, and the lab holds 1-hour bars only (its 1-minute files cover three US indices in New York hours, not EURUSD, gold or the Dow round the clock)."
+missing_data:
+  - one_minute_bars
+  - five_minute_bars
+  - thirty_minute_bars
+formulas:
+  - name: "Visible bars"
+    definition: "bar i is visible from bar j if p_k < p_j + (p_i - p_j) * (k - j) / (i - j) for every k between them"
+    variables: "p: price. i runs over the W_V bars before j (the visibility window). At most W_S visible bars are kept (the window size). This is the natural visibility graph of a price series."
+  - name: "Up and down sums over visible bars"
+    definition: "S+ = sum of rises, S- = sum of falls (as sizes), N+ = count of rises, N- = count of falls"
+    variables: "A rise or fall is dp_i = p_i - p_(i-1), taken only at the visible bars."
+  - name: "Ratios"
+    definition: "r_S = S+ / S-,  r_N = N+ / N-"
+    variables: "Read word for word up to here. The rest of the construction comes from a summary of the page, not the text itself."
+  - name: "VGRSI"
+    definition: "VGRSI = 100 - 100 / (1 + r_A), with r_A = (r_S + r_N) / 2 or r_A = r_S / r_N"
+    variables: "Two versions of r_A are described. Windows from 10 to 200 bars were tried. From the summary; check against the paper before any use."
+rules:
+  entry_long: "VGRSI crosses a low level (somewhere in 20 to 35), with the same signal on the 1-minute, 5-minute and 30-minute charts. The direction of the cross was not clear in the text read."
+  entry_short: "VGRSI crosses a high level (somewhere in 70 to 95), with the same signal on all three charts."
+  exit: "A stop and a target set at entry, the same distance each way: the median height of the last N rising or falling candles times Z. N and Z are refitted and their ranges are not given."
+  holding_period: "Minutes to hours; at most two open positions per market and at least 30 minutes between entries"
+reported_results:
+  sample_period: "2024 and 2025 (503 trading days), walk-forward: settings fitted on 30 days, traded for the next 7"
+  markets: "Dow Jones 30, EURUSD, gold"
+  headline: "On a 10,000 USD base with 1:100 leverage: profit of about 146,000 USD (Dow), 69,000 (EURUSD) and 125,000 (gold); falls of 10% to 18%; Sharpe 2.55 to 3.6; 3.3 to 4.8 trades a day."
+  costs_included: "The author says costs are included; the amounts were not in the text read"
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "Only the first part of the paper was read word for word (up to the two ratios); the indicator's last step and all the trading rules come from the page reader's summary. The rule is an RSI computed over 'visible' bars, with levels, windows, N and Z refitted every week, so there is no single set of numbers to code even with the right bars. The results are from a demo account at 1:100 leverage, which is why the profit is many times the starting balance. An RSI-style oscillator crossing a level is a class the lab's notes already close for triggers, so it was not turned into one."

@@ -1,0 +1,34 @@
+id: quantpedia_btc_max_min
+title: "Trend-following and Mean-reversion in Bitcoin"
+authors: "Matus Padysak and Radovan Vojtko (Quantpedia)"
+published: "2022-03-15"      # date of the blog post
+url: "https://quantpedia.com/trend-following-and-mean-reversion-in-bitcoin/"
+found: "2026-11-28"
+status: extracted
+market: "Bitcoin against the US dollar (Gemini exchange), long or flat"
+timeframe: "Daily prices, weekends included; the position is decided each day"
+data_needed:
+  - "daily closes of bitcoin (can be built from the hourly bars)"
+testable_here: true
+why_not: ""
+missing_data: []
+formulas:
+  - name: "Local maximum and minimum"
+    definition: "MAX_t(x) = highest price of the last x days; MIN_t(x) = lowest price of the last x days"
+    variables: "x: lookback of 10, 20, 30, 40 or 50 days. The post's own formula is an image that was not read, so whether day t itself is inside the window is not known."
+rules:
+  entry_long: "Combined version: hold bitcoin when today's price is at its x-day maximum or at its x-day minimum. The post also shows each leg alone (at the maximum only: trend; at the minimum only: reversal)."
+  entry_short: "None. The rule is long or flat."
+  exit: "Flat on any day the price is at neither extreme. The post gives no other exit; its wording about 'the following day' implies the position earns the next day's return."
+  holding_period: "One day at a time"
+reported_results:
+  sample_period: "26 November 2015 to 3 February 2022"
+  markets: "Bitcoin, daily prices from Gemini"
+  headline: "Combined version: 98.43% a year, volatility 47.75%, largest fall -37.67%, return over volatility 2.06. Holding bitcoin: volatility 74.35%, largest fall -83.65%. Shorter lookbacks did best. The minimum-only leg had falls of over 80%."
+  costs_included: "No costs are mentioned"
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: pending
+may_stop_working: ""
+notes: "Not coded. Three reasons. (1) Half of the rule, holding bitcoin on days it sits at its x-day high, is a daily breakout trend rule in position mode; the lab's notes close that class after two failures (ts_momentum, valeyre_ema_trend), and the same call was made for quantpedia_silicon_satoshi. It needs Jeff's go-ahead. (2) The post's formula is an image that was not read, and the text does not say which lookback gives the headline result or which hour ends its day, so a coded version would rest on the lab's guesses. (3) No costs are stated: the rule is in and out of the market often, and the lab's bitcoin cost in position mode is 0.13% per change of weight. The lab does hold hourly bitcoin from April 2021 (Bitstamp, not Gemini), so if Jeff approves a test the open points are the window (with or without today) and the lookback (the five values could be the walk-forward grid). Everything reported is in-sample and ends in February 2022; the authors name no loser and cite no paper for the idea."

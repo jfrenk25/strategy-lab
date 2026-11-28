@@ -1191,5 +1191,21 @@
   ],
   "timed": false,
   "universe": "fifteen"
+ },
+ {
+  "name": "strong_bar_inside",
+  "hash": "49f5e01013c1",
+  "added": "2026-11-28",
+  "source": "S. Ermolov, \"TEST #002 Inside Bar\", MQL5 traders' blog, 11 June 2026, https://www.mql5.com/en/blogs/post/771362",
+  "summary": "The previous bar had a body of at least 80% of its range and a range of at least 0.6 ATR, and this bar stays inside it with half its range or less: +1 if the previous bar closed up, -1 if it closed down.",
+  "variants": [
+   {
+    "body": 0.8,
+    "inside": 0.5,
+    "atr": 0.6
+   }
+  ],
+  "timed": false,
+  "universe": "fifteen"
  }
 ]

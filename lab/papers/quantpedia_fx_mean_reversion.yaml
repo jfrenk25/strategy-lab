@@ -1,0 +1,46 @@
+id: quantpedia_fx_mean_reversion
+title: "How to Build Mean Reversion Strategies in Currencies"
+authors: "Sona Beluska (Quantpedia); the SSRN listing of the same title (5002058) adds Radovan Vojtko"
+published: "2024-10-25"      # date of the blog post
+url: "https://quantpedia.com/how-to-build-mean-reversion-strategies-in-currencies/"
+found: "2026-11-28"
+status: cant_test
+market: "Six CME currency futures against the US dollar: Australian dollar, British pound, Canadian dollar, euro, Swiss franc, Japanese yen (continuous contracts)"
+timeframe: "Month-end prices; positions are reset once a month"
+data_needed:
+  - "month-end prices of six continuous currency futures, including the Swiss franc, from February 2007"
+  - "each future's cumulative return counted from the start of that sample"
+testable_here: false
+why_not: "The signal is each currency's cumulative return since 2007 against the basket's average, so it needs history from 2007, and the basket includes the Swiss franc, which the lab does not hold; the lab's forex bars start in April 2021."
+missing_data:
+  - currency_futures_from_2007
+  - swiss_franc
+formulas:
+  - name: "Cumulative return"
+    definition: "R_i(t) = P_i(t) / P_i(0) - 1"
+    variables: "P_i(t): month-end price of future i. P_i(0): its price at the start of the sample (February 2007). The post does not write the formula out; this is its description in symbols."
+  - name: "Deviation from the basket"
+    definition: "d_i(t) = R_i(t) - mean over the six futures of R_j(t)"
+    variables: "The 'average future' is the anchor. The post does not say whether the deviation is a difference or a ratio; a difference is assumed here and that is a guess."
+  - name: "Linear weight"
+    definition: "w_i(t) = -d_i(t)"
+    variables: "A future 20% above the average is held 20% short, one 20% below is held 20% long."
+  - name: "Stronger weight (second version)"
+    definition: "post's examples only: deviation 20% -> weight 40%, 30% -> 90%, 40% -> 160%"
+    variables: "No formula is given. The three examples fit weight = 10 * d^2, but that fit is the reader's, not the post's."
+rules:
+  entry_long: "At month end, hold long every future whose cumulative return is below the basket average, sized by how far below."
+  entry_short: "At month end, hold short every future whose cumulative return is above the basket average, sized by how far above."
+  exit: "None of its own: weights are recomputed at the next month end."
+  holding_period: "One month between resets; a position can stay on for years while the gap lasts"
+reported_results:
+  sample_period: "13 February 2007 to 5 September 2024"
+  markets: "Six CME currency futures"
+  headline: "Linear weights: Sharpe 0.12, Calmar 0.05, equity about flat near 1.1 for ten years. Stronger weights: Sharpe 0.35, with total exposure peaking near 450%. The table with returns and falls is an image and was not read."
+  costs_included: "No costs or roll costs are stated"
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: cant_test
+may_stop_working: ""
+notes: "The rule adds to a losing side as the gap widens (the post calls it grid-like) and has no stop. Nothing is held out: the whole sample is in-sample, and by the authors' own count the plain version earns almost nothing before costs. Unclear in the page read: how the average series is built, whether the deviation is a ratio or a difference, the day and price of the monthly trade, and the numbers in the results table. The lab holds five of the six currencies as spot pairs since April 2021, which is neither the basket nor the history the rule's anchor needs; it was not approximated."

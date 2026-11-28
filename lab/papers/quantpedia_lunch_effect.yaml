@@ -1,0 +1,34 @@
+id: quantpedia_lunch_effect
+title: "Lunch Effect in the U.S. Stock Market Indices"
+authors: "Cyril Dujava (Quantpedia)"
+published: "2024-08-21"      # date of the blog post
+url: "https://quantpedia.com/lunch-effect-in-the-u-s-stock-market-indices/"
+found: "2026-11-28"
+status: extracted
+market: "S&P 500 through the SPY fund (futures are named as an alternative)"
+timeframe: "1-hour bars in New York time; two trades a day, held one and two hours"
+data_needed:
+  - "1-hour bars of the S&P 500 during the New York cash session"
+testable_here: true
+why_not: ""
+missing_data: []
+formulas:
+  - name: "Hourly return"
+    definition: "r(h) = P(h + 1) / P(h) - 1"
+    variables: "P(h): price at New York hour h. The rule uses no other quantity."
+rules:
+  entry_long: "Buy at 12:00 New York time, every trading day."
+  entry_short: "Sell short at 11:00 New York time, every trading day."
+  exit: "Cover the short at 12:00 (and turn long); sell the long at 14:00. Flat for the rest of the day."
+  holding_period: "One hour short, then two hours long"
+reported_results:
+  sample_period: "6 May 2010 to May 2024"
+  markets: "SPY, hourly bars from Finam"
+  headline: "The post describes a weak 11:00 to 12:00 hour and a stronger 12:00 to 14:00 stretch and shows the rule's equity curve, but its numbers are in images and were not read."
+  costs_included: "No costs are mentioned"
+idea: ""
+lab_markets: []
+lab_result: {}
+verdict: pending
+may_stop_working: ""
+notes: "Not coded. The lab holds 1-hour S&P 500 bars, but the rule enters and leaves at set clock times. Signal mode leaves only by an ATR stop or target and position mode holds daily bars, so neither engine can run it as written; it would need its own registered study with a time exit and Jeff's go-ahead, like jrfm_19_9_692 and mql5_gold_night_hold. Two round trips a day on the index would cost about 0.02% a day at the lab's table (roughly 5% a year) before any slippage, and the post states no costs and no average hourly return in text to set against that. The hours were picked on the same sample they are shown on; the author calls the pattern undocumented and names no loser. The lab's S&P 500 bars are a CFD's from April 2021, in UTC, so 11:00 New York moves between 15:00 and 16:00 UTC with daylight saving. A single clock hour is the built-in clock trigger with a different number, so no trigger was written."

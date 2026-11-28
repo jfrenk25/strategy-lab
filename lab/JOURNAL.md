@@ -3362,3 +3362,9 @@ Attempt counter starts at 96.
 - Passed the screen: 2. Confirmed on unseen years: 0. Candidates: 0.
 - Totals under version 4: 20200 of 20200 catalogue ideas screened, 284 survivors (439 with the 155 from earlier versions, which set the bar), 0 confirmed, 0 candidates.
 - Every screened idea is in `lab/screen/log.csv`.
+
+### 2026-11-28 · screen batch · 160 ideas
+- New triggers registered: strong_bar_inside.
+- Passed the screen: 0. Confirmed on unseen years: 0. Candidates: 0.
+- Totals under version 4: 20360 of 20360 catalogue ideas screened, 284 survivors (439 with the 155 from earlier versions, which set the bar), 0 confirmed, 0 candidates.
+- Every screened idea is in `lab/screen/log.csv`.
